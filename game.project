@@ -1,0 +1,29 @@
+[project]
+title = Steam
+version = 0.9
+bundle_resources = /bundle/
+dependencies#0 = https://github.com/britzl/gooey/archive/6.5.0.zip
+dependencies#1 = https://github.com/britzl/monarch/archive/2.15.0.zip
+
+[bootstrap]
+main_collection = /examples/examples.collectionc
+
+[input]
+game_binding = /input/game.input_bindingc
+
+[display]
+width = 1280
+height = 720
+
+[physics]
+scale = 0.02
+
+[script]
+shared_state = 1
+
+[library]
+include_dirs = steam
+
+[collection_proxy]
+max_count = 16
+

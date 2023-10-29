@@ -1,0 +1,6 @@
+name: "steam"
+
+platforms:
+    x86_64-linux:
+        context:
+            dynamicLibs: ['steam_api', 'sdkencryptedappticket']
