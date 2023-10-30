@@ -3,22 +3,53 @@
 #include <dmsdk/sdk.h>
 #include "steam_api.h"
 
-
+/*****************************
+* CHECK (u)int64 (from string)
+******************************/
+uint64 check_uint64(lua_State* L, int index) {
+	if(lua_isstring(L, index)) {
+		const char * s = luaL_checkstring(L, index);
+		return strtoull(s, NULL, 10);
+	}
+	return 0;
+}
+int64 check_int64(lua_State* L, int index) {
+	if(lua_isstring(L, index)) {
+		const char * s = luaL_checkstring(L, index);
+		return strtoll(s, NULL, 10);
+	}
+	return 0;
+}
+void check_uint64_array(lua_State* L, int index, uint64 * arr, unsigned int size) {
+	if(lua_isnil(L, index) || lua_isnone(L, index)) {
+		if(size > 0) {
+			luaL_error(L, "Size > 0 but no table provided");
+		}
+		return;
+	}
+	if(!lua_istable(L, index)) {
+		luaL_error(L, "Not a table");
+	}
+	int table_size = lua_objlen(L, index);
+	if(table_size > size) {
+		table_size = size;
+	}
+	for(int i=1; i<=table_size; i++) {
+		lua_pushnumber(L, i);
+		lua_gettable(L, index);
+		arr[i] = check_uint64(L, -1);
+	}
+}
 
 /*****************************
 * PUSH (u)int64 (to strings)
 ******************************/
-static void push_int64_t(lua_State* L, int64_t n) {
+void push_int64(lua_State* L, int64 n) {
 	char buf[22];
 	snprintf(buf, sizeof(buf), "%lld", n);
 	lua_pushstring(L, buf);
 }
-static void push_int64(lua_State* L, int64 n) {
-	char buf[22];
-	snprintf(buf, sizeof(buf), "%lld", n);
-	lua_pushstring(L, buf);
-}
-static void push_int64_array(lua_State* L, int64 arr[], unsigned int size) {
+void push_int64_array(lua_State* L, int64 arr[], unsigned int size) {
 	lua_newtable(L);
 	for(int i=1; i <= size; i++) {
 		lua_pushnumber(L, i);
@@ -26,12 +57,12 @@ static void push_int64_array(lua_State* L, int64 arr[], unsigned int size) {
 		lua_settable(L, -3);
 	}
 }
-static void push_uint64(lua_State* L, uint64 n) {
+void push_uint64(lua_State* L, uint64 n) {
 	char buf[22];
 	snprintf(buf, sizeof(buf), "%llu", n);
 	lua_pushstring(L, buf);
 }
-static void push_uint64_array(lua_State* L, uint64 arr[], unsigned int size) {
+void push_uint64_array(lua_State* L, uint64 arr[], unsigned int size) {
 	lua_newtable(L);
 	for(int i=1; i <= size; i++) {
 		lua_pushnumber(L, i);

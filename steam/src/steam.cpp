@@ -14,34 +14,29 @@
 #include <stdio.h>
 #include "steam_api.h"
 
+#include "steam_apps.h"
+#include "steam_friends.h"
+#include "steam_game_search.h"
+#include "steam_input.h"
+#include "steam_inventory.h"
+#include "steam_matchmaking.h"
+#include "steam_music.h"
+#include "steam_musicremote.h"
+#include "steam_parties.h"
+#include "steam_networking.h"
+#include "steam_remotestorage.h"
+#include "steam_screenshots.h"
+#include "steam_ugc.h"
 #include "steam_user.h"
+#include "steam_userstats.h"
 #include "steam_utils.h"
+#include "steam_video.h"
 
 struct SteamBootstrap {
 	SteamBootstrap() {
 		SteamAPI_Init();
 	}
 } g_SteamBootstrap;
-
-#define DM_STEAMWORKS_EXTENSION_STAT_TYPE_INT 0
-#define DM_STEAMWORKS_EXTENSION_STAT_TYPE_FLOAT 1
-#define DM_STEAMWORKS_EXTENSION_STAT_TYPE_AVERAGERATE 2
-
-static ISteamApps *apps;
-static ISteamFriends *friends;
-static ISteamMatchmaking *matchmaking;
-static ISteamMusic *music;
-static ISteamUserStats *user_stats;
-static ISteamRemoteStorage *remote_storage;
-static ISteamInventory *inventory;
-static ISteamUGC *ugc;
-static ISteamParties *parties;
-static ISteamInput *input;
-static ISteamGameSearch *game_search;
-static ISteamNetworking *networking;
-static ISteamVideo *video;
-static ISteamScreenshots *screenshots;
-static ISteamMusicRemote *music_remote;
 
 // /*****************************
 // * PUSH numbers and other primitive types
@@ -98,68 +93,6 @@ static ISteamMusicRemote *music_remote;
 // 	lua_pushstring(L, (char *)s);
 // }
 
-
-// /*****************************
-// * PUSH (u)int64 (to strings)
-// ******************************/
-// static void push_int64_t(lua_State* L, int64_t n) {
-// 	char buf[22];
-// 	snprintf(buf, sizeof(buf), "%lld", n);
-// 	lua_pushstring(L, buf);
-// }
-// static void push_int64(lua_State* L, int64 n) {
-// 	char buf[22];
-// 	snprintf(buf, sizeof(buf), "%lld", n);
-// 	lua_pushstring(L, buf);
-// }
-// static void push_int64_array(lua_State* L, int64 arr[], unsigned int size) {
-// 	lua_newtable(L);
-// 	for(int i=1; i <= size; i++) {
-// 		lua_pushnumber(L, i);
-// 		push_int64(L, arr[i]);
-// 		lua_settable(L, -3);
-// 	}
-// }
-
-// static void push_uint64(lua_State* L, uint64 n) {
-// 	char buf[22];
-// 	snprintf(buf, sizeof(buf), "%llu", n);
-// 	lua_pushstring(L, buf);
-// }
-// static void push_uint64_array(lua_State* L, uint64 arr[], unsigned int size) {
-// 	lua_newtable(L);
-// 	for(int i=1; i <= size; i++) {
-// 		lua_pushnumber(L, i);
-// 		push_uint64(L, arr[i]);
-// 		lua_settable(L, -3);
-// 	}
-// }
-
-
-// /*****************************
-// * PUSH CSteamID
-// ******************************/
-// static void push_CSteamID(lua_State* L, CSteamID steamId) {
-// 	push_uint64(L, steamId.ConvertToUint64());
-// }
-// static void push_class_CSteamID(lua_State* L, CSteamID steamId) {
-// 	push_uint64(L, steamId.ConvertToUint64());
-// }
-// static void push_CSteamID_array(lua_State* L, CSteamID steamId[], unsigned int size) {
-// 	lua_newtable(L);
-// 	for(int i=1; i <= size; i++) {
-// 		lua_pushnumber(L, i);
-// 		push_CSteamID(L, steamId[i]);
-// 		lua_settable(L, -3);
-// 	}
-// }
-
-// /*****************************
-// * PUSH CGameID
-// ******************************/
-// static void push_CGameID(lua_State* L, CGameID gameId) {
-// 	push_uint64(L, gameId.ToUint64());
-// }
 
 // /*****************************
 // * PUSH structs
@@ -312,50 +245,7 @@ static ISteamMusicRemote *music_remote;
 // 	dest[size] = 0x0;
 // }
 
-// /*****************************
-// * CHECK (u)int64 (from string)
-// ******************************/
-// static uint64 check_uint64(lua_State* L, int index) {
-// 	if(lua_isstring(L, index)) {
-// 		const char * s = luaL_checkstring(L, index);
-// 		return strtoull(s, NULL, 10);
-// 	}
-// 	return 0;
-// }
-// static int64_t check_int64_t(lua_State* L, int index) {
-// 	if(lua_isstring(L, index)) {
-// 		const char * s = luaL_checkstring(L, index);
-// 		return strtoll(s, NULL, 10);
-// 	}
-// 	return 0;
-// }
-// static int64 check_int64(lua_State* L, int index) {
-// 	if(lua_isstring(L, index)) {
-// 		const char * s = luaL_checkstring(L, index);
-// 		return strtoll(s, NULL, 10);
-// 	}
-// 	return 0;
-// }
-// static void check_uint64_array(lua_State* L, int index, uint64 * arr, unsigned int size) {
-// 	if(lua_isnil(L, index) || lua_isnone(L, index)) {
-// 		if(size > 0) {
-// 			luaL_error(L, "Size > 0 but no table provided");
-// 		}
-// 		return;
-// 	}
-// 	if(!lua_istable(L, index)) {
-// 		luaL_error(L, "Not a table");
-// 	}
-// 	int table_size = lua_objlen(L, index);
-// 	if(table_size > size) {
-// 		table_size = size;
-// 	}
-// 	for(int i=1; i<=table_size; i++) {
-// 		lua_pushnumber(L, i);
-// 		lua_gettable(L, index);
-// 		arr[i] = check_uint64(L, -1);
-// 	}
-// }
+
 
 // /*****************************
 // * CHECK LuaBuffer
@@ -364,46 +254,6 @@ static ISteamMusicRemote *music_remote;
 // 	return dmScript::CheckBuffer(L, index);
 // }
 
-// /*****************************
-// * CHECK CSteamID
-// ******************************/
-// static CSteamID check_CSteamID(lua_State* L, int index) {
-// 	uint64 id = check_uint64(L, index);
-// 	CSteamID steamId = CSteamID(id);
-// 	return steamId;
-// }
-// static CSteamID check_class_CSteamID(lua_State* L, int index) {
-// 	return check_CSteamID(L, index);
-// }
-// static void check_CSteamID_array(lua_State* L, int index, CSteamID *ids, int size) {
-// 	if(lua_isnil(L, index) || lua_isnone(L, index)) {
-// 		if(size > 0) {
-// 			luaL_error(L, "Size > 0 but no table provided");
-// 		}
-// 		return;
-// 	}
-// 	if(!lua_istable(L, index)) {
-// 		luaL_error(L, "Not a table");
-// 	}
-// 	int table_size = lua_objlen(L, index);
-// 	if(table_size > size) {
-// 		table_size = size;
-// 	}
-// 	for(int i=1; i<=table_size; i++) {
-// 		lua_pushnumber(L, i);
-// 		lua_gettable(L, index);
-// 		ids[i] = check_CSteamID(L, -1);
-// 	}
-// }
-
-// /*****************************
-// * CHECK CGameID
-// ******************************/
-// static CGameID check_CGameID(lua_State* L, int index) {
-// 	uint64 id = check_uint64(L, index);
-// 	CGameID gameId = CGameID(id);
-// 	return gameId;
-// }
 
 // /*****************************
 // * CHECK structs
@@ -552,24 +402,23 @@ static int Init(lua_State* L) {
 	if (!SteamAPI_IsSteamRunning()) {
 		luaL_error(L, "Steam is not running");
 	}
-	apps = SteamApps();
-	friends = SteamFriends();
-	inventory = SteamInventory();
-	matchmaking = SteamMatchmaking();
-	music = SteamMusic();
-	remote_storage = SteamRemoteStorage();
-	user_stats = SteamUserStats();
-	ugc = SteamUGC();
-	parties = SteamParties();
-	input = SteamInput();
-	game_search = SteamGameSearch();
-	networking = SteamNetworking();
-	video = SteamVideo();
-	screenshots = SteamScreenshots();
-	music_remote = SteamMusicRemote();
 
+	SteamFriends_Init(L);
+	SteamGameSearch_Init(L);
+	SteamInput_Init(L);
+	SteamInventory_Init(L);
+	SteamMatchmaking_Init(L);
+	SteamMusic_Init(L);
+	SteamMusicRemote_Init(L);
+	SteamNetworking_Init(L);
+	SteamParties_Init(L);
+	SteamRemoteStorage_Init(L);
+	SteamScreenshots_Init(L);
+	SteamUGC_Init(L);
 	SteamUser_Init(L);
+	SteamUserStats_Init(L);
 	SteamUtils_Init(L);
+	SteamVideo_Init(L);
 	return 0;
 }
 
@@ -605,10 +454,40 @@ static const luaL_reg Module_methods[] = {
 	{ "update", Update },
 	{ "final", Final },
 	{ "set_listener", SetListener },
+	
 	// UTILS
 	{ "utils_get_app_id", SteamUtils_GetAppId },
 	{ "utils_get_seconds_since_app_active", SteamUtils_GetSecondsSinceAppActive },
 	{ "utils_is_steam_running_on_steam_deck", SteamUtils_IsSteamRunningOnSteamDeck },
+	
+	// USERSTATS - stats
+	{ "user_stats_get_stat_int", SteamUserStats_GetStatInt },
+	{ "user_stats_set_stat_int", SteamUserStats_SetStatInt },
+	{ "user_stats_get_stat_float", SteamUserStats_GetStatFloat },
+	{ "user_stats_set_stat_float", SteamUserStats_SetStatFloat },
+	{ "user_stats_request_current_stats", SteamUserStats_RequestCurrentStats },
+	{ "user_stats_request_global_stats", SteamUserStats_RequestGlobalStats },
+	{ "user_stats_store_stats", SteamUserStats_StoreStats },
+	{ "user_stats_reset_all_stats", SteamUserStats_ResetAllStats },
+	
+	// USERSTATS - achievements
+	{ "user_stats_set_achievement", SteamUserStats_SetAchievement },
+	{ "user_stats_get_num_achievements", SteamUserStats_GetNumAchievements },
+	{ "user_stats_get_achievement_name", SteamUserStats_GetAchievementName },
+	{ "user_stats_get_achievement", SteamUserStats_GetAchievement },
+	{ "user_stats_get_achievement_display_attribute", SteamUserStats_GetAchievementDisplayAttribute },
+	{ "user_stats_get_achievement_achieved_percent", SteamUserStats_GetAchievementAchievedPercent },
+	
+	// USERSTATS - leaderboard
+	{ "user_stats_find_leaderboard", SteamUserStats_FindLeaderboard },
+	{ "user_stats_get_leaderboard_name", SteamUserStats_GetLeaderboardName },
+	{ "user_stats_download_leaderboard_entries", SteamUserStats_DownloadLeaderboardEntries },
+	{ "user_stats_get_downloaded_leaderboard_entry", SteamUserStats_GetDownloadedLeaderboardEntry },
+	{ "user_stats_get_achievement", SteamUserStats_GetAchievement },
+
+	// FRIENDS
+	// friends_get_friend_persona_name
+
 	// USER
 	{ "user_get_steam_id", SteamUser_GetSteamId },
 	{ "user_get_player_steam_level", SteamUser_GetPlayerSteamLevel },
@@ -631,7 +510,10 @@ static void LuaInit(lua_State* L) {
 	lua_pushnumber(L, (lua_Number) val); \
 	lua_setfield(L, -2, #name);
 
-	// SETCONSTANT({{name}}, {{value}});
+	SETCONSTANT("k_ELeaderboardDataRequestGlobal", k_ELeaderboardDataRequestGlobal);
+	SETCONSTANT("k_ELeaderboardDataRequestGlobalAroundUser", k_ELeaderboardDataRequestGlobalAroundUser);
+	SETCONSTANT("k_ELeaderboardDataRequestFriends", k_ELeaderboardDataRequestFriends);
+	SETCONSTANT("k_ELeaderboardDataRequestUsers", k_ELeaderboardDataRequestUsers);
 	#undef SETCONSTANT
 
 	lua_pop(L, 1);

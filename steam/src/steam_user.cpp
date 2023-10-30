@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamUser *user;
+static ISteamUser* g_SteamUser;
 
 
 	// local user_id = steam.user_get_steam_id()
@@ -18,19 +18,19 @@ static ISteamUser *user;
 	// local two_factor_enabled = steam.user_is_two_factor_enabled()
 
 int SteamUser_Init(lua_State* L) {
-	user = SteamUser();
+	g_SteamUser = SteamUser();
 	return 0;
 }
 
 int SteamUser_GetSteamId(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
-	push_CSteamID(L, user->GetSteamID());
+	push_CSteamID(L, g_SteamUser->GetSteamID());
 	return 1;
 }
 
 int SteamUser_GetPlayerSteamLevel(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
-	lua_pushnumber(L, user->GetPlayerSteamLevel());
+	lua_pushnumber(L, g_SteamUser->GetPlayerSteamLevel());
 	return 1;
 }
 
@@ -38,43 +38,43 @@ int SteamUser_GetGameBadgeLevel(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
 	int series = luaL_checknumber(L, 1);
 	bool foil = lua_toboolean(L, 2);
-	lua_pushnumber(L, user->GetGameBadgeLevel(series, foil));
+	lua_pushnumber(L, g_SteamUser->GetGameBadgeLevel(series, foil));
 	return 1;
 }
 
 int SteamUser_LoggedOn(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
-	lua_pushboolean(L, user->BLoggedOn());
+	lua_pushboolean(L, g_SteamUser->BLoggedOn());
 	return 1;
 }
 
 int SteamUser_IsBehindNAT(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
-	lua_pushboolean(L, user->BIsBehindNAT());
+	lua_pushboolean(L, g_SteamUser->BIsBehindNAT());
 	return 1;
 }
 
 int SteamUser_IsPhoneVerified(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
-	lua_pushboolean(L, user->BIsPhoneVerified());
+	lua_pushboolean(L, g_SteamUser->BIsPhoneVerified());
 	return 1;
 }
 
 int SteamUser_IsPhoneIdentifying(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
-	lua_pushboolean(L, user->BIsPhoneIdentifying());
+	lua_pushboolean(L, g_SteamUser->BIsPhoneIdentifying());
 	return 1;
 }
 
 int SteamUser_IsPhoneRequiringVerification(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
-	lua_pushboolean(L, user->BIsPhoneRequiringVerification());
+	lua_pushboolean(L, g_SteamUser->BIsPhoneRequiringVerification());
 	return 1;
 }
 
 int SteamUser_IsTwoFactorEnabled(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
-	lua_pushboolean(L, user->BIsTwoFactorEnabled());
+	lua_pushboolean(L, g_SteamUser->BIsTwoFactorEnabled());
 	return 1;
 }
 
