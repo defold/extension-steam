@@ -14,6 +14,9 @@
 #include <stdio.h>
 #include "steam_api.h"
 
+#include "steam_user.h"
+#include "steam_utils.h"
+
 struct SteamBootstrap {
 	SteamBootstrap() {
 		SteamAPI_Init();
@@ -28,9 +31,7 @@ static ISteamApps *apps;
 static ISteamFriends *friends;
 static ISteamMatchmaking *matchmaking;
 static ISteamMusic *music;
-static ISteamUser *user;
 static ISteamUserStats *user_stats;
-static ISteamUtils *utils;
 static ISteamRemoteStorage *remote_storage;
 static ISteamInventory *inventory;
 static ISteamUGC *ugc;
@@ -536,15 +537,11 @@ static SteamCallbackWrapper *steamCallbackWrapper = new SteamCallbackWrapper();
 
 
 
-extern "C" void __cdecl SteamAPIDebugTextHook( int nSeverity, const char *pchDebugText )
-{
-	if (nSeverity == 0) {
-		dmLogInfo("%s", pchDebugText);
-	}
-	else {
-		dmLogWarning("%s", pchDebugText);
-	}
-}
+
+
+/*******************************************
+ * LIFECYCLE
+ *******************************************/
 
 static int Init(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 0);
@@ -561,9 +558,6 @@ static int Init(lua_State* L) {
 	matchmaking = SteamMatchmaking();
 	music = SteamMusic();
 	remote_storage = SteamRemoteStorage();
-	user = SteamUser();
-	utils = SteamUtils();
-	utils->SetWarningMessageHook(&SteamAPIDebugTextHook);
 	user_stats = SteamUserStats();
 	ugc = SteamUGC();
 	parties = SteamParties();
@@ -573,6 +567,9 @@ static int Init(lua_State* L) {
 	video = SteamVideo();
 	screenshots = SteamScreenshots();
 	music_remote = SteamMusicRemote();
+
+	SteamUser_Init(L);
+	SteamUtils_Init(L);
 	return 0;
 }
 
@@ -602,22 +599,29 @@ static int SetListener(lua_State* L) {
 	return 0;
 }
 
-static int UtilsGetAppId(lua_State* L) {
-	DM_LUA_STACK_CHECK(L, 1);
-
-	lua_pushnumber(L, utils->GetAppID());
-	return 1;
-}
-
 static const luaL_reg Module_methods[] = {
 	{ "init", Init },
 	{ "restart", Restart },
 	{ "update", Update },
 	{ "final", Final },
 	{ "set_listener", SetListener },
-	{ "utils_get_app_id", UtilsGetAppId },
+	// UTILS
+	{ "utils_get_app_id", SteamUtils_GetAppId },
+	{ "utils_get_seconds_since_app_active", SteamUtils_GetSecondsSinceAppActive },
+	{ "utils_is_steam_running_on_steam_deck", SteamUtils_IsSteamRunningOnSteamDeck },
+	// USER
+	{ "user_get_steam_id", SteamUser_GetSteamId },
+	{ "user_get_player_steam_level", SteamUser_GetPlayerSteamLevel },
+	{ "user_get_game_badge_level", SteamUser_GetGameBadgeLevel },
+	{ "user_logged_on", SteamUser_LoggedOn },
+	{ "user_is_behind_nat", SteamUser_IsBehindNAT },
+	{ "user_is_phone_verified", SteamUser_IsPhoneVerified },
+	{ "user_is_phone_identifying", SteamUser_IsPhoneIdentifying },
+	{ "user_is_phone_requiring_verification", SteamUser_IsPhoneRequiringVerification },
+	{ "user_is_two_factor_enabled", SteamUser_IsTwoFactorEnabled },
 	{ 0, 0 }
 };
+
 
 static void LuaInit(lua_State* L) {
 	int top = lua_gettop(L);
@@ -656,23 +660,23 @@ dmExtension::Result FinalizeSteam(dmExtension::Params* params) {
 
 static dmExtension::Result AppInitializeSteam(dmExtension::AppParams* params)
 {
-    dmLogWarning("Registered %s (null) Extension", MODULE_NAME);
-    return dmExtension::RESULT_OK;
+	dmLogWarning("Registered %s (null) Extension", MODULE_NAME);
+	return dmExtension::RESULT_OK;
 }
 
 static dmExtension::Result InitializeSteam(dmExtension::Params* params)
 {
-    return dmExtension::RESULT_OK;
+	return dmExtension::RESULT_OK;
 }
 
 static dmExtension::Result AppFinalizeSteam(dmExtension::AppParams* params)
 {
-    return dmExtension::RESULT_OK;
+	return dmExtension::RESULT_OK;
 }
 
 static dmExtension::Result FinalizeSteam(dmExtension::Params* params)
 {
-    return dmExtension::RESULT_OK;
+	return dmExtension::RESULT_OK;
 }
 
 #endif
