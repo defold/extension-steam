@@ -42,18 +42,15 @@ void SteamListener_Invoke(int (*fn)(lua_State*, void*), void* data)
 
 void SteamListener_Destroy()
 {
-	dmLogInfo("DestroyListener");
 	if (g_SteamListener)
 	{
 		dmScript::DestroyCallback(g_SteamListener);
-		dmLogInfo("DestroyListener after destroy");
 		g_SteamListener = 0;
 	}
 }
 
 int SteamListener_Set(lua_State* L)
 {
-	dmLogInfo("SetListener");
 	DM_LUA_STACK_CHECK(L, 0);
 	if (g_SteamListener)
 	{

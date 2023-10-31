@@ -3,6 +3,40 @@
         {
             "files": [
                 {
+                    "description": null,
+                    "entries": [
+                        {
+                            "description": "Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "SteamFriends_GetFriendPersonaName",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Name of user",
+                                    "name": "String",
+                                    "type": "name"
+                                }
+                            ],
+                            "summary": "Returns the name of another user.",
+                            "usage": null
+                        }
+                    ],
+                    "file_description": "Steam Overlay.",
+                    "file_summary": "Interface to access information about individual users and interact with the",
+                    "filename": "steam/src/steam_friends.cpp",
+                    "group": "src",
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "steam_friends",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": null
+                },
+                {
+                    "description": null,
                     "entries": [
                         {
                             "description": "",
@@ -19,6 +53,11 @@
                             "params_string": "id",
                             "returns": [
                                 {
+                                    "description": "",
+                                    "name": "Boolean",
+                                    "type": "ok"
+                                },
+                                {
                                     "description": "The stat or nil",
                                     "name": "Number",
                                     "type": "stat"
@@ -30,7 +69,7 @@
                         {
                             "description": "",
                             "has_params": true,
-                            "has_returns": false,
+                            "has_returns": true,
                             "name": "user_stats_set_stat_int",
                             "params": [
                                 {
@@ -45,7 +84,13 @@
                                 }
                             ],
                             "params_string": "id,stat",
-                            "returns": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "Boolean",
+                                    "type": "ok"
+                                }
+                            ],
                             "summary": "Set user stat.",
                             "usage": null
                         },
@@ -64,6 +109,11 @@
                             "params_string": "id",
                             "returns": [
                                 {
+                                    "description": "",
+                                    "name": "Boolean",
+                                    "type": "ok"
+                                },
+                                {
                                     "description": "The stat",
                                     "name": "Number",
                                     "type": "stat"
@@ -75,7 +125,7 @@
                         {
                             "description": "",
                             "has_params": true,
-                            "has_returns": false,
+                            "has_returns": true,
                             "name": "user_stats_set_stat_float",
                             "params": [
                                 {
@@ -90,7 +140,13 @@
                                 }
                             ],
                             "params_string": "id,stat",
-                            "returns": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "Boolean",
+                                    "type": "ok"
+                                }
+                            ],
                             "summary": "Set user stat.",
                             "usage": null
                         },
@@ -98,7 +154,7 @@
                             "description": "",
                             "has_params": false,
                             "has_returns": true,
-                            "name": null,
+                            "name": "SteamUserStats_RequestCurrentStats",
                             "params": [],
                             "returns": [
                                 {
@@ -109,11 +165,53 @@
                             ],
                             "summary": "Ask the server to send down this user's data and achievements for this game.",
                             "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_get_downloaded_leaderboard_entry",
+                            "params": [
+                                {
+                                    "description": "Leaderboard handle",
+                                    "name": "leaderboard",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "Which entry to get",
+                                    "name": "index",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "leaderboard,index",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "boolean",
+                                    "type": "ok"
+                                },
+                                {
+                                    "description": "The requested leaderboard entry.",
+                                    "name": "table",
+                                    "type": "entry"
+                                }
+                            ],
+                            "summary": "Returns data about a single leaderboard entry",
+                            "usage": null
                         }
                     ],
+                    "file_description": "Leaderboards.",
+                    "file_summary": "Provides functions for accessing and submitting stats, achievements, and",
                     "filename": "steam/src/steam_userstats.cpp",
                     "group": "src",
-                    "module": "steam_userstats"
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "steam_userstats",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": null
                 }
             ],
             "group": "src"

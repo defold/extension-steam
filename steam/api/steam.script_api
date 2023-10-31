@@ -1,3 +1,11 @@
+- name: SteamFriends_GetFriendPersonaName
+  type: function
+  desc: Returns the name of another user. Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.
+  return:
+  - name: String
+    type: name
+    desc: Name of user
+
 - name: user_stats_get_stat_int
   type: function
   desc: Get user stat as an integer. 
@@ -6,6 +14,9 @@
     type: string
     desc: Id of the stat to get
   return:
+  - name: Boolean
+    type: ok
+    desc: 
   - name: Number
     type: stat
     desc: The stat or nil
@@ -20,6 +31,10 @@
   - name: stat
     type: number
     desc: Number to set
+  return:
+  - name: Boolean
+    type: ok
+    desc: 
 
 - name: user_stats_get_stat_float
   type: function
@@ -29,6 +44,9 @@
     type: string
     desc: Id of the stat to get
   return:
+  - name: Boolean
+    type: ok
+    desc: 
   - name: Number
     type: stat
     desc: The stat
@@ -43,12 +61,34 @@
   - name: stat
     type: number
     desc: Number to set
+  return:
+  - name: Boolean
+    type: ok
+    desc: 
 
-- name: None
+- name: SteamUserStats_RequestCurrentStats
   type: function
   desc: Ask the server to send down this user&#x27;s data and achievements for this game. 
   return:
   - name: bool
     type: ok
     desc: True if successful
+
+- name: user_stats_get_downloaded_leaderboard_entry
+  type: function
+  desc: Returns data about a single leaderboard entry 
+  parameters:
+  - name: leaderboard
+    type: string
+    desc: Leaderboard handle
+  - name: index
+    type: number
+    desc: Which entry to get
+  return:
+  - name: boolean
+    type: ok
+    desc: 
+  - name: table
+    type: entry
+    desc: The requested leaderboard entry.
 

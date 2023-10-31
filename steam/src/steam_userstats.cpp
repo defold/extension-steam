@@ -1,3 +1,7 @@
+/** Provides functions for accessing and submitting stats, achievements, and
+ * leaderboards.
+ */
+
 #if defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
 
 #include <dmsdk/sdk.h>
@@ -77,7 +81,6 @@ class SteamUserStatsCallbacks
 			m_CallResultUserStatsReceived_t.Set(steamAPICall, this, &SteamUserStatsCallbacks::OnUserStatsReceived);
 		}
 		void OnUserStatsReceived(UserStatsReceived_t *pResult, bool bIOFailure) {
-			dmLogInfo("SteamUserStatsCallbacks::OnUserStatsReceived_t\n");
 			SteamListener_Invoke(SteamUserStats_OnUserStatsReceived, pResult);
 		}
 
@@ -86,7 +89,6 @@ class SteamUserStatsCallbacks
 			m_CallResultLeaderboardFindResult_t.Set(steamAPICall, this, &SteamUserStatsCallbacks::OnLeaderboardFindResult);
 		}
 		void OnLeaderboardFindResult(LeaderboardFindResult_t *pResult, bool bIOFailure) {
-			dmLogInfo("SteamUserStatsCallbacks::OnLeaderboardFindResult\n");
 			SteamListener_Invoke(SteamUserStats_OnLeaderboardFindResult, pResult);
 		}
 
@@ -95,12 +97,8 @@ class SteamUserStatsCallbacks
 			m_CallResultLeaderboardScoresDownloadResult_t.Set(steamAPICall, this, &SteamUserStatsCallbacks::OnLeaderboardScoresDownloaded);
 		}
 		void OnLeaderboardScoresDownloaded(LeaderboardScoresDownloaded_t *pResult, bool bIOFailure) {
-			dmLogInfo("SteamUserStatsCallbacks::OnLeaderboardScoresDownloaded\n");
 			SteamListener_Invoke(SteamUserStats_OnLeaderboardScoresDownloaded, pResult);
 		}
-
-
-
 };
 SteamUserStatsCallbacks::SteamUserStatsCallbacks() :
 	m_CallbackUserStatsReceived(this, &SteamUserStatsCallbacks::OnUserStatsReceived),
@@ -205,7 +203,6 @@ int SteamUserStats_SetStatFloat(lua_State* L) {
  * @treturn ok bool True if successful
  */
 int SteamUserStats_RequestCurrentStats(lua_State* L) {
-	dmLogInfo("SteamUserStats_RequestCurrentStats");
 	DM_LUA_STACK_CHECK(L, 1);
 	bool ok = g_SteamUserStats->RequestCurrentStats();
 	lua_pushboolean(L, ok);
@@ -322,7 +319,6 @@ int SteamUserStats_GetAchievementAchievedPercent(lua_State* L) {
 	return 2;
 }
 int SteamUserStats_FindLeaderboard(lua_State* L) {
-	dmLogInfo("FIND LEADERBOARD")
 	DM_LUA_STACK_CHECK(L, 1);
 	const char* name = luaL_checkstring(L, 1);
 	SteamAPICall_t call = g_SteamUserStats->FindLeaderboard(name);
@@ -358,20 +354,13 @@ int SteamUserStats_DownloadLeaderboardEntries(lua_State* L) {
 	return 1;
 }
 
-// Returns data about a single leaderboard entry
-// use a for loop from 0 to LeaderboardScoresDownloaded_t::m_cEntryCount to get all the downloaded entries
-// e.g.
-//		void OnLeaderboardScoresDownloaded( LeaderboardScoresDownloaded_t *pLeaderboardScoresDownloaded )
-//		{
-//			for ( int index = 0; index < pLeaderboardScoresDownloaded->m_cEntryCount; index++ )
-//			{
-//				LeaderboardEntry_t leaderboardEntry;
-//				int32 details[3];		// we know this is how many we've stored previously
-//				GetDownloadedLeaderboardEntry( pLeaderboardScoresDownloaded->m_hSteamLeaderboardEntries, index, &leaderboardEntry, details, 3 );
-//				assert( leaderboardEntry.m_cDetails == 3 );
-//				...
-//			}
-// once you've accessed all the entries, the data will be free'd, and the SteamLeaderboardEntries_t handle will become invalid
+/** Returns data about a single leaderboard entry
+ * @name user_stats_get_downloaded_leaderboard_entry
+ * @string leaderboard Leaderboard handle
+ * @number index Which entry to get
+ * @treturn ok boolean
+ * @treturn entry table The requested leaderboard entry.
+ */
 int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 2);
 

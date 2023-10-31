@@ -121,7 +121,6 @@ function on_message(self, message_id, message, sender)
 		local entries = {}
 		for i=0,entry_count-1 do
 			local ok, details, entry = steam.user_stats_get_downloaded_leaderboard_entry(message.m_hSteamLeaderboardEntries, i, 1)
-			
 			if ok then
 				pprint(details)
 				local name = steam.friends_get_friend_persona_name(details.m_steamIDUser)

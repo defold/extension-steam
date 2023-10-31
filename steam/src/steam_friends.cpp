@@ -1,3 +1,7 @@
+/** Interface to access information about individual users and interact with the
+ * Steam Overlay.
+ */
+
 #if defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
 
 #include <dmsdk/sdk.h>
@@ -12,6 +16,14 @@ int SteamFriends_Init(lua_State* L)
 	return 0;
 }
 
+/** Returns the name of another user.
+ * Same rules as GetFriendPersonaState() apply as to whether or not the user
+ * knowns the name of the other user note that on first joining a lobby, chat
+ * room or game server the local user will not known the name of the other users
+ * automatically; that information will arrive asyncronously.
+ * @tparam friendId CSteamID
+ * @treturn name String Name of user
+ */
 int SteamFriends_GetFriendPersonaName(lua_State* L)
 {
 	DM_LUA_STACK_CHECK(L, 1);

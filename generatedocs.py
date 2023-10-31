@@ -39,6 +39,11 @@ def find_files(root_dir, file_pattern):
     matches.sort()
     return matches
 
+# M.foobar = function
+# function M.foobar
+# local function foobar
+# M.foobar = 
+# local foobar =
 def get_lua_field_name(line):
     m = re.match("(\w*)\.(\w*) = function.*", line)
     if m:
@@ -46,24 +51,23 @@ def get_lua_field_name(line):
     m = re.match("function (\w*)\.(\w*)", line)
     if m:
         return m.groups()[1]
+    m = re.match("(\w*)\.(\w*) = .*", line)
+    if m:
+        return m.groups()[1]
     m = re.match("local function (\w*)", line)
     if m:
         return m.groups()[0]
-    m = re.match("(\w*)\.(\w*) = .*", line)
+    m = re.match("local (\w*) = .*", line)
     if m:
-        return m.groups()[1]
+        return m.groups()[0]
     return None
 
+# int SteamUserStats_RequestCurrentStats(lua_State* L) {
 def get_cpp_field_name(line):
-    m = re.match("(\w*)\.(\w*) = function.*", line)
+    print(line)
+    m = re.match(".*?\s+(.*?)\(.*\)", line)
     if m:
-        return m.groups()[1]
-    m = re.match("function (\w*)\.(\w*)", line)
-    if m:
-        return m.groups()[1]
-    m = re.match("(\w*)\.(\w*) = .*", line)
-    if m:
-        return m.groups()[1]
+        return m.groups()[0]
     return None
 
 def get_field_name(line, filetype):
@@ -123,7 +127,12 @@ def process_entry(line, lines, filetype):
         # try to figure out name of entry (unless it has been explicitly set)
         line_token = entry_line_token(filetype)
         end_token = entry_end_token(filetype)
-        if (len(end_token) > 0 and line.startswith(end_token)) or not line.startswith(line_token):
+        if len(end_token) > 0 and line.startswith(end_token):
+            line = lines.pop(0).strip()
+            if "name" not in entry:
+                entry["name"] = get_field_name(line, filetype)
+            break
+        elif not line.startswith(line_token):
             if "name" not in entry:
                 entry["name"] = get_field_name(line, filetype)
             break
@@ -162,7 +171,8 @@ def process_entry(line, lines, filetype):
         # typed return
         elif line.startswith("@treturn"):
             line = line.replace("@treturn", "").strip()
-            m = re.match("(\w*?) (\w*?) (.*)", line)
+            print(line)
+            m = re.match("(\w+)\s*(\w+)\s*(.*)", line)
             if m:
                 return_type = m.groups()[0]
                 return_name = m.groups()[1]

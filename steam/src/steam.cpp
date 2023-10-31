@@ -83,7 +83,6 @@ static SteamCallbackWrapper *g_SteamCallbackWrapper = new SteamCallbackWrapper()
 static int Init(lua_State* L)
 {
 	DM_LUA_STACK_CHECK(L, 0);
-	dmLogInfo("Init");
 	if(!SteamAPI_Init())
 	{
 		luaL_error(L, "Error initialising SteamAPI");

@@ -7,16 +7,6 @@
 static ISteamUser* g_SteamUser;
 
 
-	// local user_id = steam.user_get_steam_id()
-	// local steam_level = steam.user_get_player_steam_level()
-	// local badge_level = steam.user_get_game_badge_level(1, true)
-	// local logged_on = steam.user_logged_on()
-	// local behind_nat = steam.user_is_behind_nat()
-	// local phone_status = (steam.user_is_phone_verified() and "VERIFIED")
-	// or (steam.user_is_phone_identifying() and "IDENTIFYING")
-	// or (steam.user_is_phone_requiring_verification() and "REQ.VERIFICATION")
-	// local two_factor_enabled = steam.user_is_two_factor_enabled()
-
 int SteamUser_Init(lua_State* L) {
 	g_SteamUser = SteamUser();
 	return 0;
