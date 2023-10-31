@@ -21,6 +21,7 @@ int SteamFriends_Init(lua_State* L)
  * knowns the name of the other user note that on first joining a lobby, chat
  * room or game server the local user will not known the name of the other users
  * automatically; that information will arrive asyncronously.
+ * @name friends_get_friend_persona_name
  * @tparam friendId CSteamID
  * @treturn name String Name of user
  */

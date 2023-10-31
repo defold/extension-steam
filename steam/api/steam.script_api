@@ -1,6 +1,13 @@
-- name: SteamFriends_GetFriendPersonaName
+- name: friends_get_friend_persona_name
   type: function
-  desc: Returns the name of another user. Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.
+  desc: Returns the name of another user. Same rules as GetFriendPersonaState() apply as to whether or not the user
+knowns the name of the other user note that on first joining a lobby, chat
+room or game server the local user will not known the name of the other users
+automatically; that information will arrive asyncronously.
+  parameters:
+  - name: CSteamID
+    type: friendId
+    desc: 
   return:
   - name: String
     type: name
@@ -8,7 +15,8 @@
 
 - name: user_get_steam_id
   type: function
-  desc: Returns the CSteamID of the account currently logged into the Steam client. A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.
+  desc: Returns the CSteamID of the account currently logged into the Steam client. A CSteamID is a unique identifier for an account, and used to differentiate
+users in all parts of the Steamworks API.
   return:
   - name: id
     type: CSteamID
@@ -24,7 +32,9 @@
 
 - name: user_get_game_badge_level
   type: function
-  desc: Trading Card badges data access. If you only have one set of cards, the series will be 1. The user has can have two different badges for a series; the regular (max level 5) and the foil (max level 1).
+  desc: Trading Card badges data access. If you only have one set of cards, the series will be 1. The user has can
+have two different badges for a series; the regular (max level 5) and the
+foil (max level 1).
   return:
   - name: series
     type: number
@@ -141,13 +151,170 @@
     type: Boolean
     desc: 
 
-- name: SteamUserStats_RequestCurrentStats
+- name: user_stats_request_current_stats
   type: function
   desc: Ask the server to send down this user&#x27;s data and achievements for this game. 
   return:
   - name: ok
     type: Boolean
     desc: True if successful
+
+- name: user_stats_request_global_stats
+  type: function
+  desc: Requests global stats data, which is available for stats marked as &quot;aggregated&quot;. This call is asynchronous, with the results returned in GlobalStatsReceived_t.
+nHistoryDays specifies how many days of day-by-day history to retrieve in addition
+to the overall totals. The limit is 60.
+  parameters:
+  - name: history_days
+    type: number
+    desc: 
+  return:
+  - name: ok
+    type: Boolean
+    desc: 
+
+- name: user_stats_store_stats
+  type: function
+  desc: Store the current data on the server. Will get a callback when set and one callback for every new achievement
+
+If the callback has a result of k_EResultInvalidParam, one or more stats
+uploaded has been rejected, either because they broke constraints
+or were out of date. In this case the server sends back updated values.
+The stats should be re-iterated to keep in sync.
+  return:
+  - name: ok
+    type: Boolean
+    desc: 
+
+- name: user_stats_reset_all_stats
+  type: function
+  desc: Reset stats. 
+  parameters:
+  - name: achievements
+    type: boolean
+    desc: True if achievements should be reset as well.
+  return:
+  - name: ok
+    type: Boolean
+    desc: 
+
+- name: user_stats_set_achievement
+  type: function
+  desc: Set achievement. 
+  parameters:
+  - name: name
+    type: string
+    desc: 
+  return:
+  - name: ok
+    type: Boolean
+    desc: 
+
+- name: user_stats_get_achievement
+  type: function
+  desc: Get achievement. 
+  parameters:
+  - name: name
+    type: string
+    desc: 
+  return:
+  - name: ok
+    type: Boolean
+    desc: 
+  - name: achieved
+    type: Boolean
+    desc: 
+
+- name: user_stats_clear_achievement
+  type: function
+  desc: Clear achievement. 
+  parameters:
+  - name: name
+    type: string
+    desc: 
+  return:
+  - name: ok
+    type: Boolean
+    desc: 
+
+- name: user_stats_get_num_achievements
+  type: function
+  desc: Used for iterating achievements. In general games should not need these functions because they should have a
+list of existing achievements compiled into them.
+  return:
+  - name: num
+    type: Number
+    desc: Number of achievements.
+
+- name: user_stats_get_achievement_name
+  type: function
+  desc: Get achievement name iAchievement in [0,GetNumAchievements) 
+  parameters:
+  - name: index
+    type: number
+    desc: 
+  return:
+  - name: name
+    type: String
+    desc: 
+
+- name: user_stats_get_achievement_display_attribute
+  type: function
+  desc: Get general attributes for an achievement. Accepts the following keys:
+- &quot;name&quot; and &quot;desc&quot; for retrieving the localized achievement name and description (returned in UTF8)
+- &quot;hidden&quot; for retrieving if an achievement is hidden (returns &quot;0&quot; when not hidden, &quot;1&quot; when hidden)
+  parameters:
+  - name: name
+    type: string
+    desc: 
+  - name: key
+    type: string
+    desc: Either &quot;name&quot;, &quot;desc&quot; or &quot;hidden&quot;
+  return:
+  - name: attribute
+    type: String
+    desc: 
+
+- name: user_stats_get_achievement_achieved_percent
+  type: function
+  desc: Returns the percentage of users who have achieved the specified achievement. 
+  return:
+  - name: ok
+    type: Boolean
+    desc: 
+  - name: percent
+    type: Number
+    desc: 
+
+- name: user_stats_download_leaderboard_entries
+  type: function
+  desc: Asks the Steam back-end for a set of rows in the leaderboard. This call is asynchronous, with the result returned in a listener callback
+with event set to LeaderboardScoresDownloaded_t.
+LeaderboardScoresDownloaded_t will contain a handle to pull the results from
+GetDownloadedLeaderboardEntries().
+You can ask for more entries than exist, and it will return as many as do
+exist.
+- k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart &amp; nRangeEnd in the range [1, TotalEntries]
+- k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate
+e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after
+- k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user
+  parameters:
+  - name: leaderboard
+    type: string
+    desc: 
+  - name: request
+    type: ELeaderboardDataRequest
+    desc: 
+  - name: start
+    type: number
+    desc: 
+  - name: end
+    type: number
+    desc: 
+  return:
+  - name: handle
+    type: string
+    desc: 
 
 - name: user_stats_get_downloaded_leaderboard_entry
   type: function

@@ -152,9 +152,13 @@ def process_entry(line, lines, filetype):
         elif line.startswith("@function"):
             entry["params"].append(parse_param(line, "function"))
         elif line.startswith("@bool"):
-            entry["params"].append(parse_param(line, "bool"))
+            entry["params"].append(parse_param(line, "boolean"))
         elif line.startswith("@vec2"):
             entry["params"].append(parse_param(line, "vec2"))
+        elif line.startswith("@vec3"):
+            entry["params"].append(parse_param(line, "vec3"))
+        elif line.startswith("@vec4"):
+            entry["params"].append(parse_param(line, "vec4"))
 
         # generic return
         elif line.startswith("@return"):
@@ -170,7 +174,6 @@ def process_entry(line, lines, filetype):
         # typed return
         elif line.startswith("@treturn"):
             line = line.replace("@treturn", "").strip()
-            print(line)
             m = re.match("(\w+)\s*(\w+)\s*(.*)", line)
             if m:
                 return_type = m.groups()[0]
@@ -184,7 +187,7 @@ def process_entry(line, lines, filetype):
         # typed parameter
         elif line.startswith("@tparam"):
             line = line.replace("@tparam", "").strip()
-            m = re.match("(\w*?) (\w*?) (.*)", line)
+            m = re.match("(\w+)\s*(\w+)\s*(.*)", line)
             if m:
                 param_type = m.groups()[0]
                 param_name = m.groups()[1]
@@ -216,7 +219,7 @@ def process_entry(line, lines, filetype):
             if entry.get("usage") is not None:
                 entry["usage"] = entry["usage"] + line + "\n"
             else:
-                entry["description"] = entry["description"] + line + " "
+                entry["description"] = entry["description"] + line + "\n"
 
     has_params = len(entry["params"]) > 0
     if has_params:
