@@ -6,9 +6,19 @@
 
 static ISteamFriends* g_SteamFriends;
 
-int SteamFriends_Init(lua_State* L) {
+int SteamFriends_Init(lua_State* L)
+{
 	g_SteamFriends = SteamFriends();
 	return 0;
+}
+
+int SteamFriends_GetFriendPersonaName(lua_State* L)
+{
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDFriend = check_uint64(L, 1);
+	const char* name = g_SteamFriends->GetFriendPersonaName(steamIDFriend);
+	lua_pushstring(L, name);
+	return 1;
 }
 
 #endif

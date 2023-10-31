@@ -1,0 +1,54 @@
+- name: user_stats_get_stat_int
+  type: function
+  desc: Get user stat as an integer. 
+  parameters:
+  - name: id
+    type: string
+    desc: Id of the stat to get
+  return:
+  - name: Number
+    type: stat
+    desc: The stat or nil
+
+- name: user_stats_set_stat_int
+  type: function
+  desc: Set user stat. 
+  parameters:
+  - name: id
+    type: string
+    desc: Id of the stat to set
+  - name: stat
+    type: number
+    desc: Number to set
+
+- name: user_stats_get_stat_float
+  type: function
+  desc: Get user stat as a floating point number. 
+  parameters:
+  - name: id
+    type: string
+    desc: Id of the stat to get
+  return:
+  - name: Number
+    type: stat
+    desc: The stat
+
+- name: user_stats_set_stat_float
+  type: function
+  desc: Set user stat. 
+  parameters:
+  - name: id
+    type: string
+    desc: Id of the stat to set
+  - name: stat
+    type: number
+    desc: Number to set
+
+- name: None
+  type: function
+  desc: Ask the server to send down this user&#x27;s data and achievements for this game. 
+  return:
+  - name: bool
+    type: ok
+    desc: True if successful
+

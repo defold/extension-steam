@@ -106,17 +106,21 @@ function on_message(self, message_id, message, sender)
 			if ok then
 				local name = steam.user_stats_get_achievement_display_attribute(api_name, "name")
 				local ok, percent = steam.user_stats_get_achievement_achieved_percent(api_name)
-				s = s .. ("%s (%.2f%%) %s\n"):format(name, percent, achieved and "UNLOCKED" or "LOCKED")
+				if ok then
+					s = s .. ("%s (%.2f%%) %s\n"):format(name, percent, achieved and "UNLOCKED" or "LOCKED")
+				end
 			end
 		end
 		gui.set_text(gui.get_node("achievements"), s)
 	elseif message_id == hash("refresh_leaderboard") then
+		print("REFRESH LEADERBOARD")
+		pprint(message)
 		local leaderboard_id = message.m_hSteamLeaderboard
 		local name = steam.user_stats_get_leaderboard_name(leaderboard_id)
 		local entry_count = message.m_cEntryCount
 		local entries = {}
 		for i=0,entry_count-1 do
-			local ok, details, entry = steam.user_stats_get_downloaded_leaderboard_entry(message.m_hSteamLeaderboardEntries, i)
+			local ok, details, entry = steam.user_stats_get_downloaded_leaderboard_entry(message.m_hSteamLeaderboardEntries, i, 1)
 			
 			if ok then
 				pprint(details)

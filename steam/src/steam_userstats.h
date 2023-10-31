@@ -4,6 +4,10 @@
 #if defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
 
 #include <dmsdk/sdk.h>
+#include "steam_api.h"
+
+int SteamUserStats_OnUserStatsReceived(lua_State* L, void* s);
+int SteamUserStats_OnGlobalStatsReceived(lua_State* L, void* s);
 
 int SteamUserStats_Init(lua_State* L);
 int SteamUserStats_GetStatInt(lua_State* L);

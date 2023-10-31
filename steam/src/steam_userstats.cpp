@@ -3,6 +3,120 @@
 #include <dmsdk/sdk.h>
 #include "steam_api.h"
 #include "steam_types.h"
+#include "steam_listener.h"
+
+
+int SteamUserStats_OnLeaderboardFindResult(lua_State* L, void* data) {
+	LeaderboardFindResult_t* s = (LeaderboardFindResult_t*)data;
+	lua_pushstring(L, "LeaderboardFindResult_t");
+
+	lua_newtable(L);
+	lua_pushstring(L, "m_hSteamLeaderboard");
+	push_uint64(L, s->m_hSteamLeaderboard);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_bLeaderboardFound");
+	lua_pushboolean(L, s->m_bLeaderboardFound);
+	lua_settable(L, -3);
+
+	return 2;
+}
+
+int SteamUserStats_OnGlobalStatsReceived(lua_State* L, void* data) {
+	GlobalStatsReceived_t* s = (GlobalStatsReceived_t*)data;
+	lua_pushstring(L, "GlobalStatsReceived_t");
+	return 1;
+}
+
+int SteamUserStats_OnUserStatsReceived(lua_State* L, void* data)
+{
+	UserStatsReceived_t* s = (UserStatsReceived_t*)data;
+	lua_pushstring(L, "UserStatsReceived_t");
+
+	lua_newtable(L);
+	lua_pushstring(L, "m_nGameID");
+	push_uint64(L, s->m_nGameID);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_eResult");
+	lua_pushnumber(L, s->m_eResult);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_steamIDUser");
+	push_CSteamID(L, s->m_steamIDUser);
+	lua_settable(L, -3);
+
+	return 2;
+}
+
+int SteamUserStats_OnLeaderboardScoresDownloaded(lua_State* L, void* data)
+{
+	LeaderboardScoresDownloaded_t* s = (LeaderboardScoresDownloaded_t*)data;
+	lua_pushstring(L, "LeaderboardScoresDownloaded_t");
+
+	lua_newtable(L);
+	lua_pushstring(L, "m_hSteamLeaderboard");
+	push_uint64(L, s->m_hSteamLeaderboard);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_hSteamLeaderboardEntries");
+	push_uint64(L, s->m_hSteamLeaderboardEntries);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_cEntryCount");
+	lua_pushnumber(L, s->m_cEntryCount);
+	lua_settable(L, -3);
+
+	return 2;
+}
+
+class SteamUserStatsCallbacks
+{
+	public:
+		SteamUserStatsCallbacks();
+		STEAM_CALLBACK(SteamUserStatsCallbacks, OnUserStatsReceived, UserStatsReceived_t, m_CallbackUserStatsReceived);
+		STEAM_CALLBACK(SteamUserStatsCallbacks, OnGlobalStatsReceived, GlobalStatsReceived_t, m_CallbackGlobalStatsReceived);
+
+		CCallResult<SteamUserStatsCallbacks, UserStatsReceived_t> m_CallResultUserStatsReceived_t;
+		void TrackSteamAPICallUserStatsReceived_t(SteamAPICall_t steamAPICall) {
+			m_CallResultUserStatsReceived_t.Set(steamAPICall, this, &SteamUserStatsCallbacks::OnUserStatsReceived);
+		}
+		void OnUserStatsReceived(UserStatsReceived_t *pResult, bool bIOFailure) {
+			dmLogInfo("SteamUserStatsCallbacks::OnUserStatsReceived_t\n");
+			SteamListener_Invoke(SteamUserStats_OnUserStatsReceived, pResult);
+		}
+
+		CCallResult<SteamUserStatsCallbacks, LeaderboardFindResult_t> m_CallResultLeaderboardFindResult_t;
+		void TrackSteamAPICallLeaderboardFindResult_t(SteamAPICall_t steamAPICall) {
+			m_CallResultLeaderboardFindResult_t.Set(steamAPICall, this, &SteamUserStatsCallbacks::OnLeaderboardFindResult);
+		}
+		void OnLeaderboardFindResult(LeaderboardFindResult_t *pResult, bool bIOFailure) {
+			dmLogInfo("SteamUserStatsCallbacks::OnLeaderboardFindResult\n");
+			SteamListener_Invoke(SteamUserStats_OnLeaderboardFindResult, pResult);
+		}
+
+		CCallResult<SteamUserStatsCallbacks, LeaderboardScoresDownloaded_t> m_CallResultLeaderboardScoresDownloadResult_t;
+		void TrackSteamAPICallLeaderboardScoresDownloaded_t(SteamAPICall_t steamAPICall) {
+			m_CallResultLeaderboardScoresDownloadResult_t.Set(steamAPICall, this, &SteamUserStatsCallbacks::OnLeaderboardScoresDownloaded);
+		}
+		void OnLeaderboardScoresDownloaded(LeaderboardScoresDownloaded_t *pResult, bool bIOFailure) {
+			dmLogInfo("SteamUserStatsCallbacks::OnLeaderboardScoresDownloaded\n");
+			SteamListener_Invoke(SteamUserStats_OnLeaderboardScoresDownloaded, pResult);
+		}
+
+
+
+};
+SteamUserStatsCallbacks::SteamUserStatsCallbacks() :
+	m_CallbackUserStatsReceived(this, &SteamUserStatsCallbacks::OnUserStatsReceived),
+	m_CallbackGlobalStatsReceived(this, &SteamUserStatsCallbacks::OnGlobalStatsReceived)
+{}
+void SteamUserStatsCallbacks::OnUserStatsReceived(UserStatsReceived_t *s)
+{
+	SteamListener_Invoke(SteamUserStats_OnUserStatsReceived, s);
+}
+void SteamUserStatsCallbacks::OnGlobalStatsReceived(GlobalStatsReceived_t *s)
+{
+	SteamListener_Invoke(SteamUserStats_OnGlobalStatsReceived, s);
+}
+
+
+static SteamUserStatsCallbacks* g_SteamUserStatsCallbacks = new SteamUserStatsCallbacks();
 
 static ISteamUserStats* g_SteamUserStats;
 
@@ -11,21 +125,35 @@ int SteamUserStats_Init(lua_State* L) {
 	return 0;
 }
 
+
+/** Get user stat as an integer.
+ * @name user_stats_get_stat_int
+ * @string id Id of the stat to get
+ * @treturn ok Boolean
+ * @treturn stat Number The stat or nil
+ */
 int SteamUserStats_GetStatInt(lua_State* L) {
-	DM_LUA_STACK_CHECK(L, 1);
+	DM_LUA_STACK_CHECK(L, 2);
 
 	const char* id = luaL_checkstring(L, 1);
 	int stat = 0;
 	bool ok = g_SteamUserStats->GetStat(id, &stat);
+	lua_pushboolean(L, ok);
 	if (!ok) {
 		lua_pushnil(L);
 	}
 	else {
 		lua_pushnumber(L, stat);
 	}
-	return 1;
+	return 2;
 }
 
+/** Set user stat.
+ * @name user_stats_set_stat_int
+ * @string id Id of the stat to set
+ * @number stat Number to set
+ * @treturn ok Boolean
+ */
 int SteamUserStats_SetStatInt(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
 	const char* id = luaL_checkstring(L, 1);
@@ -35,20 +163,33 @@ int SteamUserStats_SetStatInt(lua_State* L) {
 	return 1;
 }
 
+/** Get user stat as a floating point number.
+ * @name user_stats_get_stat_float
+ * @string id Id of the stat to get
+ * @treturn ok Boolean
+ * @treturn stat Number The stat
+ */
 int SteamUserStats_GetStatFloat(lua_State* L) {
-	DM_LUA_STACK_CHECK(L, 1);
+	DM_LUA_STACK_CHECK(L, 2);
 	const char* id = luaL_checkstring(L, 1);
 	float stat = 0;
 	bool ok = g_SteamUserStats->GetStat(id, &stat);
+	lua_pushboolean(L, ok);
 	if (!ok) {
 		lua_pushnil(L);
 	}
 	else {
 		lua_pushnumber(L, stat);
 	}
-	return 1;
+	return 2;
 }
 
+/** Set user stat.
+ * @name user_stats_set_stat_float
+ * @string id Id of the stat to set
+ * @number stat Number to set
+ * @treturn ok Boolean
+ */
 int SteamUserStats_SetStatFloat(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
 	const char* id = luaL_checkstring(L, 1);
@@ -58,8 +199,13 @@ int SteamUserStats_SetStatFloat(lua_State* L) {
 	return 1;
 }
 
-// Ask the server to send down this user's data and achievements for this game
+// 
+
+/** Ask the server to send down this user's data and achievements for this game.
+ * @treturn ok bool True if successful
+ */
 int SteamUserStats_RequestCurrentStats(lua_State* L) {
+	dmLogInfo("SteamUserStats_RequestCurrentStats");
 	DM_LUA_STACK_CHECK(L, 1);
 	bool ok = g_SteamUserStats->RequestCurrentStats();
 	lua_pushboolean(L, ok);
@@ -108,17 +254,20 @@ int SteamUserStats_SetAchievement(lua_State* L) {
 	return 1;
 }
 int SteamUserStats_GetAchievement(lua_State* L) {
-	DM_LUA_STACK_CHECK(L, 1);
+	DM_LUA_STACK_CHECK(L, 2);
 	const char* name = luaL_checkstring(L, 1);
 	bool achieved = 0;
 	bool ok = g_SteamUserStats->GetAchievement(name, &achieved);
-	if (!ok) {
+	lua_pushboolean(L, ok);
+	if (!ok)
+	{
 		lua_pushnil(L);
 	}
-	else {
+	else
+	{
 		lua_pushboolean(L, achieved);
 	}
-	return 1;
+	return 2;
 }
 int SteamUserStats_ClearAchievement(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
@@ -159,22 +308,25 @@ int SteamUserStats_GetAchievementDisplayAttribute(lua_State* L) {
 
 // Returns the percentage of users who have achieved the specified achievement.
 int SteamUserStats_GetAchievementAchievedPercent(lua_State* L) {
-	DM_LUA_STACK_CHECK(L, 1);
+	DM_LUA_STACK_CHECK(L, 2);
 	const char* name = luaL_checkstring(L, 1);
 	float percent = 0;
 	bool ok = g_SteamUserStats->GetAchievementAchievedPercent(name, &percent);
+	lua_pushboolean(L, ok);
 	if (!ok) {
 		lua_pushnil(L);
 	}
 	else {
 		lua_pushnumber(L, percent);
 	}
-	return 1;
+	return 2;
 }
 int SteamUserStats_FindLeaderboard(lua_State* L) {
+	dmLogInfo("FIND LEADERBOARD")
 	DM_LUA_STACK_CHECK(L, 1);
 	const char* name = luaL_checkstring(L, 1);
 	SteamAPICall_t call = g_SteamUserStats->FindLeaderboard(name);
+	g_SteamUserStatsCallbacks->TrackSteamAPICallLeaderboardFindResult_t(call);
 	push_uint64(L, call);
 	return 1;
 }
@@ -201,6 +353,7 @@ int SteamUserStats_DownloadLeaderboardEntries(lua_State* L) {
 	int start = luaL_checknumber(L, 3);
 	int end = luaL_checknumber(L, 4);
 	SteamAPICall_t call = g_SteamUserStats->DownloadLeaderboardEntries(leaderboard, request, start, end);
+	g_SteamUserStatsCallbacks->TrackSteamAPICallLeaderboardScoresDownloaded_t(call);
 	push_uint64(L, call);
 	return 1;
 }
@@ -220,7 +373,7 @@ int SteamUserStats_DownloadLeaderboardEntries(lua_State* L) {
 //			}
 // once you've accessed all the entries, the data will be free'd, and the SteamLeaderboardEntries_t handle will become invalid
 int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L) {
-	DM_LUA_STACK_CHECK(L, 1);
+	DM_LUA_STACK_CHECK(L, 2);
 
 	SteamLeaderboardEntries_t hSteamLeaderboardEntries = check_uint64(L, 1);
 	int index = luaL_checknumber(L, 2);
@@ -229,7 +382,9 @@ int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L) {
 
 	LeaderboardEntry_t leaderboardEntry;
 	bool ok = g_SteamUserStats->GetDownloadedLeaderboardEntry(hSteamLeaderboardEntries, index, &leaderboardEntry, details, detailsMax);
-	if (!ok) {
+	lua_pushboolean(L, ok);
+	if (!ok)
+	{
 		lua_pushnil(L);
 	}
 	else {
@@ -250,7 +405,7 @@ int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L) {
 		push_uint64(L, leaderboardEntry.m_hUGC);
 		lua_settable(L, -3);
 	}
-	return 1;
+	return 2;
 }
 
 

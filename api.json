@@ -1,0 +1,122 @@
+{
+    "groups": [
+        {
+            "files": [
+                {
+                    "entries": [
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_get_stat_int",
+                            "params": [
+                                {
+                                    "description": "Id of the stat to get",
+                                    "name": "id",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "id",
+                            "returns": [
+                                {
+                                    "description": "The stat or nil",
+                                    "name": "Number",
+                                    "type": "stat"
+                                }
+                            ],
+                            "summary": "Get user stat as an integer.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "user_stats_set_stat_int",
+                            "params": [
+                                {
+                                    "description": "Id of the stat to set",
+                                    "name": "id",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "Number to set",
+                                    "name": "stat",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "id,stat",
+                            "returns": [],
+                            "summary": "Set user stat.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_get_stat_float",
+                            "params": [
+                                {
+                                    "description": "Id of the stat to get",
+                                    "name": "id",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "id",
+                            "returns": [
+                                {
+                                    "description": "The stat",
+                                    "name": "Number",
+                                    "type": "stat"
+                                }
+                            ],
+                            "summary": "Get user stat as a floating point number.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "user_stats_set_stat_float",
+                            "params": [
+                                {
+                                    "description": "Id of the stat to set",
+                                    "name": "id",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "Number to set",
+                                    "name": "stat",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "id,stat",
+                            "returns": [],
+                            "summary": "Set user stat.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": null,
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "True if successful",
+                                    "name": "bool",
+                                    "type": "ok"
+                                }
+                            ],
+                            "summary": "Ask the server to send down this user's data and achievements for this game.",
+                            "usage": null
+                        }
+                    ],
+                    "filename": "steam/src/steam_userstats.cpp",
+                    "group": "src",
+                    "module": "steam_userstats"
+                }
+            ],
+            "group": "src"
+        }
+    ]
+}

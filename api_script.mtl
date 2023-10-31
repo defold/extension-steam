@@ -1,0 +1,28 @@
+{{#groups}}
+{{#files}}
+{{#entries}}
+{{^field}}
+- name: {{#type}}{{type}}.{{/type}}{{name}}
+  type: function
+  desc: {{#summary}}{{summary}} {{/summary}}{{description}}
+  {{#has_params}}
+  parameters:
+  {{#params}}
+  - name: {{name}}
+    type: {{type}}
+    desc: {{description}}
+  {{/params}}
+  {{/has_params}}
+  {{#has_returns}}
+  return:
+  {{#returns}}
+  - name: {{name}}
+    type: {{type}}
+    desc: {{description}}
+  {{/returns}}
+  {{/has_returns}}
+{{/field}}
+
+{{/entries}}
+{{/files}}
+{{/groups}}
