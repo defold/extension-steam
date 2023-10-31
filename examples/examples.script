@@ -1,0 +1,17 @@
+local monarch = require "monarch.monarch"
+
+function init(self)
+	math.randomseed(os.time()) math.random() math.random()
+	if steam then
+		msg.post("#", "show_menu")
+		msg.post("#notavailable", "disable")
+	else
+		msg.post("#notavailable", "enable")
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("show_menu") then
+		monarch.show("menu")
+	end
+end

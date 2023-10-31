@@ -1,0 +1,339 @@
+- name: steam.init
+  type: function
+  desc: Initialize Steamworks 
+
+- name: steam.update
+  type: function
+  desc: Update Steamworks. Call this from a script component.
+
+- name: steam.restart
+  type: function
+  desc: Restart Steamworks. 
+  parameters:
+  - name: appid
+    type: number
+
+
+- name: steam.finalize
+  type: function
+  desc: Finalize Steamworks. 
+
+- name: steam.friends_get_friend_persona_name
+  type: function
+  desc: Returns the name of another user. Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.
+  parameters:
+  - name: CSteamID
+    type: friendId
+
+  return:
+  - name: String
+    type: name
+    desc: Name of user
+
+- name: steam.set_listener
+  type: function
+  desc: Set a listener 
+  parameters:
+  - name: listener
+    type: function
+
+
+- name: steam.user_get_steam_id
+  type: function
+  desc: Returns the CSteamID of the account currently logged into the Steam client. A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.
+  return:
+  - name: id
+    type: CSteamID
+
+
+- name: steam.user_get_player_steam_level
+  type: function
+  desc: Gets the Steam Level of the user, as shown on their profile. 
+  return:
+  - name: level
+    type: number
+
+
+- name: steam.user_get_game_badge_level
+  type: function
+  desc: Trading Card badges data access. If you only have one set of cards, the series will be 1. The user has can have two different badges for a series; the regular (max level 5) and the foil (max level 1).
+  return:
+  - name: series
+    type: number
+
+  - name: foil
+    type: boolean
+
+
+- name: steam.user_logged_on
+  type: function
+  desc: Returns true if the Steam client current has a live connection to the Steam Servers.
+  return:
+  - name: logged_on
+    type: boolean
+
+
+- name: steam.user_is_behind_nat
+  type: function
+  desc: Returns true if this users looks like they are behind a NAT device. Only valid once the user has connected to steam .
+  return:
+  - name: behind_nat
+    type: boolean
+
+
+- name: steam.user_is_phone_verified
+  type: function
+  desc: Gets whether the users phone number is verified. 
+  return:
+  - name: verified
+    type: boolean
+
+
+- name: steam.user_is_phone_identifying
+  type: function
+  desc: Gets whether the users phone number is identifying. 
+  return:
+  - name: verifying
+    type: boolean
+
+
+- name: steam.user_is_phone_requiring_verification
+  type: function
+  desc: Gets whether the users phone number is awaiting (re)verification. 
+  return:
+  - name: verification
+    type: boolean
+
+
+- name: steam.user_is_two_factor_enabled
+  type: function
+  desc: Gets whether the user has two factor enabled on their account. 
+  return:
+  - name: enabled
+    type: boolean
+
+
+- name: steam.user_stats_get_stat_int
+  type: function
+  desc: Get user stat as an integer. 
+  parameters:
+  - name: id
+    type: string
+    desc: Id of the stat to get
+  return:
+  - name: Boolean
+    type: ok
+
+  - name: Number
+    type: stat
+    desc: The stat or nil
+
+- name: steam.user_stats_set_stat_int
+  type: function
+  desc: Set user stat. 
+  parameters:
+  - name: id
+    type: string
+    desc: Id of the stat to set
+  - name: stat
+    type: number
+    desc: Number to set
+  return:
+  - name: ok
+    type: boolean
+
+
+- name: steam.user_stats_get_stat_float
+  type: function
+  desc: Get user stat as a floating point number. 
+  parameters:
+  - name: id
+    type: string
+    desc: Id of the stat to get
+  return:
+  - name: ok
+    type: Boolean
+
+  - name: stat
+    type: Number
+    desc: The stat
+
+- name: steam.user_stats_set_stat_float
+  type: function
+  desc: Set user stat. 
+  parameters:
+  - name: id
+    type: string
+    desc: Id of the stat to set
+  - name: stat
+    type: number
+    desc: Number to set
+  return:
+  - name: ok
+    type: Boolean
+
+
+- name: steam.user_stats_request_current_stats
+  type: function
+  desc: Ask the server to send down this user&#x27;s data and achievements for this game. 
+  return:
+  - name: ok
+    type: Boolean
+    desc: True if successful
+
+- name: steam.user_stats_request_global_stats
+  type: function
+  desc: Requests global stats data, which is available for stats marked as &quot;aggregated&quot;. This call is asynchronous, with the results returned in GlobalStatsReceived_t. nHistoryDays specifies how many days of day-by-day history to retrieve in addition to the overall totals. The limit is 60.
+  parameters:
+  - name: history_days
+    type: number
+
+  return:
+  - name: ok
+    type: Boolean
+
+
+- name: steam.user_stats_store_stats
+  type: function
+  desc: Store the current data on the server. Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync.
+  return:
+  - name: ok
+    type: Boolean
+
+
+- name: steam.user_stats_reset_all_stats
+  type: function
+  desc: Reset stats. 
+  parameters:
+  - name: achievements
+    type: boolean
+    desc: True if achievements should be reset as well.
+  return:
+  - name: ok
+    type: Boolean
+
+
+- name: steam.user_stats_set_achievement
+  type: function
+  desc: Set achievement. 
+  parameters:
+  - name: name
+    type: string
+
+  return:
+  - name: ok
+    type: Boolean
+
+
+- name: steam.user_stats_get_achievement
+  type: function
+  desc: Get achievement. 
+  parameters:
+  - name: name
+    type: string
+
+  return:
+  - name: ok
+    type: Boolean
+
+  - name: achieved
+    type: Boolean
+
+
+- name: steam.user_stats_clear_achievement
+  type: function
+  desc: Clear achievement. 
+  parameters:
+  - name: name
+    type: string
+
+  return:
+  - name: ok
+    type: Boolean
+
+
+- name: steam.user_stats_get_num_achievements
+  type: function
+  desc: Used for iterating achievements. In general games should not need these functions because they should have a list of existing achievements compiled into them.
+  return:
+  - name: num
+    type: Number
+    desc: Number of achievements.
+
+- name: steam.user_stats_get_achievement_name
+  type: function
+  desc: Get achievement name iAchievement in [0,GetNumAchievements) 
+  parameters:
+  - name: index
+    type: number
+
+  return:
+  - name: name
+    type: String
+
+
+- name: steam.user_stats_get_achievement_display_attribute
+  type: function
+  desc: Get general attributes for an achievement. Accepts the following keys * &quot;name&quot; and &quot;desc&quot; for retrieving the localized achievement name and description (returned in UTF8) * &quot;hidden&quot; for retrieving if an achievement is hidden (returns &quot;0&quot; when not hidden, &quot;1&quot; when hidden)
+  parameters:
+  - name: name
+    type: string
+
+  - name: key
+    type: string
+    desc: Either &quot;name&quot;, &quot;desc&quot; or &quot;hidden&quot;
+  return:
+  - name: attribute
+    type: String
+
+
+- name: steam.user_stats_get_achievement_achieved_percent
+  type: function
+  desc: Returns the percentage of users who have achieved the specified achievement. 
+  return:
+  - name: ok
+    type: Boolean
+
+  - name: percent
+    type: Number
+
+
+- name: steam.user_stats_download_leaderboard_entries
+  type: function
+  desc: Asks the Steam back-end for a set of rows in the leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart &amp; nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user
+  parameters:
+  - name: leaderboard
+    type: string
+
+  - name: request
+    type: ELeaderboardDataRequest
+
+  - name: start
+    type: number
+
+  - name: end
+    type: number
+
+  return:
+  - name: handle
+    type: string
+
+
+- name: steam.user_stats_get_downloaded_leaderboard_entry
+  type: function
+  desc: Returns data about a single leaderboard entry 
+  parameters:
+  - name: leaderboard
+    type: string
+    desc: Leaderboard handle
+  - name: index
+    type: number
+    desc: Which entry to get
+  return:
+  - name: ok
+    type: Boolean
+
+  - name: entry
+    type: Table
+    desc: The requested leaderboard entry.
+

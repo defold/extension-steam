@@ -1,0 +1,724 @@
+{
+    "groups": [
+        {
+            "files": [
+                {
+                    "entries": [
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "init",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Initialize Steamworks",
+                            "usage": null
+                        },
+                        {
+                            "description": "Call this from a script component.",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "update",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Update Steamworks.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "restart",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "appid",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "appid",
+                            "returns": [],
+                            "summary": "Restart Steamworks.",
+                            "tresult": "Boolean ok",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "finalize",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Finalize Steamworks.",
+                            "usage": null
+                        }
+                    ],
+                    "filename": "steam/src/steam.cpp",
+                    "group": "src",
+                    "module": "steam"
+                },
+                {
+                    "description": null,
+                    "entries": [
+                        {
+                            "description": "Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "friends_get_friend_persona_name",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "CSteamID",
+                                    "type": "friendId"
+                                }
+                            ],
+                            "params_string": "CSteamID",
+                            "returns": [
+                                {
+                                    "description": "Name of user",
+                                    "name": "String",
+                                    "type": "name"
+                                }
+                            ],
+                            "summary": "Returns the name of another user.",
+                            "usage": null
+                        }
+                    ],
+                    "file_description": "Steam Overlay.",
+                    "file_summary": "Interface to access information about individual users and interact with the",
+                    "filename": "steam/src/steam_friends.cpp",
+                    "group": "src",
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "steam_friends",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": null
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "set_listener",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "listener",
+                                    "type": "function"
+                                }
+                            ],
+                            "params_string": "listener",
+                            "returns": [],
+                            "summary": "Set a listener",
+                            "usage": null
+                        }
+                    ],
+                    "filename": "steam/src/steam_listener.cpp",
+                    "group": "src",
+                    "module": "steam_listener"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_get_steam_id",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "id",
+                                    "type": "CSteamID"
+                                }
+                            ],
+                            "summary": "Returns the CSteamID of the account currently logged into the Steam client.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_get_player_steam_level",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "level",
+                                    "type": "number"
+                                }
+                            ],
+                            "summary": "Gets the Steam Level of the user, as shown on their profile.",
+                            "usage": null
+                        },
+                        {
+                            "description": "If you only have one set of cards, the series will be 1. The user has can have two different badges for a series; the regular (max level 5) and the foil (max level 1).",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_get_game_badge_level",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "series",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "foil",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Trading Card badges data access.",
+                            "usage": null
+                        },
+                        {
+                            "description": "Servers.",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_logged_on",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "logged_on",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Returns true if the Steam client current has a live connection to the Steam",
+                            "usage": null
+                        },
+                        {
+                            "description": "Only valid once the user has connected to steam .",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_is_behind_nat",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "behind_nat",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Returns true if this users looks like they are behind a NAT device.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_is_phone_verified",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "verified",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Gets whether the users phone number is verified.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_is_phone_identifying",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "verifying",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Gets whether the users phone number is identifying.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_is_phone_requiring_verification",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "verification",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Gets whether the users phone number is awaiting (re)verification.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_is_two_factor_enabled",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "enabled",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Gets whether the user has two factor enabled on their account.",
+                            "usage": null
+                        }
+                    ],
+                    "filename": "steam/src/steam_user.cpp",
+                    "group": "src",
+                    "module": "steam_user"
+                },
+                {
+                    "description": null,
+                    "entries": [
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_get_stat_int",
+                            "params": [
+                                {
+                                    "description": "Id of the stat to get",
+                                    "name": "id",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "id",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "Boolean",
+                                    "type": "ok"
+                                },
+                                {
+                                    "description": "The stat or nil",
+                                    "name": "Number",
+                                    "type": "stat"
+                                }
+                            ],
+                            "summary": "Get user stat as an integer.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_set_stat_int",
+                            "params": [
+                                {
+                                    "description": "Id of the stat to set",
+                                    "name": "id",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "Number to set",
+                                    "name": "stat",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "id,stat",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "ok",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Set user stat.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_get_stat_float",
+                            "params": [
+                                {
+                                    "description": "Id of the stat to get",
+                                    "name": "id",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "id",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "ok",
+                                    "type": "Boolean"
+                                },
+                                {
+                                    "description": "The stat",
+                                    "name": "stat",
+                                    "type": "Number"
+                                }
+                            ],
+                            "summary": "Get user stat as a floating point number.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_set_stat_float",
+                            "params": [
+                                {
+                                    "description": "Id of the stat to set",
+                                    "name": "id",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "Number to set",
+                                    "name": "stat",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "id,stat",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "ok",
+                                    "type": "Boolean"
+                                }
+                            ],
+                            "summary": "Set user stat.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_stats_request_current_stats",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "True if successful",
+                                    "name": "ok",
+                                    "type": "Boolean"
+                                }
+                            ],
+                            "summary": "Ask the server to send down this user's data and achievements for this game.",
+                            "usage": null
+                        },
+                        {
+                            "description": "This call is asynchronous, with the results returned in GlobalStatsReceived_t. nHistoryDays specifies how many days of day-by-day history to retrieve in addition to the overall totals. The limit is 60.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_request_global_stats",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "history_days",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "history_days",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "ok",
+                                    "type": "Boolean"
+                                }
+                            ],
+                            "summary": "Requests global stats data, which is available for stats marked as \"aggregated\".",
+                            "usage": null
+                        },
+                        {
+                            "description": "Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync.",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_stats_store_stats",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "ok",
+                                    "type": "Boolean"
+                                }
+                            ],
+                            "summary": "Store the current data on the server.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_reset_all_stats",
+                            "params": [
+                                {
+                                    "description": "True if achievements should be reset as well.",
+                                    "name": "achievements",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "params_string": "achievements",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "ok",
+                                    "type": "Boolean"
+                                }
+                            ],
+                            "summary": "Reset stats.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_set_achievement",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "name",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "name",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "ok",
+                                    "type": "Boolean"
+                                }
+                            ],
+                            "summary": "Set achievement.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_get_achievement",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "name",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "name",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "ok",
+                                    "type": "Boolean"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "achieved",
+                                    "type": "Boolean"
+                                }
+                            ],
+                            "summary": "Get achievement.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_clear_achievement",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "name",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "name",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "ok",
+                                    "type": "Boolean"
+                                }
+                            ],
+                            "summary": "Clear achievement.",
+                            "usage": null
+                        },
+                        {
+                            "description": "In general games should not need these functions because they should have a list of existing achievements compiled into them.",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_stats_get_num_achievements",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Number of achievements.",
+                                    "name": "num",
+                                    "type": "Number"
+                                }
+                            ],
+                            "summary": "Used for iterating achievements.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_get_achievement_name",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "index",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "index",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "name",
+                                    "type": "String"
+                                }
+                            ],
+                            "summary": "Get achievement name iAchievement in [0,GetNumAchievements)",
+                            "usage": null
+                        },
+                        {
+                            "description": "Accepts the following keys * \"name\" and \"desc\" for retrieving the localized achievement name and description (returned in UTF8) * \"hidden\" for retrieving if an achievement is hidden (returns \"0\" when not hidden, \"1\" when hidden)",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_get_achievement_display_attribute",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "name",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "Either \"name\", \"desc\" or \"hidden\"",
+                                    "name": "key",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "name,key",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "attribute",
+                                    "type": "String"
+                                }
+                            ],
+                            "summary": "Get general attributes for an achievement.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_stats_get_achievement_achieved_percent",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "ok",
+                                    "type": "Boolean"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "percent",
+                                    "type": "Number"
+                                }
+                            ],
+                            "summary": "Returns the percentage of users who have achieved the specified achievement.",
+                            "usage": null
+                        },
+                        {
+                            "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_download_leaderboard_entries",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "leaderboard",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "request",
+                                    "type": "ELeaderboardDataRequest"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "start",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "end",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "leaderboard,request,start,end",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "handle",
+                                    "type": "string"
+                                }
+                            ],
+                            "summary": "Asks the Steam back-end for a set of rows in the leaderboard.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_get_downloaded_leaderboard_entry",
+                            "params": [
+                                {
+                                    "description": "Leaderboard handle",
+                                    "name": "leaderboard",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "Which entry to get",
+                                    "name": "index",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "leaderboard,index",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "ok",
+                                    "type": "Boolean"
+                                },
+                                {
+                                    "description": "The requested leaderboard entry.",
+                                    "name": "entry",
+                                    "type": "Table"
+                                }
+                            ],
+                            "summary": "Returns data about a single leaderboard entry",
+                            "usage": null
+                        }
+                    ],
+                    "file_description": "Leaderboards.",
+                    "file_summary": "Provides functions for accessing and submitting stats, achievements, and",
+                    "filename": "steam/src/steam_userstats.cpp",
+                    "group": "src",
+                    "has_params": false,
+                    "has_returns": false,
+                    "module": "steam_userstats",
+                    "name": null,
+                    "params": [],
+                    "returns": [],
+                    "summary": null,
+                    "usage": null
+                }
+            ],
+            "group": "src"
+        }
+    ]
+}
