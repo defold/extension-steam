@@ -80,6 +80,9 @@ static SteamCallbackWrapper *g_SteamCallbackWrapper = new SteamCallbackWrapper()
  * LIFECYCLE
  *******************************************/
 
+/** Initialize Steamworks
+ * @name init
+ */
 static int Init(lua_State* L)
 {
 	DM_LUA_STACK_CHECK(L, 0);
@@ -111,12 +114,21 @@ static int Init(lua_State* L)
 	return 0;
 }
 
+/** Update Steamworks.
+ * Call this from a script component.
+ * @name update
+ */
 static int Update(lua_State* L)
 {
 	SteamAPI_RunCallbacks();
 	return 0;
 }
 
+/** Restart Steamworks.
+ * @name restart
+ * @number appid
+ * @tresult Boolean ok
+ */
 static int Restart(lua_State* L)
 {
 	DM_LUA_STACK_CHECK(L, 1);
@@ -126,6 +138,9 @@ static int Restart(lua_State* L)
 	return 1;
 }
 
+/** Finalize Steamworks.
+ * @name finalize
+ */
 static int Final(lua_State* L)
 {
 	DM_LUA_STACK_CHECK(L, 0);

@@ -1,3 +1,23 @@
+- name: steam.init
+  type: function
+  desc: Initialize Steamworks 
+
+- name: steam.update
+  type: function
+  desc: Update Steamworks. Call this from a script component.
+
+- name: steam.restart
+  type: function
+  desc: Restart Steamworks. 
+  parameters:
+  - name: appid
+    type: number
+
+
+- name: steam.finalize
+  type: function
+  desc: Finalize Steamworks. 
+
 - name: steam.friends_get_friend_persona_name
   type: function
   desc: Returns the name of another user. Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.
@@ -9,6 +29,14 @@
   - name: String
     type: name
     desc: Name of user
+
+- name: steam.set_listener
+  type: function
+  desc: Set a listener 
+  parameters:
+  - name: listener
+    type: function
+
 
 - name: steam.user_get_steam_id
   type: function

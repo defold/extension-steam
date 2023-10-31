@@ -3,6 +3,61 @@
         {
             "files": [
                 {
+                    "entries": [
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "init",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Initialize Steamworks",
+                            "usage": null
+                        },
+                        {
+                            "description": "Call this from a script component.",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "update",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Update Steamworks.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "restart",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "appid",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "appid",
+                            "returns": [],
+                            "summary": "Restart Steamworks.",
+                            "tresult": "Boolean ok",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "finalize",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Finalize Steamworks.",
+                            "usage": null
+                        }
+                    ],
+                    "filename": "steam/src/steam.cpp",
+                    "group": "src",
+                    "module": "steam"
+                },
+                {
                     "description": null,
                     "entries": [
                         {
@@ -41,6 +96,30 @@
                     "returns": [],
                     "summary": null,
                     "usage": null
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "set_listener",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "listener",
+                                    "type": "function"
+                                }
+                            ],
+                            "params_string": "listener",
+                            "returns": [],
+                            "summary": "Set a listener",
+                            "usage": null
+                        }
+                    ],
+                    "filename": "steam/src/steam_listener.cpp",
+                    "group": "src",
+                    "module": "steam_listener"
                 },
                 {
                     "entries": [

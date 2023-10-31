@@ -49,6 +49,10 @@ void SteamListener_Destroy()
 	}
 }
 
+/** Set a listener
+ * @name set_listener
+ * @function listener
+ */
 int SteamListener_Set(lua_State* L)
 {
 	DM_LUA_STACK_CHECK(L, 0);

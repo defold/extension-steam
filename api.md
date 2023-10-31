@@ -1,11 +1,44 @@
 # API reference
 
 * src
+  * [steam](#steam)
   * [steam_friends](#steam_friends)
+  * [steam_listener](#steam_listener)
   * [steam_user](#steam_user)
   * [steam_userstats](#steam_userstats)
 
 # src
+
+## steam
+*File: `steam/src/steam.cpp`*
+
+
+
+
+### init()
+Initialize Steamworks 
+
+
+
+### update()
+Update Steamworks. Call this from a script component.
+
+
+
+### restart(appid)
+Restart Steamworks. 
+
+
+PARAMS
+* `appid` [`number`] - 
+
+
+### finalize()
+Finalize Steamworks. 
+
+
+
+---
 
 ## steam_friends
 *File: `steam/src/steam_friends.cpp`*
@@ -22,6 +55,22 @@ PARAMS
 
 RETURNS
 * `String` [`name`] - Name of user
+
+
+---
+
+## steam_listener
+*File: `steam/src/steam_listener.cpp`*
+
+
+
+
+### set_listener(listener)
+Set a listener 
+
+
+PARAMS
+* `listener` [`function`] - 
 
 
 ---
