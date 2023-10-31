@@ -64,7 +64,6 @@ def get_lua_field_name(line):
 
 # int SteamUserStats_RequestCurrentStats(lua_State* L) {
 def get_cpp_field_name(line):
-    print(line)
     m = re.match(".*?\s+(.*?)\(.*\)", line)
     if m:
         return m.groups()[0]

@@ -6,6 +6,81 @@
     type: name
     desc: Name of user
 
+- name: user_get_steam_id
+  type: function
+  desc: Returns the CSteamID of the account currently logged into the Steam client. A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.
+  return:
+  - name: id
+    type: CSteamID
+    desc: 
+
+- name: user_get_player_steam_level
+  type: function
+  desc: Gets the Steam Level of the user, as shown on their profile. 
+  return:
+  - name: level
+    type: number
+    desc: 
+
+- name: user_get_game_badge_level
+  type: function
+  desc: Trading Card badges data access. If you only have one set of cards, the series will be 1. The user has can have two different badges for a series; the regular (max level 5) and the foil (max level 1).
+  return:
+  - name: series
+    type: number
+    desc: 
+  - name: foil
+    type: boolean
+    desc: 
+
+- name: user_logged_on
+  type: function
+  desc: Returns true if the Steam client current has a live connection to the Steam Servers.
+  return:
+  - name: logged_on
+    type: boolean
+    desc: 
+
+- name: user_is_behind_nat
+  type: function
+  desc: Returns true if this users looks like they are behind a NAT device. Only valid once the user has connected to steam .
+  return:
+  - name: behind_nat
+    type: boolean
+    desc: 
+
+- name: user_is_phone_verified
+  type: function
+  desc: Gets whether the users phone number is verified. 
+  return:
+  - name: verified
+    type: boolean
+    desc: 
+
+- name: user_is_phone_identifying
+  type: function
+  desc: Gets whether the users phone number is identifying. 
+  return:
+  - name: verifying
+    type: boolean
+    desc: 
+
+- name: user_is_phone_requiring_verification
+  type: function
+  desc: Gets whether the users phone number is awaiting (re)verification. 
+  return:
+  - name: verification
+    type: boolean
+    desc: 
+
+- name: user_is_two_factor_enabled
+  type: function
+  desc: Gets whether the user has two factor enabled on their account. 
+  return:
+  - name: enabled
+    type: boolean
+    desc: 
+
 - name: user_stats_get_stat_int
   type: function
   desc: Get user stat as an integer. 
@@ -32,8 +107,8 @@
     type: number
     desc: Number to set
   return:
-  - name: Boolean
-    type: ok
+  - name: ok
+    type: boolean
     desc: 
 
 - name: user_stats_get_stat_float
@@ -44,11 +119,11 @@
     type: string
     desc: Id of the stat to get
   return:
-  - name: Boolean
-    type: ok
+  - name: ok
+    type: Boolean
     desc: 
-  - name: Number
-    type: stat
+  - name: stat
+    type: Number
     desc: The stat
 
 - name: user_stats_set_stat_float
@@ -62,16 +137,16 @@
     type: number
     desc: Number to set
   return:
-  - name: Boolean
-    type: ok
+  - name: ok
+    type: Boolean
     desc: 
 
 - name: SteamUserStats_RequestCurrentStats
   type: function
   desc: Ask the server to send down this user&#x27;s data and achievements for this game. 
   return:
-  - name: bool
-    type: ok
+  - name: ok
+    type: Boolean
     desc: True if successful
 
 - name: user_stats_get_downloaded_leaderboard_entry
@@ -85,10 +160,10 @@
     type: number
     desc: Which entry to get
   return:
-  - name: boolean
-    type: ok
+  - name: ok
+    type: Boolean
     desc: 
-  - name: table
-    type: entry
+  - name: entry
+    type: Table
     desc: The requested leaderboard entry.
 

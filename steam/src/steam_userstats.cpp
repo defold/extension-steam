@@ -150,7 +150,7 @@ int SteamUserStats_GetStatInt(lua_State* L) {
  * @name user_stats_set_stat_int
  * @string id Id of the stat to set
  * @number stat Number to set
- * @treturn ok Boolean
+ * @treturn boolean ok
  */
 int SteamUserStats_SetStatInt(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
@@ -164,8 +164,8 @@ int SteamUserStats_SetStatInt(lua_State* L) {
 /** Get user stat as a floating point number.
  * @name user_stats_get_stat_float
  * @string id Id of the stat to get
- * @treturn ok Boolean
- * @treturn stat Number The stat
+ * @treturn Boolean ok
+ * @treturn Number stat The stat
  */
 int SteamUserStats_GetStatFloat(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 2);
@@ -186,7 +186,7 @@ int SteamUserStats_GetStatFloat(lua_State* L) {
  * @name user_stats_set_stat_float
  * @string id Id of the stat to set
  * @number stat Number to set
- * @treturn ok Boolean
+ * @treturn Boolean ok
  */
 int SteamUserStats_SetStatFloat(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
@@ -200,7 +200,7 @@ int SteamUserStats_SetStatFloat(lua_State* L) {
 // 
 
 /** Ask the server to send down this user's data and achievements for this game.
- * @treturn ok bool True if successful
+ * @treturn Boolean ok True if successful
  */
 int SteamUserStats_RequestCurrentStats(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 1);
@@ -358,8 +358,8 @@ int SteamUserStats_DownloadLeaderboardEntries(lua_State* L) {
  * @name user_stats_get_downloaded_leaderboard_entry
  * @string leaderboard Leaderboard handle
  * @number index Which entry to get
- * @treturn ok boolean
- * @treturn entry table The requested leaderboard entry.
+ * @treturn Boolean ok
+ * @treturn Table entry The requested leaderboard entry.
  */
 int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 2);

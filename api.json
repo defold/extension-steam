@@ -36,6 +36,162 @@
                     "usage": null
                 },
                 {
+                    "entries": [
+                        {
+                            "description": "A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_get_steam_id",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "id",
+                                    "type": "CSteamID"
+                                }
+                            ],
+                            "summary": "Returns the CSteamID of the account currently logged into the Steam client.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_get_player_steam_level",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "level",
+                                    "type": "number"
+                                }
+                            ],
+                            "summary": "Gets the Steam Level of the user, as shown on their profile.",
+                            "usage": null
+                        },
+                        {
+                            "description": "If you only have one set of cards, the series will be 1. The user has can have two different badges for a series; the regular (max level 5) and the foil (max level 1).",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_get_game_badge_level",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "series",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "foil",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Trading Card badges data access.",
+                            "usage": null
+                        },
+                        {
+                            "description": "Servers.",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_logged_on",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "logged_on",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Returns true if the Steam client current has a live connection to the Steam",
+                            "usage": null
+                        },
+                        {
+                            "description": "Only valid once the user has connected to steam .",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_is_behind_nat",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "behind_nat",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Returns true if this users looks like they are behind a NAT device.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_is_phone_verified",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "verified",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Gets whether the users phone number is verified.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_is_phone_identifying",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "verifying",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Gets whether the users phone number is identifying.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_is_phone_requiring_verification",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "verification",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Gets whether the users phone number is awaiting (re)verification.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_is_two_factor_enabled",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "enabled",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Gets whether the user has two factor enabled on their account.",
+                            "usage": null
+                        }
+                    ],
+                    "filename": "steam/src/steam_user.cpp",
+                    "group": "src",
+                    "module": "steam_user"
+                },
+                {
                     "description": null,
                     "entries": [
                         {
@@ -87,8 +243,8 @@
                             "returns": [
                                 {
                                     "description": "",
-                                    "name": "Boolean",
-                                    "type": "ok"
+                                    "name": "ok",
+                                    "type": "boolean"
                                 }
                             ],
                             "summary": "Set user stat.",
@@ -110,13 +266,13 @@
                             "returns": [
                                 {
                                     "description": "",
-                                    "name": "Boolean",
-                                    "type": "ok"
+                                    "name": "ok",
+                                    "type": "Boolean"
                                 },
                                 {
                                     "description": "The stat",
-                                    "name": "Number",
-                                    "type": "stat"
+                                    "name": "stat",
+                                    "type": "Number"
                                 }
                             ],
                             "summary": "Get user stat as a floating point number.",
@@ -143,8 +299,8 @@
                             "returns": [
                                 {
                                     "description": "",
-                                    "name": "Boolean",
-                                    "type": "ok"
+                                    "name": "ok",
+                                    "type": "Boolean"
                                 }
                             ],
                             "summary": "Set user stat.",
@@ -159,8 +315,8 @@
                             "returns": [
                                 {
                                     "description": "True if successful",
-                                    "name": "bool",
-                                    "type": "ok"
+                                    "name": "ok",
+                                    "type": "Boolean"
                                 }
                             ],
                             "summary": "Ask the server to send down this user's data and achievements for this game.",
@@ -187,13 +343,13 @@
                             "returns": [
                                 {
                                     "description": "",
-                                    "name": "boolean",
-                                    "type": "ok"
+                                    "name": "ok",
+                                    "type": "Boolean"
                                 },
                                 {
                                     "description": "The requested leaderboard entry.",
-                                    "name": "table",
-                                    "type": "entry"
+                                    "name": "entry",
+                                    "type": "Table"
                                 }
                             ],
                             "summary": "Returns data about a single leaderboard entry",
