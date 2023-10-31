@@ -332,9 +332,9 @@ int SteamUserStats_GetAchievementName(lua_State* L) {
 }
 
 /** Get general attributes for an achievement.
- * Accepts the following keys:
- * - "name" and "desc" for retrieving the localized achievement name and description (returned in UTF8)
- * - "hidden" for retrieving if an achievement is hidden (returns "0" when not hidden, "1" when hidden)
+ * Accepts the following keys
+ * * "name" and "desc" for retrieving the localized achievement name and description (returned in UTF8)
+ * * "hidden" for retrieving if an achievement is hidden (returns "0" when not hidden, "1" when hidden)
  * @name user_stats_get_achievement_display_attribute
  * @string name
  * @string key Either "name", "desc" or "hidden"
@@ -397,10 +397,10 @@ int SteamUserStats_GetLeaderboardName(lua_State* L) {
  * GetDownloadedLeaderboardEntries().
  * You can ask for more entries than exist, and it will return as many as do
  * exist.
- * - k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries]
- * - k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate
+ * * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries]
+ * * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate
  *   e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after
- * - k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user 
+ * * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user 
  * @name user_stats_download_leaderboard_entries
  * @string leaderboard
  * @tparam ELeaderboardDataRequest request

@@ -219,7 +219,7 @@ def process_entry(line, lines, filetype):
             if entry.get("usage") is not None:
                 entry["usage"] = entry["usage"] + line + "\n"
             else:
-                entry["description"] = entry["description"] + line + "\n"
+                entry["description"] = entry["description"] + line + " "
 
     has_params = len(entry["params"]) > 0
     if has_params:

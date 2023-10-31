@@ -2,7 +2,7 @@
 {{#files}}
 {{#entries}}
 {{^field}}
-- name: {{#type}}{{type}}.{{/type}}{{name}}
+- name: steam.{{name}}
   type: function
   desc: {{#summary}}{{summary}} {{/summary}}{{description}}
   {{#has_params}}
@@ -10,7 +10,7 @@
   {{#params}}
   - name: {{name}}
     type: {{type}}
-    desc: {{description}}
+{{#description}}    desc: {{description}}{{/description}}
   {{/params}}
   {{/has_params}}
   {{#has_returns}}
@@ -18,7 +18,7 @@
   {{#returns}}
   - name: {{name}}
     type: {{type}}
-    desc: {{description}}
+{{#description}}    desc: {{description}}{{/description}}
   {{/returns}}
   {{/has_returns}}
 {{/field}}

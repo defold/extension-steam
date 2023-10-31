@@ -6,7 +6,7 @@
                     "description": null,
                     "entries": [
                         {
-                            "description": "Same rules as GetFriendPersonaState() apply as to whether or not the user\nknowns the name of the other user note that on first joining a lobby, chat\nroom or game server the local user will not known the name of the other users\nautomatically; that information will arrive asyncronously.",
+                            "description": "Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.",
                             "has_params": true,
                             "has_returns": true,
                             "name": "friends_get_friend_persona_name",
@@ -45,7 +45,7 @@
                 {
                     "entries": [
                         {
-                            "description": "A CSteamID is a unique identifier for an account, and used to differentiate\nusers in all parts of the Steamworks API.",
+                            "description": "A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.",
                             "has_params": false,
                             "has_returns": true,
                             "name": "user_get_steam_id",
@@ -77,7 +77,7 @@
                             "usage": null
                         },
                         {
-                            "description": "If you only have one set of cards, the series will be 1. The user has can\nhave two different badges for a series; the regular (max level 5) and the\nfoil (max level 1).",
+                            "description": "If you only have one set of cards, the series will be 1. The user has can have two different badges for a series; the regular (max level 5) and the foil (max level 1).",
                             "has_params": false,
                             "has_returns": true,
                             "name": "user_get_game_badge_level",
@@ -330,7 +330,7 @@
                             "usage": null
                         },
                         {
-                            "description": "This call is asynchronous, with the results returned in GlobalStatsReceived_t.\nnHistoryDays specifies how many days of day-by-day history to retrieve in addition\nto the overall totals. The limit is 60.",
+                            "description": "This call is asynchronous, with the results returned in GlobalStatsReceived_t. nHistoryDays specifies how many days of day-by-day history to retrieve in addition to the overall totals. The limit is 60.",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_request_global_stats",
@@ -353,7 +353,7 @@
                             "usage": null
                         },
                         {
-                            "description": "Will get a callback when set and one callback for every new achievement\n\nIf the callback has a result of k_EResultInvalidParam, one or more stats\nuploaded has been rejected, either because they broke constraints\nor were out of date. In this case the server sends back updated values.\nThe stats should be re-iterated to keep in sync.",
+                            "description": "Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync.",
                             "has_params": false,
                             "has_returns": true,
                             "name": "user_stats_store_stats",
@@ -466,7 +466,7 @@
                             "usage": null
                         },
                         {
-                            "description": "In general games should not need these functions because they should have a\nlist of existing achievements compiled into them.",
+                            "description": "In general games should not need these functions because they should have a list of existing achievements compiled into them.",
                             "has_params": false,
                             "has_returns": true,
                             "name": "user_stats_get_num_achievements",
@@ -505,7 +505,7 @@
                             "usage": null
                         },
                         {
-                            "description": "Accepts the following keys:\n- \"name\" and \"desc\" for retrieving the localized achievement name and description (returned in UTF8)\n- \"hidden\" for retrieving if an achievement is hidden (returns \"0\" when not hidden, \"1\" when hidden)",
+                            "description": "Accepts the following keys * \"name\" and \"desc\" for retrieving the localized achievement name and description (returned in UTF8) * \"hidden\" for retrieving if an achievement is hidden (returns \"0\" when not hidden, \"1\" when hidden)",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_get_achievement_display_attribute",
@@ -554,7 +554,7 @@
                             "usage": null
                         },
                         {
-                            "description": "This call is asynchronous, with the result returned in a listener callback\nwith event set to LeaderboardScoresDownloaded_t.\nLeaderboardScoresDownloaded_t will contain a handle to pull the results from\nGetDownloadedLeaderboardEntries().\nYou can ask for more entries than exist, and it will return as many as do\nexist.\n- k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries]\n- k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate\ne.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after\n- k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user",
+                            "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_download_leaderboard_entries",
