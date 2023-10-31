@@ -1,24 +1,29 @@
+- name: steam
+  type: table
+  desc: Functions and constants for interacting Steamworks
+
+  members:
 {{#groups}}
 {{#files}}
 {{#entries}}
 {{^field}}
-- name: steam.{{name}}
-  type: function
-  desc: {{#summary}}{{summary}} {{/summary}}{{description}}
-  {{#has_params}}
-  parameters:
-  {{#params}}
   - name: {{name}}
-    type: {{type}}
-{{#description}}    desc: {{description}}{{/description}}
+    type: function
+    desc: {{#summary}}{{summary}} {{/summary}}{{description}}
+    {{#has_params}}
+    parameters:
+    {{#params}}
+    - name: {{name}}
+      type: {{type}}
+{{#description}}      desc: {{description}}{{/description}}
   {{/params}}
   {{/has_params}}
   {{#has_returns}}
-  return:
+    return:
   {{#returns}}
-  - name: {{name}}
-    type: {{type}}
-{{#description}}    desc: {{description}}{{/description}}
+    - name: {{name}}
+      type: {{type}}
+{{#description}}      desc: {{description}}{{/description}}
   {{/returns}}
   {{/has_returns}}
 {{/field}}
