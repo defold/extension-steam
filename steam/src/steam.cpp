@@ -95,6 +95,7 @@ static int Init(lua_State* L)
 		luaL_error(L, "Steam is not running");
 	}
 
+	SteamApps_Init(L);
 	SteamFriends_Init(L);
 	SteamGameSearch_Init(L);
 	SteamInput_Init(L);
