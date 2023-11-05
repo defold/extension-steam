@@ -29,6 +29,18 @@
 
 
 
+  - name: apps_is_dlc_installed
+    type: function
+    desc: Takes AppID of DLC and checks if the user owns the DLC &amp; if the DLC is installed. 
+    parameters:
+    - name: app_id
+      type: number
+
+    return:
+    - name: installed
+      type: bool
+
+
   - name: friends_get_friend_persona_name
     type: function
     desc: Returns the name of another user. Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.

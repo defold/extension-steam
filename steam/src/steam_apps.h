@@ -6,6 +6,7 @@
 #include <dmsdk/sdk.h>
 
 int SteamApps_Init(lua_State* L);
+int SteamApps_IsDlcInstalled(lua_State* L);
 
 #endif
 

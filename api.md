@@ -2,6 +2,7 @@
 
 * src
   * [steam](#steam)
+  * [steam_apps](#steam_apps)
   * [steam_friends](#steam_friends)
   * [steam_listener](#steam_listener)
   * [steam_user](#steam_user)
@@ -66,6 +67,25 @@ Passed as parameter to the store
 ### EOverlayToStoreFlag_AddToCartAndShow [`EOverlayToStoreFlag_AddToCartAndShow`]
 Passed as parameter to the store 
 
+
+
+---
+
+## steam_apps
+*File: `steam/src/steam_apps.cpp`*
+
+
+
+
+### apps_is_dlc_installed(app_id)
+Takes AppID of DLC and checks if the user owns the DLC &amp; if the DLC is installed. 
+
+
+PARAMS
+* `app_id` [`number`] - 
+
+RETURNS
+* `installed` [`bool`] - 
 
 
 ---

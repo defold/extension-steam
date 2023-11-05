@@ -130,6 +130,36 @@
                     "module": "steam"
                 },
                 {
+                    "entries": [
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "apps_is_dlc_installed",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "app_id",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "app_id",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "installed",
+                                    "type": "bool"
+                                }
+                            ],
+                            "summary": "Takes AppID of DLC and checks if the user owns the DLC & if the DLC is installed.",
+                            "usage": null
+                        }
+                    ],
+                    "filename": "steam/src/steam_apps.cpp",
+                    "group": "src",
+                    "module": "steam_apps"
+                },
+                {
                     "description": null,
                     "entries": [
                         {

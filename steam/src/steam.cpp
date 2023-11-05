@@ -159,6 +159,9 @@ static const luaL_reg Module_methods[] = {
 	{ "final", Final },
 	{ "set_listener", SteamListener_Set },
 	
+	// APPS
+	{ "apps_is_dlc_installed", SteamApps_IsDlcInstalled },
+	
 	// UTILS
 	{ "utils_get_app_id", SteamUtils_GetAppId },
 	{ "utils_get_seconds_since_app_active", SteamUtils_GetSecondsSinceAppActive },

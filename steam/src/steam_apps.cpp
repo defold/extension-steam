@@ -4,12 +4,27 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamApps* g_Apps;
+static ISteamApps* g_SteamApps;
 
 int SteamApps_Init(lua_State* L)
 {
-	g_Apps = SteamApps();
+	g_SteamApps = SteamApps();
 	return 0;
+}
+
+/** Takes AppID of DLC and checks if the user owns the DLC & if the DLC is installed.
+ * @name apps_is_dlc_installed
+ * @number app_id
+ * @treturn bool installed
+ */
+int SteamApps_IsDlcInstalled(lua_State* L)
+{
+	DM_LUA_STACK_CHECK(L, 1);
+	AppId_t appID = luaL_checknumber(L, 1);
+	dmLogInfo("SteamApps_IsDlcInstalled %d", appID);
+	bool installed = g_SteamApps->BIsDlcInstalled(appID);
+	lua_pushboolean(L, installed);
+	return 1;
 }
 
 #endif
