@@ -6,7 +6,8 @@
 
 static ISteamParties* g_SteamParties;
 
-int SteamParties_Init(lua_State* L) {
+int SteamParties_Init(lua_State* L)
+{
 	g_SteamParties = SteamParties();
 	return 0;
 }

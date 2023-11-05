@@ -6,7 +6,8 @@
 
 static ISteamMusic* g_SteamMusic;
 
-int SteamMusic_Init(lua_State* L) {
+int SteamMusic_Init(lua_State* L)
+{
 	g_SteamMusic = SteamMusic();
 	return 0;
 }

@@ -6,7 +6,8 @@
 
 static ISteamApps* g_Apps;
 
-int SteamApps_Init(lua_State* L) {
+int SteamApps_Init(lua_State* L)
+{
 	g_Apps = SteamApps();
 	return 0;
 }

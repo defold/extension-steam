@@ -10,7 +10,8 @@
 #include "steam_listener.h"
 
 
-int SteamUserStats_OnLeaderboardFindResult(lua_State* L, void* data) {
+int SteamUserStats_OnLeaderboardFindResult(lua_State* L, void* data)
+{
 	LeaderboardFindResult_t* s = (LeaderboardFindResult_t*)data;
 	lua_pushstring(L, "LeaderboardFindResult_t");
 
@@ -25,7 +26,8 @@ int SteamUserStats_OnLeaderboardFindResult(lua_State* L, void* data) {
 	return 2;
 }
 
-int SteamUserStats_OnGlobalStatsReceived(lua_State* L, void* data) {
+int SteamUserStats_OnGlobalStatsReceived(lua_State* L, void* data)
+{
 	GlobalStatsReceived_t* s = (GlobalStatsReceived_t*)data;
 	lua_pushstring(L, "GlobalStatsReceived_t");
 	return 1;
@@ -118,7 +120,8 @@ static SteamUserStatsCallbacks* g_SteamUserStatsCallbacks = new SteamUserStatsCa
 
 static ISteamUserStats* g_SteamUserStats;
 
-int SteamUserStats_Init(lua_State* L) {
+int SteamUserStats_Init(lua_State* L)
+{
 	g_SteamUserStats = SteamUserStats();
 	return 0;
 }
@@ -130,17 +133,20 @@ int SteamUserStats_Init(lua_State* L) {
  * @treturn ok Boolean
  * @treturn stat Number The stat or nil
  */
-int SteamUserStats_GetStatInt(lua_State* L) {
+int SteamUserStats_GetStatInt(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 2);
 
 	const char* id = luaL_checkstring(L, 1);
 	int stat = 0;
 	bool ok = g_SteamUserStats->GetStat(id, &stat);
 	lua_pushboolean(L, ok);
-	if (!ok) {
+	if (!ok)
+	{
 		lua_pushnil(L);
 	}
-	else {
+	else
+	{
 		lua_pushnumber(L, stat);
 	}
 	return 2;
@@ -152,7 +158,8 @@ int SteamUserStats_GetStatInt(lua_State* L) {
  * @number stat Number to set
  * @treturn boolean ok
  */
-int SteamUserStats_SetStatInt(lua_State* L) {
+int SteamUserStats_SetStatInt(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	const char* id = luaL_checkstring(L, 1);
 	int stat = luaL_checknumber(L, 2);
@@ -167,16 +174,19 @@ int SteamUserStats_SetStatInt(lua_State* L) {
  * @treturn Boolean ok
  * @treturn Number stat The stat
  */
-int SteamUserStats_GetStatFloat(lua_State* L) {
+int SteamUserStats_GetStatFloat(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 2);
 	const char* id = luaL_checkstring(L, 1);
 	float stat = 0;
 	bool ok = g_SteamUserStats->GetStat(id, &stat);
 	lua_pushboolean(L, ok);
-	if (!ok) {
+	if (!ok)
+	{
 		lua_pushnil(L);
 	}
-	else {
+	else
+	{
 		lua_pushnumber(L, stat);
 	}
 	return 2;
@@ -188,7 +198,8 @@ int SteamUserStats_GetStatFloat(lua_State* L) {
  * @number stat Number to set
  * @treturn Boolean ok
  */
-int SteamUserStats_SetStatFloat(lua_State* L) {
+int SteamUserStats_SetStatFloat(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	const char* id = luaL_checkstring(L, 1);
 	float stat = luaL_checknumber(L, 2);
@@ -203,7 +214,8 @@ int SteamUserStats_SetStatFloat(lua_State* L) {
  * @name user_stats_request_current_stats
  * @treturn Boolean ok True if successful
  */
-int SteamUserStats_RequestCurrentStats(lua_State* L) {
+int SteamUserStats_RequestCurrentStats(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	bool ok = g_SteamUserStats->RequestCurrentStats();
 	lua_pushboolean(L, ok);
@@ -218,7 +230,8 @@ int SteamUserStats_RequestCurrentStats(lua_State* L) {
  * @number history_days
  * @treturn Boolean ok 
  */
-int SteamUserStats_RequestGlobalStats(lua_State* L) {
+int SteamUserStats_RequestGlobalStats(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	int historyDays = luaL_checknumber(L, 1);
 	bool ok = g_SteamUserStats->RequestGlobalStats(historyDays);
@@ -236,7 +249,8 @@ int SteamUserStats_RequestGlobalStats(lua_State* L) {
  * @name user_stats_store_stats
  * @treturn Boolean ok 
  */
-int SteamUserStats_StoreStats(lua_State* L) {
+int SteamUserStats_StoreStats(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	bool ok = g_SteamUserStats->StoreStats();
 	lua_pushboolean(L, ok);
@@ -248,7 +262,8 @@ int SteamUserStats_StoreStats(lua_State* L) {
  * @boolean achievements True if achievements should be reset as well.
  * @treturn Boolean ok
  */
-int SteamUserStats_ResetAllStats(lua_State* L) {
+int SteamUserStats_ResetAllStats(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	bool achievementsToo = lua_toboolean(L, 1);
 	bool ok = g_SteamUserStats->ResetAllStats(achievementsToo);
@@ -261,7 +276,8 @@ int SteamUserStats_ResetAllStats(lua_State* L) {
  * @string name
  * @treturn Boolean ok
  */
-int SteamUserStats_SetAchievement(lua_State* L) {
+int SteamUserStats_SetAchievement(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	const char* name = luaL_checkstring(L, 1);
 	bool ok = g_SteamUserStats->SetAchievement(name);
@@ -275,7 +291,8 @@ int SteamUserStats_SetAchievement(lua_State* L) {
  * @treturn Boolean ok
  * @treturn Boolean achieved
  */
-int SteamUserStats_GetAchievement(lua_State* L) {
+int SteamUserStats_GetAchievement(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 2);
 	const char* name = luaL_checkstring(L, 1);
 	bool achieved = 0;
@@ -297,7 +314,8 @@ int SteamUserStats_GetAchievement(lua_State* L) {
  * @string name
  * @treturn Boolean ok
  */
-int SteamUserStats_ClearAchievement(lua_State* L) {
+int SteamUserStats_ClearAchievement(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	const char* name = luaL_checkstring(L, 1);
 	bool ok = g_SteamUserStats->ClearAchievement(name);
@@ -311,7 +329,8 @@ int SteamUserStats_ClearAchievement(lua_State* L) {
  * @name user_stats_get_num_achievements
  * @treturn Number num Number of achievements.
  */
-int SteamUserStats_GetNumAchievements(lua_State* L) {
+int SteamUserStats_GetNumAchievements(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	int num = g_SteamUserStats->GetNumAchievements();
 	lua_pushnumber(L, num);
@@ -323,7 +342,8 @@ int SteamUserStats_GetNumAchievements(lua_State* L) {
  * @number index
  * @treturn String name
  */
-int SteamUserStats_GetAchievementName(lua_State* L) {
+int SteamUserStats_GetAchievementName(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	int index = luaL_checknumber(L, 1);
 	const char* name = g_SteamUserStats->GetAchievementName(index);
@@ -340,7 +360,8 @@ int SteamUserStats_GetAchievementName(lua_State* L) {
  * @string key Either "name", "desc" or "hidden"
  * @treturn String attribute
  */
-int SteamUserStats_GetAchievementDisplayAttribute(lua_State* L) {
+int SteamUserStats_GetAchievementDisplayAttribute(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	const char* name = luaL_checkstring(L, 1);
 	const char* key = luaL_checkstring(L, 2);
@@ -354,21 +375,25 @@ int SteamUserStats_GetAchievementDisplayAttribute(lua_State* L) {
  * @treturn Boolean ok
  * @treturn Number percent
  */
-int SteamUserStats_GetAchievementAchievedPercent(lua_State* L) {
+int SteamUserStats_GetAchievementAchievedPercent(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 2);
 	const char* name = luaL_checkstring(L, 1);
 	float percent = 0;
 	bool ok = g_SteamUserStats->GetAchievementAchievedPercent(name, &percent);
 	lua_pushboolean(L, ok);
-	if (!ok) {
+	if (!ok)
+	{
 		lua_pushnil(L);
 	}
-	else {
+	else
+	{
 		lua_pushnumber(L, percent);
 	}
 	return 2;
 }
-int SteamUserStats_FindLeaderboard(lua_State* L) {
+int SteamUserStats_FindLeaderboard(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	const char* name = luaL_checkstring(L, 1);
 	SteamAPICall_t call = g_SteamUserStats->FindLeaderboard(name);
@@ -382,7 +407,8 @@ int SteamUserStats_FindLeaderboard(lua_State* L) {
  * @string leaderboard
  * @treturn string name
  */
-int SteamUserStats_GetLeaderboardName(lua_State* L) {
+int SteamUserStats_GetLeaderboardName(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
 	const char* name = g_SteamUserStats->GetLeaderboardName(leaderboard);
@@ -408,7 +434,8 @@ int SteamUserStats_GetLeaderboardName(lua_State* L) {
  * @number end
  * @treturn string handle
  */
-int SteamUserStats_DownloadLeaderboardEntries(lua_State* L) {
+int SteamUserStats_DownloadLeaderboardEntries(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
 	ELeaderboardDataRequest request = (ELeaderboardDataRequest)luaL_checkinteger(L, 2);
@@ -427,7 +454,8 @@ int SteamUserStats_DownloadLeaderboardEntries(lua_State* L) {
  * @treturn Boolean ok
  * @treturn Table entry The requested leaderboard entry.
  */
-int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L) {
+int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 2);
 
 	SteamLeaderboardEntries_t hSteamLeaderboardEntries = check_uint64(L, 1);
@@ -442,7 +470,8 @@ int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L) {
 	{
 		lua_pushnil(L);
 	}
-	else {
+	else
+	{
 		lua_newtable(L);
 		lua_pushstring(L, "m_steamIDUser");
 		push_CSteamID(L, leaderboardEntry.m_steamIDUser);

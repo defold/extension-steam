@@ -6,7 +6,8 @@
 
 static ISteamInput* g_SteamInput;
 
-int SteamInput_Init(lua_State* L) {
+int SteamInput_Init(lua_State* L)
+{
 	g_SteamInput = SteamInput();
 	return 0;
 }

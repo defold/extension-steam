@@ -6,7 +6,8 @@
 
 static ISteamNetworking* g_SteamNetworking;
 
-int SteamNetworking_Init(lua_State* L) {
+int SteamNetworking_Init(lua_State* L)
+{
 	g_SteamNetworking = SteamNetworking();
 	return 0;
 }

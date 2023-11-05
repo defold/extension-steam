@@ -191,6 +191,7 @@ static const luaL_reg Module_methods[] = {
 	// FRIENDS
 	{ "friends_get_friend_persona_name", SteamFriends_GetFriendPersonaName },
 	{ "friends_activate_game_overlay_to_store", SteamFriends_ActivateGameOverlayToStore },
+
 	// USER
 	{ "user_get_steam_id", SteamUser_GetSteamId },
 	{ "user_get_player_steam_level", SteamUser_GetPlayerSteamLevel },

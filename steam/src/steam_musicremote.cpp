@@ -6,7 +6,8 @@
 
 static ISteamMusicRemote* g_SteamMusicRemote;
 
-int SteamMusicRemote_Init(lua_State* L) {
+int SteamMusicRemote_Init(lua_State* L)
+{
 	g_SteamMusicRemote = SteamMusicRemote();
 	return 0;
 }

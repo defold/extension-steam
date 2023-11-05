@@ -5,38 +5,44 @@
 
 static ISteamUtils* g_SteamUtils;
 
-extern "C" void __cdecl SteamAPIDebugTextHook( int nSeverity, const char *pchDebugText )
+extern "C" void __cdecl SteamAPIDebugTextHook(int nSeverity, const char *pchDebugText)
 {
-	if (nSeverity == 0) {
+	if (nSeverity == 0)
+	{
 		dmLogInfo("%s", pchDebugText);
 	}
-	else {
+	else
+	{
 		dmLogWarning("%s", pchDebugText);
 	}
 }
 
-int SteamUtils_Init(lua_State* L) {
+int SteamUtils_Init(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 0);
 	g_SteamUtils = SteamUtils();
 	g_SteamUtils->SetWarningMessageHook(&SteamAPIDebugTextHook);
 	return 0;
 }
 
-int SteamUtils_GetAppId(lua_State* L) {
+int SteamUtils_GetAppId(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 
 	lua_pushnumber(L, g_SteamUtils->GetAppID());
 	return 1;
 }
 
-int SteamUtils_GetSecondsSinceAppActive(lua_State* L) {
+int SteamUtils_GetSecondsSinceAppActive(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 
 	lua_pushnumber(L, g_SteamUtils->GetSecondsSinceAppActive());
 	return 1;
 }
 
-int SteamUtils_IsSteamRunningOnSteamDeck(lua_State* L) {
+int SteamUtils_IsSteamRunningOnSteamDeck(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 
 	lua_pushboolean(L, g_SteamUtils->IsSteamRunningOnSteamDeck());

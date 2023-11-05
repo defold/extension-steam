@@ -6,7 +6,8 @@
 
 static ISteamGameSearch* g_SteamGameSearch;
 
-int SteamGameSearch_Init(lua_State* L) {
+int SteamGameSearch_Init(lua_State* L)
+{
 	g_SteamGameSearch = SteamGameSearch();
 	return 0;
 }

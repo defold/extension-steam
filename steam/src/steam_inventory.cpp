@@ -6,7 +6,8 @@
 
 static ISteamInventory* g_SteamInventory;
 
-int SteamInventory_Init(lua_State* L) {
+int SteamInventory_Init(lua_State* L)
+{
 	g_SteamInventory = SteamInventory();
 	return 0;
 }

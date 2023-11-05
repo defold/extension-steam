@@ -6,7 +6,8 @@
 
 static ISteamVideo* g_SteamVideo;
 
-int SteamVideo_Init(lua_State* L) {
+int SteamVideo_Init(lua_State* L)
+{
 	g_SteamVideo = SteamVideo();
 	return 0;
 }

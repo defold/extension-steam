@@ -7,7 +7,8 @@
 static ISteamUser* g_SteamUser;
 
 
-int SteamUser_Init(lua_State* L) {
+int SteamUser_Init(lua_State* L)
+{
 	g_SteamUser = SteamUser();
 	return 0;
 }
@@ -18,7 +19,8 @@ int SteamUser_Init(lua_State* L) {
  * @name user_get_steam_id
  * @treturn CSteamID id
  */
-int SteamUser_GetSteamId(lua_State* L) {
+int SteamUser_GetSteamId(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	push_CSteamID(L, g_SteamUser->GetSteamID());
 	return 1;
@@ -28,7 +30,8 @@ int SteamUser_GetSteamId(lua_State* L) {
  * @name user_get_player_steam_level
  * @treturn number level
  */
-int SteamUser_GetPlayerSteamLevel(lua_State* L) {
+int SteamUser_GetPlayerSteamLevel(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	lua_pushnumber(L, g_SteamUser->GetPlayerSteamLevel());
 	return 1;
@@ -42,7 +45,8 @@ int SteamUser_GetPlayerSteamLevel(lua_State* L) {
  * @treturn number series
  * @treturn boolean foil
  */
-int SteamUser_GetGameBadgeLevel(lua_State* L) {
+int SteamUser_GetGameBadgeLevel(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	int series = luaL_checknumber(L, 1);
 	bool foil = lua_toboolean(L, 2);
@@ -55,7 +59,8 @@ int SteamUser_GetGameBadgeLevel(lua_State* L) {
  * @name user_logged_on
  * @treturn boolean logged_on
  */
-int SteamUser_LoggedOn(lua_State* L) {
+int SteamUser_LoggedOn(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	lua_pushboolean(L, g_SteamUser->BLoggedOn());
 	return 1;
@@ -66,7 +71,8 @@ int SteamUser_LoggedOn(lua_State* L) {
  * @name user_is_behind_nat
  * @treturn boolean behind_nat
  */
-int SteamUser_IsBehindNAT(lua_State* L) {
+int SteamUser_IsBehindNAT(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	lua_pushboolean(L, g_SteamUser->BIsBehindNAT());
 	return 1;
@@ -76,7 +82,8 @@ int SteamUser_IsBehindNAT(lua_State* L) {
  * @name user_is_phone_verified
  * @treturn boolean verified
  */
-int SteamUser_IsPhoneVerified(lua_State* L) {
+int SteamUser_IsPhoneVerified(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	lua_pushboolean(L, g_SteamUser->BIsPhoneVerified());
 	return 1;
@@ -86,7 +93,8 @@ int SteamUser_IsPhoneVerified(lua_State* L) {
  * @name user_is_phone_identifying
  * @treturn boolean verifying
  */
-int SteamUser_IsPhoneIdentifying(lua_State* L) {
+int SteamUser_IsPhoneIdentifying(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	lua_pushboolean(L, g_SteamUser->BIsPhoneIdentifying());
 	return 1;
@@ -96,7 +104,8 @@ int SteamUser_IsPhoneIdentifying(lua_State* L) {
  * @name user_is_phone_requiring_verification
  * @treturn boolean verification
  */
-int SteamUser_IsPhoneRequiringVerification(lua_State* L) {
+int SteamUser_IsPhoneRequiringVerification(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	lua_pushboolean(L, g_SteamUser->BIsPhoneRequiringVerification());
 	return 1;
@@ -106,7 +115,8 @@ int SteamUser_IsPhoneRequiringVerification(lua_State* L) {
  * @name user_is_two_factor_enabled
  * @treturn boolean enabled
  */
-int SteamUser_IsTwoFactorEnabled(lua_State* L) {
+int SteamUser_IsTwoFactorEnabled(lua_State* L)
+{
 	DM_LUA_STACK_CHECK(L, 1);
 	lua_pushboolean(L, g_SteamUser->BIsTwoFactorEnabled());
 	return 1;

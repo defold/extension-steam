@@ -6,7 +6,8 @@
 
 static ISteamRemoteStorage* g_SteamRemoteStorage;
 
-int SteamRemoteStorage_Init(lua_State* L) {
+int SteamRemoteStorage_Init(lua_State* L)
+{
 	g_SteamRemoteStorage = SteamRemoteStorage();
 	return 0;
 }

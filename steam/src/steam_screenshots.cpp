@@ -6,7 +6,8 @@
 
 static ISteamScreenshots* g_SteamScreenshots;
 
-int SteamScreenshots_Init(lua_State* L) {
+int SteamScreenshots_Init(lua_State* L)
+{
 	g_SteamScreenshots = SteamScreenshots();
 	return 0;
 }

@@ -6,7 +6,8 @@
 
 static ISteamUGC* g_SteamUGC;
 
-int SteamUGC_Init(lua_State* L) {
+int SteamUGC_Init(lua_State* L)
+{
 	g_SteamUGC = SteamUGC();
 	return 0;
 }

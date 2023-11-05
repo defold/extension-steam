@@ -6,7 +6,8 @@
 
 static ISteamMatchmaking* g_SteamMatchmaking;
 
-int SteamMatchmaking_Init(lua_State* L) {
+int SteamMatchmaking_Init(lua_State* L)
+{
 	g_SteamMatchmaking = SteamMatchmaking();
 	return 0;
 }
