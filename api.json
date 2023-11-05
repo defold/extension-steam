@@ -51,6 +51,78 @@
                             "returns": [],
                             "summary": "Finalize Steamworks.",
                             "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "ELeaderboardDataRequestGlobal",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "ELeaderboardDataRequestGlobal",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Requests rows in the leaderboard from the full table",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "ELeaderboardDataRequestGlobalAroundUser",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "ELeaderboardDataRequestGlobalAroundUser",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Requests rows in the leaderboard from rows around the user",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "ELeaderboardDataRequestFriends",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "ELeaderboardDataRequestFriends",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Requests all the rows for friends of the current user",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "EOverlayToStoreFlag_None",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "EOverlayToStoreFlag_None",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Passed as parameter to the store",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "EOverlayToStoreFlag_AddToCart",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "EOverlayToStoreFlag_AddToCart",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Passed as parameter to the store",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "EOverlayToStoreFlag_AddToCartAndShow",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "EOverlayToStoreFlag_AddToCartAndShow",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Passed as parameter to the store",
+                            "usage": null
                         }
                     ],
                     "filename": "steam/src/steam.cpp",
@@ -81,6 +153,28 @@
                                 }
                             ],
                             "summary": "Returns the name of another user.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "friends_activate_game_overlay_to_store",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "app_id",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "EOverlayToStoreFlag",
+                                    "name": "flag",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "app_id,flag",
+                            "returns": [],
+                            "summary": "Activates game overlay to store page for app.",
                             "usage": null
                         }
                     ],

@@ -23,6 +23,12 @@
     type: function
     desc: Finalize Steamworks. 
 
+
+
+
+
+
+
   - name: friends_get_friend_persona_name
     type: function
     desc: Returns the name of another user. Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.
@@ -34,6 +40,17 @@
     - name: String
       type: name
       desc: Name of user
+
+  - name: friends_activate_game_overlay_to_store
+    type: function
+    desc: Activates game overlay to store page for app. 
+    parameters:
+    - name: app_id
+      type: number
+
+    - name: flag
+      type: number
+      desc: EOverlayToStoreFlag
 
   - name: set_listener
     type: function

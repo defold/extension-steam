@@ -202,6 +202,8 @@ def process_entry(line, lines, filetype):
             m = re.match("\@field (.*)", line)
             if m:
                 entry["field_type"] = m.groups()[0]
+                if not "name" in entry:
+                    entry["name"] = m.groups()[0]
         elif line.startswith("@name"):
             line = line.replace("@name", "").strip()
             entry["name"] = line

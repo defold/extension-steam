@@ -7,6 +7,7 @@
 
 int SteamFriends_Init(lua_State* L);
 int SteamFriends_GetFriendPersonaName(lua_State* L);
+int SteamFriends_ActivateGameOverlayToStore(lua_State* L);
 
 #endif
 

@@ -38,6 +38,36 @@ Finalize Steamworks.
 
 
 
+### ELeaderboardDataRequestGlobal [`ELeaderboardDataRequestGlobal`]
+Requests rows in the leaderboard from the full table 
+
+
+
+### ELeaderboardDataRequestGlobalAroundUser [`ELeaderboardDataRequestGlobalAroundUser`]
+Requests rows in the leaderboard from rows around the user 
+
+
+
+### ELeaderboardDataRequestFriends [`ELeaderboardDataRequestFriends`]
+Requests all the rows for friends of the current user 
+
+
+
+### EOverlayToStoreFlag_None [`EOverlayToStoreFlag_None`]
+Passed as parameter to the store 
+
+
+
+### EOverlayToStoreFlag_AddToCart [`EOverlayToStoreFlag_AddToCart`]
+Passed as parameter to the store 
+
+
+
+### EOverlayToStoreFlag_AddToCartAndShow [`EOverlayToStoreFlag_AddToCartAndShow`]
+Passed as parameter to the store 
+
+
+
 ---
 
 ## steam_friends
@@ -55,6 +85,15 @@ PARAMS
 
 RETURNS
 * `String` [`name`] - Name of user
+
+
+### friends_activate_game_overlay_to_store(app_id,flag)
+Activates game overlay to store page for app. 
+
+
+PARAMS
+* `app_id` [`number`] - 
+* `flag` [`number`] - EOverlayToStoreFlag
 
 
 ---

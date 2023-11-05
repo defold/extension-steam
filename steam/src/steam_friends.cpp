@@ -34,4 +34,25 @@ int SteamFriends_GetFriendPersonaName(lua_State* L)
 	return 1;
 }
 
+/** Activates game overlay to store page for app.
+ * @name friends_activate_game_overlay_to_store
+ * @number app_id
+ * @number flag EOverlayToStoreFlag
+ */
+int SteamFriends_ActivateGameOverlayToStore(lua_State* L)
+{
+	DM_LUA_STACK_CHECK(L, 0);
+	AppId_t nAppID = luaL_checknumber(L, 1);
+	EOverlayToStoreFlag eFlag;
+	if (lua_isnil(L, 2)) {
+		eFlag = k_EOverlayToStoreFlag_None;
+	}
+	else {
+		eFlag = (EOverlayToStoreFlag)luaL_checknumber(L, 2);
+	}
+	g_SteamFriends->ActivateGameOverlayToStore(480, k_EOverlayToStoreFlag_None);
+	//g_SteamFriends->ActivateGameOverlayToStore(nAppID, eFlag);
+	return 0;
+}
+
 #endif

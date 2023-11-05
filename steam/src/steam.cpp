@@ -190,7 +190,7 @@ static const luaL_reg Module_methods[] = {
 
 	// FRIENDS
 	{ "friends_get_friend_persona_name", SteamFriends_GetFriendPersonaName },
-
+	{ "friends_activate_game_overlay_to_store", SteamFriends_ActivateGameOverlayToStore },
 	// USER
 	{ "user_get_steam_id", SteamUser_GetSteamId },
 	{ "user_get_player_steam_level", SteamUser_GetPlayerSteamLevel },
@@ -200,7 +200,6 @@ static const luaL_reg Module_methods[] = {
 	{ "user_is_phone_verified", SteamUser_IsPhoneVerified },
 	{ "user_is_phone_identifying", SteamUser_IsPhoneIdentifying },
 	{ "user_is_phone_requiring_verification", SteamUser_IsPhoneRequiringVerification },
-	{ "user_is_two_factor_enabled", SteamUser_IsTwoFactorEnabled },
 	{ 0, 0 }
 };
 
@@ -214,15 +213,39 @@ static void LuaInit(lua_State* L)
 	lua_pushnumber(L, (lua_Number) val); \
 	lua_setfield(L, -2, #name);
 
-	SETCONSTANT("k_ELeaderboardDataRequestGlobal", k_ELeaderboardDataRequestGlobal);
-	SETCONSTANT("k_ELeaderboardDataRequestGlobalAroundUser", k_ELeaderboardDataRequestGlobalAroundUser);
-	SETCONSTANT("k_ELeaderboardDataRequestFriends", k_ELeaderboardDataRequestFriends);
-	SETCONSTANT("k_ELeaderboardDataRequestUsers", k_ELeaderboardDataRequestUsers);
+	//
 	// ELeaderboardDataRequest
-	SETCONSTANT(LEADERBOARD_DATA_REQUEST_GLOBAL, 0);
-	SETCONSTANT(LEADERBOARD_DATA_REQUEST_GLOBAL_AROUND_USER, 1);
-	SETCONSTANT(LEADERBOARD_DATA_REQUEST_FRIENDS, 2);
-	SETCONSTANT(LEADERBOARD_DATA_REQUEST_USERS, 3);
+	//
+	/** Requests rows in the leaderboard from the full table
+	 * @field ELeaderboardDataRequestGlobal
+	 */
+	SETCONSTANT(ELeaderboardDataRequestGlobal, k_ELeaderboardDataRequestGlobal);
+	/** Requests rows in the leaderboard from rows around the user
+	 * @field ELeaderboardDataRequestGlobalAroundUser
+	 */
+	SETCONSTANT(ELeaderboardDataRequestGlobalAroundUser, k_ELeaderboardDataRequestGlobalAroundUser);
+	/** Requests all the rows for friends of the current user
+	 * @field ELeaderboardDataRequestFriends
+	 */
+	SETCONSTANT(ELeaderboardDataRequestFriends, k_ELeaderboardDataRequestFriends);
+	SETCONSTANT(ELeaderboardDataRequestUsers, k_ELeaderboardDataRequestUsers);
+
+	//
+	// EOverlayToStoreFlag
+	// These values are passed as parameters to the store
+	//
+	/** Passed as parameter to the store
+	 * @field EOverlayToStoreFlag_None
+	 */
+	SETCONSTANT(EOverlayToStoreFlag_None, k_EOverlayToStoreFlag_None);
+	/** Passed as parameter to the store
+	 * @field EOverlayToStoreFlag_AddToCart
+	 */
+	SETCONSTANT(EOverlayToStoreFlag_AddToCart, k_EOverlayToStoreFlag_AddToCart);
+	/** Passed as parameter to the store
+	 * @field EOverlayToStoreFlag_AddToCartAndShow
+	 */
+	SETCONSTANT(EOverlayToStoreFlag_AddToCartAndShow, k_EOverlayToStoreFlag_AddToCartAndShow);
 	#undef SETCONSTANT
 
 	lua_pop(L, 1);
