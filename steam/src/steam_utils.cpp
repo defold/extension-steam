@@ -25,6 +25,9 @@ int SteamUtils_Init(lua_State* L)
 	return 0;
 }
 
+/** Returns the appID of the current process.
+ * @treturn Number app_id
+ */
 int SteamUtils_GetAppId(lua_State* L)
 {
 	DM_LUA_STACK_CHECK(L, 1);
@@ -33,6 +36,9 @@ int SteamUtils_GetAppId(lua_State* L)
 	return 1;
 }
 
+/** Return the number of seconds since the user.
+ * @treturn Number seconds
+ */
 int SteamUtils_GetSecondsSinceAppActive(lua_State* L)
 {
 	DM_LUA_STACK_CHECK(L, 1);
@@ -41,6 +47,9 @@ int SteamUtils_GetSecondsSinceAppActive(lua_State* L)
 	return 1;
 }
 
+/** Returns true if currently running on the Steam Deck device.
+ * @treturn Boolean running_on_steamdeck
+ */
 int SteamUtils_IsSteamRunningOnSteamDeck(lua_State* L)
 {
 	DM_LUA_STACK_CHECK(L, 1);
