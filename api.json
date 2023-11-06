@@ -230,7 +230,7 @@
                             "name": "set_listener",
                             "params": [
                                 {
-                                    "description": "Listener function to call (signature: self, event, data)",
+                                    "description": "Listener function to call",
                                     "name": "listener",
                                     "type": "function"
                                 }

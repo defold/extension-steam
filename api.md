@@ -135,7 +135,7 @@ end)
 ```
 
 PARAMS
-* `listener` [`function`] - Listener function to call (signature: self, event, data)
+* `listener` [`function`] - Listener function to call
 
 
 ---

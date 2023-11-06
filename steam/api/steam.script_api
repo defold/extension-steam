@@ -70,7 +70,7 @@
     parameters:
     - name: listener
       type: function
-      desc: Listener function to call (signature: self, event, data)
+      desc: Listener function to call
 
   - name: user_get_steam_id
     type: function
