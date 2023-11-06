@@ -230,15 +230,15 @@
                             "name": "set_listener",
                             "params": [
                                 {
-                                    "description": "",
+                                    "description": "Listener function to call (signature: self, event, data)",
                                     "name": "listener",
                                     "type": "function"
                                 }
                             ],
                             "params_string": "listener",
                             "returns": [],
-                            "summary": "Set a listener",
-                            "usage": null
+                            "summary": "Set a listener.",
+                            "usage": " steam.set_listener(function(self, event, data)if event == \"GameOverlayActivated_t\" then\nprint(\"Overlay is active:\", data.m_bActive)\nend\nend)\n"
                         }
                     ],
                     "filename": "steam/src/steam_listener.cpp",
@@ -840,6 +840,61 @@
                     "returns": [],
                     "summary": null,
                     "usage": null
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "SteamUtils_GetAppId",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "app_id",
+                                    "type": "Number"
+                                }
+                            ],
+                            "summary": "Returns the appID of the current process.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "SteamUtils_GetSecondsSinceAppActive",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "seconds",
+                                    "type": "Number"
+                                }
+                            ],
+                            "summary": "Return the number of seconds since the user.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "SteamUtils_IsSteamRunningOnSteamDeck",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "running_on_steamdeck",
+                                    "type": "Boolean"
+                                }
+                            ],
+                            "summary": "Returns true if currently running on the Steam Deck device.",
+                            "usage": null
+                        }
+                    ],
+                    "filename": "steam/src/steam_utils.cpp",
+                    "group": "src",
+                    "module": "steam_utils"
                 }
             ],
             "group": "src"

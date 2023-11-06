@@ -66,11 +66,11 @@
 
   - name: set_listener
     type: function
-    desc: Set a listener 
+    desc: Set a listener. 
     parameters:
     - name: listener
       type: function
-
+      desc: Listener function to call (signature: self, event, data)
 
   - name: user_get_steam_id
     type: function
@@ -370,4 +370,28 @@
     - name: entry
       type: Table
       desc: The requested leaderboard entry.
+
+  - name: SteamUtils_GetAppId
+    type: function
+    desc: Returns the appID of the current process. 
+    return:
+    - name: app_id
+      type: Number
+
+
+  - name: SteamUtils_GetSecondsSinceAppActive
+    type: function
+    desc: Return the number of seconds since the user. 
+    return:
+    - name: seconds
+      type: Number
+
+
+  - name: SteamUtils_IsSteamRunningOnSteamDeck
+    type: function
+    desc: Returns true if currently running on the Steam Deck device. 
+    return:
+    - name: running_on_steamdeck
+      type: Boolean
+
 

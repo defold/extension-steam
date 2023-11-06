@@ -49,9 +49,14 @@ void SteamListener_Destroy()
 	}
 }
 
-/** Set a listener
+/** Set a listener.
  * @name set_listener
- * @function listener
+ * @function listener Listener function to call (signature: self, event, data)
+ * @usage steam.set_listener(function(self, event, data)
+ *    if event == "GameOverlayActivated_t" then
+ *        print("Overlay is active:", data.m_bActive)
+ *    end
+ * end)
  */
 int SteamListener_Set(lua_State* L)
 {

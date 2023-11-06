@@ -7,6 +7,7 @@
   * [steam_listener](#steam_listener)
   * [steam_user](#steam_user)
   * [steam_userstats](#steam_userstats)
+  * [steam_utils](#steam_utils)
 
 # src
 
@@ -125,11 +126,16 @@ PARAMS
 
 
 ### set_listener(listener)
-Set a listener 
-
+Set a listener. 
+```
+ steam.set_listener(function(self, event, data)if event == "GameOverlayActivated_t" then
+print("Overlay is active:", data.m_bActive)
+end
+end)
+```
 
 PARAMS
-* `listener` [`function`] - 
+* `listener` [`function`] - Listener function to call (signature: self, event, data)
 
 
 ---
@@ -406,6 +412,38 @@ PARAMS
 RETURNS
 * `ok` [`Boolean`] - 
 * `entry` [`Table`] - The requested leaderboard entry.
+
+
+---
+
+## steam_utils
+*File: `steam/src/steam_utils.cpp`*
+
+
+
+
+### SteamUtils_GetAppId()
+Returns the appID of the current process. 
+
+
+RETURNS
+* `app_id` [`Number`] - 
+
+
+### SteamUtils_GetSecondsSinceAppActive()
+Return the number of seconds since the user. 
+
+
+RETURNS
+* `seconds` [`Number`] - 
+
+
+### SteamUtils_IsSteamRunningOnSteamDeck()
+Returns true if currently running on the Steam Deck device. 
+
+
+RETURNS
+* `running_on_steamdeck` [`Boolean`] - 
 
 
 ---
