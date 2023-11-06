@@ -23,7 +23,7 @@ function init(self)
 		elseif e == "GlobalStatsReceived_t" then
 			msg.post("#", "refresh_global_stats", t)
 		elseif e == "LeaderboardFindResult_t" then
-			steam.user_stats_download_leaderboard_entries(t.m_hSteamLeaderboard, steam.LEADERBOARD_DATA_REQUEST_GLOBAL, 1, 10)
+			steam.user_stats_download_leaderboard_entries(t.m_hSteamLeaderboard, steam.ELeaderboardDataRequestGlobal, 1, 10)
 		elseif e == "LeaderboardScoresDownloaded_t" then
 			msg.post("#", "refresh_leaderboard", t)
 		end
