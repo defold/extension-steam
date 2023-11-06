@@ -371,7 +371,7 @@
       type: Table
       desc: The requested leaderboard entry.
 
-  - name: SteamUtils_GetAppId
+  - name: utils_get_app_id
     type: function
     desc: Returns the appID of the current process. 
     return:
@@ -379,7 +379,7 @@
       type: Number
 
 
-  - name: SteamUtils_GetSecondsSinceAppActive
+  - name: utils_get_seconds_since_app_active
     type: function
     desc: Return the number of seconds since the user. 
     return:
@@ -387,7 +387,7 @@
       type: Number
 
 
-  - name: SteamUtils_IsSteamRunningOnSteamDeck
+  - name: utils_is_steam_running_on_steam_deck
     type: function
     desc: Returns true if currently running on the Steam Deck device. 
     return:

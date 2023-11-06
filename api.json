@@ -847,7 +847,7 @@
                             "description": "",
                             "has_params": false,
                             "has_returns": true,
-                            "name": "SteamUtils_GetAppId",
+                            "name": "utils_get_app_id",
                             "params": [],
                             "returns": [
                                 {
@@ -863,7 +863,7 @@
                             "description": "",
                             "has_params": false,
                             "has_returns": true,
-                            "name": "SteamUtils_GetSecondsSinceAppActive",
+                            "name": "utils_get_seconds_since_app_active",
                             "params": [],
                             "returns": [
                                 {
@@ -879,7 +879,7 @@
                             "description": "",
                             "has_params": false,
                             "has_returns": true,
-                            "name": "SteamUtils_IsSteamRunningOnSteamDeck",
+                            "name": "utils_is_steam_running_on_steam_deck",
                             "params": [],
                             "returns": [
                                 {

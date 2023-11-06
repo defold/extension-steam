@@ -422,7 +422,7 @@ RETURNS
 
 
 
-### SteamUtils_GetAppId()
+### utils_get_app_id()
 Returns the appID of the current process. 
 
 
@@ -430,7 +430,7 @@ RETURNS
 * `app_id` [`Number`] - 
 
 
-### SteamUtils_GetSecondsSinceAppActive()
+### utils_get_seconds_since_app_active()
 Return the number of seconds since the user. 
 
 
@@ -438,7 +438,7 @@ RETURNS
 * `seconds` [`Number`] - 
 
 
-### SteamUtils_IsSteamRunningOnSteamDeck()
+### utils_is_steam_running_on_steam_deck()
 Returns true if currently running on the Steam Deck device. 
 
 
