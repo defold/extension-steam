@@ -30,6 +30,27 @@ To be able to build and run from the editor you need to copy `steam/lib/osx/*.dy
 
 ```lua
 
+local function on_steam_event(self, event, data)
+	if event == "GameOverlayActivated_t" then
+		print("Overlay is", data.m_bActive)
+	end
+end
+
+function init(self)
+	-- initialize the Steamworks SDK
+	local status, error = pcall(steam.init)
+	if not status then
+		print("Error: " .. error)
+		return
+	end
+
+	steam.set_listener(on_steam_event)
+end
+
+function update(self, dt)
+	steam.update()
+end
+
 ```
 
 
