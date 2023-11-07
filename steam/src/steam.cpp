@@ -80,19 +80,25 @@ static SteamCallbackWrapper *g_SteamCallbackWrapper = new SteamCallbackWrapper()
  * LIFECYCLE
  *******************************************/
 
-/** Initialize Steamworks
+/** Initialize Steamworks.
  * @name init
+ * @treturn Boolean success True if successful
+ * @treturn String message Error message if unsuccessful.
  */
 static int Init(lua_State* L)
 {
-	DM_LUA_STACK_CHECK(L, 0);
+	DM_LUA_STACK_CHECK(L, 2);
 	if(!SteamAPI_Init())
 	{
-		luaL_error(L, "Error initialising SteamAPI");
+		lua_pushboolean(L, 0);
+		lua_pushstring(L, "Error initialising SteamAPI");
+		return 2;
 	}
 	if (!SteamAPI_IsSteamRunning())
 	{
-		luaL_error(L, "Steam is not running");
+		lua_pushboolean(L, 0);
+		lua_pushstring(L, "Steam is not running");
+		return 2;
 	}
 
 	SteamApps_Init(L);
@@ -112,7 +118,10 @@ static int Init(lua_State* L)
 	SteamUserStats_Init(L);
 	SteamUtils_Init(L);
 	SteamVideo_Init(L);
-	return 0;
+
+	lua_pushboolean(L, 1);
+	lua_pushnil(L);
+	return 2;
 }
 
 /** Update Steamworks.

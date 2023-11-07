@@ -2,7 +2,7 @@ local rpg = require "gooey.themes.rpg.rpg"
 local monarch = require "monarch.monarch"
 
 function init(self)
-	local status, error = pcall(steam.init)
+	local status, error = steam.init()
 	if not status then
 		print("Error: " .. error)
 		gui.set_text(gui.get_node("status"), error)
