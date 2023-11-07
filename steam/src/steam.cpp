@@ -188,9 +188,10 @@ static const luaL_reg Module_methods[] = {
 	
 	// USERSTATS - achievements
 	{ "user_stats_set_achievement", SteamUserStats_SetAchievement },
+	{ "user_stats_get_achievement", SteamUserStats_GetAchievement },
+	{ "user_stats_clear_achievement", SteamUserStats_ClearAchievement },
 	{ "user_stats_get_num_achievements", SteamUserStats_GetNumAchievements },
 	{ "user_stats_get_achievement_name", SteamUserStats_GetAchievementName },
-	{ "user_stats_get_achievement", SteamUserStats_GetAchievement },
 	{ "user_stats_get_achievement_display_attribute", SteamUserStats_GetAchievementDisplayAttribute },
 	{ "user_stats_get_achievement_achieved_percent", SteamUserStats_GetAchievementAchievedPercent },
 	
