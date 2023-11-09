@@ -7,11 +7,22 @@
                         {
                             "description": "",
                             "has_params": false,
-                            "has_returns": false,
+                            "has_returns": true,
                             "name": "init",
                             "params": [],
-                            "returns": [],
-                            "summary": "Initialize Steamworks",
+                            "returns": [
+                                {
+                                    "description": "True if successful",
+                                    "name": "success",
+                                    "type": "Boolean"
+                                },
+                                {
+                                    "description": "Error message if unsuccessful.",
+                                    "name": "message",
+                                    "type": "String"
+                                }
+                            ],
+                            "summary": "Initialize Steamworks.",
                             "usage": null
                         },
                         {

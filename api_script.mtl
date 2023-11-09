@@ -27,6 +27,11 @@
   {{/returns}}
   {{/has_returns}}
 {{/field}}
+{{#field}}
+  - name: {{name}}
+    type: number
+    desc: {{#summary}}{{summary}} {{/summary}}{{description}}
+{{/field}}
 
 {{/entries}}
 {{/files}}

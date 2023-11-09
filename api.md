@@ -18,8 +18,12 @@
 
 
 ### init()
-Initialize Steamworks 
+Initialize Steamworks. 
 
+
+RETURNS
+* `success` [`Boolean`] - True if successful
+* `message` [`String`] - Error message if unsuccessful.
 
 
 ### update()

@@ -5,7 +5,14 @@
   members:
   - name: init
     type: function
-    desc: Initialize Steamworks 
+    desc: Initialize Steamworks. 
+    return:
+    - name: success
+      type: Boolean
+      desc: True if successful
+    - name: message
+      type: String
+      desc: Error message if unsuccessful.
 
   - name: update
     type: function
@@ -23,11 +30,29 @@
     type: function
     desc: Finalize Steamworks. 
 
+  - name: ELeaderboardDataRequestGlobal
+    type: number
+    desc: Requests rows in the leaderboard from the full table 
 
+  - name: ELeaderboardDataRequestGlobalAroundUser
+    type: number
+    desc: Requests rows in the leaderboard from rows around the user 
 
+  - name: ELeaderboardDataRequestFriends
+    type: number
+    desc: Requests all the rows for friends of the current user 
 
+  - name: EOverlayToStoreFlag_None
+    type: number
+    desc: Passed as parameter to the store 
 
+  - name: EOverlayToStoreFlag_AddToCart
+    type: number
+    desc: Passed as parameter to the store 
 
+  - name: EOverlayToStoreFlag_AddToCartAndShow
+    type: number
+    desc: Passed as parameter to the store 
 
   - name: apps_is_dlc_installed
     type: function
