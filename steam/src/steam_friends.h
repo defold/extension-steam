@@ -6,8 +6,17 @@
 #include <dmsdk/sdk.h>
 
 int SteamFriends_Init(lua_State* L);
+int SteamFriends_GetPersonaName(lua_State* L);
+int SteamFriends_GetPersonaState(lua_State* L);
+int SteamFriends_GetFriendCount(lua_State* L);
+int SteamFriends_GetFriendByIndex(lua_State* L);
+int SteamFriends_GetFriendPersonaState(lua_State* L);
+int SteamFriends_GetFriendSteamLevel(lua_State* L);
 int SteamFriends_GetFriendPersonaName(lua_State* L);
+int SteamFriends_GetFriendRelationship(lua_State* L);
+int SteamFriends_GetSmallFriendAvatar(lua_State* L);
 int SteamFriends_ActivateGameOverlayToStore(lua_State* L);
+int SteamFriends_ActivateGameOverlayToWebPage(lua_State* L);
 
 #endif
 

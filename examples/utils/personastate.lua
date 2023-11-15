@@ -1,13 +1,14 @@
 local M = {}
 
 PERSONASTATES = {
-	[steamworks.PERSONA_STATE_OFFLINE] = "offline",
-	[steamworks.PERSONA_STATE_ONLINE] = "online",
-	[steamworks.PERSONA_STATE_BUSY] = "busy",
-	[steamworks.PERSONA_STATE_AWAY] = "away",
-	[steamworks.PERSONA_STATE_SNOOZE] = "snooze",
-	[steamworks.PERSONA_STATE_LOOKING_TO_TRADE] = "looking to trade",
-	[steamworks.PERSONA_STATE_LOOKING_TO_PLAY] = "looking to play",
+	[steam.EPersonaStateOffline] = "offline",
+	[steam.EPersonaStateOnline] = "online",
+	[steam.EPersonaStateBusy] = "busy",
+	[steam.EPersonaStateAway] = "away",
+	[steam.EPersonaStateSnooze] = "snooze",
+	[steam.EPersonaStateLookingToTrade] = "looking to trade",
+	[steam.EPersonaStateLookingToPlay] = "looking to play",
+	[steam.EPersonaStateInvisible] = "invisible",
 }
 
 function M.to_string(state)

@@ -74,6 +74,56 @@ Passed as parameter to the store
 
 
 
+### EActivateGameOverlayToWebPageMode_Default [`EActivateGameOverlayToWebPageMode_Default`]
+Passed as parameter to ActivateGameOverlayToWebPage 
+
+
+
+### EActivateGameOverlayToWebPageMode_Modal [`EActivateGameOverlayToWebPageMode_Modal`]
+Passed as parameter to ActivateGameOverlayToWebPage 
+
+
+
+### EPersonaStateOffline [`EPersonaStateOffline`]
+Friend is not currently logged on 
+
+
+
+### EPersonaStateOnline [`EPersonaStateOnline`]
+Friend is logged on 
+
+
+
+### EPersonaStateBusy [`EPersonaStateBusy`]
+User is on, but busy 
+
+
+
+### EPersonaStateAway [`EPersonaStateAway`]
+Auto-away feature 
+
+
+
+### EPersonaStateSnooze [`EPersonaStateSnooze`]
+Auto-away for a long time 
+
+
+
+### EPersonaStateLookingToTrade [`EPersonaStateLookingToTrade`]
+Online, trading 
+
+
+
+### EPersonaStateLookingToPlay [`EPersonaStateLookingToPlay`]
+Online, wanting to play 
+
+
+
+### EPersonaStateInvisible [`EPersonaStateInvisible`]
+Online, but appears offline to friends.  This status is never published to clients. 
+
+
+
 ---
 
 ## steam_apps
@@ -112,6 +162,55 @@ RETURNS
 * `String` [`name`] - Name of user
 
 
+### friends_get_persona_name()
+Returns the local players name - guaranteed to not be NULL. This is the same name as on the users community profile page. This is stored in UTF-8 format.
+
+
+RETURNS
+* `String` [`name`] - Name of user
+
+
+### friends_get_persona_state()
+Gets the status of the current user. Returned as EPersonaState.
+
+
+RETURNS
+* `Number` [`state`] - Status of user.
+
+
+### friends_get_friend_persona_state(steamIDFriend)
+Returns the current status of the specified user. This will only be known by the local user if steamIDFriend is in their friends list; on the same game server; in a chat room or lobby; or in a small group with the local user.
+
+
+PARAMS
+* `steamIDFriend` [`number`] - Id of friend
+
+RETURNS
+* `Number` [`state`] - State of friend
+
+
+### friends_get_friend_steam_level(steamIDFriend)
+Get friends steam level. 
+
+
+PARAMS
+* `steamIDFriend` [`number`] - Id of friend
+
+RETURNS
+* `Number` [`level`] - Steam level of friend
+
+
+### friends_get_friend_relationship(steamIDFriend)
+Returns a relationship to a user. 
+
+
+PARAMS
+* `steamIDFriend` [`number`] - Id of friend
+
+RETURNS
+* `Number` [`relationship`] - Relationship to the user.
+
+
 ### friends_activate_game_overlay_to_store(app_id,flag)
 Activates game overlay to store page for app. 
 
@@ -119,6 +218,15 @@ Activates game overlay to store page for app.
 PARAMS
 * `app_id` [`number`] - 
 * `flag` [`number`] - EOverlayToStoreFlag
+
+
+### friends_activate_game_overlay_to_web_page(url,mode)
+Activates game overlay web browser directly to the specified URL. Full address with protocol type is required, e.g. http://www.steamgames.com/
+
+
+PARAMS
+* `url` [`string`] - 
+* `mode` [`number`] - EActivateGameOverlayToWebPageMode
 
 
 ---
@@ -448,6 +556,32 @@ Returns true if currently running on the Steam Deck device.
 
 RETURNS
 * `running_on_steamdeck` [`Boolean`] - 
+
+
+### utils_get_image_size(image)
+Get size of image 
+
+
+PARAMS
+* `image` [`number`] - Image handle
+
+RETURNS
+* `ok` [`Boolean`] - True if size of image was read successfully
+* `width` [`Number`] - Image width or nil
+* `height` [`Number`] - Image height or nil
+
+
+### utils_get_image_rgba(image,size)
+Get image in RGBA format. 
+
+
+PARAMS
+* `image` [`number`] - Image handle
+* `size` [`number`] - Size of image
+
+RETURNS
+* `ok` [`Boolean`] - True if size of image was read successfully
+* `Image` [`String`] - 
 
 
 ---

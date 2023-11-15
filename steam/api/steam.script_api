@@ -54,6 +54,46 @@
     type: number
     desc: Passed as parameter to the store 
 
+  - name: EActivateGameOverlayToWebPageMode_Default
+    type: number
+    desc: Passed as parameter to ActivateGameOverlayToWebPage 
+
+  - name: EActivateGameOverlayToWebPageMode_Modal
+    type: number
+    desc: Passed as parameter to ActivateGameOverlayToWebPage 
+
+  - name: EPersonaStateOffline
+    type: number
+    desc: Friend is not currently logged on 
+
+  - name: EPersonaStateOnline
+    type: number
+    desc: Friend is logged on 
+
+  - name: EPersonaStateBusy
+    type: number
+    desc: User is on, but busy 
+
+  - name: EPersonaStateAway
+    type: number
+    desc: Auto-away feature 
+
+  - name: EPersonaStateSnooze
+    type: number
+    desc: Auto-away for a long time 
+
+  - name: EPersonaStateLookingToTrade
+    type: number
+    desc: Online, trading 
+
+  - name: EPersonaStateLookingToPlay
+    type: number
+    desc: Online, wanting to play 
+
+  - name: EPersonaStateInvisible
+    type: number
+    desc: Online, but appears offline to friends.  This status is never published to clients. 
+
   - name: apps_is_dlc_installed
     type: function
     desc: Takes AppID of DLC and checks if the user owns the DLC &amp; if the DLC is installed. 
@@ -78,6 +118,58 @@
       type: name
       desc: Name of user
 
+  - name: friends_get_persona_name
+    type: function
+    desc: Returns the local players name - guaranteed to not be NULL. This is the same name as on the users community profile page. This is stored in UTF-8 format.
+    return:
+    - name: String
+      type: name
+      desc: Name of user
+
+  - name: friends_get_persona_state
+    type: function
+    desc: Gets the status of the current user. Returned as EPersonaState.
+    return:
+    - name: Number
+      type: state
+      desc: Status of user.
+
+  - name: friends_get_friend_persona_state
+    type: function
+    desc: Returns the current status of the specified user. This will only be known by the local user if steamIDFriend is in their friends list; on the same game server; in a chat room or lobby; or in a small group with the local user.
+    parameters:
+    - name: steamIDFriend
+      type: number
+      desc: Id of friend
+    return:
+    - name: Number
+      type: state
+      desc: State of friend
+
+  - name: friends_get_friend_steam_level
+    type: function
+    desc: Get friends steam level. 
+    parameters:
+    - name: steamIDFriend
+      type: number
+      desc: Id of friend
+    return:
+    - name: Number
+      type: level
+      desc: Steam level of friend
+
+  - name: friends_get_friend_relationship
+    type: function
+    desc: Returns a relationship to a user. 
+    parameters:
+    - name: steamIDFriend
+      type: number
+      desc: Id of friend
+    return:
+    - name: Number
+      type: relationship
+      desc: Relationship to the user.
+
   - name: friends_activate_game_overlay_to_store
     type: function
     desc: Activates game overlay to store page for app. 
@@ -88,6 +180,17 @@
     - name: flag
       type: number
       desc: EOverlayToStoreFlag
+
+  - name: friends_activate_game_overlay_to_web_page
+    type: function
+    desc: Activates game overlay web browser directly to the specified URL. Full address with protocol type is required, e.g. http://www.steamgames.com/
+    parameters:
+    - name: url
+      type: string
+
+    - name: mode
+      type: number
+      desc: EActivateGameOverlayToWebPageMode
 
   - name: set_listener
     type: function
@@ -418,5 +521,41 @@
     return:
     - name: running_on_steamdeck
       type: Boolean
+
+
+  - name: utils_get_image_size
+    type: function
+    desc: Get size of image 
+    parameters:
+    - name: image
+      type: number
+      desc: Image handle
+    return:
+    - name: ok
+      type: Boolean
+      desc: True if size of image was read successfully
+    - name: width
+      type: Number
+      desc: Image width or nil
+    - name: height
+      type: Number
+      desc: Image height or nil
+
+  - name: utils_get_image_rgba
+    type: function
+    desc: Get image in RGBA format. 
+    parameters:
+    - name: image
+      type: number
+      desc: Image handle
+    - name: size
+      type: number
+      desc: Size of image
+    return:
+    - name: ok
+      type: Boolean
+      desc: True if size of image was read successfully
+    - name: Image
+      type: String
 
 

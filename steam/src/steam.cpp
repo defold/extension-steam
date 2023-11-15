@@ -175,7 +175,9 @@ static const luaL_reg Module_methods[] = {
 	{ "utils_get_app_id", SteamUtils_GetAppId },
 	{ "utils_get_seconds_since_app_active", SteamUtils_GetSecondsSinceAppActive },
 	{ "utils_is_steam_running_on_steam_deck", SteamUtils_IsSteamRunningOnSteamDeck },
-	
+	{ "utils_get_image_size", SteamUtils_GetImageSize },
+	{ "utils_get_image_rgba", SteamUtils_GetImageRGBA },
+
 	// USERSTATS - stats
 	{ "user_stats_get_stat_int", SteamUserStats_GetStatInt },
 	{ "user_stats_set_stat_int", SteamUserStats_SetStatInt },
@@ -203,8 +205,17 @@ static const luaL_reg Module_methods[] = {
 	{ "user_stats_get_achievement", SteamUserStats_GetAchievement },
 
 	// FRIENDS
+	{ "friends_get_persona_name", SteamFriends_GetPersonaName },
+	{ "friends_get_persona_state", SteamFriends_GetPersonaState },
+	{ "friends_get_friend_count", SteamFriends_GetFriendCount },
+	{ "friends_get_friend_by_index", SteamFriends_GetFriendByIndex },
+	{ "friends_get_friend_persona_state", SteamFriends_GetFriendPersonaState },
+	{ "friends_get_friend_steam_level", SteamFriends_GetFriendSteamLevel },
+	{ "friends_get_friend_relationship", SteamFriends_GetFriendRelationship },
 	{ "friends_get_friend_persona_name", SteamFriends_GetFriendPersonaName },
+	{ "friends_get_small_friend_avatar", SteamFriends_GetSmallFriendAvatar },
 	{ "friends_activate_game_overlay_to_store", SteamFriends_ActivateGameOverlayToStore },
+	{ "friends_activate_game_overlay_to_web_page", SteamFriends_ActivateGameOverlayToWebPage },
 
 	// USER
 	{ "user_get_steam_id", SteamUser_GetSteamId },
@@ -248,7 +259,6 @@ static void LuaInit(lua_State* L)
 
 	//
 	// EOverlayToStoreFlag
-	// These values are passed as parameters to the store
 	//
 	/** Passed as parameter to the store
 	 * @field EOverlayToStoreFlag_None
@@ -262,6 +272,120 @@ static void LuaInit(lua_State* L)
 	 * @field EOverlayToStoreFlag_AddToCartAndShow
 	 */
 	SETCONSTANT(EOverlayToStoreFlag_AddToCartAndShow, k_EOverlayToStoreFlag_AddToCartAndShow);
+
+	//
+	// EActivateGameOverlayToWebPageMode
+	//
+	/** Passed as parameter to ActivateGameOverlayToWebPage
+	 * @field EActivateGameOverlayToWebPageMode_Default
+	 */
+	SETCONSTANT(EActivateGameOverlayToWebPageMode_Default, k_EActivateGameOverlayToWebPageMode_Default);
+	/** Passed as parameter to ActivateGameOverlayToWebPage
+	 * @field EActivateGameOverlayToWebPageMode_Modal
+	 */
+	SETCONSTANT(EActivateGameOverlayToWebPageMode_Modal, k_EActivateGameOverlayToWebPageMode_Modal);
+
+
+	//
+	// EPersonaState
+	//
+	/** friend is not currently logged on
+	 * @field EPersonaStateOffline
+	 */
+	SETCONSTANT(EPersonaStateOffline, k_EPersonaStateOffline);
+	/** friend is logged on
+	 * @field EPersonaStateOnline
+	 */
+	SETCONSTANT(EPersonaStateOnline, k_EPersonaStateOnline);
+	/** user is on, but busy
+	 * @field EPersonaStateBusy
+	 */
+	SETCONSTANT(EPersonaStateBusy, k_EPersonaStateBusy);
+	/** auto-away feature
+	 * @field EPersonaStateAway
+	 */
+	SETCONSTANT(EPersonaStateAway, k_EPersonaStateAway);
+	/** auto-away for a long time
+	 * @field EPersonaStateSnooze
+	 */
+	SETCONSTANT(EPersonaStateSnooze, k_EPersonaStateSnooze);
+	/** Online, trading
+	 * @field EPersonaStateLookingToTrade
+	 */
+	SETCONSTANT(EPersonaStateLookingToTrade, k_EPersonaStateLookingToTrade);
+	/** Online, wanting to play
+	 * @field EPersonaStateLookingToPlay
+	 */
+	SETCONSTANT(EPersonaStateLookingToPlay, k_EPersonaStateLookingToPlay);
+	/** Online, but appears offline to friends.  This status is never published to clients.
+	 * @field EPersonaStateInvisible
+	 */
+	SETCONSTANT(EPersonaStateInvisible, k_EPersonaStateInvisible);
+
+	//
+	// EFriendFlags
+	//
+	/**
+	 * EFriendFlagNone
+	 * @field EFriendFlagNone
+	 */
+	SETCONSTANT(EFriendFlagNone, k_EFriendFlagNone);
+	/**
+	 * EFriendFlagBlocked
+	 * @field EFriendFlagBlocked
+	 */
+	SETCONSTANT(EFriendFlagBlocked, k_EFriendFlagBlocked);
+	/**
+	 * EFriendFlagFriendshipRequested
+	 * @field EFriendFlagFriendshipRequested
+	 */
+	SETCONSTANT(EFriendFlagFriendshipRequested, k_EFriendFlagFriendshipRequested);
+	/**
+	 * EFriendFlagImmediate
+	 * @field EFriendFlagImmediate
+	 */
+	SETCONSTANT(EFriendFlagImmediate, k_EFriendFlagImmediate);
+	/**
+	 * EFriendFlagClanMember
+	 * @field EFriendFlagClanMember
+	 */
+	SETCONSTANT(EFriendFlagClanMember, k_EFriendFlagClanMember);
+	/**
+	 * EFriendFlagOnGameServer
+	 * @field EFriendFlagOnGameServer
+	 */
+	SETCONSTANT(EFriendFlagOnGameServer, k_EFriendFlagOnGameServer);
+	/**
+	 * EFriendFlagRequestingFriendship
+	 * @field EFriendFlagRequestingFriendship
+	 */
+	SETCONSTANT(EFriendFlagRequestingFriendship, k_EFriendFlagRequestingFriendship);
+	/**
+	 * EFriendFlagRequestingInfo
+	 * @field EFriendFlagRequestingInfo
+	 */
+	SETCONSTANT(EFriendFlagRequestingInfo, k_EFriendFlagRequestingInfo);
+	/**
+	 * EFriendFlagIgnored
+	 * @field EFriendFlagIgnored
+	 */
+	SETCONSTANT(EFriendFlagIgnored, k_EFriendFlagIgnored);
+	/**
+	 * EFriendFlagIgnoredFriend
+	 * @field EFriendFlagIgnoredFriend
+	 */
+	SETCONSTANT(EFriendFlagIgnoredFriend, k_EFriendFlagIgnoredFriend);
+	/**
+	 * EFriendFlagChatMember
+	 * @field EFriendFlagChatMember
+	 */
+	SETCONSTANT(EFriendFlagChatMember, k_EFriendFlagChatMember);
+	/**
+	 * EFriendFlagAll
+	 * @field EFriendFlagAll
+	 */
+	SETCONSTANT(EFriendFlagAll, k_EFriendFlagAll);
+
 	#undef SETCONSTANT
 
 	lua_pop(L, 1);

@@ -61,4 +61,65 @@ int SteamUtils_IsSteamRunningOnSteamDeck(lua_State* L)
 	return 1;
 }
 
+
+/** Get size of image
+ * @name utils_get_image_size
+ * @number image Image handle
+ * @treturn Boolean ok True if size of image was read successfully
+ * @treturn Number width Image width or nil
+ * @treturn Number height Image height or nil
+ */
+int SteamUtils_GetImageSize(lua_State* L)
+{
+	DM_LUA_STACK_CHECK(L, 3);
+
+	int iImage = luaL_checknumber(L, 1);
+	uint32 pnWidth = 0;
+	uint32 pnHeight = 0;
+
+	bool ok = g_SteamUtils->GetImageSize(iImage, &pnWidth, &pnHeight);
+	lua_pushboolean(L, ok);
+	if (ok)
+	{
+		lua_pushnumber(L, pnWidth);
+		lua_pushnumber(L, pnWidth);
+	}
+	else
+	{
+		lua_pushnil(L);
+		lua_pushnil(L);
+	}
+	return 3;
+}
+
+/** Get image in RGBA format.
+ * @name utils_get_image_rgba
+ * @number image Image handle
+ * @number size Size of image
+ * @treturn Boolean ok True if size of image was read successfully
+ * @treturn String Image
+ */
+int SteamUtils_GetImageRGBA(lua_State* L)
+{
+	DM_LUA_STACK_CHECK(L, 2);
+	int iImage = luaL_checknumber(L, 1);
+	int imageSize = luaL_checknumber(L, 2);
+	int nDestBufferSize = sizeof(uint8) * 4 * imageSize;
+	uint8* pubDest = (uint8*)malloc(nDestBufferSize);
+	bool ok = g_SteamUtils->GetImageRGBA(iImage, pubDest, nDestBufferSize);
+	lua_pushboolean(L, ok);
+	if (ok)
+	{
+		lua_pushlstring(L, (char*)pubDest, nDestBufferSize);
+	}
+	else
+	{
+		lua_pushnil(L);
+	}
+	free(pubDest);
+	return 2;
+}
+
+
+
 #endif
