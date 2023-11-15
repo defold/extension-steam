@@ -19,7 +19,7 @@
   {{/params}}
   {{/has_params}}
   {{#has_returns}}
-    return:
+    returns:
   {{#returns}}
     - name: {{name}}
       type: {{type}}

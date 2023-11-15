@@ -6,7 +6,7 @@
   - name: init
     type: function
     desc: Initialize Steamworks. 
-    return:
+    returns:
     - name: success
       type: Boolean
       desc: True if successful
@@ -101,7 +101,7 @@
     - name: app_id
       type: number
 
-    return:
+    returns:
     - name: installed
       type: bool
 
@@ -113,7 +113,7 @@
     - name: CSteamID
       type: friendId
 
-    return:
+    returns:
     - name: String
       type: name
       desc: Name of user
@@ -121,7 +121,7 @@
   - name: friends_get_persona_name
     type: function
     desc: Returns the local players name - guaranteed to not be NULL. This is the same name as on the users community profile page. This is stored in UTF-8 format.
-    return:
+    returns:
     - name: String
       type: name
       desc: Name of user
@@ -129,7 +129,7 @@
   - name: friends_get_persona_state
     type: function
     desc: Gets the status of the current user. Returned as EPersonaState.
-    return:
+    returns:
     - name: Number
       type: state
       desc: Status of user.
@@ -141,7 +141,7 @@
     - name: steamIDFriend
       type: number
       desc: Id of friend
-    return:
+    returns:
     - name: Number
       type: state
       desc: State of friend
@@ -153,7 +153,7 @@
     - name: steamIDFriend
       type: number
       desc: Id of friend
-    return:
+    returns:
     - name: Number
       type: level
       desc: Steam level of friend
@@ -165,7 +165,7 @@
     - name: steamIDFriend
       type: number
       desc: Id of friend
-    return:
+    returns:
     - name: Number
       type: relationship
       desc: Relationship to the user.
@@ -203,7 +203,7 @@
   - name: user_get_steam_id
     type: function
     desc: Returns the CSteamID of the account currently logged into the Steam client. A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.
-    return:
+    returns:
     - name: id
       type: CSteamID
 
@@ -211,7 +211,7 @@
   - name: user_get_player_steam_level
     type: function
     desc: Gets the Steam Level of the user, as shown on their profile. 
-    return:
+    returns:
     - name: level
       type: number
 
@@ -219,7 +219,7 @@
   - name: user_get_game_badge_level
     type: function
     desc: Trading Card badges data access. If you only have one set of cards, the series will be 1. The user has can have two different badges for a series; the regular (max level 5) and the foil (max level 1).
-    return:
+    returns:
     - name: series
       type: number
 
@@ -230,7 +230,7 @@
   - name: user_logged_on
     type: function
     desc: Returns true if the Steam client current has a live connection to the Steam Servers.
-    return:
+    returns:
     - name: logged_on
       type: boolean
 
@@ -238,7 +238,7 @@
   - name: user_is_behind_nat
     type: function
     desc: Returns true if this users looks like they are behind a NAT device. Only valid once the user has connected to steam .
-    return:
+    returns:
     - name: behind_nat
       type: boolean
 
@@ -246,7 +246,7 @@
   - name: user_is_phone_verified
     type: function
     desc: Gets whether the users phone number is verified. 
-    return:
+    returns:
     - name: verified
       type: boolean
 
@@ -254,7 +254,7 @@
   - name: user_is_phone_identifying
     type: function
     desc: Gets whether the users phone number is identifying. 
-    return:
+    returns:
     - name: verifying
       type: boolean
 
@@ -262,7 +262,7 @@
   - name: user_is_phone_requiring_verification
     type: function
     desc: Gets whether the users phone number is awaiting (re)verification. 
-    return:
+    returns:
     - name: verification
       type: boolean
 
@@ -270,7 +270,7 @@
   - name: user_is_two_factor_enabled
     type: function
     desc: Gets whether the user has two factor enabled on their account. 
-    return:
+    returns:
     - name: enabled
       type: boolean
 
@@ -282,7 +282,7 @@
     - name: id
       type: string
       desc: Id of the stat to get
-    return:
+    returns:
     - name: Boolean
       type: ok
 
@@ -300,7 +300,7 @@
     - name: stat
       type: number
       desc: Number to set
-    return:
+    returns:
     - name: ok
       type: boolean
 
@@ -312,7 +312,7 @@
     - name: id
       type: string
       desc: Id of the stat to get
-    return:
+    returns:
     - name: ok
       type: Boolean
 
@@ -330,7 +330,7 @@
     - name: stat
       type: number
       desc: Number to set
-    return:
+    returns:
     - name: ok
       type: Boolean
 
@@ -338,7 +338,7 @@
   - name: user_stats_request_current_stats
     type: function
     desc: Ask the server to send down this user&#x27;s data and achievements for this game. 
-    return:
+    returns:
     - name: ok
       type: Boolean
       desc: True if successful
@@ -350,7 +350,7 @@
     - name: history_days
       type: number
 
-    return:
+    returns:
     - name: ok
       type: Boolean
 
@@ -358,7 +358,7 @@
   - name: user_stats_store_stats
     type: function
     desc: Store the current data on the server. Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync.
-    return:
+    returns:
     - name: ok
       type: Boolean
 
@@ -370,7 +370,7 @@
     - name: achievements
       type: boolean
       desc: True if achievements should be reset as well.
-    return:
+    returns:
     - name: ok
       type: Boolean
 
@@ -382,7 +382,7 @@
     - name: name
       type: string
 
-    return:
+    returns:
     - name: ok
       type: Boolean
 
@@ -394,7 +394,7 @@
     - name: name
       type: string
 
-    return:
+    returns:
     - name: ok
       type: Boolean
 
@@ -409,7 +409,7 @@
     - name: name
       type: string
 
-    return:
+    returns:
     - name: ok
       type: Boolean
 
@@ -417,7 +417,7 @@
   - name: user_stats_get_num_achievements
     type: function
     desc: Used for iterating achievements. In general games should not need these functions because they should have a list of existing achievements compiled into them.
-    return:
+    returns:
     - name: num
       type: Number
       desc: Number of achievements.
@@ -429,7 +429,7 @@
     - name: index
       type: number
 
-    return:
+    returns:
     - name: name
       type: String
 
@@ -444,7 +444,7 @@
     - name: key
       type: string
       desc: Either &quot;name&quot;, &quot;desc&quot; or &quot;hidden&quot;
-    return:
+    returns:
     - name: attribute
       type: String
 
@@ -452,7 +452,7 @@
   - name: user_stats_get_achievement_achieved_percent
     type: function
     desc: Returns the percentage of users who have achieved the specified achievement. 
-    return:
+    returns:
     - name: ok
       type: Boolean
 
@@ -476,7 +476,7 @@
     - name: end
       type: number
 
-    return:
+    returns:
     - name: handle
       type: string
 
@@ -491,7 +491,7 @@
     - name: index
       type: number
       desc: Which entry to get
-    return:
+    returns:
     - name: ok
       type: Boolean
 
@@ -502,7 +502,7 @@
   - name: utils_get_app_id
     type: function
     desc: Returns the appID of the current process. 
-    return:
+    returns:
     - name: app_id
       type: Number
 
@@ -510,7 +510,7 @@
   - name: utils_get_seconds_since_app_active
     type: function
     desc: Return the number of seconds since the user. 
-    return:
+    returns:
     - name: seconds
       type: Number
 
@@ -518,7 +518,7 @@
   - name: utils_is_steam_running_on_steam_deck
     type: function
     desc: Returns true if currently running on the Steam Deck device. 
-    return:
+    returns:
     - name: running_on_steamdeck
       type: Boolean
 
@@ -530,7 +530,7 @@
     - name: image
       type: number
       desc: Image handle
-    return:
+    returns:
     - name: ok
       type: Boolean
       desc: True if size of image was read successfully
@@ -551,7 +551,7 @@
     - name: size
       type: number
       desc: Size of image
-    return:
+    returns:
     - name: ok
       type: Boolean
       desc: True if size of image was read successfully
