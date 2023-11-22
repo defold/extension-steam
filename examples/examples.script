@@ -1,7 +1,7 @@
 local monarch = require "monarch.monarch"
 
 function init(self)
-	math.randomseed(os.time()) math.random() math.random()
+	math.randomseed(os.time())
 	if steam then
 		msg.post("#", "show_menu")
 		msg.post("#notavailable", "disable")
