@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamMusic* g_SteamMusic;
+static ISteamMusic* g_SteamMusic = 0;
 
 int SteamMusic_Init(lua_State* L)
 {

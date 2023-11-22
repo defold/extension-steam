@@ -3,7 +3,7 @@
 #include <dmsdk/sdk.h>
 #include "steam_api.h"
 
-static ISteamUtils* g_SteamUtils;
+static ISteamUtils* g_SteamUtils = 0;
 
 extern "C" void __cdecl SteamAPIDebugTextHook(int nSeverity, const char *pchDebugText)
 {
@@ -31,8 +31,8 @@ int SteamUtils_Init(lua_State* L)
  */
 int SteamUtils_GetAppId(lua_State* L)
 {
+	if (!g_SteamUtils) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
-
 	lua_pushnumber(L, g_SteamUtils->GetAppID());
 	return 1;
 }
@@ -43,6 +43,7 @@ int SteamUtils_GetAppId(lua_State* L)
  */
 int SteamUtils_GetSecondsSinceAppActive(lua_State* L)
 {
+	if (!g_SteamUtils) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
 
 	lua_pushnumber(L, g_SteamUtils->GetSecondsSinceAppActive());
@@ -55,6 +56,7 @@ int SteamUtils_GetSecondsSinceAppActive(lua_State* L)
  */
 int SteamUtils_IsSteamRunningOnSteamDeck(lua_State* L)
 {
+	if (!g_SteamUtils) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
 
 	lua_pushboolean(L, g_SteamUtils->IsSteamRunningOnSteamDeck());
@@ -71,6 +73,7 @@ int SteamUtils_IsSteamRunningOnSteamDeck(lua_State* L)
  */
 int SteamUtils_GetImageSize(lua_State* L)
 {
+	if (!g_SteamUtils) return 0;
 	DM_LUA_STACK_CHECK(L, 3);
 
 	int iImage = luaL_checknumber(L, 1);
@@ -101,6 +104,7 @@ int SteamUtils_GetImageSize(lua_State* L)
  */
 int SteamUtils_GetImageRGBA(lua_State* L)
 {
+	if (!g_SteamUtils) return 0;
 	DM_LUA_STACK_CHECK(L, 2);
 	int iImage = luaL_checknumber(L, 1);
 	int imageSize = luaL_checknumber(L, 2);

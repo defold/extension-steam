@@ -5,7 +5,7 @@
 #include "steam_types.h"
 
 
-static dmScript::LuaCallbackInfo* g_SteamListener;
+static dmScript::LuaCallbackInfo* g_SteamListener = 0;
 
 void SteamListener_Invoke(int (*fn)(lua_State*, void*), void* data)
 {

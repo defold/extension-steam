@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamMatchmaking* g_SteamMatchmaking;
+static ISteamMatchmaking* g_SteamMatchmaking = 0;
 
 int SteamMatchmaking_Init(lua_State* L)
 {

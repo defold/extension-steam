@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamGameSearch* g_SteamGameSearch;
+static ISteamGameSearch* g_SteamGameSearch = 0;
 
 int SteamGameSearch_Init(lua_State* L)
 {

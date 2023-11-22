@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamMusicRemote* g_SteamMusicRemote;
+static ISteamMusicRemote* g_SteamMusicRemote = 0;
 
 int SteamMusicRemote_Init(lua_State* L)
 {

@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamUGC* g_SteamUGC;
+static ISteamUGC* g_SteamUGC = 0;
 
 int SteamUGC_Init(lua_State* L)
 {

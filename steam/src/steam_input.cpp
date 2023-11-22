@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamInput* g_SteamInput;
+static ISteamInput* g_SteamInput = 0;
 
 int SteamInput_Init(lua_State* L)
 {

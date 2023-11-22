@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamParties* g_SteamParties;
+static ISteamParties* g_SteamParties = 0;
 
 int SteamParties_Init(lua_State* L)
 {

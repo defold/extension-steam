@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamScreenshots* g_SteamScreenshots;
+static ISteamScreenshots* g_SteamScreenshots = 0;
 
 int SteamScreenshots_Init(lua_State* L)
 {

@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamApps* g_SteamApps;
+static ISteamApps* g_SteamApps = 0;
 
 int SteamApps_Init(lua_State* L)
 {
@@ -19,9 +19,9 @@ int SteamApps_Init(lua_State* L)
  */
 int SteamApps_IsDlcInstalled(lua_State* L)
 {
+	if (!g_SteamApps) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
 	AppId_t appID = luaL_checknumber(L, 1);
-	dmLogInfo("SteamApps_IsDlcInstalled %d", appID);
 	bool installed = g_SteamApps->BIsDlcInstalled(appID);
 	lua_pushboolean(L, installed);
 	return 1;

@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamRemoteStorage* g_SteamRemoteStorage;
+static ISteamRemoteStorage* g_SteamRemoteStorage = 0;
 
 int SteamRemoteStorage_Init(lua_State* L)
 {

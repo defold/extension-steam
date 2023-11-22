@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamInventory* g_SteamInventory;
+static ISteamInventory* g_SteamInventory = 0;
 
 int SteamInventory_Init(lua_State* L)
 {

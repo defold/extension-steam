@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamNetworking* g_SteamNetworking;
+static ISteamNetworking* g_SteamNetworking = 0;
 
 int SteamNetworking_Init(lua_State* L)
 {

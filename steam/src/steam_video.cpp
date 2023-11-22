@@ -4,7 +4,7 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
-static ISteamVideo* g_SteamVideo;
+static ISteamVideo* g_SteamVideo = 0;
 
 int SteamVideo_Init(lua_State* L)
 {
