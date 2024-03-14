@@ -125,5 +125,18 @@ int SteamUtils_GetImageRGBA(lua_State* L)
 }
 
 
+/** Returns the Steam server time in Unix epoch format. (Number of seconds since Jan 1, 1970 UTC)
+ * @name utils_get_server_real_time
+ * @treturn number Server time
+ */
+int SteamUtils_GetServerRealTime(lua_State* L)
+{
+	if (!g_SteamUtils) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	uint32 time = g_SteamUtils->GetServerRealTime();
+	lua_pushnumber(L, time);
+	return 1;
+}
+
 
 #endif

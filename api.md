@@ -607,5 +607,13 @@ RETURNS
 * `Image` [`String`] - 
 
 
+### utils_get_server_real_time()
+Returns the Steam server time in Unix epoch format. (Number of seconds since Jan 1, 1970 UTC) 
+
+
+RETURNS
+* `Server` [`number`] - Time
+
+
 ---
 

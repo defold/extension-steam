@@ -6,6 +6,7 @@ TEXT = [[INFO
 App active: %d seconds
 App id: %d
 Steam Deck: %s
+Server Real Time: %d
 ]]
 
 function init(self)
@@ -17,7 +18,8 @@ function init(self)
 	local seconds = steam.utils_get_seconds_since_app_active()
 	local app_id = steam.utils_get_app_id()
 	local steam_deck = steam.utils_is_steam_running_on_steam_deck() and "true" or "false"
-	gui.set_text(gui.get_node("info"), TEXT:format(seconds, app_id, steam_deck))
+	local server_real_time = steam.utils_get_server_real_time()
+	gui.set_text(gui.get_node("info"), TEXT:format(seconds, app_id, steam_deck, server_real_time))
 end
 
 function final(self)

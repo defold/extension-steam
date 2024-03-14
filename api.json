@@ -1267,6 +1267,22 @@
                             ],
                             "summary": "Get image in RGBA format.",
                             "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "utils_get_server_real_time",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Time",
+                                    "name": "Server",
+                                    "type": "number"
+                                }
+                            ],
+                            "summary": "Returns the Steam server time in Unix epoch format. (Number of seconds since Jan 1, 1970 UTC)",
+                            "usage": null
                         }
                     ],
                     "filename": "steam/src/steam_utils.cpp",

@@ -585,3 +585,11 @@
       type: String
 
 
+  - name: utils_get_server_real_time
+    type: function
+    desc: Returns the Steam server time in Unix epoch format. (Number of seconds since Jan 1, 1970 UTC) 
+    returns:
+    - name: Server
+      type: number
+      desc: Time
+
