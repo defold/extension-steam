@@ -203,6 +203,7 @@ static const luaL_reg Module_methods[] = {
 	{ "user_stats_download_leaderboard_entries", SteamUserStats_DownloadLeaderboardEntries },
 	{ "user_stats_get_downloaded_leaderboard_entry", SteamUserStats_GetDownloadedLeaderboardEntry },
 	{ "user_stats_get_achievement", SteamUserStats_GetAchievement },
+	{ "user_stats_upload_leaderboard_score", SteamUserStats_UploadLeaderboardScore },
 
 	// FRIENDS
 	{ "friends_get_persona_name", SteamFriends_GetPersonaName },
@@ -256,6 +257,24 @@ static void LuaInit(lua_State* L)
 	 */
 	SETCONSTANT(ELeaderboardDataRequestFriends, k_ELeaderboardDataRequestFriends);
 	SETCONSTANT(ELeaderboardDataRequestUsers, k_ELeaderboardDataRequestUsers);
+
+
+	//
+	// ELeaderboardUploadScoreMethod
+	//
+	/**
+	 * @field ELeaderboardUploadScoreMethodNone
+	 */
+	SETCONSTANT(ELeaderboardUploadScoreMethodNone, k_ELeaderboardUploadScoreMethodNone);
+	/** Leaderboard will keep user's best score
+	 * @field ELeaderboardUploadScoreMethodKeepBest
+	 */
+	SETCONSTANT(ELeaderboardUploadScoreMethodKeepBest, k_ELeaderboardUploadScoreMethodKeepBest);
+	/** Leaderboard will always replace score with specified
+	 * @field ELeaderboardUploadScoreMethodForceUpdate
+	 */
+	SETCONSTANT(ELeaderboardUploadScoreMethodForceUpdate, k_ELeaderboardUploadScoreMethodForceUpdate);
+
 
 	//
 	// EOverlayToStoreFlag

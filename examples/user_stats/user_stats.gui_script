@@ -34,6 +34,9 @@ function init(self)
 	steam.user_stats_request_current_stats()
 	steam.user_stats_request_global_stats(7)
 	steam.user_stats_find_leaderboard("Feet Traveled")
+
+	local new_score = math.random(1, 100000)
+	steam.user_stats_upload_leaderboard_score("Feet Traveled", steam.ELeaderboardUploadScoreMethodForceUpdate, new_score)
 end
 
 function final(self)

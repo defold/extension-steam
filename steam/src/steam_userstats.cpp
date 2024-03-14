@@ -71,6 +71,31 @@ int SteamUserStats_OnLeaderboardScoresDownloaded(lua_State* L, void* data)
 	return 2;
 }
 
+int SteamUserStats_OnLeaderboardScoreUploaded(lua_State* L, void* data)
+{
+	LeaderboardScoreUploaded_t* s = (LeaderboardScoreUploaded_t*)data;
+	lua_pushstring(L, "LeaderboardScoreUploaded_t");
+
+	lua_newtable(L);
+	lua_pushstring(L, "m_hSteamLeaderboard");
+	push_uint64(L, s->m_hSteamLeaderboard);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_nScore");
+	lua_pushnumber(L, s->m_nScore);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_bScoreChanged");
+	lua_pushboolean(L, s->m_bScoreChanged);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_nGlobalRankNew");
+	lua_pushnumber(L, s->m_nGlobalRankNew);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_nGlobalRankPrevious");
+	lua_pushnumber(L, s->m_nGlobalRankPrevious);
+	lua_settable(L, -3);
+
+	return 2;
+}
+
 class SteamUserStatsCallbacks
 {
 	public:
@@ -100,6 +125,14 @@ class SteamUserStatsCallbacks
 		}
 		void OnLeaderboardScoresDownloaded(LeaderboardScoresDownloaded_t *pResult, bool bIOFailure) {
 			SteamListener_Invoke(SteamUserStats_OnLeaderboardScoresDownloaded, pResult);
+		}
+
+		CCallResult<SteamUserStatsCallbacks, LeaderboardScoreUploaded_t> m_CallResultLeaderboardScoreUploaded_t;
+		void TrackSteamAPICallLeaderboardScoreUploaded_t(SteamAPICall_t steamAPICall) {
+			m_CallResultLeaderboardScoreUploaded_t.Set(steamAPICall, this, &SteamUserStatsCallbacks::LeaderboardScoreUploaded);
+		}
+		void LeaderboardScoreUploaded(LeaderboardScoreUploaded_t *pResult, bool bIOFailure) {
+			SteamListener_Invoke(SteamUserStats_OnLeaderboardScoreUploaded, pResult);
 		}
 };
 SteamUserStatsCallbacks::SteamUserStatsCallbacks() :
@@ -518,5 +551,32 @@ int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L)
 	return 2;
 }
 
+
+/** Uploads a user score to a specified leaderboard.
+ * This call is asynchronous, with the result returned in a listener callback
+ * with event set to LeaderboardScoresUploaded_t.
+ * @name user_stats_upload_leaderboard_score
+ * @string leaderboard
+ * @tparam ELeaderboardUploadScoreMethod eLeaderboardUploadScoreMethod
+ * @number nScore
+ * @treturn string handle
+ */
+int SteamUserStats_UploadLeaderboardScore(lua_State* L)
+{
+	if (!g_SteamUserStats) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+
+	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
+	ELeaderboardUploadScoreMethod eLeaderboardUploadScoreMethod = (ELeaderboardUploadScoreMethod)luaL_checknumber(L, 2);
+	int32 nScore = luaL_checknumber(L, 3);
+	// TODO score details not supported yet
+	const int32 *pScoreDetails = 0;
+	int cScoreDetailsCount = 0;
+
+	SteamAPICall_t call = g_SteamUserStats->UploadLeaderboardScore(leaderboard, eLeaderboardUploadScoreMethod, nScore, pScoreDetails, cScoreDetailsCount);
+	g_SteamUserStatsCallbacks->TrackSteamAPICallLeaderboardScoreUploaded_t(call);
+	push_uint64(L, call);
+	return 1;
+}
 
 #endif

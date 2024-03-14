@@ -102,6 +102,30 @@
                         {
                             "description": "",
                             "field": true,
+                            "field_type": "ELeaderboardUploadScoreMethodKeepBest",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "ELeaderboardUploadScoreMethodKeepBest",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Leaderboard will keep user's best score",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "ELeaderboardUploadScoreMethodForceUpdate",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "ELeaderboardUploadScoreMethodForceUpdate",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Leaderboard will always replace score with specified",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
                             "field_type": "EOverlayToStoreFlag_None",
                             "has_params": false,
                             "has_returns": false,
@@ -1079,6 +1103,39 @@
                                 }
                             ],
                             "summary": "Returns data about a single leaderboard entry",
+                            "usage": null
+                        },
+                        {
+                            "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresUploaded_t.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_upload_leaderboard_score",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "leaderboard",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "eLeaderboardUploadScoreMethod",
+                                    "type": "ELeaderboardUploadScoreMethod"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "nScore",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "leaderboard,eLeaderboardUploadScoreMethod,nScore",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "handle",
+                                    "type": "string"
+                                }
+                            ],
+                            "summary": "Uploads a user score to a specified leaderboard.",
                             "usage": null
                         }
                     ],

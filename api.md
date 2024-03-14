@@ -59,6 +59,16 @@ Requests all the rows for friends of the current user
 
 
 
+### ELeaderboardUploadScoreMethodKeepBest [`ELeaderboardUploadScoreMethodKeepBest`]
+Leaderboard will keep user&#x27;s best score 
+
+
+
+### ELeaderboardUploadScoreMethodForceUpdate [`ELeaderboardUploadScoreMethodForceUpdate`]
+Leaderboard will always replace score with specified 
+
+
+
 ### EOverlayToStoreFlag_None [`EOverlayToStoreFlag_None`]
 Passed as parameter to the store 
 
@@ -524,6 +534,19 @@ PARAMS
 RETURNS
 * `ok` [`Boolean`] - 
 * `entry` [`Table`] - The requested leaderboard entry.
+
+
+### user_stats_upload_leaderboard_score(leaderboard,eLeaderboardUploadScoreMethod,nScore)
+Uploads a user score to a specified leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresUploaded_t.
+
+
+PARAMS
+* `leaderboard` [`string`] - 
+* `eLeaderboardUploadScoreMethod` [`ELeaderboardUploadScoreMethod`] - 
+* `nScore` [`number`] - 
+
+RETURNS
+* `handle` [`string`] - 
 
 
 ---

@@ -42,6 +42,14 @@
     type: number
     desc: Requests all the rows for friends of the current user 
 
+  - name: ELeaderboardUploadScoreMethodKeepBest
+    type: number
+    desc: Leaderboard will keep user&#x27;s best score 
+
+  - name: ELeaderboardUploadScoreMethodForceUpdate
+    type: number
+    desc: Leaderboard will always replace score with specified 
+
   - name: EOverlayToStoreFlag_None
     type: number
     desc: Passed as parameter to the store 
@@ -498,6 +506,24 @@
     - name: entry
       type: Table
       desc: The requested leaderboard entry.
+
+  - name: user_stats_upload_leaderboard_score
+    type: function
+    desc: Uploads a user score to a specified leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresUploaded_t.
+    parameters:
+    - name: leaderboard
+      type: string
+
+    - name: eLeaderboardUploadScoreMethod
+      type: ELeaderboardUploadScoreMethod
+
+    - name: nScore
+      type: number
+
+    returns:
+    - name: handle
+      type: string
+
 
   - name: utils_get_app_id
     type: function

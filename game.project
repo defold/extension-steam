@@ -1,6 +1,7 @@
 [project]
 title = Steam
 version = 0.9
+bundle_resources = bundle
 dependencies#0 = https://github.com/britzl/gooey/archive/6.5.0.zip
 dependencies#1 = https://github.com/britzl/monarch/archive/2.15.0.zip
 
