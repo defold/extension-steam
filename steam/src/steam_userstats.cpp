@@ -507,7 +507,7 @@ int SteamUserStats_DownloadLeaderboardEntries(lua_State* L)
 
 /** Returns data about a single leaderboard entry
  * @name user_stats_get_downloaded_leaderboard_entry
- * @string leaderboard Leaderboard handle
+ * @string hSteamLeaderboardEntries Leaderboard entries handle
  * @number index Which entry to get
  * @treturn Boolean ok
  * @treturn Table entry The requested leaderboard entry.
@@ -519,7 +519,7 @@ int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L)
 
 	SteamLeaderboardEntries_t hSteamLeaderboardEntries = check_uint64(L, 1);
 	int index = luaL_checknumber(L, 2);
-	int detailsMax = luaL_checknumber(L, 3);
+	int detailsMax = 1
 	int32 details[detailsMax];
 
 	LeaderboardEntry_t leaderboardEntry;
