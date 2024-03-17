@@ -519,7 +519,7 @@ int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L)
 
 	SteamLeaderboardEntries_t hSteamLeaderboardEntries = check_uint64(L, 1);
 	int index = luaL_checknumber(L, 2);
-	int detailsMax = 1
+	int detailsMax = 1;
 	int32 details[detailsMax];
 
 	LeaderboardEntry_t leaderboardEntry;
