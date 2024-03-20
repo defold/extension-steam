@@ -1199,7 +1199,7 @@
                             "usage": null
                         },
                         {
-                            "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresUploaded_t.",
+                            "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoreUploaded_t.",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_upload_leaderboard_score",

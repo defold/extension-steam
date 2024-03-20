@@ -575,7 +575,7 @@ RETURNS
 
 
 ### user_stats_upload_leaderboard_score(leaderboard,eLeaderboardUploadScoreMethod,nScore)
-Uploads a user score to a specified leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresUploaded_t.
+Uploads a user score to a specified leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoreUploaded_t.
 
 
 PARAMS

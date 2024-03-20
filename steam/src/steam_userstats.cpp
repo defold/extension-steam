@@ -578,7 +578,7 @@ int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L)
 
 /** Uploads a user score to a specified leaderboard.
  * This call is asynchronous, with the result returned in a listener callback
- * with event set to LeaderboardScoresUploaded_t.
+ * with event set to LeaderboardScoreUploaded_t.
  * @name user_stats_upload_leaderboard_score
  * @string leaderboard
  * @tparam ELeaderboardUploadScoreMethod eLeaderboardUploadScoreMethod
