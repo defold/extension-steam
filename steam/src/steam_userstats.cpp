@@ -457,6 +457,30 @@ int SteamUserStats_FindLeaderboard(lua_State* L)
 	return 1;
 }
 
+/** Gets a leaderboard by name, it will create it if it's not yet created.
+ * This call is asynchronous, with the result returned in a listener callback
+ * with event set to LeaderboardFindResult_t.
+ * @name user_stats_find_or_create_leaderboard
+ * @string leaderboard_name The name of the leaderboard to find or create.
+ * @tparam ELeaderboardSortMethod eLeaderboardSortMethod The sort order of the new leaderboard if it's created.
+ * @tparam ELeaderboardDisplayType eLeaderboardDisplayType The display type (used by the Steam Community web site) of the new leaderboard if it's created.
+ * @treturn string handle
+ */
+int SteamUserStats_FindOrCreateLeaderboard(lua_State* L)
+{
+	if (!g_SteamUserStats) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+
+	const char* leaderboardName = luaL_checkstring(L, 1);
+	ELeaderboardSortMethod eLeaderboardSortMethod = (ELeaderboardSortMethod)luaL_checknumber(L, 2);
+	ELeaderboardDisplayType eLeaderboardDisplayType = (ELeaderboardDisplayType)luaL_checknumber(L, 3);
+
+	SteamAPICall_t call = g_SteamUserStats->FindOrCreateLeaderboard(leaderboardName, eLeaderboardSortMethod, eLeaderboardDisplayType);
+	g_SteamUserStatsCallbacks->TrackSteamAPICallLeaderboardFindResult_t(call);
+	push_uint64(L, call);
+	return 1;
+}
+
 /**
  * Get the name of a leaderboard.
  * @name user_stats_get_leaderboard_name

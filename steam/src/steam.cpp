@@ -201,6 +201,7 @@ static const luaL_reg Module_methods[] = {
 	
 	// USERSTATS - leaderboard
 	{ "user_stats_find_leaderboard", SteamUserStats_FindLeaderboard },
+	{ "user_stats_find_or_create_leaderboard", SteamUserStats_FindOrCreateLeaderboard },
 	{ "user_stats_get_leaderboard_name", SteamUserStats_GetLeaderboardName },
 	{ "user_stats_download_leaderboard_entries", SteamUserStats_DownloadLeaderboardEntries },
 	{ "user_stats_get_downloaded_leaderboard_entry", SteamUserStats_GetDownloadedLeaderboardEntry },
@@ -262,6 +263,23 @@ static void LuaInit(lua_State* L)
 
 
 	//
+	// ELeaderboardSortMethod
+	//
+	/** 
+	 * @field ELeaderboardSortMethodNone
+	 */
+	SETCONSTANT(ELeaderboardSortMethodNone, k_ELeaderboardSortMethodNone);
+	/** top-score is lowest number
+	 * @field ELeaderboardSortMethodAscending
+	 */
+	SETCONSTANT(ELeaderboardSortMethodAscending, k_ELeaderboardSortMethodAscending);
+	/** top-score is highest number
+	 * @field ELeaderboardSortMethodNone
+	 */
+	SETCONSTANT(ELeaderboardSortMethodDescending, k_ELeaderboardSortMethodDescending);
+
+
+	//
 	// ELeaderboardUploadScoreMethod
 	//
 	/**
@@ -276,6 +294,27 @@ static void LuaInit(lua_State* L)
 	 * @field ELeaderboardUploadScoreMethodForceUpdate
 	 */
 	SETCONSTANT(ELeaderboardUploadScoreMethodForceUpdate, k_ELeaderboardUploadScoreMethodForceUpdate);
+
+
+	//
+	// ELeaderboardDisplayType
+	//
+	/**
+	 * @field ELeaderboardDisplayTypeNone
+	 */
+	SETCONSTANT(ELeaderboardDisplayTypeNone, k_ELeaderboardDisplayTypeNone);
+	/** Simple numerical score
+	 * @field ELeaderboardDisplayTypeNumeric
+	 */
+	SETCONSTANT(ELeaderboardDisplayTypeNumeric, k_ELeaderboardDisplayTypeNumeric);
+	/** The score represents a time, in seconds
+	 * @field ELeaderboardDisplayTypeTimeSeconds
+	 */
+	SETCONSTANT(ELeaderboardDisplayTypeTimeSeconds, k_ELeaderboardDisplayTypeTimeSeconds);
+	/** The score represents a time, in milliseconds
+	 * @field ELeaderboardDisplayTypeTimeMilliSeconds
+	 */
+	SETCONSTANT(ELeaderboardDisplayTypeTimeMilliSeconds, k_ELeaderboardDisplayTypeTimeMilliSeconds);
 
 
 	//

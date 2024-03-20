@@ -23,6 +23,12 @@ function init(self)
 		elseif e == "GlobalStatsReceived_t" then
 			msg.post("#", "refresh_global_stats", t)
 		elseif e == "LeaderboardFindResult_t" then
+			if not t.m_bLeaderboardFound then
+				print("Unable to find leaderboard")
+				return
+			end
+			local new_score = math.random(1, 100000)
+			steam.user_stats_upload_leaderboard_score(t.m_hSteamLeaderboard, steam.ELeaderboardUploadScoreMethodForceUpdate, new_score)						
 			steam.user_stats_download_leaderboard_entries(t.m_hSteamLeaderboard, steam.ELeaderboardDataRequestGlobal, 1, 10)
 		elseif e == "LeaderboardScoresDownloaded_t" then
 			msg.post("#", "refresh_leaderboard", t)
@@ -34,9 +40,7 @@ function init(self)
 	steam.user_stats_request_current_stats()
 	steam.user_stats_request_global_stats(7)
 	steam.user_stats_find_leaderboard("Feet Traveled")
-
-	local new_score = math.random(1, 100000)
-	steam.user_stats_upload_leaderboard_score("Feet Traveled", steam.ELeaderboardUploadScoreMethodForceUpdate, new_score)
+	--steam.user_stats_find_or_create_leaderboard("Meters Traveled", steam.ELeaderboardSortMethodAscending, steam.ELeaderboardDisplayTypeNumeric)		
 end
 
 function final(self)
@@ -129,6 +133,9 @@ function on_message(self, message_id, message, sender)
 				local name = steam.friends_get_friend_persona_name(details.m_steamIDUser)
 				local s = ("#%d %s - %d"):format(details.m_nGlobalRank, name, details.m_nScore)
 				table.insert(entries, s)
+			else
+				print("Unable to get leaderboard entry")
+				pprint(message.m_hSteamLeaderboardEntries)
 			end
 		end
 		local text = LEADERBOARD:format(name, table.concat(entries, "\n"))

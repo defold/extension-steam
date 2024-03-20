@@ -42,6 +42,14 @@
     type: number
     desc: Requests all the rows for friends of the current user 
 
+  - name: ELeaderboardSortMethodAscending
+    type: number
+    desc: Top-score is lowest number 
+
+  - name: ELeaderboardSortMethodNone
+    type: number
+    desc: Top-score is highest number 
+
   - name: ELeaderboardUploadScoreMethodKeepBest
     type: number
     desc: Leaderboard will keep user&#x27;s best score 
@@ -49,6 +57,18 @@
   - name: ELeaderboardUploadScoreMethodForceUpdate
     type: number
     desc: Leaderboard will always replace score with specified 
+
+  - name: ELeaderboardDisplayTypeNumeric
+    type: number
+    desc: Simple numerical score 
+
+  - name: ELeaderboardDisplayTypeTimeSeconds
+    type: number
+    desc: The score represents a time, in seconds 
+
+  - name: ELeaderboardDisplayTypeTimeMilliSeconds
+    type: number
+    desc: The score represents a time, in milliseconds 
 
   - name: EOverlayToStoreFlag_None
     type: number
@@ -468,6 +488,24 @@
       type: Number
 
 
+  - name: user_stats_find_or_create_leaderboard
+    type: function
+    desc: Gets a leaderboard by name, it will create it if it&#x27;s not yet created. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardFindResult_t.
+    parameters:
+    - name: leaderboard_name
+      type: string
+      desc: The name of the leaderboard to find or create.
+    - name: eLeaderboardSortMethod
+      type: ELeaderboardSortMethod
+      desc: The sort order of the new leaderboard if it&#x27;s created.
+    - name: eLeaderboardDisplayType
+      type: ELeaderboardDisplayType
+      desc: The display type (used by the Steam Community web site) of the new leaderboard if it&#x27;s created.
+    returns:
+    - name: handle
+      type: string
+
+
   - name: user_stats_download_leaderboard_entries
     type: function
     desc: Asks the Steam back-end for a set of rows in the leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart &amp; nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user
@@ -493,9 +531,9 @@
     type: function
     desc: Returns data about a single leaderboard entry 
     parameters:
-    - name: leaderboard
+    - name: hSteamLeaderboardEntries
       type: string
-      desc: Leaderboard handle
+      desc: Leaderboard entries handle
     - name: index
       type: number
       desc: Which entry to get

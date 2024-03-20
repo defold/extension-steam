@@ -102,6 +102,30 @@
                         {
                             "description": "",
                             "field": true,
+                            "field_type": "ELeaderboardSortMethodAscending",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "ELeaderboardSortMethodAscending",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Top-score is lowest number",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "ELeaderboardSortMethodNone",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "ELeaderboardSortMethodNone",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Top-score is highest number",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
                             "field_type": "ELeaderboardUploadScoreMethodKeepBest",
                             "has_params": false,
                             "has_returns": false,
@@ -121,6 +145,42 @@
                             "params": [],
                             "returns": [],
                             "summary": "Leaderboard will always replace score with specified",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "ELeaderboardDisplayTypeNumeric",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "ELeaderboardDisplayTypeNumeric",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Simple numerical score",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "ELeaderboardDisplayTypeTimeSeconds",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "ELeaderboardDisplayTypeTimeSeconds",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The score represents a time, in seconds",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "field": true,
+                            "field_type": "ELeaderboardDisplayTypeTimeMilliSeconds",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "ELeaderboardDisplayTypeTimeMilliSeconds",
+                            "params": [],
+                            "returns": [],
+                            "summary": "The score represents a time, in milliseconds",
                             "usage": null
                         },
                         {
@@ -1035,6 +1095,39 @@
                             "usage": null
                         },
                         {
+                            "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardFindResult_t.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_find_or_create_leaderboard",
+                            "params": [
+                                {
+                                    "description": "The name of the leaderboard to find or create.",
+                                    "name": "leaderboard_name",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "The sort order of the new leaderboard if it's created.",
+                                    "name": "eLeaderboardSortMethod",
+                                    "type": "ELeaderboardSortMethod"
+                                },
+                                {
+                                    "description": "The display type (used by the Steam Community web site) of the new leaderboard if it's created.",
+                                    "name": "eLeaderboardDisplayType",
+                                    "type": "ELeaderboardDisplayType"
+                                }
+                            ],
+                            "params_string": "leaderboard_name,eLeaderboardSortMethod,eLeaderboardDisplayType",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "handle",
+                                    "type": "string"
+                                }
+                            ],
+                            "summary": "Gets a leaderboard by name, it will create it if it's not yet created.",
+                            "usage": null
+                        },
+                        {
                             "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user",
                             "has_params": true,
                             "has_returns": true,
@@ -1079,8 +1172,8 @@
                             "name": "user_stats_get_downloaded_leaderboard_entry",
                             "params": [
                                 {
-                                    "description": "Leaderboard handle",
-                                    "name": "leaderboard",
+                                    "description": "Leaderboard entries handle",
+                                    "name": "hSteamLeaderboardEntries",
                                     "type": "string"
                                 },
                                 {
@@ -1089,7 +1182,7 @@
                                     "type": "number"
                                 }
                             ],
-                            "params_string": "leaderboard,index",
+                            "params_string": "hSteamLeaderboardEntries,index",
                             "returns": [
                                 {
                                     "description": "",
