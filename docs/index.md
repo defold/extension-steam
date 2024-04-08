@@ -8,11 +8,6 @@ brief: This manual covers how to integrate a game with the Steamworks SDK.
 This extension provides an interface to integrate a game with the Steamworks SDK.
 
 
-## WORK IN PROGRESS
-
-This extension is still in development and should only be used for testing.
-
-
 ## Installation
 
 To use Steam in your Defold project, add a version of the Steam extension to your `game.project` dependencies from the list of available [Releases](https://github.com/defold/extension-steam/releases). Find the version you want, copy the URL to ZIP archive of the release and add it to the project dependencies.
