@@ -32,6 +32,7 @@ int SteamUserStats_GetAchievementAchievedPercent(lua_State* L);
 int SteamUserStats_FindLeaderboard(lua_State* L);
 int SteamUserStats_FindOrCreateLeaderboard(lua_State* L);
 int SteamUserStats_GetLeaderboardName(lua_State* L);
+int SteamUserStats_GetLeaderboardEntryCount(lua_State* L);
 int SteamUserStats_DownloadLeaderboardEntries(lua_State* L);
 int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L);
 int SteamUserStats_UploadLeaderboardScore(lua_State* L);

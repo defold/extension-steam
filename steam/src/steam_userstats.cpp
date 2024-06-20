@@ -481,8 +481,7 @@ int SteamUserStats_FindOrCreateLeaderboard(lua_State* L)
 	return 1;
 }
 
-/**
- * Get the name of a leaderboard.
+/** Get the name of a leaderboard.
  * @name user_stats_get_leaderboard_name
  * @string leaderboard
  * @treturn string name
@@ -494,6 +493,21 @@ int SteamUserStats_GetLeaderboardName(lua_State* L)
 	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
 	const char* name = g_SteamUserStats->GetLeaderboardName(leaderboard);
 	lua_pushstring(L, name);
+	return 1;
+}
+
+/** Get the total number of entries in a leaderboard, as of the last request.
+ * @name user_stats_get_leaderboard_entry_count
+ * @string leaderboard
+ * @treturn number count
+ */
+int SteamUserStats_GetLeaderboardEntryCount(lua_State* L)
+{
+	if (!g_SteamUserStats) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
+	int count = g_SteamUserStats->GetLeaderboardEntryCount(leaderboard);
+	lua_pushnumber(L, count);
 	return 1;
 }
 

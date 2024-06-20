@@ -547,6 +547,28 @@ RETURNS
 * `handle` [`string`] - 
 
 
+### user_stats_get_leaderboard_name(leaderboard)
+Get the name of a leaderboard. 
+
+
+PARAMS
+* `leaderboard` [`string`] - 
+
+RETURNS
+* `name` [`string`] - 
+
+
+### user_stats_get_leaderboard_entry_count(leaderboard)
+Get the total number of entries in a leaderboard, as of the last request. 
+
+
+PARAMS
+* `leaderboard` [`string`] - 
+
+RETURNS
+* `count` [`number`] - 
+
+
 ### user_stats_download_leaderboard_entries(leaderboard,request,start,end)
 Asks the Steam back-end for a set of rows in the leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart &amp; nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user
 

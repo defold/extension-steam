@@ -4,7 +4,7 @@ local monarch = require "monarch.monarch"
 local LEADERBOARD = [[
 NAME: %s
 
-ENTRIES
+ENTRIES (total: %d)
 %s
 ]]
 
@@ -138,7 +138,8 @@ function on_message(self, message_id, message, sender)
 				pprint(message.m_hSteamLeaderboardEntries)
 			end
 		end
-		local text = LEADERBOARD:format(name, table.concat(entries, "\n"))
+		local count = steam.user_stats_get_leaderboard_entry_count(leaderboard_id)
+		local text = LEADERBOARD:format(name, count, table.concat(entries, "\n"))
 		gui.set_text(gui.get_node("leaderboard"), text)
 	end
 end

@@ -1128,6 +1128,52 @@
                             "usage": null
                         },
                         {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_get_leaderboard_name",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "leaderboard",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "leaderboard",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "name",
+                                    "type": "string"
+                                }
+                            ],
+                            "summary": "Get the name of a leaderboard.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_get_leaderboard_entry_count",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "leaderboard",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "leaderboard",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "count",
+                                    "type": "number"
+                                }
+                            ],
+                            "summary": "Get the total number of entries in a leaderboard, as of the last request.",
+                            "usage": null
+                        },
+                        {
                             "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user",
                             "has_params": true,
                             "has_returns": true,
