@@ -56,18 +56,62 @@ int Steam_OnGameOverlayActivated(lua_State* L, void* data)
 	return 2;
 }
 
+// Function to convert an array of unsigned char to a hexadecimal string
+void unsignedCharArrayToHex(const unsigned char* data, size_t length, char* hexString) {
+	const char hexDigits[] = "0123456789ABCDEF"; // Hexadecimal digit characters
+	// Iterate over each byte in the data array
+	for (size_t i = 0; i < length; ++i) {
+		// Extract high and low nibbles (4-bit segments) of the byte
+		hexString[i * 2] = hexDigits[(data[i] >> 4) & 0x0F]; // High nibble
+		hexString[i * 2 + 1] = hexDigits[data[i] & 0x0F];    // Low nibble
+	}
+	// Null-terminate the string
+	hexString[length * 2] = '\0';
+}
+
+int Steam_OnGetTicketForWebApiResponse(lua_State* L, void* data)
+{
+	GetTicketForWebApiResponse_t* s = (GetTicketForWebApiResponse_t*)data;
+	lua_pushstring(L, "GetTicketForWebApiResponse_t");
+	lua_newtable(L);
+	lua_pushstring(L, "m_hAuthTicket");
+	lua_pushinteger(L, s->m_hAuthTicket);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_eResult");
+	lua_pushinteger(L, s->m_eResult);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_cubTicket");
+	lua_pushinteger(L, s->m_cubTicket);
+	lua_settable(L, -3);
+	// Prepare a buffer to hold the hexadecimal string, 2 characters per byte + 1 for null terminator
+	size_t length = s->m_cubTicket;
+	char hexString[length * 2 + 1];
+	// Convert byte array to hexadecimal string
+	unsignedCharArrayToHex(s->m_rgubTicket, length, hexString);
+	lua_pushstring(L, "m_rgubTicket");
+	lua_pushlstring(L, hexString, length * 2);
+	lua_settable(L, -3);
+	return 2;
+}
+
 class SteamCallbackWrapper
 {
 	public:
 		SteamCallbackWrapper();
 		STEAM_CALLBACK(SteamCallbackWrapper, OnGameOverlayActivated, GameOverlayActivated_t, m_CallbackGameOverlayActivated);
+		STEAM_CALLBACK(SteamCallbackWrapper, OnGetTicketForWebApiResponse, GetTicketForWebApiResponse_t, m_CallbackGetTicketForWebApiResponse);
 };
 SteamCallbackWrapper::SteamCallbackWrapper() :
-	m_CallbackGameOverlayActivated(this, &SteamCallbackWrapper::OnGameOverlayActivated)
+	m_CallbackGameOverlayActivated(this, &SteamCallbackWrapper::OnGameOverlayActivated),
+	m_CallbackGetTicketForWebApiResponse(this, &SteamCallbackWrapper::OnGetTicketForWebApiResponse)
 {}
 void SteamCallbackWrapper::OnGameOverlayActivated(GameOverlayActivated_t *s)
 {
 	SteamListener_Invoke(Steam_OnGameOverlayActivated, s);
+}
+void SteamCallbackWrapper::OnGetTicketForWebApiResponse(GetTicketForWebApiResponse_t *s)
+{
+	SteamListener_Invoke(Steam_OnGetTicketForWebApiResponse, s);
 }
 
 static SteamCallbackWrapper *g_SteamCallbackWrapper = new SteamCallbackWrapper();
@@ -232,6 +276,7 @@ static const luaL_reg Module_methods[] = {
 	{ "user_is_phone_identifying", SteamUser_IsPhoneIdentifying },
 	{ "user_is_phone_requiring_verification", SteamUser_IsPhoneRequiringVerification },
 	{ "user_is_two_factor_enabled", SteamUser_IsTwoFactorEnabled },
+	{ "user_get_auth_ticket_for_web_api", SteamUser_GetAuthTicketForWebApi },
 	{ 0, 0 }
 };
 
