@@ -733,6 +733,22 @@
                             ],
                             "summary": "Gets whether the user has two factor enabled on their account.",
                             "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_get_auth_ticket_for_web_api",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "HAuthTicket",
+                                    "type": "integer"
+                                }
+                            ],
+                            "summary": "Retrieve a session ticket",
+                            "usage": null
                         }
                     ],
                     "filename": "steam/src/steam_user.cpp",

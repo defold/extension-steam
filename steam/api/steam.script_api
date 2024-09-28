@@ -303,6 +303,14 @@
       type: boolean
 
 
+  - name: user_get_auth_ticket_for_web_api
+    type: function
+    desc: Retrieve a session ticket 
+    returns:
+    - name: HAuthTicket
+      type: integer
+
+
   - name: user_stats_get_stat_int
     type: function
     desc: Get user stat as an integer. 
