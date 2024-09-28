@@ -366,6 +366,14 @@ RETURNS
 * `enabled` [`boolean`] - 
 
 
+### user_get_auth_ticket_for_web_api()
+Retrieve a session ticket 
+
+
+RETURNS
+* `HAuthTicket` [`integer`] - 
+
+
 ---
 
 ## steam_userstats
