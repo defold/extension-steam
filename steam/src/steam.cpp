@@ -178,6 +178,8 @@ static const luaL_reg Module_methods[] = {
 	{ "utils_get_image_size", SteamUtils_GetImageSize },
 	{ "utils_get_image_rgba", SteamUtils_GetImageRGBA },
 	{ "utils_get_server_real_time", SteamUtils_GetServerRealTime },
+	{ "utils_show_floating_gamepad_text_input", SteamUtils_ShowFloatingGamepadTextInput },
+	{ "utils_show_gamepad_text_input", SteamUtils_ShowGamepadTextInput },
 
 
 	// USERSTATS - stats
@@ -244,6 +246,46 @@ static void LuaInit(lua_State* L)
 	#define SETCONSTANT(name, val) \
 	lua_pushnumber(L, (lua_Number) val); \
 	lua_setfield(L, -2, #name);
+
+	//
+	// EFloatingGamepadTextInputMode
+	//
+	/**
+	 * Enter dismisses the keyboard
+	 * @field EFloatingGamepadTextInputModeModeSingleLine
+	 */
+	SETCONSTANT(EFloatingGamepadTextInputModeModeSingleLine, k_EFloatingGamepadTextInputModeModeSingleLine);
+	/**
+	 * User needs to explicitly dismiss the keyboard
+	 * @field EFloatingGamepadTextInputModeModeMultipleLines
+	 */
+	SETCONSTANT(EFloatingGamepadTextInputModeModeMultipleLines, k_EFloatingGamepadTextInputModeModeMultipleLines);
+	/**
+	 * Keyboard is displayed in a special mode that makes it easier to enter emails
+	 * @field EFloatingGamepadTextInputModeModeEmail
+	 */
+	SETCONSTANT(EFloatingGamepadTextInputModeModeEmail, k_EFloatingGamepadTextInputModeModeEmail);
+	/**
+	 * Numeric keypad is shown
+	 * @field EFloatingGamepadTextInputModeModeNumeric
+	 */
+	SETCONSTANT(EFloatingGamepadTextInputModeModeNumeric, k_EFloatingGamepadTextInputModeModeNumeric);
+
+
+	//
+	// EGamepadTextInputMode
+	//
+	/**
+	 * Normal text input
+	 * @field EGamepadTextInputModeNormal
+	 */
+	SETCONSTANT(EGamepadTextInputModeNormal, k_EGamepadTextInputModeNormal);
+	/**
+	 * Password text input
+	 * @field EGamepadTextInputModePassword
+	 */
+	SETCONSTANT(EGamepadTextInputModePassword, k_EGamepadTextInputModePassword);
+
 
 	//
 	// ELeaderboardDataRequest
