@@ -288,6 +288,21 @@ static void LuaInit(lua_State* L)
 
 
 	//
+	// EGamepadTextInputLineMode
+	//
+	/**
+	 * Single line text
+	 * @field EGamepadTextInputLineModeSingleLine
+	 */
+	SETCONSTANT(EGamepadTextInputLineModeSingleLine, k_EGamepadTextInputLineModeSingleLine);
+	/**
+	 * Multi line text
+	 * @field EGamepadTextInputLineModeMultipleLines
+	 */
+	SETCONSTANT(EGamepadTextInputLineModeMultipleLines, k_EGamepadTextInputLineModeMultipleLines);
+
+
+	//
 	// ELeaderboardDataRequest
 	//
 	/** Requests rows in the leaderboard from the full table

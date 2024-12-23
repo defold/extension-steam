@@ -675,5 +675,34 @@ RETURNS
 * `Server` [`number`] - Time
 
 
+### utils_show_floating_gamepad_text_input(mode,x,y,width,height)
+Opens a floating keyboard over the game content and sends OS keyboard keys directly to the game. 
+
+
+PARAMS
+* `mode` [`number`] - EFloatingGamepadTextInputMode
+* `x` [`number`] - Text field x position
+* `y` [`number`] - Text field y position
+* `width` [`number`] - Text field width
+* `height` [`number`] - Text field height
+
+RETURNS
+* `result` [`bool`] - True if the floating keyboard was shown, otherwise, false.
+
+
+### utils_show_gamepad_text_input(input_mode,line_input_mode,description,existing_text)
+Activates the Big Picture text input dialog which only supports gamepad input. 
+
+
+PARAMS
+* `input_mode` [`number`] - EGamepadTextInputMode
+* `line_input_mode` [`number`] - EGamepadTextInputLineMode
+* `description` [`string`] - Sets the description that should inform the user what the input dialog is for
+* `existing_text` [`string`] - Sets the preexisting text which the user can edit.
+
+RETURNS
+* `result` [`bool`] - True if the big picture overlay is running; otherwise, false
+
+
 ---
 
