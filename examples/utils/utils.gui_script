@@ -20,6 +20,17 @@ function init(self)
 	local steam_deck = steam.utils_is_steam_running_on_steam_deck() and "true" or "false"
 	local server_real_time = steam.utils_get_server_real_time()
 	gui.set_text(gui.get_node("info"), TEXT:format(seconds, app_id, steam_deck, server_real_time))
+
+	steam.set_listener(function(self, e, t)
+		print("listener event", e)
+		pprint(t)
+		if e == "GamepadTextInputDismissed_t" then
+			local text = t.m_szTextInput
+			gui.set_text(gui.get_node("input"), text)
+		elseif e == "FloatingGamepadTextInputDismissed_t" then
+			gui.set_text(gui.get_node("input"), "Dismissed floating text")
+		end
+	end)
 end
 
 function final(self)
@@ -34,4 +45,24 @@ function on_input(self, action_id, action)
 	rpg.button("back", action_id, action, function()
 		monarch.back()
 	end)
+	rpg.button("floating_text", action_id, action, function()
+		local ok = steam.utils_show_floating_gamepad_text_input(steam.EFloatingGamepadTextInputModeModeSingleLine, 10, 10, 100, 100)
+		if ok then
+			gui.set_text(gui.get_node("input"), "Showing floating gamepad text input")
+		else
+			gui.set_text(gui.get_node("input"), "Failed to show floating gamepad text input")
+		end
+	end)
+	rpg.button("gamepad_text", action_id, action, function()
+		local ok = steam.utils_show_gamepad_text_input(steam.EGamepadTextInputModeNormal, steam.EGamepadTextInputLineModeSingleLine, "Some description", "Existing text")
+		if ok then
+			gui.set_text(gui.get_node("input"), "Showing gamepad text input")
+		else
+			gui.set_text(gui.get_node("input"), "Failed to show gamepad text input")
+		end
+	end)
+
+	if action_id == hash("text") then
+		gui.set_text(gui.get_node("input"), action.text)
+	end
 end

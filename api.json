@@ -1422,6 +1422,87 @@
                             ],
                             "summary": "Returns the Steam server time in Unix epoch format. (Number of seconds since Jan 1, 1970 UTC)",
                             "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "utils_show_floating_gamepad_text_input",
+                            "params": [
+                                {
+                                    "description": "EFloatingGamepadTextInputMode",
+                                    "name": "mode",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "Text field x position",
+                                    "name": "x",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "Text field y position",
+                                    "name": "y",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "Text field width",
+                                    "name": "width",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "Text field height",
+                                    "name": "height",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "mode,x,y,width,height",
+                            "returns": [
+                                {
+                                    "description": "True if the floating keyboard was shown, otherwise, false.",
+                                    "name": "result",
+                                    "type": "bool"
+                                }
+                            ],
+                            "summary": "Opens a floating keyboard over the game content and sends OS keyboard keys directly to the game.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "utils_show_gamepad_text_input",
+                            "params": [
+                                {
+                                    "description": "EGamepadTextInputMode",
+                                    "name": "input_mode",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "EGamepadTextInputLineMode",
+                                    "name": "line_input_mode",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "Sets the description that should inform the user what the input dialog is for",
+                                    "name": "description",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "Sets the preexisting text which the user can edit.",
+                                    "name": "existing_text",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "input_mode,line_input_mode,description,existing_text",
+                            "returns": [
+                                {
+                                    "description": "True if the big picture overlay is running; otherwise, false",
+                                    "name": "result",
+                                    "type": "bool"
+                                }
+                            ],
+                            "summary": "Activates the Big Picture text input dialog which only supports gamepad input.",
+                            "usage": null
                         }
                     ],
                     "filename": "steam/src/steam_utils.cpp",

@@ -655,3 +655,48 @@
       type: number
       desc: Time
 
+  - name: utils_show_floating_gamepad_text_input
+    type: function
+    desc: Opens a floating keyboard over the game content and sends OS keyboard keys directly to the game. 
+    parameters:
+    - name: mode
+      type: number
+      desc: EFloatingGamepadTextInputMode
+    - name: x
+      type: number
+      desc: Text field x position
+    - name: y
+      type: number
+      desc: Text field y position
+    - name: width
+      type: number
+      desc: Text field width
+    - name: height
+      type: number
+      desc: Text field height
+    returns:
+    - name: result
+      type: bool
+      desc: True if the floating keyboard was shown, otherwise, false.
+
+  - name: utils_show_gamepad_text_input
+    type: function
+    desc: Activates the Big Picture text input dialog which only supports gamepad input. 
+    parameters:
+    - name: input_mode
+      type: number
+      desc: EGamepadTextInputMode
+    - name: line_input_mode
+      type: number
+      desc: EGamepadTextInputLineMode
+    - name: description
+      type: string
+      desc: Sets the description that should inform the user what the input dialog is for
+    - name: existing_text
+      type: string
+      desc: Sets the preexisting text which the user can edit.
+    returns:
+    - name: result
+      type: bool
+      desc: True if the big picture overlay is running; otherwise, false
+
