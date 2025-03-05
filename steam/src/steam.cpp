@@ -7,7 +7,7 @@
 
 #include <dmsdk/sdk.h>
 
-#if defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)
+#if defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || (defined(DM_PLATFORM_LINUX) && !defined(__aarch64__))
 
 #include <assert.h>
 #include <stdlib.h>
