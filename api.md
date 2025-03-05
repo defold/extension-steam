@@ -366,6 +366,15 @@ RETURNS
 * `enabled` [`boolean`] - 
 
 
+### user_get_auth_session_ticket()
+Get an authentication ticket. Retrieve an authentication ticket to be sent to the entity who wishes to authenticate you.
+
+
+RETURNS
+* `ticket` [`string`] - Or null
+* `error` [`string`] - Or null
+
+
 ---
 
 ## steam_userstats

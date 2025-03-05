@@ -733,6 +733,27 @@
                             ],
                             "summary": "Gets whether the user has two factor enabled on their account.",
                             "usage": null
+                        },
+                        {
+                            "description": "Retrieve an authentication ticket to be sent to the entity who wishes to authenticate you.",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "user_get_auth_session_ticket",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Or null",
+                                    "name": "ticket",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "Or null",
+                                    "name": "error",
+                                    "type": "string"
+                                }
+                            ],
+                            "summary": "Get an authentication ticket.",
+                            "usage": null
                         }
                     ],
                     "filename": "steam/src/steam_user.cpp",
