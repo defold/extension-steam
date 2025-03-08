@@ -131,4 +131,17 @@ int SteamUser_IsTwoFactorEnabled(lua_State* L)
 	return 1;
 }
 
+/** Retrieve a session ticket
+ * @name user_get_auth_ticket_for_web_api
+ * @treturn integer HAuthTicket
+ */
+int SteamUser_GetAuthTicketForWebApi(lua_State* L)
+{
+	if (!g_SteamUser) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	const char *pchIdentity = luaL_checkstring(L, 1);
+	lua_pushinteger(L, g_SteamUser->GetAuthTicketForWebApi(pchIdentity));
+	return 1;
+}
+
 #endif

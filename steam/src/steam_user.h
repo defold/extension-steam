@@ -15,6 +15,7 @@ int SteamUser_IsPhoneVerified(lua_State* L);
 int SteamUser_IsPhoneIdentifying(lua_State* L);
 int SteamUser_IsPhoneRequiringVerification(lua_State* L);
 int SteamUser_IsTwoFactorEnabled(lua_State* L);
+int SteamUser_GetAuthTicketForWebApi(lua_State* L);
 
 #endif
 
