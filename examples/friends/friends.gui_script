@@ -73,4 +73,16 @@ function on_input(self, action_id, action)
 	rpg.button("back", action_id, action, function()
 		monarch.back()
 	end)
+	rpg.button("set_rich_presence", action_id, action, function()
+		local ok = steam.friends_set_rich_presence("steam_display", "#Status_AtMainMenu")
+		if ok then
+			print("Rich Presence successfully set")
+		else
+			print("Unable to set Rich Presence")
+		end
+	end)
+	rpg.button("clear_rich_presence", action_id, action, function()
+		steam.friends_clear_rich_presence()
+		print("Rich Presence cleared")
+	end)
 end

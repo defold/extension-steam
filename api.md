@@ -264,6 +264,23 @@ PARAMS
 * `mode` [`number`] - EActivateGameOverlayToWebPageMode
 
 
+### friends_set_rich_presence(key,value)
+Sets a Rich Presence key/value for the current user. 
+
+
+PARAMS
+* `key` [`string`] - 
+* `value` [`string`] - 
+
+RETURNS
+* `success` [`bool`] - True if the rich presence was set successfully, otherwise False.
+
+
+### friends_clear_rich_presence()
+Clears all of the current user&#x27;s Rich Presence key/values. 
+
+
+
 ---
 
 ## steam_listener
