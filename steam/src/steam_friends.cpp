@@ -219,4 +219,34 @@ int SteamFriends_ActivateGameOverlayToWebPage(lua_State* L)
 }
 
 
+/** Sets a Rich Presence key/value for the current user.
+ * @name friends_set_rich_presence
+ * @string key
+ * @string value
+ * @treturn bool success True if the rich presence was set successfully, otherwise False.
+ */
+ int SteamFriends_SetRichPresence(lua_State* L)
+{
+	if (!g_SteamFriends) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	const char *pchKey = luaL_checkstring(L, 1);
+	const char *pchValue = luaL_checkstring(L, 2);
+	bool success = g_SteamFriends->SetRichPresence(pchKey, pchValue);
+	lua_pushboolean(L, success);
+	return 1;
+}
+
+
+/** Clears all of the current user's Rich Presence key/values.
+ * @name friends_clear_rich_presence
+ */
+ int SteamFriends_ClearRichPresence(lua_State* L)
+{
+	if (!g_SteamFriends) return 0;
+	DM_LUA_STACK_CHECK(L, 0);
+	g_SteamFriends->ClearRichPresence();
+	return 1;
+}
+
+
 #endif

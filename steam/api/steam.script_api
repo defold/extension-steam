@@ -220,6 +220,25 @@
       type: number
       desc: EActivateGameOverlayToWebPageMode
 
+  - name: friends_set_rich_presence
+    type: function
+    desc: Sets a Rich Presence key/value for the current user. 
+    parameters:
+    - name: key
+      type: string
+
+    - name: value
+      type: string
+
+    returns:
+    - name: success
+      type: bool
+      desc: True if the rich presence was set successfully, otherwise False.
+
+  - name: friends_clear_rich_presence
+    type: function
+    desc: Clears all of the current user&#x27;s Rich Presence key/values. 
+
   - name: set_listener
     type: function
     desc: Set a listener. 

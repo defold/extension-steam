@@ -544,6 +544,44 @@
                             "returns": [],
                             "summary": "Activates game overlay web browser directly to the specified URL.",
                             "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "friends_set_rich_presence",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "key",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "value",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "key,value",
+                            "returns": [
+                                {
+                                    "description": "True if the rich presence was set successfully, otherwise False.",
+                                    "name": "success",
+                                    "type": "bool"
+                                }
+                            ],
+                            "summary": "Sets a Rich Presence key/value for the current user.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "friends_clear_rich_presence",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Clears all of the current user's Rich Presence key/values.",
+                            "usage": null
                         }
                     ],
                     "file_description": "Steam Overlay.",
