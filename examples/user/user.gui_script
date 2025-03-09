@@ -51,4 +51,16 @@ function on_input(self, action_id, action)
 	rpg.button("back", action_id, action, function()
 		monarch.back()
 	end)
+
+	rpg.button("get_auth_ticket", action_id, action, function()
+		local ticket, err = steam.user_get_auth_session_ticket()
+		if ticket then
+			local hex = ticket:gsub(".", function(char)
+				return string.format("%02X", char:byte())
+			end)
+			print("ticket", hex)
+		else
+			print("error", err)
+		end
+	end)
 end

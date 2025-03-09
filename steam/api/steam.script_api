@@ -322,6 +322,17 @@
       type: boolean
 
 
+  - name: user_get_auth_session_ticket
+    type: function
+    desc: Get an authentication ticket. Retrieve an authentication ticket to be sent to the entity who wishes to authenticate you.
+    returns:
+    - name: ticket
+      type: string
+      desc: Or null
+    - name: error
+      type: string
+      desc: Or null
+
   - name: user_stats_get_stat_int
     type: function
     desc: Get user stat as an integer. 

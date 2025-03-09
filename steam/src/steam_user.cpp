@@ -5,7 +5,9 @@
 #include "steam_types.h"
 
 static ISteamUser* g_SteamUser = 0;
+static HAuthTicket g_AuthSessionTicket = 0;
 
+#define MAX_TICKET_SIZE 4096
 
 int SteamUser_Init(lua_State* L)
 {
@@ -129,6 +131,41 @@ int SteamUser_IsTwoFactorEnabled(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	lua_pushboolean(L, g_SteamUser->BIsTwoFactorEnabled());
 	return 1;
+}
+
+
+/** Get an authentication ticket.
+ * Retrieve an authentication ticket to be sent to the entity who wishes to
+ * authenticate you.
+ * @name user_get_auth_session_ticket
+ * @treturn string ticket or null
+ * @treturn string error or null
+ */
+int SteamUser_GetAuthSessionTicket(lua_State* L)
+{
+	if (!g_SteamUser) return 0;
+	DM_LUA_STACK_CHECK(L, 2);
+
+	if (g_AuthSessionTicket)
+	{
+		g_SteamUser->CancelAuthTicket(g_AuthSessionTicket);
+		g_AuthSessionTicket = 0;
+	}
+
+	char pTicket[MAX_TICKET_SIZE];
+	uint32 pcbTicket;
+	HAuthTicket ticket = g_SteamUser->GetAuthSessionTicket(pTicket, MAX_TICKET_SIZE, &pcbTicket, 0x0);
+	if (ticket == k_HAuthTicketInvalid)
+	{
+		lua_pushnil(L);
+		lua_pushstring(L, "k_HAuthTicketInvalid");
+		return 2;
+	}
+
+	g_AuthSessionTicket = ticket;
+	lua_pushlstring(L, pTicket, pcbTicket);
+	lua_pushnil(L);
+	return 2;
 }
 
 #endif

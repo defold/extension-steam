@@ -236,6 +236,7 @@ static const luaL_reg Module_methods[] = {
 	{ "user_is_phone_identifying", SteamUser_IsPhoneIdentifying },
 	{ "user_is_phone_requiring_verification", SteamUser_IsPhoneRequiringVerification },
 	{ "user_is_two_factor_enabled", SteamUser_IsTwoFactorEnabled },
+	{ "user_get_auth_session_ticket", SteamUser_GetAuthSessionTicket },
 	{ 0, 0 }
 };
 
