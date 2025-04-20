@@ -149,7 +149,7 @@ static int Restart(lua_State* L)
 }
 
 /** Finalize Steamworks.
- * @name finalize
+ * @name final
  */
 static int Final(lua_State* L)
 {

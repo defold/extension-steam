@@ -1,6 +1,6 @@
 - name: steam
   type: table
-  desc: Functions and constants for interacting Steamworks
+  desc: Functions and constants for interacting with Steamworks
 
   members:
   - name: init
@@ -26,7 +26,7 @@
       type: number
 
 
-  - name: finalize
+  - name: final
     type: function
     desc: Finalize Steamworks. 
 

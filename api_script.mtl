@@ -1,6 +1,6 @@
 - name: steam
   type: table
-  desc: Functions and constants for interacting Steamworks
+  desc: Functions and constants for interacting with Steamworks
 
   members:
 {{#groups}}

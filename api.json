@@ -57,7 +57,7 @@
                             "description": "",
                             "has_params": false,
                             "has_returns": false,
-                            "name": "finalize",
+                            "name": "final",
                             "params": [],
                             "returns": [],
                             "summary": "Finalize Steamworks.",

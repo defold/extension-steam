@@ -39,7 +39,7 @@ PARAMS
 * `appid` [`number`] - 
 
 
-### finalize()
+### final()
 Finalize Steamworks. 
 
 
