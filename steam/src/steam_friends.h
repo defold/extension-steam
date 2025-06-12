@@ -5,6 +5,8 @@
 
 #include <dmsdk/sdk.h>
 
+int SteamFriends_OnGameRichPresenceJoinRequested(lua_State* L, void* data);
+
 int SteamFriends_Init(lua_State* L);
 int SteamFriends_GetPersonaName(lua_State* L);
 int SteamFriends_GetPersonaState(lua_State* L);
@@ -19,6 +21,7 @@ int SteamFriends_ActivateGameOverlayToStore(lua_State* L);
 int SteamFriends_ActivateGameOverlayToWebPage(lua_State* L);
 int SteamFriends_SetRichPresence(lua_State* L);
 int SteamFriends_ClearRichPresence(lua_State* L);
+int SteamFriends_InviteUserToGame(lua_State* L);
 
 #endif
 

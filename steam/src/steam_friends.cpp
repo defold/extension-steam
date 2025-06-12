@@ -10,6 +10,23 @@
 
 static ISteamFriends* g_SteamFriends = 0;
 
+int SteamFriends_OnGameRichPresenceJoinRequested(lua_State* L, void* data)
+{
+	GameRichPresenceJoinRequested_t* s = (GameRichPresenceJoinRequested_t*)data;
+	lua_pushstring(L, "GameRichPresenceJoinRequested_t");
+
+	lua_newtable(L);
+	lua_pushstring(L, "m_steamIDFriend");
+	push_CSteamID(L, s->m_steamIDFriend);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_rgchConnect");
+	lua_pushstring(L, s->m_rgchConnect);
+	lua_settable(L, -3);
+
+	return 2;
+}
+
+
 int SteamFriends_Init(lua_State* L)
 {
 	g_SteamFriends = SteamFriends();
@@ -225,7 +242,7 @@ int SteamFriends_ActivateGameOverlayToWebPage(lua_State* L)
  * @string value
  * @treturn bool success True if the rich presence was set successfully, otherwise False.
  */
- int SteamFriends_SetRichPresence(lua_State* L)
+int SteamFriends_SetRichPresence(lua_State* L)
 {
 	if (!g_SteamFriends) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
@@ -240,13 +257,30 @@ int SteamFriends_ActivateGameOverlayToWebPage(lua_State* L)
 /** Clears all of the current user's Rich Presence key/values.
  * @name friends_clear_rich_presence
  */
- int SteamFriends_ClearRichPresence(lua_State* L)
+int SteamFriends_ClearRichPresence(lua_State* L)
 {
 	if (!g_SteamFriends) return 0;
 	DM_LUA_STACK_CHECK(L, 0);
 	g_SteamFriends->ClearRichPresence();
-	return 1;
+	return 0;
 }
 
+/** Invites a friend or clan member to the current game using a special invite string.
+ * If the target accepts the invite, a GameRichPresenceJoinRequested_t callback is posted containing the connect string.
+ * @name friends_invite_user_to_game
+ * @number steamIDFriend Id of friend
+ * @string connect string
+ * @treturn boolean success
+ */
+int SteamFriends_InviteUserToGame(lua_State* L)
+{
+	if (!g_SteamFriends) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDFriend = check_uint64(L, 1);
+	const char *pchConnectString = luaL_checkstring(L, 1);
+	bool success = g_SteamFriends->InviteUserToGame(steamIDFriend, pchConnectString);
+	lua_pushboolean(L, success);
+	return 1;
+}
 
 #endif
