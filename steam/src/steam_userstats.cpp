@@ -7,7 +7,6 @@
 #include <dmsdk/sdk.h>
 #include "steam_api.h"
 #include "steam_types.h"
-#include "steam_listener.h"
 
 
 int SteamUserStats_OnLeaderboardFindResult(lua_State* L, void* data)
@@ -95,61 +94,6 @@ int SteamUserStats_OnLeaderboardScoreUploaded(lua_State* L, void* data)
 
 	return 2;
 }
-
-class SteamUserStatsCallbacks
-{
-	public:
-		SteamUserStatsCallbacks();
-		STEAM_CALLBACK(SteamUserStatsCallbacks, OnUserStatsReceived, UserStatsReceived_t, m_CallbackUserStatsReceived);
-		STEAM_CALLBACK(SteamUserStatsCallbacks, OnGlobalStatsReceived, GlobalStatsReceived_t, m_CallbackGlobalStatsReceived);
-
-		CCallResult<SteamUserStatsCallbacks, UserStatsReceived_t> m_CallResultUserStatsReceived_t;
-		void TrackSteamAPICallUserStatsReceived_t(SteamAPICall_t steamAPICall) {
-			m_CallResultUserStatsReceived_t.Set(steamAPICall, this, &SteamUserStatsCallbacks::OnUserStatsReceived);
-		}
-		void OnUserStatsReceived(UserStatsReceived_t *pResult, bool bIOFailure) {
-			SteamListener_Invoke(SteamUserStats_OnUserStatsReceived, pResult);
-		}
-
-		CCallResult<SteamUserStatsCallbacks, LeaderboardFindResult_t> m_CallResultLeaderboardFindResult_t;
-		void TrackSteamAPICallLeaderboardFindResult_t(SteamAPICall_t steamAPICall) {
-			m_CallResultLeaderboardFindResult_t.Set(steamAPICall, this, &SteamUserStatsCallbacks::OnLeaderboardFindResult);
-		}
-		void OnLeaderboardFindResult(LeaderboardFindResult_t *pResult, bool bIOFailure) {
-			SteamListener_Invoke(SteamUserStats_OnLeaderboardFindResult, pResult);
-		}
-
-		CCallResult<SteamUserStatsCallbacks, LeaderboardScoresDownloaded_t> m_CallResultLeaderboardScoresDownloadResult_t;
-		void TrackSteamAPICallLeaderboardScoresDownloaded_t(SteamAPICall_t steamAPICall) {
-			m_CallResultLeaderboardScoresDownloadResult_t.Set(steamAPICall, this, &SteamUserStatsCallbacks::OnLeaderboardScoresDownloaded);
-		}
-		void OnLeaderboardScoresDownloaded(LeaderboardScoresDownloaded_t *pResult, bool bIOFailure) {
-			SteamListener_Invoke(SteamUserStats_OnLeaderboardScoresDownloaded, pResult);
-		}
-
-		CCallResult<SteamUserStatsCallbacks, LeaderboardScoreUploaded_t> m_CallResultLeaderboardScoreUploaded_t;
-		void TrackSteamAPICallLeaderboardScoreUploaded_t(SteamAPICall_t steamAPICall) {
-			m_CallResultLeaderboardScoreUploaded_t.Set(steamAPICall, this, &SteamUserStatsCallbacks::LeaderboardScoreUploaded);
-		}
-		void LeaderboardScoreUploaded(LeaderboardScoreUploaded_t *pResult, bool bIOFailure) {
-			SteamListener_Invoke(SteamUserStats_OnLeaderboardScoreUploaded, pResult);
-		}
-};
-SteamUserStatsCallbacks::SteamUserStatsCallbacks() :
-	m_CallbackUserStatsReceived(this, &SteamUserStatsCallbacks::OnUserStatsReceived),
-	m_CallbackGlobalStatsReceived(this, &SteamUserStatsCallbacks::OnGlobalStatsReceived)
-{}
-void SteamUserStatsCallbacks::OnUserStatsReceived(UserStatsReceived_t *s)
-{
-	SteamListener_Invoke(SteamUserStats_OnUserStatsReceived, s);
-}
-void SteamUserStatsCallbacks::OnGlobalStatsReceived(GlobalStatsReceived_t *s)
-{
-	SteamListener_Invoke(SteamUserStats_OnGlobalStatsReceived, s);
-}
-
-
-static SteamUserStatsCallbacks* g_SteamUserStatsCallbacks = new SteamUserStatsCallbacks();
 
 static ISteamUserStats* g_SteamUserStats = 0;
 
@@ -452,7 +396,6 @@ int SteamUserStats_FindLeaderboard(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	const char* name = luaL_checkstring(L, 1);
 	SteamAPICall_t call = g_SteamUserStats->FindLeaderboard(name);
-	g_SteamUserStatsCallbacks->TrackSteamAPICallLeaderboardFindResult_t(call);
 	push_uint64(L, call);
 	return 1;
 }
@@ -476,7 +419,6 @@ int SteamUserStats_FindOrCreateLeaderboard(lua_State* L)
 	ELeaderboardDisplayType eLeaderboardDisplayType = (ELeaderboardDisplayType)luaL_checknumber(L, 3);
 
 	SteamAPICall_t call = g_SteamUserStats->FindOrCreateLeaderboard(leaderboardName, eLeaderboardSortMethod, eLeaderboardDisplayType);
-	g_SteamUserStatsCallbacks->TrackSteamAPICallLeaderboardFindResult_t(call);
 	push_uint64(L, call);
 	return 1;
 }
@@ -538,7 +480,6 @@ int SteamUserStats_DownloadLeaderboardEntries(lua_State* L)
 	int start = luaL_checknumber(L, 3);
 	int end = luaL_checknumber(L, 4);
 	SteamAPICall_t call = g_SteamUserStats->DownloadLeaderboardEntries(leaderboard, request, start, end);
-	g_SteamUserStatsCallbacks->TrackSteamAPICallLeaderboardScoresDownloaded_t(call);
 	push_uint64(L, call);
 	return 1;
 }
@@ -612,7 +553,6 @@ int SteamUserStats_UploadLeaderboardScore(lua_State* L)
 	int cScoreDetailsCount = 0;
 
 	SteamAPICall_t call = g_SteamUserStats->UploadLeaderboardScore(leaderboard, eLeaderboardUploadScoreMethod, nScore, pScoreDetails, cScoreDetailsCount);
-	g_SteamUserStatsCallbacks->TrackSteamAPICallLeaderboardScoreUploaded_t(call);
 	push_uint64(L, call);
 	return 1;
 }

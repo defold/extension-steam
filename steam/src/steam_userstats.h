@@ -6,8 +6,11 @@
 #include <dmsdk/sdk.h>
 #include "steam_api.h"
 
-int SteamUserStats_OnUserStatsReceived(lua_State* L, void* s);
-int SteamUserStats_OnGlobalStatsReceived(lua_State* L, void* s);
+int SteamUserStats_OnUserStatsReceived(lua_State* L, void* data);
+int SteamUserStats_OnGlobalStatsReceived(lua_State* L, void* data);
+int SteamUserStats_OnLeaderboardFindResult(lua_State* L, void* data);
+int SteamUserStats_OnLeaderboardScoresDownloaded(lua_State* L, void* data);
+int SteamUserStats_OnLeaderboardScoreUploaded(lua_State* L, void* data);
 
 int SteamUserStats_Init(lua_State* L);
 int SteamUserStats_GetStatInt(lua_State* L);
