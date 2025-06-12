@@ -468,6 +468,22 @@ int SteamUserStats_GetLeaderboardSortMethod(lua_State* L)
 	return 1;
 }
 
+
+/** Returns the display type of a leaderboard handle.
+ * @name user_stats_get_leaderboard_display_type
+ * @string leaderboard
+ * @treturn number display type
+ */
+int SteamUserStats_GetLeaderboardDisplayType(lua_State* L)
+{
+	if (!g_SteamUserStats) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
+	ELeaderboardDisplayType displayType = g_SteamUserStats->GetLeaderboardDisplayType(leaderboard);
+	lua_pushnumber(L, displayType);
+	return 1;
+}
+
 /** Asks the Steam back-end for a set of rows in the leaderboard.
  * This call is asynchronous, with the result returned in a listener callback
  * with event set to LeaderboardScoresDownloaded_t.
