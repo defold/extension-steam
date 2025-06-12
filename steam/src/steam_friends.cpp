@@ -66,7 +66,7 @@ int SteamFriends_GetPersonaState(lua_State* L)
 }
 
 
-/*** Friend iteration.
+/** Friend iteration.
  * Takes a set of EFriendFlags, and returns the number of users the client
  * knows about who meet that criteria.
  * Then GetFriendByIndex() can then be used to return the id's of each of those
@@ -86,7 +86,7 @@ int SteamFriends_GetPersonaState(lua_State* L)
 }
 
 
-/*** Returns the steamID of a user.
+/** Returns the steamID of a user.
  * The returned CSteamID can then be used by all the functions below to access
  * details about the user.
  * @name friends_get_friend_by_index

@@ -162,6 +162,33 @@
       type: state
       desc: Status of user.
 
+  - name: friends_get_friend_count
+    type: function
+    desc: Friend iteration. Takes a set of EFriendFlags, and returns the number of users the client knows about who meet that criteria. Then GetFriendByIndex() can then be used to return the id&#x27;s of each of those users.
+    parameters:
+    - name: iFriendFlags
+      type: number
+      desc: Set of friend flags to match friends against.
+    returns:
+    - name: Number
+      type: count
+      desc: Number of users matching search.
+
+  - name: friends_get_friend_by_index
+    type: function
+    desc: Returns the steamID of a user. The returned CSteamID can then be used by all the functions below to access details about the user.
+    parameters:
+    - name: iFriend
+      type: number
+      desc: Is a index of range [0, GetFriendCount())
+    - name: iFriendsFlags
+      type: number
+      desc: Must be the same value as used in GetFriendCount()
+    returns:
+    - name: Number
+      type: steamID
+      desc: Steam id of the user
+
   - name: friends_get_friend_persona_state
     type: function
     desc: Returns the current status of the specified user. This will only be known by the local user if steamIDFriend is in their friends list; on the same game server; in a chat room or lobby; or in a small group with the local user.

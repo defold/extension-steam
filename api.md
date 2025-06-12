@@ -213,6 +213,29 @@ RETURNS
 * `Number` [`state`] - Status of user.
 
 
+### friends_get_friend_count(iFriendFlags)
+Friend iteration. Takes a set of EFriendFlags, and returns the number of users the client knows about who meet that criteria. Then GetFriendByIndex() can then be used to return the id&#x27;s of each of those users.
+
+
+PARAMS
+* `iFriendFlags` [`number`] - Set of friend flags to match friends against.
+
+RETURNS
+* `Number` [`count`] - Number of users matching search.
+
+
+### friends_get_friend_by_index(iFriend,iFriendsFlags)
+Returns the steamID of a user. The returned CSteamID can then be used by all the functions below to access details about the user.
+
+
+PARAMS
+* `iFriend` [`number`] - Is a index of range [0, GetFriendCount())
+* `iFriendsFlags` [`number`] - Must be the same value as used in GetFriendCount()
+
+RETURNS
+* `Number` [`steamID`] - Steam id of the user
+
+
 ### friends_get_friend_persona_state(steamIDFriend)
 Returns the current status of the specified user. This will only be known by the local user if steamIDFriend is in their friends list; on the same game server; in a chat room or lobby; or in a small group with the local user.
 

@@ -433,6 +433,57 @@
                             "usage": null
                         },
                         {
+                            "description": "Takes a set of EFriendFlags, and returns the number of users the client knows about who meet that criteria. Then GetFriendByIndex() can then be used to return the id's of each of those users.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "friends_get_friend_count",
+                            "params": [
+                                {
+                                    "description": "Set of friend flags to match friends against.",
+                                    "name": "iFriendFlags",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "iFriendFlags",
+                            "returns": [
+                                {
+                                    "description": "Number of users matching search.",
+                                    "name": "Number",
+                                    "type": "count"
+                                }
+                            ],
+                            "summary": "Friend iteration.",
+                            "usage": null
+                        },
+                        {
+                            "description": "The returned CSteamID can then be used by all the functions below to access details about the user.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "friends_get_friend_by_index",
+                            "params": [
+                                {
+                                    "description": "Is a index of range [0, GetFriendCount())",
+                                    "name": "iFriend",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "Must be the same value as used in GetFriendCount()",
+                                    "name": "iFriendsFlags",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "iFriend,iFriendsFlags",
+                            "returns": [
+                                {
+                                    "description": "Steam id of the user",
+                                    "name": "Number",
+                                    "type": "steamID"
+                                }
+                            ],
+                            "summary": "Returns the steamID of a user.",
+                            "usage": null
+                        },
+                        {
                             "description": "This will only be known by the local user if steamIDFriend is in their friends list; on the same game server; in a chat room or lobby; or in a small group with the local user.",
                             "has_params": true,
                             "has_returns": true,
