@@ -1235,7 +1235,7 @@
                         {
                             "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardFindResult_t.",
                             "has_params": true,
-                            "has_returns": true,
+                            "has_returns": false,
                             "name": "user_stats_find_or_create_leaderboard",
                             "params": [
                                 {
@@ -1255,13 +1255,7 @@
                                 }
                             ],
                             "params_string": "leaderboard_name,eLeaderboardSortMethod,eLeaderboardDisplayType",
-                            "returns": [
-                                {
-                                    "description": "",
-                                    "name": "handle",
-                                    "type": "string"
-                                }
-                            ],
+                            "returns": [],
                             "summary": "Gets a leaderboard by name, it will create it if it's not yet created.",
                             "usage": null
                         },
@@ -1360,7 +1354,7 @@
                         {
                             "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user",
                             "has_params": true,
-                            "has_returns": true,
+                            "has_returns": false,
                             "name": "user_stats_download_leaderboard_entries",
                             "params": [
                                 {
@@ -1385,13 +1379,7 @@
                                 }
                             ],
                             "params_string": "leaderboard,request,start,end",
-                            "returns": [
-                                {
-                                    "description": "",
-                                    "name": "handle",
-                                    "type": "string"
-                                }
-                            ],
+                            "returns": [],
                             "summary": "Asks the Steam back-end for a set of rows in the leaderboard.",
                             "usage": null
                         },
@@ -1431,7 +1419,7 @@
                         {
                             "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoreUploaded_t.",
                             "has_params": true,
-                            "has_returns": true,
+                            "has_returns": false,
                             "name": "user_stats_upload_leaderboard_score",
                             "params": [
                                 {
@@ -1451,13 +1439,7 @@
                                 }
                             ],
                             "params_string": "leaderboard,eLeaderboardUploadScoreMethod,nScore",
-                            "returns": [
-                                {
-                                    "description": "",
-                                    "name": "handle",
-                                    "type": "string"
-                                }
-                            ],
+                            "returns": [],
                             "summary": "Uploads a user score to a specified leaderboard.",
                             "usage": null
                         }

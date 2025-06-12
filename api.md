@@ -604,9 +604,6 @@ PARAMS
 * `eLeaderboardSortMethod` [`ELeaderboardSortMethod`] - The sort order of the new leaderboard if it&#x27;s created.
 * `eLeaderboardDisplayType` [`ELeaderboardDisplayType`] - The display type (used by the Steam Community web site) of the new leaderboard if it&#x27;s created.
 
-RETURNS
-* `handle` [`string`] - 
-
 
 ### user_stats_get_leaderboard_name(leaderboard)
 Get the name of a leaderboard. 
@@ -662,9 +659,6 @@ PARAMS
 * `start` [`number`] - 
 * `end` [`number`] - 
 
-RETURNS
-* `handle` [`string`] - 
-
 
 ### user_stats_get_downloaded_leaderboard_entry(hSteamLeaderboardEntries,index)
 Returns data about a single leaderboard entry 
@@ -687,9 +681,6 @@ PARAMS
 * `leaderboard` [`string`] - 
 * `eLeaderboardUploadScoreMethod` [`ELeaderboardUploadScoreMethod`] - 
 * `nScore` [`number`] - 
-
-RETURNS
-* `handle` [`string`] - 
 
 
 ---

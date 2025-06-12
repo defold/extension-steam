@@ -573,10 +573,6 @@
     - name: eLeaderboardDisplayType
       type: ELeaderboardDisplayType
       desc: The display type (used by the Steam Community web site) of the new leaderboard if it&#x27;s created.
-    returns:
-    - name: handle
-      type: string
-
 
   - name: user_stats_get_leaderboard_name
     type: function
@@ -642,10 +638,6 @@
     - name: end
       type: number
 
-    returns:
-    - name: handle
-      type: string
-
 
   - name: user_stats_get_downloaded_leaderboard_entry
     type: function
@@ -677,10 +669,6 @@
 
     - name: nScore
       type: number
-
-    returns:
-    - name: handle
-      type: string
 
 
   - name: utils_get_app_id

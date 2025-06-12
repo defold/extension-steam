@@ -393,11 +393,10 @@ int SteamUserStats_GetAchievementAchievedPercent(lua_State* L)
 int SteamUserStats_FindLeaderboard(lua_State* L)
 {
 	if (!g_SteamUserStats) return 0;
-	DM_LUA_STACK_CHECK(L, 1);
+	DM_LUA_STACK_CHECK(L, 0);
 	const char* name = luaL_checkstring(L, 1);
-	SteamAPICall_t call = g_SteamUserStats->FindLeaderboard(name);
-	push_uint64(L, call);
-	return 1;
+	g_SteamUserStats->FindLeaderboard(name);
+	return 0;
 }
 
 /** Gets a leaderboard by name, it will create it if it's not yet created.
@@ -407,20 +406,18 @@ int SteamUserStats_FindLeaderboard(lua_State* L)
  * @string leaderboard_name The name of the leaderboard to find or create.
  * @tparam ELeaderboardSortMethod eLeaderboardSortMethod The sort order of the new leaderboard if it's created.
  * @tparam ELeaderboardDisplayType eLeaderboardDisplayType The display type (used by the Steam Community web site) of the new leaderboard if it's created.
- * @treturn string handle
  */
 int SteamUserStats_FindOrCreateLeaderboard(lua_State* L)
 {
 	if (!g_SteamUserStats) return 0;
-	DM_LUA_STACK_CHECK(L, 1);
+	DM_LUA_STACK_CHECK(L, 0);
 
 	const char* leaderboardName = luaL_checkstring(L, 1);
 	ELeaderboardSortMethod eLeaderboardSortMethod = (ELeaderboardSortMethod)luaL_checknumber(L, 2);
 	ELeaderboardDisplayType eLeaderboardDisplayType = (ELeaderboardDisplayType)luaL_checknumber(L, 3);
 
-	SteamAPICall_t call = g_SteamUserStats->FindOrCreateLeaderboard(leaderboardName, eLeaderboardSortMethod, eLeaderboardDisplayType);
-	push_uint64(L, call);
-	return 1;
+	g_SteamUserStats->FindOrCreateLeaderboard(leaderboardName, eLeaderboardSortMethod, eLeaderboardDisplayType);
+	return 0;
 }
 
 /** Get the name of a leaderboard.
@@ -500,19 +497,17 @@ int SteamUserStats_GetLeaderboardDisplayType(lua_State* L)
  * @tparam ELeaderboardDataRequest request
  * @number start
  * @number end
- * @treturn string handle
  */
 int SteamUserStats_DownloadLeaderboardEntries(lua_State* L)
 {
 	if (!g_SteamUserStats) return 0;
-	DM_LUA_STACK_CHECK(L, 1);
+	DM_LUA_STACK_CHECK(L, 0);
 	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
 	ELeaderboardDataRequest request = (ELeaderboardDataRequest)luaL_checkinteger(L, 2);
 	int start = luaL_checknumber(L, 3);
 	int end = luaL_checknumber(L, 4);
-	SteamAPICall_t call = g_SteamUserStats->DownloadLeaderboardEntries(leaderboard, request, start, end);
-	push_uint64(L, call);
-	return 1;
+	g_SteamUserStats->DownloadLeaderboardEntries(leaderboard, request, start, end);
+	return 0;
 }
 
 /** Returns data about a single leaderboard entry
@@ -569,12 +564,11 @@ int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L)
  * @string leaderboard
  * @tparam ELeaderboardUploadScoreMethod eLeaderboardUploadScoreMethod
  * @number nScore
- * @treturn string handle
  */
 int SteamUserStats_UploadLeaderboardScore(lua_State* L)
 {
 	if (!g_SteamUserStats) return 0;
-	DM_LUA_STACK_CHECK(L, 1);
+	DM_LUA_STACK_CHECK(L, 0);
 
 	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
 	ELeaderboardUploadScoreMethod eLeaderboardUploadScoreMethod = (ELeaderboardUploadScoreMethod)luaL_checknumber(L, 2);
@@ -583,9 +577,8 @@ int SteamUserStats_UploadLeaderboardScore(lua_State* L)
 	const int32 *pScoreDetails = 0;
 	int cScoreDetailsCount = 0;
 
-	SteamAPICall_t call = g_SteamUserStats->UploadLeaderboardScore(leaderboard, eLeaderboardUploadScoreMethod, nScore, pScoreDetails, cScoreDetailsCount);
-	push_uint64(L, call);
-	return 1;
+	g_SteamUserStats->UploadLeaderboardScore(leaderboard, eLeaderboardUploadScoreMethod, nScore, pScoreDetails, cScoreDetailsCount);
+	return 0;
 }
 
 #endif
