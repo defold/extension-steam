@@ -232,6 +232,7 @@ static const luaL_reg Module_methods[] = {
 	{ "user_stats_find_or_create_leaderboard", SteamUserStats_FindOrCreateLeaderboard },
 	{ "user_stats_get_leaderboard_name", SteamUserStats_GetLeaderboardName },
 	{ "user_stats_get_leaderboard_entry_count", SteamUserStats_GetLeaderboardEntryCount },
+	{ "user_stats_get_leaderboard_sort_method", SteamUserStats_GetLeaderboardSortMethod },
 	{ "user_stats_download_leaderboard_entries", SteamUserStats_DownloadLeaderboardEntries },
 	{ "user_stats_get_downloaded_leaderboard_entry", SteamUserStats_GetDownloadedLeaderboardEntry },
 	{ "user_stats_get_achievement", SteamUserStats_GetAchievement },
@@ -361,7 +362,7 @@ static void LuaInit(lua_State* L)
 	 */
 	SETCONSTANT(ELeaderboardSortMethodAscending, k_ELeaderboardSortMethodAscending);
 	/** top-score is highest number
-	 * @field ELeaderboardSortMethodNone
+	 * @field ELeaderboardSortMethodDescending
 	 */
 	SETCONSTANT(ELeaderboardSortMethodDescending, k_ELeaderboardSortMethodDescending);
 

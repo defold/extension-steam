@@ -114,10 +114,10 @@
                         {
                             "description": "",
                             "field": true,
-                            "field_type": "ELeaderboardSortMethodNone",
+                            "field_type": "ELeaderboardSortMethodDescending",
                             "has_params": false,
                             "has_returns": false,
-                            "name": "ELeaderboardSortMethodNone",
+                            "name": "ELeaderboardSortMethodDescending",
                             "params": [],
                             "returns": [],
                             "summary": "Top-score is highest number",
@@ -1230,6 +1230,29 @@
                                 }
                             ],
                             "summary": "Get the total number of entries in a leaderboard, as of the last request.",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_get_leaderboard_sort_method",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "leaderboard",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "leaderboard",
+                            "returns": [
+                                {
+                                    "description": "Order",
+                                    "name": "sort",
+                                    "type": "number"
+                                }
+                            ],
+                            "summary": "Returns the sort method of the leaderboard",
                             "usage": null
                         },
                         {

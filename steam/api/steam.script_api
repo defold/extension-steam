@@ -46,7 +46,7 @@
     type: number
     desc: Top-score is lowest number 
 
-  - name: ELeaderboardSortMethodNone
+  - name: ELeaderboardSortMethodDescending
     type: number
     desc: Top-score is highest number 
 
@@ -559,6 +559,18 @@
     - name: count
       type: number
 
+
+  - name: user_stats_get_leaderboard_sort_method
+    type: function
+    desc: Returns the sort method of the leaderboard 
+    parameters:
+    - name: leaderboard
+      type: string
+
+    returns:
+    - name: sort
+      type: number
+      desc: Order
 
   - name: user_stats_download_leaderboard_entries
     type: function
