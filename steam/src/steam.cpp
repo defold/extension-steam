@@ -56,25 +56,6 @@ int Steam_OnGameOverlayActivated(lua_State* L, void* data)
 	return 2;
 }
 
-class SteamCallbackWrapper
-{
-	public:
-		SteamCallbackWrapper();
-		STEAM_CALLBACK(SteamCallbackWrapper, OnGameOverlayActivated, GameOverlayActivated_t, m_CallbackGameOverlayActivated);
-};
-SteamCallbackWrapper::SteamCallbackWrapper() :
-	m_CallbackGameOverlayActivated(this, &SteamCallbackWrapper::OnGameOverlayActivated)
-{}
-void SteamCallbackWrapper::OnGameOverlayActivated(GameOverlayActivated_t *s)
-{
-	SteamListener_Invoke(Steam_OnGameOverlayActivated, s);
-}
-
-static SteamCallbackWrapper *g_SteamCallbackWrapper = new SteamCallbackWrapper();
-
-
-
-
 
 /*******************************************
  * LIFECYCLE
@@ -100,6 +81,8 @@ static int Init(lua_State* L)
 		lua_pushstring(L, "Steam is not running");
 		return 2;
 	}
+
+	SteamAPI_ManualDispatch_Init();
 
 	SteamApps_Init(L);
 	SteamFriends_Init(L);
@@ -130,7 +113,50 @@ static int Init(lua_State* L)
  */
 static int Update(lua_State* L)
 {
-	SteamAPI_RunCallbacks();
+	// use a manual callback loop
+	// see steam_api.h for details
+	HSteamPipe steamPipe = SteamAPI_GetHSteamPipe();
+
+	// perform period actions
+	SteamAPI_ManualDispatch_RunFrame(steamPipe);
+
+	// poll for callbacks
+	CallbackMsg_t callback;
+	while (SteamAPI_ManualDispatch_GetNextCallback(steamPipe, &callback))
+	{
+		int id = callback.m_iCallback;
+		void* data = callback.m_pubParam;
+		void* callResultData = 0;
+		
+		// handle SteamAPICall_t result
+		// unpack the result struct
+		if (id == SteamAPICallCompleted_t::k_iCallback)
+		{
+			SteamAPICallCompleted_t* callCompleted = (SteamAPICallCompleted_t*)data;
+			callResultData = malloc(callCompleted->m_cubParam);
+			bool failed;
+			if (SteamAPI_ManualDispatch_GetAPICallResult(steamPipe, callCompleted->m_hAsyncCall, callResult, callCompleted->m_cubParam, callCompleted->m_iCallback, &failed))
+			{
+				id = callCompleted->m_iCallback;
+				data = callResultData;
+			}
+		}
+
+		if      (id == GameOverlayActivated_t::k_iCallback) SteamListener_Invoke(Steam_OnGameOverlayActivated, data);
+		else if (id == LeaderboardFindResult_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardFindResult, data);
+		else if (id == GlobalStatsReceived_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnGlobalStatsReceived, data);
+		else if (id == UserStatsReceived_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnUserStatsReceived, data);
+		else if (id == LeaderboardScoresDownloaded_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardScoresDownloaded, data);
+		else if (id == LeaderboardScoreUploaded_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardScoreUploaded, data);
+		else if (id == GamepadTextInputDismissed_t::k_iCallback) SteamListener_Invoke(SteamUtils_OnGamepadTextInputDismissed, data);
+		else if (id == FloatingGamepadTextInputDismissed_t::k_iCallback) SteamListener_Invoke(SteamUtils_OnFloatingGamepadTextInputDismissed, data);
+		else
+		{
+			// dmLogInfo("Unhandled callback %d", id);
+		}
+		free(callResultData);
+		SteamAPI_ManualDispatch_FreeLastCallback(steamPipe);
+	}
 	return 0;
 }
 

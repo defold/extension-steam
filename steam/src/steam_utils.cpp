@@ -46,29 +46,6 @@ int SteamUtils_OnGamepadTextInputDismissed(lua_State* L, void* data)
 	return 2;
 }
 
-class SteamUtilsCallbacks
-{
-	public:
-		SteamUtilsCallbacks();
-		STEAM_CALLBACK(SteamUtilsCallbacks, OnGamepadTextInputDismissed, GamepadTextInputDismissed_t, m_CallbackGamepadTextInputDismissed);
-		STEAM_CALLBACK(SteamUtilsCallbacks, OnFloatingGamepadTextInputDismissed, FloatingGamepadTextInputDismissed_t, m_CallbackFloatingGamepadTextInputDismissed);
-};
-SteamUtilsCallbacks::SteamUtilsCallbacks() :
-	m_CallbackGamepadTextInputDismissed(this, &SteamUtilsCallbacks::OnGamepadTextInputDismissed),
-	m_CallbackFloatingGamepadTextInputDismissed(this, &SteamUtilsCallbacks::OnFloatingGamepadTextInputDismissed)
-{}
-void SteamUtilsCallbacks::OnGamepadTextInputDismissed(GamepadTextInputDismissed_t *s)
-{
-	SteamListener_Invoke(SteamUtils_OnGamepadTextInputDismissed, s);
-}
-void SteamUtilsCallbacks::OnFloatingGamepadTextInputDismissed(FloatingGamepadTextInputDismissed_t *s)
-{
-	SteamListener_Invoke(SteamUtils_OnFloatingGamepadTextInputDismissed, s);
-}
-
-
-static SteamUtilsCallbacks* g_SteamUtilsCallbacks = new SteamUtilsCallbacks();
-
 static ISteamUtils* g_SteamUtils = 0;
 
 extern "C" void __cdecl SteamAPIDebugTextHook(int nSeverity, const char *pchDebugText)
