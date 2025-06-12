@@ -9,6 +9,26 @@ static HAuthTicket g_AuthSessionTicket = 0;
 
 #define MAX_TICKET_SIZE 4096
 
+int OnMicroTxnAuthorizationResponse(lua_State* L, void* data)
+{
+	MicroTxnAuthorizationResponse_t* s = (MicroTxnAuthorizationResponse_t*)data;
+	lua_pushstring(L, "MicroTxnAuthorizationResponse_t");
+
+	lua_newtable(L);
+	lua_pushstring(L, "m_unAppID");
+	lua_pushnumber(L, s->m_unAppID);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_ulOrderID");
+	push_uint64(L, s->m_ulOrderID);
+	lua_settable(L, -3);
+	lua_pushstring(L, "m_bAuthorized");
+	lua_pushnumber(L, s->m_bAuthorized);
+	lua_settable(L, -3);
+
+	return 2;
+}
+
+
 int SteamUser_Init(lua_State* L)
 {
 	g_SteamUser = SteamUser();
