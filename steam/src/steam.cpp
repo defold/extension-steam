@@ -233,6 +233,7 @@ static const luaL_reg Module_methods[] = {
 	{ "user_stats_get_leaderboard_name", SteamUserStats_GetLeaderboardName },
 	{ "user_stats_get_leaderboard_entry_count", SteamUserStats_GetLeaderboardEntryCount },
 	{ "user_stats_get_leaderboard_sort_method", SteamUserStats_GetLeaderboardSortMethod },
+	{ "user_stats_get_leaderboard_display_type", SteamUserStats_GetLeaderboardDisplayType },
 	{ "user_stats_download_leaderboard_entries", SteamUserStats_DownloadLeaderboardEntries },
 	{ "user_stats_get_downloaded_leaderboard_entry", SteamUserStats_GetDownloadedLeaderboardEntry },
 	{ "user_stats_get_achievement", SteamUserStats_GetAchievement },
