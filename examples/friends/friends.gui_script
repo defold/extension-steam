@@ -44,7 +44,7 @@ end
 function init(self)
 	msg.post(".", "acquire_input_focus")
 
-	local status, error = steam.init
+	local status, error = pcall(steam.init)
 	if not status then print("Error: " .. error) return end
 
 	steam.set_listener(function(self, e, t)
