@@ -2,7 +2,7 @@ local rpg = require "gooey.themes.rpg.rpg"
 local monarch = require "monarch.monarch"
 
 local LEADERBOARD = [[
-NAME: %s
+NAME: %s (order: %s)
 
 ENTRIES (total: %d)
 %s
@@ -123,6 +123,15 @@ function on_message(self, message_id, message, sender)
 		print("REFRESH LEADERBOARD")
 		pprint(message)
 		local leaderboard_id = message.m_hSteamLeaderboard
+
+		local order = steam.user_stats_get_leaderboard_sort_method(message.m_hSteamLeaderboard)
+		local order_name = "None"
+		if order == steam.ELeaderboardSortMethodAscending then
+			order_name = "Ascending"
+		elseif order == steam.ELeaderboardSortMethodDescending then
+			order_name = "Descending"
+		end
+		
 		local name = steam.user_stats_get_leaderboard_name(leaderboard_id)
 		local entry_count = message.m_cEntryCount
 		local entries = {}
@@ -139,7 +148,7 @@ function on_message(self, message_id, message, sender)
 			end
 		end
 		local count = steam.user_stats_get_leaderboard_entry_count(leaderboard_id)
-		local text = LEADERBOARD:format(name, count, table.concat(entries, "\n"))
+		local text = LEADERBOARD:format(name, order_name, count, table.concat(entries, "\n"))
 		gui.set_text(gui.get_node("leaderboard"), text)
 	end
 end

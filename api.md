@@ -64,7 +64,7 @@ Top-score is lowest number
 
 
 
-### ELeaderboardSortMethodNone [`ELeaderboardSortMethodNone`]
+### ELeaderboardSortMethodDescending [`ELeaderboardSortMethodDescending`]
 Top-score is highest number 
 
 
@@ -593,6 +593,17 @@ PARAMS
 
 RETURNS
 * `count` [`number`] - 
+
+
+### user_stats_get_leaderboard_sort_method(leaderboard)
+Returns the sort method of the leaderboard 
+
+
+PARAMS
+* `leaderboard` [`string`] - 
+
+RETURNS
+* `sort` [`number`] - Order
 
 
 ### user_stats_download_leaderboard_entries(leaderboard,request,start,end)

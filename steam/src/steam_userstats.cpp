@@ -453,6 +453,21 @@ int SteamUserStats_GetLeaderboardEntryCount(lua_State* L)
 	return 1;
 }
 
+/** Returns the sort method of the leaderboard
+ * @name user_stats_get_leaderboard_sort_method
+ * @string leaderboard
+ * @treturn number sort order
+ */
+int SteamUserStats_GetLeaderboardSortMethod(lua_State* L)
+{
+	if (!g_SteamUserStats) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
+	ELeaderboardSortMethod order = g_SteamUserStats->GetLeaderboardSortMethod(leaderboard);
+	lua_pushnumber(L, order);
+	return 1;
+}
+
 /** Asks the Steam back-end for a set of rows in the leaderboard.
  * This call is asynchronous, with the result returned in a listener callback
  * with event set to LeaderboardScoresDownloaded_t.
