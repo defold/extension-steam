@@ -135,7 +135,7 @@ static int Update(lua_State* L)
 			SteamAPICallCompleted_t* callCompleted = (SteamAPICallCompleted_t*)data;
 			callResultData = malloc(callCompleted->m_cubParam);
 			bool failed;
-			if (SteamAPI_ManualDispatch_GetAPICallResult(steamPipe, callCompleted->m_hAsyncCall, callResult, callCompleted->m_cubParam, callCompleted->m_iCallback, &failed))
+			if (SteamAPI_ManualDispatch_GetAPICallResult(steamPipe, callCompleted->m_hAsyncCall, callResultData, callCompleted->m_cubParam, callCompleted->m_iCallback, &failed))
 			{
 				id = callCompleted->m_iCallback;
 				data = callResultData;
