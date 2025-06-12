@@ -30,6 +30,17 @@ local function show_avatar(user_id, node)
 	gui.set_size(node, vmath.vector3(w, h, 0))
 end
 
+local function find_online_friend(self)
+	local immediate_friends = steam.friends_get_friend_count(steam.EFriendFlagImmediate)
+	for i=0,immediate_friends-1 do
+		local fid = steam.friends_get_friend_by_index(i, steam.EFriendFlagImmediate)
+		local name = steam.friends_get_friend_persona_name(fid)
+		if steam.friends_get_friend_persona_state(fid) == steam.EPersonaStateOnline then
+			return fid, name
+		end
+	end
+end
+
 function init(self)
 	msg.post(".", "acquire_input_focus")
 
@@ -84,5 +95,14 @@ function on_input(self, action_id, action)
 	rpg.button("clear_rich_presence", action_id, action, function()
 		steam.friends_clear_rich_presence()
 		print("Rich Presence cleared")
+	end)
+	rpg.button("invite_friend_to_game", action_id, action, function()
+		local fid, name = find_online_friend(self)
+		if fid and name then
+			steam.friends_invite_user_to_game(fid, "Let's play!")
+			print("Invite friend to game", name)
+		else
+			print("No friend online")
+		end
 	end)
 end

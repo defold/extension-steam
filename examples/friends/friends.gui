@@ -146,6 +146,31 @@ nodes {
 }
 nodes {
   position {
+    x: 1.0
+    y: -129.0
+  }
+  type: TYPE_TEMPLATE
+  id: "invite_friend_to_game"
+  parent: "friendspanel"
+  inherit_alpha: true
+  template: "/gooey/themes/rpg/components/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "invite_friend_to_game/bg"
+  parent: "invite_friend_to_game"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "Invite friend to game"
+  id: "invite_friend_to_game/label"
+  parent: "invite_friend_to_game/bg"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
     x: 797.0
     y: 448.0
   }
