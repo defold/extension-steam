@@ -633,6 +633,34 @@
                             "returns": [],
                             "summary": "Clears all of the current user's Rich Presence key/values.",
                             "usage": null
+                        },
+                        {
+                            "description": "If the target accepts the invite, a GameRichPresenceJoinRequested_t callback is posted containing the connect string.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "friends_invite_user_to_game",
+                            "params": [
+                                {
+                                    "description": "Id of friend",
+                                    "name": "steamIDFriend",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "String",
+                                    "name": "connect",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "steamIDFriend,connect",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "success",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Invites a friend or clan member to the current game using a special invite string.",
+                            "usage": null
                         }
                     ],
                     "file_description": "Steam Overlay.",

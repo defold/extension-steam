@@ -150,6 +150,7 @@ static int Update(lua_State* L)
 		else if (id == LeaderboardScoreUploaded_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardScoreUploaded, data);
 		else if (id == GamepadTextInputDismissed_t::k_iCallback) SteamListener_Invoke(SteamUtils_OnGamepadTextInputDismissed, data);
 		else if (id == FloatingGamepadTextInputDismissed_t::k_iCallback) SteamListener_Invoke(SteamUtils_OnFloatingGamepadTextInputDismissed, data);
+		else if (id == GameRichPresenceJoinRequested_t::k_iCallback) SteamListener_Invoke(SteamFriends_OnGameRichPresenceJoinRequested, data);
 		else
 		{
 			// dmLogInfo("Unhandled callback %d", id);
@@ -253,6 +254,7 @@ static const luaL_reg Module_methods[] = {
 	{ "friends_activate_game_overlay_to_web_page", SteamFriends_ActivateGameOverlayToWebPage },
 	{ "friends_set_rich_presence", SteamFriends_SetRichPresence },
 	{ "friends_clear_rich_presence", SteamFriends_ClearRichPresence },
+	{ "friends_invite_user_to_game", SteamFriends_InviteUserToGame },
 
 	// USER
 	{ "user_get_steam_id", SteamUser_GetSteamId },
