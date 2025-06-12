@@ -304,6 +304,18 @@ Clears all of the current user&#x27;s Rich Presence key/values.
 
 
 
+### friends_invite_user_to_game(steamIDFriend,connect)
+Invites a friend or clan member to the current game using a special invite string. If the target accepts the invite, a GameRichPresenceJoinRequested_t callback is posted containing the connect string.
+
+
+PARAMS
+* `steamIDFriend` [`number`] - Id of friend
+* `connect` [`string`] - String
+
+RETURNS
+* `success` [`boolean`] - 
+
+
 ---
 
 ## steam_listener
