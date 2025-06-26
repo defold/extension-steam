@@ -703,6 +703,154 @@
                 {
                     "entries": [
                         {
+                            "description": "Will return results as a LobbyMatchList_t event",
+                            "has_params": false,
+                            "has_returns": false,
+                            "name": "matchmaking_request_lobby_list",
+                            "params": [],
+                            "returns": [],
+                            "summary": "Get a filtered list of relevant lobbies.",
+                            "usage": null
+                        },
+                        {
+                            "description": "This should only be called after a LobbyMatchList_t call result is received LobbyMatchList_t.m_nLobbiesMatching",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "matchmaking_get_lobby_by_index",
+                            "params": [
+                                {
+                                    "description": "The index of the lobby to get the Steam ID of, from 0 to",
+                                    "name": "index",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "index",
+                            "returns": [
+                                {
+                                    "description": "Of lobby",
+                                    "name": "Id",
+                                    "type": "string"
+                                }
+                            ],
+                            "summary": "Gets the Steam ID of the lobby at the specified index.",
+                            "usage": null
+                        },
+                        {
+                            "description": "Will generate a LobbyEnter_t event",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "matchmaking_join_lobby",
+                            "params": [
+                                {
+                                    "description": "The Steam ID of the lobby to join.",
+                                    "name": "lobby_id",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "lobby_id",
+                            "returns": [],
+                            "summary": "Joins an existing lobby.",
+                            "usage": null
+                        },
+                        {
+                            "description": "Leave a lobby that the user is currently in; this will take effect immediately on the client side, other users in the lobby will be notified by a LobbyChatUpdate_t callback.",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "matchmaking_leave_lobby",
+                            "params": [
+                                {
+                                    "description": "The lobby to leave",
+                                    "name": "lobby_id",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "lobby_id",
+                            "returns": [],
+                            "summary": "Leave a lobby that the user is currently in",
+                            "usage": null
+                        },
+                        {
+                            "description": "There always one lobby owner - if the current owner leaves, another user in the lobby will become the owner automatically. It is possible (but rare) to join a lobby just as the owner is leaving, thus entering a lobby with self as the owner. You must be a member of the lobby to access this.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "matchmaking_get_lobby_owner",
+                            "params": [
+                                {
+                                    "description": "The Steam ID of the lobby to get the owner of.",
+                                    "name": "lobby_id",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "lobby_id",
+                            "returns": [
+                                {
+                                    "description": "Of owner",
+                                    "name": "Id",
+                                    "type": "string"
+                                }
+                            ],
+                            "summary": "Returns the current lobby owner.",
+                            "usage": null
+                        },
+                        {
+                            "description": "This is used for iteration, after calling this then GetLobbyMemberByIndex can be used to get the Steam ID of each person in the lobby. Persona information for other lobby members (name, avatar, etc.) is automatically received and accessible via the ISteamFriends interface. The current user must be in the lobby to retrieve the Steam IDs of other users in that lobby.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "matchmaking_get_num_lobby_members",
+                            "params": [
+                                {
+                                    "description": "The Steam ID of the lobby to get the owner of.",
+                                    "name": "lobby_id",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "lobby_id",
+                            "returns": [
+                                {
+                                    "description": "Of users in the lobby",
+                                    "name": "Number",
+                                    "type": "number"
+                                }
+                            ],
+                            "summary": "Gets the number of users in a lobby.",
+                            "usage": null
+                        },
+                        {
+                            "description": "You must call matchmaking_get_num_lobby_members before calling this. The current user must be in the lobby to retrieve the Steam IDs of other users in that lobby.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "matchmaking_get_lobby_member_by_index",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "lobby_id",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "index",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "lobby_id,index",
+                            "returns": [
+                                {
+                                    "description": "Of member",
+                                    "name": "Id",
+                                    "type": "string"
+                                }
+                            ],
+                            "summary": "Gets the Steam ID of the lobby member at the given index.",
+                            "usage": null
+                        }
+                    ],
+                    "filename": "steam/src/steam_matchmaking.cpp",
+                    "group": "src",
+                    "module": "steam_matchmaking"
+                },
+                {
+                    "entries": [
+                        {
                             "description": "A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.",
                             "has_params": false,
                             "has_returns": true,

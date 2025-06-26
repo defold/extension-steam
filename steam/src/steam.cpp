@@ -50,9 +50,7 @@ int Steam_OnGameOverlayActivated(lua_State* L, void* data)
 	GameOverlayActivated_t* s = (GameOverlayActivated_t*)data;
 	lua_pushstring(L, "GameOverlayActivated_t");
 	lua_newtable(L);
-	lua_pushstring(L, "m_bActive");
-	lua_pushboolean(L, s->m_bActive);
-	lua_settable(L, -3);
+	table_push_boolean(L, "m_bActive", s->m_bActive);
 	return 2;
 }
 
@@ -151,6 +149,8 @@ static int Update(lua_State* L)
 		else if (id == GamepadTextInputDismissed_t::k_iCallback) SteamListener_Invoke(SteamUtils_OnGamepadTextInputDismissed, data);
 		else if (id == FloatingGamepadTextInputDismissed_t::k_iCallback) SteamListener_Invoke(SteamUtils_OnFloatingGamepadTextInputDismissed, data);
 		else if (id == GameRichPresenceJoinRequested_t::k_iCallback) SteamListener_Invoke(SteamFriends_OnGameRichPresenceJoinRequested, data);
+		else if (id == LobbyMatchList_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_OnLobbyMatchList, data);
+		else if (id == LobbyEnter_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_OnLobbyEnter, data);
 		else
 		{
 			// dmLogInfo("Unhandled callback %d", id);
@@ -207,7 +207,6 @@ static const luaL_reg Module_methods[] = {
 	{ "utils_get_server_real_time", SteamUtils_GetServerRealTime },
 	{ "utils_show_floating_gamepad_text_input", SteamUtils_ShowFloatingGamepadTextInput },
 	{ "utils_show_gamepad_text_input", SteamUtils_ShowGamepadTextInput },
-
 
 	// USERSTATS - stats
 	{ "user_stats_get_stat_int", SteamUserStats_GetStatInt },
@@ -267,6 +266,15 @@ static const luaL_reg Module_methods[] = {
 	{ "user_is_phone_requiring_verification", SteamUser_IsPhoneRequiringVerification },
 	{ "user_is_two_factor_enabled", SteamUser_IsTwoFactorEnabled },
 	{ "user_get_auth_session_ticket", SteamUser_GetAuthSessionTicket },
+
+	// MATCHMAKING
+	{ "matchmaking_request_lobby_list", SteamMatchmaking_RequestLobbyList },
+	{ "matchmaking_get_lobby_by_index", SteamMatchmaking_GetLobbyByIndex },
+	{ "matchmaking_join_lobby", SteamMatchmaking_JoinLobby },
+	{ "matchmaking_leave_lobby", SteamMatchmaking_LeaveLobby },
+	{ "matchmaking_get_lobby_owner", SteamMatchmaking_GetLobbyOwner },
+	{ "matchmaking_get_num_lobby_members", SteamMatchmaking_GetNumLobbyMembers },
+	{ "matchmaking_get_lobby_member_by_index", SteamMatchmaking_GetLobbyMemberByIndex },
 	{ 0, 0 }
 };
 

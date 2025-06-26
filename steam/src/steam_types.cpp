@@ -3,8 +3,9 @@
 #include <dmsdk/sdk.h>
 #include "steam_api.h"
 
+
 /*****************************
-* CHECK (u)int64 (from string)
+* (u)int64 (as string)
 ******************************/
 uint64 check_uint64(lua_State* L, int index)
 {
@@ -50,10 +51,6 @@ void check_uint64_array(lua_State* L, int index, uint64 * arr, unsigned int size
 		arr[i] = check_uint64(L, -1);
 	}
 }
-
-/*****************************
-* PUSH (u)int64 (to strings)
-******************************/
 void push_int64(lua_State* L, int64 n)
 {
 	char buf[22];
@@ -88,9 +85,15 @@ void push_uint64_array(lua_State* L, uint64 arr[], unsigned int size)
 }
 
 
+
 /*****************************
-* PUSH CSteamID
+* CSteamID
 ******************************/
+CSteamID check_CSteamID(lua_State* L, int index)
+{
+	uint64 v = check_uint64(L, index);
+	return CSteamID(v);
+}
 void push_CSteamID(lua_State* L, CSteamID steamId)
 {
 	push_uint64(L, steamId.ConvertToUint64());
@@ -104,5 +107,44 @@ void push_CSteamID_array(lua_State* L, CSteamID steamId[], unsigned int size)
 		lua_settable(L, -3);
 	}
 }
+
+
+
+/*****************************
+* PUSH table key value pairs
+******************************/
+void table_push_string(lua_State* L, const char* key, const char* value)
+{
+	lua_pushstring(L, key);
+	lua_pushstring(L, value);
+	lua_settable(L, -3);
+}
+void table_push_number(lua_State* L, const char* key, lua_Number value)
+{
+	lua_pushstring(L, key);
+	lua_pushnumber(L, value);
+	lua_settable(L, -3);
+}
+void table_push_boolean(lua_State* L, const char* key, bool value)
+{
+	lua_pushstring(L, key);
+	lua_pushboolean(L, value);
+	lua_settable(L, -3);
+}
+
+void table_push_uint64(lua_State* L, const char* key, uint64 value)
+{
+	lua_pushstring(L, key);
+	push_uint64(L, value);
+	lua_settable(L, -3);
+}
+
+void table_push_CSteamID(lua_State* L, const char* key, CSteamID value)
+{
+	lua_pushstring(L, key);
+	push_CSteamID(L, value);
+	lua_settable(L, -3);
+}
+
 
 #endif
