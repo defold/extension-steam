@@ -289,6 +289,77 @@
       type: function
       desc: Listener function to call
 
+  - name: matchmaking_request_lobby_list
+    type: function
+    desc: Get a filtered list of relevant lobbies. Will return results as a LobbyMatchList_t event
+
+  - name: matchmaking_get_lobby_by_index
+    type: function
+    desc: Gets the Steam ID of the lobby at the specified index. This should only be called after a LobbyMatchList_t call result is received LobbyMatchList_t.m_nLobbiesMatching
+    parameters:
+    - name: index
+      type: number
+      desc: The index of the lobby to get the Steam ID of, from 0 to
+    returns:
+    - name: Id
+      type: string
+      desc: Of lobby
+
+  - name: matchmaking_join_lobby
+    type: function
+    desc: Joins an existing lobby. Will generate a LobbyEnter_t event
+    parameters:
+    - name: lobby_id
+      type: string
+      desc: The Steam ID of the lobby to join.
+
+  - name: matchmaking_leave_lobby
+    type: function
+    desc: Leave a lobby that the user is currently in Leave a lobby that the user is currently in; this will take effect immediately on the client side, other users in the lobby will be notified by a LobbyChatUpdate_t callback.
+    parameters:
+    - name: lobby_id
+      type: string
+      desc: The lobby to leave
+
+  - name: matchmaking_get_lobby_owner
+    type: function
+    desc: Returns the current lobby owner. There always one lobby owner - if the current owner leaves, another user in the lobby will become the owner automatically. It is possible (but rare) to join a lobby just as the owner is leaving, thus entering a lobby with self as the owner. You must be a member of the lobby to access this.
+    parameters:
+    - name: lobby_id
+      type: string
+      desc: The Steam ID of the lobby to get the owner of.
+    returns:
+    - name: Id
+      type: string
+      desc: Of owner
+
+  - name: matchmaking_get_num_lobby_members
+    type: function
+    desc: Gets the number of users in a lobby. This is used for iteration, after calling this then GetLobbyMemberByIndex can be used to get the Steam ID of each person in the lobby. Persona information for other lobby members (name, avatar, etc.) is automatically received and accessible via the ISteamFriends interface. The current user must be in the lobby to retrieve the Steam IDs of other users in that lobby.
+    parameters:
+    - name: lobby_id
+      type: string
+      desc: The Steam ID of the lobby to get the owner of.
+    returns:
+    - name: Number
+      type: number
+      desc: Of users in the lobby
+
+  - name: matchmaking_get_lobby_member_by_index
+    type: function
+    desc: Gets the Steam ID of the lobby member at the given index. You must call matchmaking_get_num_lobby_members before calling this. The current user must be in the lobby to retrieve the Steam IDs of other users in that lobby.
+    parameters:
+    - name: lobby_id
+      type: string
+
+    - name: index
+      type: number
+
+    returns:
+    - name: Id
+      type: string
+      desc: Of member
+
   - name: user_get_steam_id
     type: function
     desc: Returns the CSteamID of the account currently logged into the Steam client. A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.

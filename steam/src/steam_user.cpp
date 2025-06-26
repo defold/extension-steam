@@ -15,15 +15,9 @@ int OnMicroTxnAuthorizationResponse(lua_State* L, void* data)
 	lua_pushstring(L, "MicroTxnAuthorizationResponse_t");
 
 	lua_newtable(L);
-	lua_pushstring(L, "m_unAppID");
-	lua_pushnumber(L, s->m_unAppID);
-	lua_settable(L, -3);
-	lua_pushstring(L, "m_ulOrderID");
-	push_uint64(L, s->m_ulOrderID);
-	lua_settable(L, -3);
-	lua_pushstring(L, "m_bAuthorized");
-	lua_pushnumber(L, s->m_bAuthorized);
-	lua_settable(L, -3);
+	table_push_number(L, "m_unAppID", s->m_unAppID);
+	table_push_uint64(L, "m_ulOrderID", s->m_ulOrderID);
+	table_push_number(L, "m_bAuthorized", s->m_bAuthorized);
 
 	return 2;
 }

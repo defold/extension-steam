@@ -15,12 +15,8 @@ int SteamUserStats_OnLeaderboardFindResult(lua_State* L, void* data)
 	lua_pushstring(L, "LeaderboardFindResult_t");
 
 	lua_newtable(L);
-	lua_pushstring(L, "m_hSteamLeaderboard");
-	push_uint64(L, s->m_hSteamLeaderboard);
-	lua_settable(L, -3);
-	lua_pushstring(L, "m_bLeaderboardFound");
-	lua_pushboolean(L, s->m_bLeaderboardFound);
-	lua_settable(L, -3);
+	table_push_uint64(L, "m_hSteamLeaderboard", s->m_hSteamLeaderboard);
+	table_push_boolean(L, "m_bLeaderboardFound", s->m_bLeaderboardFound);
 
 	return 2;
 }
@@ -38,15 +34,9 @@ int SteamUserStats_OnUserStatsReceived(lua_State* L, void* data)
 	lua_pushstring(L, "UserStatsReceived_t");
 
 	lua_newtable(L);
-	lua_pushstring(L, "m_nGameID");
-	push_uint64(L, s->m_nGameID);
-	lua_settable(L, -3);
-	lua_pushstring(L, "m_eResult");
-	lua_pushnumber(L, s->m_eResult);
-	lua_settable(L, -3);
-	lua_pushstring(L, "m_steamIDUser");
-	push_CSteamID(L, s->m_steamIDUser);
-	lua_settable(L, -3);
+	table_push_uint64(L, "m_nGameID", s->m_nGameID);
+	table_push_number(L, "m_eResult", s->m_eResult);
+	table_push_CSteamID(L, "m_steamIDUser", s->m_steamIDUser);
 
 	return 2;
 }
@@ -57,15 +47,9 @@ int SteamUserStats_OnLeaderboardScoresDownloaded(lua_State* L, void* data)
 	lua_pushstring(L, "LeaderboardScoresDownloaded_t");
 
 	lua_newtable(L);
-	lua_pushstring(L, "m_hSteamLeaderboard");
-	push_uint64(L, s->m_hSteamLeaderboard);
-	lua_settable(L, -3);
-	lua_pushstring(L, "m_hSteamLeaderboardEntries");
-	push_uint64(L, s->m_hSteamLeaderboardEntries);
-	lua_settable(L, -3);
-	lua_pushstring(L, "m_cEntryCount");
-	lua_pushnumber(L, s->m_cEntryCount);
-	lua_settable(L, -3);
+	table_push_uint64(L, "m_hSteamLeaderboard", s->m_hSteamLeaderboard);
+	table_push_uint64(L, "m_hSteamLeaderboardEntries", s->m_hSteamLeaderboardEntries);
+	table_push_number(L, "m_cEntryCount", s->m_cEntryCount);
 
 	return 2;
 }
@@ -76,21 +60,11 @@ int SteamUserStats_OnLeaderboardScoreUploaded(lua_State* L, void* data)
 	lua_pushstring(L, "LeaderboardScoreUploaded_t");
 
 	lua_newtable(L);
-	lua_pushstring(L, "m_hSteamLeaderboard");
-	push_uint64(L, s->m_hSteamLeaderboard);
-	lua_settable(L, -3);
-	lua_pushstring(L, "m_nScore");
-	lua_pushnumber(L, s->m_nScore);
-	lua_settable(L, -3);
-	lua_pushstring(L, "m_bScoreChanged");
-	lua_pushboolean(L, s->m_bScoreChanged);
-	lua_settable(L, -3);
-	lua_pushstring(L, "m_nGlobalRankNew");
-	lua_pushnumber(L, s->m_nGlobalRankNew);
-	lua_settable(L, -3);
-	lua_pushstring(L, "m_nGlobalRankPrevious");
-	lua_pushnumber(L, s->m_nGlobalRankPrevious);
-	lua_settable(L, -3);
+	table_push_uint64(L, "m_hSteamLeaderboard", s->m_hSteamLeaderboard);
+	table_push_number(L, "m_nScore", s->m_nScore);
+	table_push_boolean(L, "m_bScoreChanged", s->m_bScoreChanged);
+	table_push_number(L, "m_nGlobalRankNew", s->m_nGlobalRankNew);
+	table_push_number(L, "m_nGlobalRankPrevious", s->m_nGlobalRankPrevious);
 
 	return 2;
 }
