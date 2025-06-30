@@ -141,16 +141,22 @@ static int Update(lua_State* L)
 		}
 
 		if      (id == GameOverlayActivated_t::k_iCallback) SteamListener_Invoke(Steam_OnGameOverlayActivated, data);
+		// user stats
 		else if (id == LeaderboardFindResult_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardFindResult, data);
 		else if (id == GlobalStatsReceived_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnGlobalStatsReceived, data);
 		else if (id == UserStatsReceived_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnUserStatsReceived, data);
 		else if (id == LeaderboardScoresDownloaded_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardScoresDownloaded, data);
 		else if (id == LeaderboardScoreUploaded_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardScoreUploaded, data);
+		// utils
 		else if (id == GamepadTextInputDismissed_t::k_iCallback) SteamListener_Invoke(SteamUtils_OnGamepadTextInputDismissed, data);
 		else if (id == FloatingGamepadTextInputDismissed_t::k_iCallback) SteamListener_Invoke(SteamUtils_OnFloatingGamepadTextInputDismissed, data);
+		// friends
 		else if (id == GameRichPresenceJoinRequested_t::k_iCallback) SteamListener_Invoke(SteamFriends_OnGameRichPresenceJoinRequested, data);
+		// matchmaking
 		else if (id == LobbyMatchList_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_OnLobbyMatchList, data);
 		else if (id == LobbyEnter_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_OnLobbyEnter, data);
+		// networking
+		else if (id == SteamNetworkingMessagesSessionFailed_t::k_iCallback) SteamListener_Invoke(SteamNetworking_OnSteamNetworkingMessagesSessionFailed, data);
 		else
 		{
 			// dmLogInfo("Unhandled callback %d", id);
@@ -275,6 +281,15 @@ static const luaL_reg Module_methods[] = {
 	{ "matchmaking_get_lobby_owner", SteamMatchmaking_GetLobbyOwner },
 	{ "matchmaking_get_num_lobby_members", SteamMatchmaking_GetNumLobbyMembers },
 	{ "matchmaking_get_lobby_member_by_index", SteamMatchmaking_GetLobbyMemberByIndex },
+
+	// NETWORKING
+	{ "networking_send_message_to_user", SteamNetworking_SendMessageToUser },
+	{ "networking_receive_messages_on_channel", SteamNetworking_ReceiveMessagesOnChannel },
+	{ "networking_accept_session_with_user", SteamNetworking_AcceptSessionWithUser },
+	{ "networking_close_session_with_user", SteamNetworking_CloseSessionWithUser },
+	{ "networking_close_channel_with_user", SteamNetworking_CloseChannelWithUser },
+	{ "networking_get_session_connection_info", SteamNetworking_GetSessionConnectionInfo },
+
 	{ 0, 0 }
 };
 
@@ -544,6 +559,195 @@ static void LuaInit(lua_State* L)
 	 * @field EFriendFlagAll
 	 */
 	SETCONSTANT(EFriendFlagAll, k_EFriendFlagAll);
+
+	/**
+	 * SteamNetworkingSend_Unreliable
+	 * @field SteamNetworkingSend_Unreliable
+	 */
+	SETCONSTANT(SteamNetworkingSend_Unreliable, k_nSteamNetworkingSend_Unreliable);
+	/**
+	 * SteamNetworkingSend_NoNagle
+	 * @field SteamNetworkingSend_NoNagle
+	 */
+	SETCONSTANT(SteamNetworkingSend_NoNagle, k_nSteamNetworkingSend_NoNagle);
+	/**
+	 * SteamNetworkingSend_UnreliableNoNagle
+	 * @field SteamNetworkingSend_UnreliableNoNagle
+	 */
+	SETCONSTANT(SteamNetworkingSend_UnreliableNoNagle, k_nSteamNetworkingSend_UnreliableNoNagle);
+	/**
+	 * SteamNetworkingSend_NoDelay
+	 * @field SteamNetworkingSend_NoDelay
+	 */
+	SETCONSTANT(SteamNetworkingSend_NoDelay, k_nSteamNetworkingSend_NoDelay);
+	/**
+	 * SteamNetworkingSend_UnreliableNoDelay
+	 * @field SteamNetworkingSend_UnreliableNoDelay
+	 */
+	SETCONSTANT(SteamNetworkingSend_UnreliableNoDelay, k_nSteamNetworkingSend_UnreliableNoDelay);
+	/**
+	 * SteamNetworkingSend_Reliable
+	 * @field SteamNetworkingSend_Reliable
+	 */
+	SETCONSTANT(SteamNetworkingSend_Reliable, k_nSteamNetworkingSend_Reliable);
+	/**
+	 * SteamNetworkingSend_ReliableNoNagle
+	 * @field SteamNetworkingSend_ReliableNoNagle
+	 */
+	SETCONSTANT(SteamNetworkingSend_ReliableNoNagle, k_nSteamNetworkingSend_ReliableNoNagle);
+	/**
+	 * SteamNetworkingSend_UseCurrentThread
+	 * @field SteamNetworkingSend_UseCurrentThread
+	 */
+	SETCONSTANT(SteamNetworkingSend_UseCurrentThread, k_nSteamNetworkingSend_UseCurrentThread);
+	/**
+	 * SteamNetworkingSend_AutoRestartBrokenSession
+	 * @field SteamNetworkingSend_AutoRestartBrokenSession
+	 */
+	SETCONSTANT(SteamNetworkingSend_AutoRestartBrokenSession, k_nSteamNetworkingSend_AutoRestartBrokenSession);
+
+	/**
+	 * ESteamNetConnectionEnd_Invalid
+	 * @field ESteamNetConnectionEnd_Invalid
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Invalid, k_ESteamNetConnectionEnd_Invalid);
+	/**
+	 * ESteamNetConnectionEnd_App_Generic
+	 * @field ESteamNetConnectionEnd_App_Generic
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_App_Generic, k_ESteamNetConnectionEnd_App_Generic);
+	/**
+	 * ESteamNetConnectionEnd_AppException_Generic
+	 * @field ESteamNetConnectionEnd_AppException_Generic
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_AppException_Generic, k_ESteamNetConnectionEnd_AppException_Generic);
+	/**
+	 * ESteamNetConnectionEnd_Local_OfflineMode
+	 * @field ESteamNetConnectionEnd_Local_OfflineMode
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Local_OfflineMode, k_ESteamNetConnectionEnd_Local_OfflineMode);
+	/**
+	 * ESteamNetConnectionEnd_Local_ManyRelayConnectivity
+	 * @field ESteamNetConnectionEnd_Local_ManyRelayConnectivity
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Local_ManyRelayConnectivity, k_ESteamNetConnectionEnd_Local_ManyRelayConnectivity);
+	/**
+	 * ESteamNetConnectionEnd_Local_HostedServerPrimaryRelay
+	 * @field ESteamNetConnectionEnd_Local_HostedServerPrimaryRelay
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Local_HostedServerPrimaryRelay, k_ESteamNetConnectionEnd_Local_HostedServerPrimaryRelay);
+	/**
+	 * ESteamNetConnectionEnd_Local_NetworkConfig
+	 * @field ESteamNetConnectionEnd_Local_NetworkConfig
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Local_NetworkConfig, k_ESteamNetConnectionEnd_Local_NetworkConfig);
+	/**
+	 * ESteamNetConnectionEnd_Local_Rights
+	 * @field ESteamNetConnectionEnd_Local_Rights
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Local_Rights, k_ESteamNetConnectionEnd_Local_Rights);
+	/**
+	 * ESteamNetConnectionEnd_Local_P2P_ICE_NoPublicAddresses
+	 * @field ESteamNetConnectionEnd_Local_P2P_ICE_NoPublicAddresses
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Local_P2P_ICE_NoPublicAddresses, k_ESteamNetConnectionEnd_Local_P2P_ICE_NoPublicAddresses);
+	/**
+	 * ESteamNetConnectionEnd_Remote_Timeout
+	 * @field ESteamNetConnectionEnd_Remote_Timeout
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Remote_Timeout, k_ESteamNetConnectionEnd_Remote_Timeout);
+	/**
+	 * ESteamNetConnectionEnd_Remote_BadCrypt
+	 * @field ESteamNetConnectionEnd_Remote_BadCrypt
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Remote_BadCrypt, k_ESteamNetConnectionEnd_Remote_BadCrypt);
+	/**
+	 * ESteamNetConnectionEnd_Remote_BadCert
+	 * @field ESteamNetConnectionEnd_Remote_BadCert
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Remote_BadCert, k_ESteamNetConnectionEnd_Remote_BadCert);
+	/**
+	 * ESteamNetConnectionEnd_Remote_BadProtocolVersion
+	 * @field ESteamNetConnectionEnd_Remote_BadProtocolVersion
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Remote_BadProtocolVersion, k_ESteamNetConnectionEnd_Remote_BadProtocolVersion);
+	/**
+	 * ESteamNetConnectionEnd_Remote_P2P_ICE_NoPublicAddresses
+	 * @field ESteamNetConnectionEnd_Remote_P2P_ICE_NoPublicAddresses
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Remote_P2P_ICE_NoPublicAddresses, k_ESteamNetConnectionEnd_Remote_P2P_ICE_NoPublicAddresses);
+	/**
+	 * ESteamNetConnectionEnd_Misc_Generic
+	 * @field ESteamNetConnectionEnd_Misc_Generic
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Misc_Generic, k_ESteamNetConnectionEnd_Misc_Generic);
+	/**
+	 * ESteamNetConnectionEnd_Misc_InternalError
+	 * @field ESteamNetConnectionEnd_Misc_InternalError
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Misc_InternalError, k_ESteamNetConnectionEnd_Misc_InternalError);
+	/**
+	 * ESteamNetConnectionEnd_Misc_Timeout
+	 * @field ESteamNetConnectionEnd_Misc_Timeout
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Misc_Timeout, k_ESteamNetConnectionEnd_Misc_Timeout);
+	/**
+	 * ESteamNetConnectionEnd_Misc_SteamConnectivity
+	 * @field ESteamNetConnectionEnd_Misc_SteamConnectivity
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Misc_SteamConnectivity, k_ESteamNetConnectionEnd_Misc_SteamConnectivity);
+	/**
+	 * ESteamNetConnectionEnd_Misc_NoRelaySessionsToClient
+	 * @field ESteamNetConnectionEnd_Misc_NoRelaySessionsToClient
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Misc_NoRelaySessionsToClient, k_ESteamNetConnectionEnd_Misc_NoRelaySessionsToClient);
+	/**
+	 * ESteamNetConnectionEnd_Misc_P2P_Rendezvous
+	 * @field ESteamNetConnectionEnd_Misc_P2P_Rendezvous
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Misc_P2P_Rendezvous, k_ESteamNetConnectionEnd_Misc_P2P_Rendezvous);
+	/**
+	 * ESteamNetConnectionEnd_Misc_P2P_NAT_Firewall
+	 * @field ESteamNetConnectionEnd_Misc_P2P_NAT_Firewall
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Misc_P2P_NAT_Firewall, k_ESteamNetConnectionEnd_Misc_P2P_NAT_Firewall);
+	/**
+	 * ESteamNetConnectionEnd_Misc_PeerSentNoConnection
+	 * @field ESteamNetConnectionEnd_Misc_PeerSentNoConnection
+	 */
+	SETCONSTANT(ESteamNetConnectionEnd_Misc_PeerSentNoConnection, k_ESteamNetConnectionEnd_Misc_PeerSentNoConnection);
+
+
+	/**
+	 * ESteamNetworkingConnectionState_None
+	 * @field ESteamNetworkingConnectionState_None
+	 */
+	SETCONSTANT(ESteamNetworkingConnectionState_None, k_ESteamNetworkingConnectionState_None);
+	/**
+	 * ESteamNetworkingConnectionState_Connecting
+	 * @field ESteamNetworkingConnectionState_Connecting
+	 */
+	SETCONSTANT(ESteamNetworkingConnectionState_Connecting, k_ESteamNetworkingConnectionState_Connecting);
+	/**
+	 * ESteamNetworkingConnectionState_FindingRoute
+	 * @field ESteamNetworkingConnectionState_FindingRoute
+	 */
+	SETCONSTANT(ESteamNetworkingConnectionState_FindingRoute, k_ESteamNetworkingConnectionState_FindingRoute);
+	/**
+	 * ESteamNetworkingConnectionState_Connected
+	 * @field ESteamNetworkingConnectionState_Connected
+	 */
+	SETCONSTANT(ESteamNetworkingConnectionState_Connected, k_ESteamNetworkingConnectionState_Connected);
+	/**
+	 * ESteamNetworkingConnectionState_ClosedByPeer
+	 * @field ESteamNetworkingConnectionState_ClosedByPeer
+	 */
+	SETCONSTANT(ESteamNetworkingConnectionState_ClosedByPeer, k_ESteamNetworkingConnectionState_ClosedByPeer);
+	/**
+	 * ESteamNetworkingConnectionState_ProblemDetectedLocally
+	 * @field ESteamNetworkingConnectionState_ProblemDetectedLocally
+	 */
+	SETCONSTANT(ESteamNetworkingConnectionState_ProblemDetectedLocally, k_ESteamNetworkingConnectionState_ProblemDetectedLocally);
 
 	#undef SETCONSTANT
 
