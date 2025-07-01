@@ -41,6 +41,7 @@ function init(self)
 	steam.user_stats_request_global_stats(7)
 	steam.user_stats_find_leaderboard("Feet Traveled")
 	--steam.user_stats_find_or_create_leaderboard("Meters Traveled", steam.ELeaderboardSortMethodAscending, steam.ELeaderboardDisplayTypeNumeric)		
+	msg.post("#", "refresh_user_stats")
 end
 
 function final(self)

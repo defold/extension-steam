@@ -6,6 +6,8 @@
 #include <dmsdk/sdk.h>
 
 int SteamFriends_OnGameRichPresenceJoinRequested(lua_State* L, void* data);
+int SteamFriends_OnFriendRichPresenceUpdate(lua_State* L, void* data);
+int SteamFriends_OnPersonaStateChange(lua_State* L, void* data);
 
 int SteamFriends_Init(lua_State* L);
 int SteamFriends_GetPersonaName(lua_State* L);

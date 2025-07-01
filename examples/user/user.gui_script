@@ -37,6 +37,11 @@ function init(self)
 		tostring(phone_status),
 		tostring(two_factor_enabled)
 	))
+
+	steam.set_listener(function(self, e, t)
+		print("listener event", e)
+		pprint(t)
+	end)
 end
 
 function final(self)

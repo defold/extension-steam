@@ -41,13 +41,16 @@ int SteamMatchmaking_Init(lua_State* L)
 /** Get a filtered list of relevant lobbies.
  * Will return results as a LobbyMatchList_t event
  * @name matchmaking_request_lobby_list
+ * @treturn string Callback id 
  */
 int SteamMatchmaking_RequestLobbyList(lua_State* L)
 {
 	if (!g_SteamMatchmaking) return 0;
-	DM_LUA_STACK_CHECK(L, 0);
-	g_SteamMatchmaking->RequestLobbyList();
-	return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	SteamAPICall_t call = g_SteamMatchmaking->RequestLobbyList();
+	dmLogInfo("RequestLobbyList SteamAPICall_t %llu", call);
+	push_uint64(L, call);
+	return 1;
 }
 
 
@@ -72,14 +75,17 @@ int SteamMatchmaking_GetLobbyByIndex(lua_State* L)
  * Will generate a LobbyEnter_t event
  * @name matchmaking_join_lobby
  * @string lobby_id The Steam ID of the lobby to join.
+ * @treturn string Callback id
  */
 int SteamMatchmaking_JoinLobby(lua_State* L)
 {
 	if (!g_SteamMatchmaking) return 0;
-	DM_LUA_STACK_CHECK(L, 0);
+	DM_LUA_STACK_CHECK(L, 1);
 	CSteamID steamIDLobby = check_CSteamID(L, 1);
-	g_SteamMatchmaking->JoinLobby(steamIDLobby);
-	return 0;
+	SteamAPICall_t call = g_SteamMatchmaking->JoinLobby(steamIDLobby);
+	dmLogInfo("JoinLobby SteamAPICall_t %llu", call);
+	push_uint64(L, call);
+	return 1;
 }
 
 /** Leave a lobby that the user is currently in

@@ -292,6 +292,10 @@
   - name: matchmaking_request_lobby_list
     type: function
     desc: Get a filtered list of relevant lobbies. Will return results as a LobbyMatchList_t event
+    returns:
+    - name: Callback
+      type: string
+      desc: Id
 
   - name: matchmaking_get_lobby_by_index
     type: function
@@ -312,6 +316,10 @@
     - name: lobby_id
       type: string
       desc: The Steam ID of the lobby to join.
+    returns:
+    - name: Callback
+      type: string
+      desc: Id
 
   - name: matchmaking_leave_lobby
     type: function
@@ -359,6 +367,86 @@
     - name: Id
       type: string
       desc: Of member
+
+  - name: networking_send_message_to_user
+    type: function
+    desc: Send message 
+    parameters:
+    - name: identity_remote
+      type: string
+
+    - name: data
+      type: string
+
+    - name: send_flags
+      type: number
+      desc: A bitmask of k_nSteamNetworkingSend_xxx options
+    - name: remote_channel
+      type: number
+      desc: A routing number you can use to help route message to different systems
+
+  - name: networking_receive_messages_on_channel
+    type: function
+    desc: Receive message 
+    parameters:
+    - name: localChannel
+      type: number
+
+    returns:
+    - name: message
+      type: table
+
+
+  - name: networking_accept_session_with_user
+    type: function
+    desc: Accept session Call this in response to a SteamNetworkingMessagesSessionRequest_t callback. pending or otherwise. If there is an existing active session, this function will return true, even if it is not pending.
+    parameters:
+    - name: identity_remote
+      type: string
+
+    returns:
+    - name: result
+      type: boolean
+      desc: Returns false if there is no session with the user
+
+  - name: networking_close_session_with_user
+    type: function
+    desc: Close sesssion Call this when you&#x27;re done talking to a user to immediately free up resources under-the-hood
+    parameters:
+    - name: identity_remote
+      type: string
+
+    returns:
+    - name: result
+      type: boolean
+
+
+  - name: networking_close_channel_with_user
+    type: function
+    desc: Close channel Call this when you&#x27;re done talking to a user on a specific channel.
+    parameters:
+    - name: identity_remote
+      type: string
+
+    - name: local_channel
+      type: number
+
+    returns:
+    - name: result
+      type: boolean
+
+
+  - name: networking_get_session_connection_info
+    type: function
+    desc: Get connection info Returns information about the latest state of a connection, if any, with the given peer.
+    parameters:
+    - name: identity_remote
+      type: string
+
+    returns:
+    - name: info
+      type: table
+      desc: Connection info (state, info, status)
 
   - name: user_get_steam_id
     type: function
@@ -505,14 +593,6 @@
     - name: ok
       type: Boolean
 
-
-  - name: user_stats_request_current_stats
-    type: function
-    desc: Ask the server to send down this user&#x27;s data and achievements for this game. 
-    returns:
-    - name: ok
-      type: Boolean
-      desc: True if successful
 
   - name: user_stats_request_global_stats
     type: function
