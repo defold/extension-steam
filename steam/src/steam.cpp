@@ -135,16 +135,15 @@ static int Update(lua_State* L)
 			bool failed;
 			if (SteamAPI_ManualDispatch_GetAPICallResult(steamPipe, callCompleted->m_hAsyncCall, callResultData, callCompleted->m_cubParam, callCompleted->m_iCallback, &failed))
 			{
-				dmLogInfo("SteamAPICallCompleted_t %llu", callCompleted->m_hAsyncCall);
 				id = callCompleted->m_iCallback;
 				data = callResultData;
-				// dmLogInfo("SteamAPICallCompleted_t call result %d", id);
+				//dmLogInfo("SteamAPICallCompleted_t %llu result %d", callCompleted->m_hAsyncCall, id);
 			}
 			else
 			{
 				free(callResultData);
 				SteamAPI_ManualDispatch_FreeLastCallback(steamPipe);
-				dmLogInfo("SteamAPICallCompleted_t failed to get call result");
+				//dmLogInfo("SteamAPICallCompleted_t failed to get call result");
 				return 0;
 			}
 		}
@@ -218,45 +217,7 @@ static int Update(lua_State* L)
 		else if (id == SteamNetworkingMessagesSessionFailed_t::k_iCallback) SteamListener_InvokeGeneric("SteamNetworkingMessagesSessionFailed_t");
 		else
 		{
-			dmLogInfo("Unhandled callback with id %d", id);
-			/**if (id < k_iSteamGameServerCallbacks) { dmLogInfo("k_iSteamUserCallbacks %d", id); }
-			else if (id < k_iSteamFriendsCallbacks) { dmLogInfo("k_iSteamGameServerCallbacks %d", id); }
-			else if (id < k_iSteamBillingCallbacks) { dmLogInfo("k_iSteamFriendsCallbacks %d", id); }
-			else if (id < k_iSteamMatchmakingCallbacks) { dmLogInfo("k_iSteamBillingCallbacks %d", id); }
-			else if (id < k_iSteamContentServerCallbacks) { dmLogInfo("k_iSteamMatchmakingCallbacks %d", id); }
-			else if (id < k_iSteamUtilsCallbacks) { dmLogInfo("k_iSteamContentServerCallbacks %d", id); }
-			else if (id < k_iSteamAppsCallbacks) { dmLogInfo("k_iSteamUtilsCallbacks %d", id); }
-			else if (id < k_iSteamUserStatsCallbacks) { dmLogInfo("k_iSteamAppsCallbacks %d", id); }
-			else if (id < k_iSteamNetworkingCallbacks) { dmLogInfo("k_iSteamUserStatsCallbacks %d", id); }
-			else if (id < k_iSteamNetworkingSocketsCallbacks) { dmLogInfo("k_iSteamNetworkingCallbacks %d", id); }
-			else if (id < k_iSteamNetworkingMessagesCallbacks) { dmLogInfo("k_iSteamNetworkingSocketsCallbacks %d", id); }
-			else if (id < k_iSteamNetworkingUtilsCallbacks) { dmLogInfo("k_iSteamNetworkingMessagesCallbacks %d", id); }
-			else if (id < k_iSteamRemoteStorageCallbacks) { dmLogInfo("k_iSteamNetworkingUtilsCallbacks %d", id); }
-			else if (id < k_iSteamGameServerItemsCallbacks) { dmLogInfo("k_iSteamRemoteStorageCallbacks %d", id); }
-			else if (id < k_iSteamGameCoordinatorCallbacks) { dmLogInfo("k_iSteamGameServerItemsCallbacks %d", id); }
-			else if (id < k_iSteamGameServerStatsCallbacks) { dmLogInfo("k_iSteamGameCoordinatorCallbacks %d", id); }
-			else if (id < k_iSteam2AsyncCallbacks) { dmLogInfo("k_iSteamGameServerStatsCallbacks %d", id); }
-			else if (id < k_iSteamGameStatsCallbacks) { dmLogInfo("k_iSteam2AsyncCallbacks %d", id); }
-			else if (id < k_iSteamHTTPCallbacks) { dmLogInfo("k_iSteamGameStatsCallbacks %d", id); }
-			else if (id < k_iSteamScreenshotsCallbacks) { dmLogInfo("k_iSteamHTTPCallbacks %d", id); }
-			else if (id < k_iSteamStreamLauncherCallbacks) { dmLogInfo("k_iSteamScreenshotsCallbacks %d", id); }
-			else if (id < k_iSteamControllerCallbacks) { dmLogInfo("k_iSteamStreamLauncherCallbacks %d", id); }
-			else if (id < k_iSteamUGCCallbacks) { dmLogInfo("k_iSteamControllerCallbacks %d", id); }
-			else if (id < k_iSteamStreamClientCallbacks) { dmLogInfo("k_iSteamUGCCallbacks %d", id); }
-			else if (id < k_iSteamMusicCallbacks) { dmLogInfo("k_iSteamStreamClientCallbacks %d", id); }
-			else if (id < k_iSteamMusicRemoteCallbacks) { dmLogInfo("k_iSteamMusicCallbacks %d", id); }
-			else if (id < k_iSteamGameNotificationCallbacks) { dmLogInfo("k_iSteamMusicRemoteCallbacks %d", id); }
-			else if (id < k_iSteamHTMLSurfaceCallbacks) { dmLogInfo("k_iSteamGameNotificationCallbacks %d", id); }
-			else if (id < k_iSteamVideoCallbacks) { dmLogInfo("k_iSteamHTMLSurfaceCallbacks %d", id); }
-			else if (id < k_iSteamInventoryCallbacks) { dmLogInfo("k_iSteamVideoCallbacks %d", id); }
-			else if (id < k_ISteamParentalSettingsCallbacks) { dmLogInfo("k_iSteamInventoryCallbacks %d", id); }
-			else if (id < k_iSteamGameSearchCallbacks) { dmLogInfo("k_ISteamParentalSettingsCallbacks %d", id); }
-			else if (id < k_iSteamPartiesCallbacks) { dmLogInfo("k_iSteamGameSearchCallbacks %d", id); }
-			else if (id < k_iSteamSTARCallbacks) { dmLogInfo("k_iSteamPartiesCallbacks %d", id); }
-			else if (id < k_iSteamRemotePlayCallbacks) { dmLogInfo("k_iSteamSTARCallbacks %d", id); }
-			else if (id < k_iSteamChatCallbacks) { dmLogInfo("k_iSteamRemotePlayCallbacks %d", id); }
-			else if (id < k_iSteamTimelineCallbacks) { dmLogInfo("k_iSteamChatCallbacks %d", id); }
-			else { dmLogInfo("k_iSteamTimelineCallbacks %d", id); }*/
+			//dmLogInfo("Unhandled callback with id %d", id);
 		}
 		free(callResultData);
 		SteamAPI_ManualDispatch_FreeLastCallback(steamPipe);
