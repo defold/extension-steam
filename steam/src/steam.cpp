@@ -212,9 +212,9 @@ static int Update(lua_State* L)
 		else if (id == ActiveBeaconsUpdated_t::k_iCallback) SteamListener_InvokeGeneric("ActiveBeaconsUpdated_t");
 		// networking
 		else if (id == SteamNetworkingMessagesSessionFailed_t::k_iCallback) SteamListener_Invoke(SteamNetworking_OnSteamNetworkingMessagesSessionFailed, data);
+		else if (id == SteamNetworkingMessagesSessionRequest_t::k_iCallback) SteamListener_Invoke(SteamNetworking_OnSteamNetworkingMessagesSessionRequest, data);
 		else if (id == SteamRelayNetworkStatus_t::k_iCallback) SteamListener_InvokeGeneric("SteamRelayNetworkStatus_t");
 		else if (id == SteamNetAuthenticationStatus_t::k_iCallback) SteamListener_InvokeGeneric("SteamNetAuthenticationStatus_t");
-		else if (id == SteamNetworkingMessagesSessionRequest_t::k_iCallback) SteamListener_InvokeGeneric("SteamNetworkingMessagesSessionRequest_t");
 		else if (id == SteamNetworkingMessagesSessionFailed_t::k_iCallback) SteamListener_InvokeGeneric("SteamNetworkingMessagesSessionFailed_t");
 		else
 		{
