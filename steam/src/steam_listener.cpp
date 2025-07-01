@@ -40,6 +40,41 @@ void SteamListener_Invoke(int (*fn)(lua_State*, void*), void* data)
 	dmScript::TeardownCallback(g_SteamListener);
 }
 
+void SteamListener_InvokeGeneric(const char* id)
+{
+	if (!g_SteamListener)
+	{
+		dmLogWarning("Steam callback is not set");
+		return;
+	}
+
+	if (!dmScript::IsCallbackValid(g_SteamListener))
+	{
+		dmLogWarning("Steam callback is not valid");
+		g_SteamListener = 0;
+		return;
+	}
+
+	if (!dmScript::SetupCallback(g_SteamListener))
+	{
+		dmLogWarning("Steam callback setup failed");
+		dmScript::DestroyCallback(g_SteamListener);
+		g_SteamListener = 0;
+		return;
+	}
+
+	lua_State* L = dmScript::GetCallbackLuaContext(g_SteamListener);
+	lua_pushstring(L, id);
+	lua_newtable(L);
+	table_push_boolean(L, "not_implemented_yet", true);
+	int ret = lua_pcall(L, 2, 0, 0);
+	if (ret != 0)
+	{
+		lua_pop(L, 2);
+	}
+	dmScript::TeardownCallback(g_SteamListener);
+}
+
 void SteamListener_Destroy()
 {
 	if (g_SteamListener)
