@@ -162,6 +162,7 @@ static int Update(lua_State* L)
 		else if (id == GlobalAchievementPercentagesReady_t::k_iCallback) SteamListener_InvokeGeneric("GlobalAchievementPercentagesReady_t");
 		else if (id == LeaderboardUGCSet_t::k_iCallback) SteamListener_InvokeGeneric("LeaderboardUGCSet_t");
 		// user
+		else if (id == MicroTxnAuthorizationResponse_t::k_iCallback) SteamListener_Invoke(SteamUser_OnMicroTxnAuthorizationResponse, data);
 		else if (id == SteamServersConnected_t::k_iCallback) SteamListener_InvokeGeneric("SteamServersConnected_t");
 		else if (id == SteamServerConnectFailure_t::k_iCallback) SteamListener_InvokeGeneric("SteamServerConnectFailure_t");
 		else if (id == SteamServersDisconnected_t::k_iCallback) SteamListener_InvokeGeneric("SteamServersDisconnected_t");

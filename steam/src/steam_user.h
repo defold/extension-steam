@@ -5,7 +5,7 @@
 
 #include <dmsdk/sdk.h>
 
-int OnMicroTxnAuthorizationResponse(lua_State* L, void* data);
+int SteamUser_OnMicroTxnAuthorizationResponse(lua_State* L, void* data);
 
 int SteamUser_Init(lua_State* L);
 int SteamUser_GetSteamId(lua_State* L);
