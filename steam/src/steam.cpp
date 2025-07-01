@@ -135,14 +135,22 @@ static int Update(lua_State* L)
 			bool failed;
 			if (SteamAPI_ManualDispatch_GetAPICallResult(steamPipe, callCompleted->m_hAsyncCall, callResultData, callCompleted->m_cubParam, callCompleted->m_iCallback, &failed))
 			{
+				dmLogInfo("SteamAPICallCompleted_t %llu", callCompleted->m_hAsyncCall);
 				id = callCompleted->m_iCallback;
 				data = callResultData;
+				// dmLogInfo("SteamAPICallCompleted_t call result %d", id);
+			}
+			else
+			{
+				free(callResultData);
+				SteamAPI_ManualDispatch_FreeLastCallback(steamPipe);
+				dmLogInfo("SteamAPICallCompleted_t failed to get call result");
+				return 0;
 			}
 		}
 
-		if      (id == GameOverlayActivated_t::k_iCallback) SteamListener_Invoke(Steam_OnGameOverlayActivated, data);
 		// user stats
-		else if (id == LeaderboardFindResult_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardFindResult, data);
+		if (id == LeaderboardFindResult_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardFindResult, data);
 		else if (id == GlobalStatsReceived_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnGlobalStatsReceived, data);
 		else if (id == UserStatsReceived_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnUserStatsReceived, data);
 		else if (id == LeaderboardScoresDownloaded_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardScoresDownloaded, data);
@@ -150,16 +158,105 @@ static int Update(lua_State* L)
 		// utils
 		else if (id == GamepadTextInputDismissed_t::k_iCallback) SteamListener_Invoke(SteamUtils_OnGamepadTextInputDismissed, data);
 		else if (id == FloatingGamepadTextInputDismissed_t::k_iCallback) SteamListener_Invoke(SteamUtils_OnFloatingGamepadTextInputDismissed, data);
+		else if (id == IPCountry_t::k_iCallback) SteamListener_InvokeGeneric("IPCountry_t");
+		else if (id == LowBatteryPower_t::k_iCallback) SteamListener_InvokeGeneric("LowBatteryPower_t");
+		else if (id == SteamShutdown_t::k_iCallback) SteamListener_InvokeGeneric("SteamShutdown_t");
+		else if (id == CheckFileSignature_t::k_iCallback) SteamListener_InvokeGeneric("CheckFileSignature_t");
+		else if (id == FilterTextDictionaryChanged_t::k_iCallback) SteamListener_InvokeGeneric("FilterTextDictionaryChanged_t");
 		// friends
+		else if (id == GameOverlayActivated_t::k_iCallback) SteamListener_Invoke(Steam_OnGameOverlayActivated, data);
 		else if (id == GameRichPresenceJoinRequested_t::k_iCallback) SteamListener_Invoke(SteamFriends_OnGameRichPresenceJoinRequested, data);
+		else if (id == FriendRichPresenceUpdate_t::k_iCallback) SteamListener_Invoke(SteamFriends_OnFriendRichPresenceUpdate, data);
+		else if (id == PersonaStateChange_t::k_iCallback) SteamListener_Invoke(SteamFriends_OnPersonaStateChange, data);
+		else if (id == GameServerChangeRequested_t::k_iCallback) SteamListener_InvokeGeneric("GameServerChangeRequested_t");
+		else if (id == GameLobbyJoinRequested_t::k_iCallback) SteamListener_InvokeGeneric("GameLobbyJoinRequested_t");
+		else if (id == AvatarImageLoaded_t::k_iCallback) SteamListener_InvokeGeneric("AvatarImageLoaded_t");
+		else if (id == ClanOfficerListResponse_t::k_iCallback) SteamListener_InvokeGeneric("ClanOfficerListResponse_t");
+		else if (id == GameConnectedClanChatMsg_t::k_iCallback) SteamListener_InvokeGeneric("GameConnectedClanChatMsg_t");
+		else if (id == GameConnectedChatJoin_t::k_iCallback) SteamListener_InvokeGeneric("GameConnectedChatJoin_t");
+		else if (id == GameConnectedChatLeave_t::k_iCallback) SteamListener_InvokeGeneric("GameConnectedChatLeave_t");
+		else if (id == DownloadClanActivityCountsResult_t::k_iCallback) SteamListener_InvokeGeneric("DownloadClanActivityCountsResult_t");
+		else if (id == JoinClanChatRoomCompletionResult_t::k_iCallback) SteamListener_InvokeGeneric("JoinClanChatRoomCompletionResult_t");
+		else if (id == GameConnectedFriendChatMsg_t::k_iCallback) SteamListener_InvokeGeneric("GameConnectedFriendChatMsg_t");
+		else if (id == FriendsGetFollowerCount_t::k_iCallback) SteamListener_InvokeGeneric("FriendsGetFollowerCount_t");
+		else if (id == FriendsIsFollowing_t::k_iCallback) SteamListener_InvokeGeneric("FriendsIsFollowing_t");
+		else if (id == FriendsEnumerateFollowingList_t::k_iCallback) SteamListener_InvokeGeneric("FriendsEnumerateFollowingList_t");
+		else if (id == UnreadChatMessagesChanged_t::k_iCallback) SteamListener_InvokeGeneric("UnreadChatMessagesChanged_t");
+		else if (id == OverlayBrowserProtocolNavigation_t::k_iCallback) SteamListener_InvokeGeneric("OverlayBrowserProtocolNavigation_t");
+		else if (id == EquippedProfileItemsChanged_t::k_iCallback) SteamListener_InvokeGeneric("EquippedProfileItemsChanged_t");
+		else if (id == EquippedProfileItems_t::k_iCallback) SteamListener_InvokeGeneric("EquippedProfileItems_t");
 		// matchmaking
 		else if (id == LobbyMatchList_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_OnLobbyMatchList, data);
 		else if (id == LobbyEnter_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_OnLobbyEnter, data);
+		else if (id == FavoritesListChanged_t::k_iCallback) SteamListener_InvokeGeneric("FavoritesListChanged_t");
+		else if (id == LobbyInvite_t::k_iCallback) SteamListener_InvokeGeneric("LobbyInvite_t");
+		else if (id == LobbyDataUpdate_t::k_iCallback) SteamListener_InvokeGeneric("LobbyDataUpdate_t");
+		else if (id == LobbyChatUpdate_t::k_iCallback) SteamListener_InvokeGeneric("LobbyChatUpdate_t");
+		else if (id == LobbyChatMsg_t::k_iCallback) SteamListener_InvokeGeneric("LobbyChatMsg_t");
+		else if (id == LobbyGameCreated_t::k_iCallback) SteamListener_InvokeGeneric("LobbyGameCreated_t");
+		else if (id == LobbyKicked_t::k_iCallback) SteamListener_InvokeGeneric("LobbyKicked_t");
+		else if (id == LobbyCreated_t::k_iCallback) SteamListener_InvokeGeneric("LobbyCreated_t");
+		else if (id == FavoritesListAccountsUpdated_t::k_iCallback) SteamListener_InvokeGeneric("FavoritesListAccountsUpdated_t");
+		else if (id == SearchForGameProgressCallback_t::k_iCallback) SteamListener_InvokeGeneric("SearchForGameProgressCallback_t");
+		else if (id == SearchForGameResultCallback_t::k_iCallback) SteamListener_InvokeGeneric("SearchForGameResultCallback_t");
+		else if (id == RequestPlayersForGameProgressCallback_t::k_iCallback) SteamListener_InvokeGeneric("RequestPlayersForGameProgressCallback_t");
+		else if (id == RequestPlayersForGameResultCallback_t::k_iCallback) SteamListener_InvokeGeneric("RequestPlayersForGameResultCallback_t");
+		else if (id == RequestPlayersForGameFinalResultCallback_t::k_iCallback) SteamListener_InvokeGeneric("RequestPlayersForGameFinalResultCallback_t");
+		else if (id == SubmitPlayerResultResultCallback_t::k_iCallback) SteamListener_InvokeGeneric("SubmitPlayerResultResultCallback_t");
+		else if (id == EndGameResultCallback_t::k_iCallback) SteamListener_InvokeGeneric("EndGameResultCallback_t");
+		else if (id == JoinPartyCallback_t::k_iCallback) SteamListener_InvokeGeneric("JoinPartyCallback_t");
+		else if (id == CreateBeaconCallback_t::k_iCallback) SteamListener_InvokeGeneric("CreateBeaconCallback_t");
+		else if (id == ReservationNotificationCallback_t::k_iCallback) SteamListener_InvokeGeneric("ReservationNotificationCallback_t");
+		else if (id == ChangeNumOpenSlotsCallback_t::k_iCallback) SteamListener_InvokeGeneric("ChangeNumOpenSlotsCallback_t");
+		else if (id == AvailableBeaconLocationsUpdated_t::k_iCallback) SteamListener_InvokeGeneric("AvailableBeaconLocationsUpdated_t");
+		else if (id == ActiveBeaconsUpdated_t::k_iCallback) SteamListener_InvokeGeneric("ActiveBeaconsUpdated_t");
 		// networking
 		else if (id == SteamNetworkingMessagesSessionFailed_t::k_iCallback) SteamListener_Invoke(SteamNetworking_OnSteamNetworkingMessagesSessionFailed, data);
+		else if (id == SteamRelayNetworkStatus_t::k_iCallback) SteamListener_InvokeGeneric("SteamRelayNetworkStatus_t");
+		else if (id == SteamNetAuthenticationStatus_t::k_iCallback) SteamListener_InvokeGeneric("SteamNetAuthenticationStatus_t");
+		else if (id == SteamNetworkingMessagesSessionRequest_t::k_iCallback) SteamListener_InvokeGeneric("SteamNetworkingMessagesSessionRequest_t");
+		else if (id == SteamNetworkingMessagesSessionFailed_t::k_iCallback) SteamListener_InvokeGeneric("SteamNetworkingMessagesSessionFailed_t");
 		else
 		{
-			// dmLogInfo("Unhandled callback %d", id);
+			dmLogInfo("Unhandled callback with id %d", id);
+			/**if (id < k_iSteamGameServerCallbacks) { dmLogInfo("k_iSteamUserCallbacks %d", id); }
+			else if (id < k_iSteamFriendsCallbacks) { dmLogInfo("k_iSteamGameServerCallbacks %d", id); }
+			else if (id < k_iSteamBillingCallbacks) { dmLogInfo("k_iSteamFriendsCallbacks %d", id); }
+			else if (id < k_iSteamMatchmakingCallbacks) { dmLogInfo("k_iSteamBillingCallbacks %d", id); }
+			else if (id < k_iSteamContentServerCallbacks) { dmLogInfo("k_iSteamMatchmakingCallbacks %d", id); }
+			else if (id < k_iSteamUtilsCallbacks) { dmLogInfo("k_iSteamContentServerCallbacks %d", id); }
+			else if (id < k_iSteamAppsCallbacks) { dmLogInfo("k_iSteamUtilsCallbacks %d", id); }
+			else if (id < k_iSteamUserStatsCallbacks) { dmLogInfo("k_iSteamAppsCallbacks %d", id); }
+			else if (id < k_iSteamNetworkingCallbacks) { dmLogInfo("k_iSteamUserStatsCallbacks %d", id); }
+			else if (id < k_iSteamNetworkingSocketsCallbacks) { dmLogInfo("k_iSteamNetworkingCallbacks %d", id); }
+			else if (id < k_iSteamNetworkingMessagesCallbacks) { dmLogInfo("k_iSteamNetworkingSocketsCallbacks %d", id); }
+			else if (id < k_iSteamNetworkingUtilsCallbacks) { dmLogInfo("k_iSteamNetworkingMessagesCallbacks %d", id); }
+			else if (id < k_iSteamRemoteStorageCallbacks) { dmLogInfo("k_iSteamNetworkingUtilsCallbacks %d", id); }
+			else if (id < k_iSteamGameServerItemsCallbacks) { dmLogInfo("k_iSteamRemoteStorageCallbacks %d", id); }
+			else if (id < k_iSteamGameCoordinatorCallbacks) { dmLogInfo("k_iSteamGameServerItemsCallbacks %d", id); }
+			else if (id < k_iSteamGameServerStatsCallbacks) { dmLogInfo("k_iSteamGameCoordinatorCallbacks %d", id); }
+			else if (id < k_iSteam2AsyncCallbacks) { dmLogInfo("k_iSteamGameServerStatsCallbacks %d", id); }
+			else if (id < k_iSteamGameStatsCallbacks) { dmLogInfo("k_iSteam2AsyncCallbacks %d", id); }
+			else if (id < k_iSteamHTTPCallbacks) { dmLogInfo("k_iSteamGameStatsCallbacks %d", id); }
+			else if (id < k_iSteamScreenshotsCallbacks) { dmLogInfo("k_iSteamHTTPCallbacks %d", id); }
+			else if (id < k_iSteamStreamLauncherCallbacks) { dmLogInfo("k_iSteamScreenshotsCallbacks %d", id); }
+			else if (id < k_iSteamControllerCallbacks) { dmLogInfo("k_iSteamStreamLauncherCallbacks %d", id); }
+			else if (id < k_iSteamUGCCallbacks) { dmLogInfo("k_iSteamControllerCallbacks %d", id); }
+			else if (id < k_iSteamStreamClientCallbacks) { dmLogInfo("k_iSteamUGCCallbacks %d", id); }
+			else if (id < k_iSteamMusicCallbacks) { dmLogInfo("k_iSteamStreamClientCallbacks %d", id); }
+			else if (id < k_iSteamMusicRemoteCallbacks) { dmLogInfo("k_iSteamMusicCallbacks %d", id); }
+			else if (id < k_iSteamGameNotificationCallbacks) { dmLogInfo("k_iSteamMusicRemoteCallbacks %d", id); }
+			else if (id < k_iSteamHTMLSurfaceCallbacks) { dmLogInfo("k_iSteamGameNotificationCallbacks %d", id); }
+			else if (id < k_iSteamVideoCallbacks) { dmLogInfo("k_iSteamHTMLSurfaceCallbacks %d", id); }
+			else if (id < k_iSteamInventoryCallbacks) { dmLogInfo("k_iSteamVideoCallbacks %d", id); }
+			else if (id < k_ISteamParentalSettingsCallbacks) { dmLogInfo("k_iSteamInventoryCallbacks %d", id); }
+			else if (id < k_iSteamGameSearchCallbacks) { dmLogInfo("k_ISteamParentalSettingsCallbacks %d", id); }
+			else if (id < k_iSteamPartiesCallbacks) { dmLogInfo("k_iSteamGameSearchCallbacks %d", id); }
+			else if (id < k_iSteamSTARCallbacks) { dmLogInfo("k_iSteamPartiesCallbacks %d", id); }
+			else if (id < k_iSteamRemotePlayCallbacks) { dmLogInfo("k_iSteamSTARCallbacks %d", id); }
+			else if (id < k_iSteamChatCallbacks) { dmLogInfo("k_iSteamRemotePlayCallbacks %d", id); }
+			else if (id < k_iSteamTimelineCallbacks) { dmLogInfo("k_iSteamChatCallbacks %d", id); }
+			else { dmLogInfo("k_iSteamTimelineCallbacks %d", id); }*/
 		}
 		free(callResultData);
 		SteamAPI_ManualDispatch_FreeLastCallback(steamPipe);
