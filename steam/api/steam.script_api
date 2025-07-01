@@ -602,7 +602,7 @@
 
   - name: user_stats_get_stat_int
     type: function
-    desc: Get user stat as an integer. 
+    desc: Get user stat as an integer. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
     parameters:
     - name: id
       type: string
@@ -617,7 +617,7 @@
 
   - name: user_stats_set_stat_int
     type: function
-    desc: Set user stat. 
+    desc: Set user stat. Https://partner.steamgames.com/doc/api/ISteamUserStats#SetStat
     parameters:
     - name: id
       type: string
@@ -632,7 +632,7 @@
 
   - name: user_stats_get_stat_float
     type: function
-    desc: Get user stat as a floating point number. 
+    desc: Get user stat as a floating point number. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
     parameters:
     - name: id
       type: string
@@ -647,7 +647,7 @@
 
   - name: user_stats_set_stat_float
     type: function
-    desc: Set user stat. 
+    desc: Set user stat. Https://partner.steamgames.com/doc/api/ISteamUserStats#SetStat
     parameters:
     - name: id
       type: string
@@ -662,7 +662,7 @@
 
   - name: user_stats_request_global_stats
     type: function
-    desc: Requests global stats data, which is available for stats marked as &quot;aggregated&quot;. This call is asynchronous, with the results returned in GlobalStatsReceived_t. nHistoryDays specifies how many days of day-by-day history to retrieve in addition to the overall totals. The limit is 60.
+    desc: Requests global stats data, which is available for stats marked as &quot;aggregated&quot;. This call is asynchronous, with the results returned in GlobalStatsReceived_t. nHistoryDays specifies how many days of day-by-day history to retrieve in addition to the overall totals. The limit is 60. https://partner.steamgames.com/doc/api/ISteamUserStats#RequestGlobalStats
     parameters:
     - name: history_days
       type: number
@@ -674,7 +674,7 @@
 
   - name: user_stats_store_stats
     type: function
-    desc: Store the current data on the server. Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync.
+    desc: Store the current data on the server. Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync. https://partner.steamgames.com/doc/api/ISteamUserStats#StoreStats
     returns:
     - name: ok
       type: Boolean
@@ -682,7 +682,7 @@
 
   - name: user_stats_reset_all_stats
     type: function
-    desc: Reset stats. 
+    desc: Reset stats. Https://partner.steamgames.com/doc/api/ISteamUserStats#ResetAllStats
     parameters:
     - name: achievements
       type: boolean
@@ -694,7 +694,7 @@
 
   - name: user_stats_set_achievement
     type: function
-    desc: Set achievement. 
+    desc: Set achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#SetAchievement
     parameters:
     - name: name
       type: string
@@ -706,7 +706,7 @@
 
   - name: user_stats_get_achievement
     type: function
-    desc: Get achievement. 
+    desc: Get achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievement
     parameters:
     - name: name
       type: string
@@ -721,7 +721,7 @@
 
   - name: user_stats_clear_achievement
     type: function
-    desc: Clear achievement. 
+    desc: Clear achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#ClearAchievement
     parameters:
     - name: name
       type: string
@@ -733,7 +733,7 @@
 
   - name: user_stats_get_num_achievements
     type: function
-    desc: Used for iterating achievements. In general games should not need these functions because they should have a list of existing achievements compiled into them.
+    desc: Used for iterating achievements. In general games should not need these functions because they should have a list of existing achievements compiled into them. https://partner.steamgames.com/doc/api/ISteamUserStats#GetNumAchievements
     returns:
     - name: num
       type: Number
@@ -741,7 +741,7 @@
 
   - name: user_stats_get_achievement_name
     type: function
-    desc: Get achievement name iAchievement in [0,GetNumAchievements) 
+    desc: Get achievement name iAchievement in [0,GetNumAchievements) Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementName
     parameters:
     - name: index
       type: number
@@ -753,7 +753,7 @@
 
   - name: user_stats_get_achievement_display_attribute
     type: function
-    desc: Get general attributes for an achievement. Accepts the following keys * &quot;name&quot; and &quot;desc&quot; for retrieving the localized achievement name and description (returned in UTF8) * &quot;hidden&quot; for retrieving if an achievement is hidden (returns &quot;0&quot; when not hidden, &quot;1&quot; when hidden)
+    desc: Get general attributes for an achievement. Accepts the following keys * &quot;name&quot; and &quot;desc&quot; for retrieving the localized achievement name and description (returned in UTF8) * &quot;hidden&quot; for retrieving if an achievement is hidden (returns &quot;0&quot; when not hidden, &quot;1&quot; when hidden) https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementDisplayAttribute
     parameters:
     - name: name
       type: string
@@ -768,7 +768,7 @@
 
   - name: user_stats_get_achievement_achieved_percent
     type: function
-    desc: Returns the percentage of users who have achieved the specified achievement. 
+    desc: Returns the percentage of users who have achieved the specified achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementAchievedPercent
     returns:
     - name: ok
       type: Boolean
@@ -779,7 +779,7 @@
 
   - name: user_stats_find_or_create_leaderboard
     type: function
-    desc: Gets a leaderboard by name, it will create it if it&#x27;s not yet created. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardFindResult_t.
+    desc: Gets a leaderboard by name, it will create it if it&#x27;s not yet created. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardFindResult_t. https://partner.steamgames.com/doc/api/ISteamUserStats#FindOrCreateLeaderboard
     parameters:
     - name: leaderboard_name
       type: string
@@ -793,7 +793,7 @@
 
   - name: user_stats_get_leaderboard_name
     type: function
-    desc: Get the name of a leaderboard. 
+    desc: Get the name of a leaderboard. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardName
     parameters:
     - name: leaderboard
       type: string
@@ -805,7 +805,7 @@
 
   - name: user_stats_get_leaderboard_entry_count
     type: function
-    desc: Get the total number of entries in a leaderboard, as of the last request. 
+    desc: Get the total number of entries in a leaderboard, as of the last request. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardEntryCount
     parameters:
     - name: leaderboard
       type: string
@@ -817,7 +817,7 @@
 
   - name: user_stats_get_leaderboard_sort_method
     type: function
-    desc: Returns the sort method of the leaderboard 
+    desc: Returns the sort method of the leaderboard Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardSortMethod
     parameters:
     - name: leaderboard
       type: string
@@ -829,7 +829,7 @@
 
   - name: user_stats_get_leaderboard_display_type
     type: function
-    desc: Returns the display type of a leaderboard handle. 
+    desc: Returns the display type of a leaderboard handle. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardDisplayType
     parameters:
     - name: leaderboard
       type: string
@@ -841,7 +841,7 @@
 
   - name: user_stats_download_leaderboard_entries
     type: function
-    desc: Asks the Steam back-end for a set of rows in the leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart &amp; nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user
+    desc: Asks the Steam back-end for a set of rows in the leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart &amp; nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user https://partner.steamgames.com/doc/api/ISteamUserStats#DownloadLeaderboardEntries
     parameters:
     - name: leaderboard
       type: string
@@ -858,7 +858,7 @@
 
   - name: user_stats_get_downloaded_leaderboard_entry
     type: function
-    desc: Returns data about a single leaderboard entry 
+    desc: Returns data about a single leaderboard entry Https://partner.steamgames.com/doc/api/ISteamUserStats#GetDownloadedLeaderboardEntry
     parameters:
     - name: hSteamLeaderboardEntries
       type: string
@@ -876,7 +876,7 @@
 
   - name: user_stats_upload_leaderboard_score
     type: function
-    desc: Uploads a user score to a specified leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoreUploaded_t.
+    desc: Uploads a user score to a specified leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoreUploaded_t. https://partner.steamgames.com/doc/api/ISteamUserStats#UploadLeaderboardScore
     parameters:
     - name: leaderboard
       type: string
@@ -887,6 +887,21 @@
     - name: nScore
       type: number
 
+
+  - name: user_stats_attach_leadboard_ugc
+    type: function
+    desc: Attaches a piece of user generated content the current user&#x27;s entry on a Leaderboard. https://partner.steamgames.com/doc/api/ISteamUserStats#AttachLeaderboardUGC
+    parameters:
+    - name: leaderboard
+      type: string
+
+    - name: ugc_handle
+      type: string
+
+    returns:
+    - name: Steam
+      type: string
+      desc: API call id
 
   - name: utils_get_app_id
     type: function

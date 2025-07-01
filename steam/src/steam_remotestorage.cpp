@@ -4,6 +4,21 @@
 #include "steam_api.h"
 #include "steam_types.h"
 
+
+int SteamRemoteStorage_OnRemoteStorageFileShareResult(lua_State* L, void* data)
+{
+	RemoteStorageFileShareResult_t* s = (RemoteStorageFileShareResult_t*)data;
+	lua_pushstring(L, "RemoteStorageFileShareResult_t");
+
+	lua_newtable(L);
+	table_push_number(L, "m_eResult", s->m_eResult);
+	table_push_uint64(L, "m_hFile", s->m_hFile);
+	table_push_string(L, "m_rgchFilename", s->m_rgchFilename);
+
+	return 2;
+}
+
+
 static ISteamRemoteStorage* g_SteamRemoteStorage = 0;
 
 int SteamRemoteStorage_Init(lua_State* L)

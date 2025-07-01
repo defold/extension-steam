@@ -1334,7 +1334,7 @@
                     "description": null,
                     "entries": [
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_get_stat_int",
@@ -1362,7 +1362,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#SetStat",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_set_stat_int",
@@ -1390,7 +1390,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_get_stat_float",
@@ -1418,7 +1418,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#SetStat",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_set_stat_float",
@@ -1446,7 +1446,7 @@
                             "usage": null
                         },
                         {
-                            "description": "This call is asynchronous, with the results returned in GlobalStatsReceived_t. nHistoryDays specifies how many days of day-by-day history to retrieve in addition to the overall totals. The limit is 60.",
+                            "description": "This call is asynchronous, with the results returned in GlobalStatsReceived_t. nHistoryDays specifies how many days of day-by-day history to retrieve in addition to the overall totals. The limit is 60. https://partner.steamgames.com/doc/api/ISteamUserStats#RequestGlobalStats",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_request_global_stats",
@@ -1469,7 +1469,7 @@
                             "usage": null
                         },
                         {
-                            "description": "Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync.",
+                            "description": "Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync. https://partner.steamgames.com/doc/api/ISteamUserStats#StoreStats",
                             "has_params": false,
                             "has_returns": true,
                             "name": "user_stats_store_stats",
@@ -1485,7 +1485,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#ResetAllStats",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_reset_all_stats",
@@ -1508,7 +1508,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#SetAchievement",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_set_achievement",
@@ -1531,7 +1531,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievement",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_get_achievement",
@@ -1559,7 +1559,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#ClearAchievement",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_clear_achievement",
@@ -1582,7 +1582,7 @@
                             "usage": null
                         },
                         {
-                            "description": "In general games should not need these functions because they should have a list of existing achievements compiled into them.",
+                            "description": "In general games should not need these functions because they should have a list of existing achievements compiled into them. https://partner.steamgames.com/doc/api/ISteamUserStats#GetNumAchievements",
                             "has_params": false,
                             "has_returns": true,
                             "name": "user_stats_get_num_achievements",
@@ -1598,7 +1598,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementName",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_get_achievement_name",
@@ -1621,7 +1621,7 @@
                             "usage": null
                         },
                         {
-                            "description": "Accepts the following keys * \"name\" and \"desc\" for retrieving the localized achievement name and description (returned in UTF8) * \"hidden\" for retrieving if an achievement is hidden (returns \"0\" when not hidden, \"1\" when hidden)",
+                            "description": "Accepts the following keys * \"name\" and \"desc\" for retrieving the localized achievement name and description (returned in UTF8) * \"hidden\" for retrieving if an achievement is hidden (returns \"0\" when not hidden, \"1\" when hidden) https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementDisplayAttribute",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_get_achievement_display_attribute",
@@ -1649,7 +1649,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementAchievedPercent",
                             "has_params": false,
                             "has_returns": true,
                             "name": "user_stats_get_achievement_achieved_percent",
@@ -1670,7 +1670,7 @@
                             "usage": null
                         },
                         {
-                            "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardFindResult_t.",
+                            "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardFindResult_t. https://partner.steamgames.com/doc/api/ISteamUserStats#FindOrCreateLeaderboard",
                             "has_params": true,
                             "has_returns": false,
                             "name": "user_stats_find_or_create_leaderboard",
@@ -1697,7 +1697,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardName",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_get_leaderboard_name",
@@ -1720,7 +1720,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardEntryCount",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_get_leaderboard_entry_count",
@@ -1743,7 +1743,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardSortMethod",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_get_leaderboard_sort_method",
@@ -1766,7 +1766,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardDisplayType",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_get_leaderboard_display_type",
@@ -1789,7 +1789,7 @@
                             "usage": null
                         },
                         {
-                            "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user",
+                            "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user https://partner.steamgames.com/doc/api/ISteamUserStats#DownloadLeaderboardEntries",
                             "has_params": true,
                             "has_returns": false,
                             "name": "user_stats_download_leaderboard_entries",
@@ -1821,7 +1821,7 @@
                             "usage": null
                         },
                         {
-                            "description": "",
+                            "description": "Https://partner.steamgames.com/doc/api/ISteamUserStats#GetDownloadedLeaderboardEntry",
                             "has_params": true,
                             "has_returns": true,
                             "name": "user_stats_get_downloaded_leaderboard_entry",
@@ -1854,7 +1854,7 @@
                             "usage": null
                         },
                         {
-                            "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoreUploaded_t.",
+                            "description": "This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoreUploaded_t. https://partner.steamgames.com/doc/api/ISteamUserStats#UploadLeaderboardScore",
                             "has_params": true,
                             "has_returns": false,
                             "name": "user_stats_upload_leaderboard_score",
@@ -1878,6 +1878,34 @@
                             "params_string": "leaderboard,eLeaderboardUploadScoreMethod,nScore",
                             "returns": [],
                             "summary": "Uploads a user score to a specified leaderboard.",
+                            "usage": null
+                        },
+                        {
+                            "description": "Leaderboard. https://partner.steamgames.com/doc/api/ISteamUserStats#AttachLeaderboardUGC",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "user_stats_attach_leadboard_ugc",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "leaderboard",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "ugc_handle",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "leaderboard,ugc_handle",
+                            "returns": [
+                                {
+                                    "description": "API call id",
+                                    "name": "Steam",
+                                    "type": "string"
+                                }
+                            ],
+                            "summary": "Attaches a piece of user generated content the current user's entry on a",
                             "usage": null
                         }
                     ],

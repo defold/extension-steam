@@ -661,7 +661,7 @@ Provides functions for accessing and submitting stats, achievements, and Leaderb
 
 
 ### user_stats_get_stat_int(id)
-Get user stat as an integer. 
+Get user stat as an integer. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
 
 
 PARAMS
@@ -673,7 +673,7 @@ RETURNS
 
 
 ### user_stats_set_stat_int(id,stat)
-Set user stat. 
+Set user stat. Https://partner.steamgames.com/doc/api/ISteamUserStats#SetStat
 
 
 PARAMS
@@ -685,7 +685,7 @@ RETURNS
 
 
 ### user_stats_get_stat_float(id)
-Get user stat as a floating point number. 
+Get user stat as a floating point number. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
 
 
 PARAMS
@@ -697,7 +697,7 @@ RETURNS
 
 
 ### user_stats_set_stat_float(id,stat)
-Set user stat. 
+Set user stat. Https://partner.steamgames.com/doc/api/ISteamUserStats#SetStat
 
 
 PARAMS
@@ -709,7 +709,7 @@ RETURNS
 
 
 ### user_stats_request_global_stats(history_days)
-Requests global stats data, which is available for stats marked as &quot;aggregated&quot;. This call is asynchronous, with the results returned in GlobalStatsReceived_t. nHistoryDays specifies how many days of day-by-day history to retrieve in addition to the overall totals. The limit is 60.
+Requests global stats data, which is available for stats marked as &quot;aggregated&quot;. This call is asynchronous, with the results returned in GlobalStatsReceived_t. nHistoryDays specifies how many days of day-by-day history to retrieve in addition to the overall totals. The limit is 60. https://partner.steamgames.com/doc/api/ISteamUserStats#RequestGlobalStats
 
 
 PARAMS
@@ -720,7 +720,7 @@ RETURNS
 
 
 ### user_stats_store_stats()
-Store the current data on the server. Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync.
+Store the current data on the server. Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync. https://partner.steamgames.com/doc/api/ISteamUserStats#StoreStats
 
 
 RETURNS
@@ -728,7 +728,7 @@ RETURNS
 
 
 ### user_stats_reset_all_stats(achievements)
-Reset stats. 
+Reset stats. Https://partner.steamgames.com/doc/api/ISteamUserStats#ResetAllStats
 
 
 PARAMS
@@ -739,7 +739,7 @@ RETURNS
 
 
 ### user_stats_set_achievement(name)
-Set achievement. 
+Set achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#SetAchievement
 
 
 PARAMS
@@ -750,7 +750,7 @@ RETURNS
 
 
 ### user_stats_get_achievement(name)
-Get achievement. 
+Get achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievement
 
 
 PARAMS
@@ -762,7 +762,7 @@ RETURNS
 
 
 ### user_stats_clear_achievement(name)
-Clear achievement. 
+Clear achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#ClearAchievement
 
 
 PARAMS
@@ -773,7 +773,7 @@ RETURNS
 
 
 ### user_stats_get_num_achievements()
-Used for iterating achievements. In general games should not need these functions because they should have a list of existing achievements compiled into them.
+Used for iterating achievements. In general games should not need these functions because they should have a list of existing achievements compiled into them. https://partner.steamgames.com/doc/api/ISteamUserStats#GetNumAchievements
 
 
 RETURNS
@@ -781,7 +781,7 @@ RETURNS
 
 
 ### user_stats_get_achievement_name(index)
-Get achievement name iAchievement in [0,GetNumAchievements) 
+Get achievement name iAchievement in [0,GetNumAchievements) Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementName
 
 
 PARAMS
@@ -792,7 +792,7 @@ RETURNS
 
 
 ### user_stats_get_achievement_display_attribute(name,key)
-Get general attributes for an achievement. Accepts the following keys * &quot;name&quot; and &quot;desc&quot; for retrieving the localized achievement name and description (returned in UTF8) * &quot;hidden&quot; for retrieving if an achievement is hidden (returns &quot;0&quot; when not hidden, &quot;1&quot; when hidden)
+Get general attributes for an achievement. Accepts the following keys * &quot;name&quot; and &quot;desc&quot; for retrieving the localized achievement name and description (returned in UTF8) * &quot;hidden&quot; for retrieving if an achievement is hidden (returns &quot;0&quot; when not hidden, &quot;1&quot; when hidden) https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementDisplayAttribute
 
 
 PARAMS
@@ -804,7 +804,7 @@ RETURNS
 
 
 ### user_stats_get_achievement_achieved_percent()
-Returns the percentage of users who have achieved the specified achievement. 
+Returns the percentage of users who have achieved the specified achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementAchievedPercent
 
 
 RETURNS
@@ -813,7 +813,7 @@ RETURNS
 
 
 ### user_stats_find_or_create_leaderboard(leaderboard_name,eLeaderboardSortMethod,eLeaderboardDisplayType)
-Gets a leaderboard by name, it will create it if it&#x27;s not yet created. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardFindResult_t.
+Gets a leaderboard by name, it will create it if it&#x27;s not yet created. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardFindResult_t. https://partner.steamgames.com/doc/api/ISteamUserStats#FindOrCreateLeaderboard
 
 
 PARAMS
@@ -823,7 +823,7 @@ PARAMS
 
 
 ### user_stats_get_leaderboard_name(leaderboard)
-Get the name of a leaderboard. 
+Get the name of a leaderboard. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardName
 
 
 PARAMS
@@ -834,7 +834,7 @@ RETURNS
 
 
 ### user_stats_get_leaderboard_entry_count(leaderboard)
-Get the total number of entries in a leaderboard, as of the last request. 
+Get the total number of entries in a leaderboard, as of the last request. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardEntryCount
 
 
 PARAMS
@@ -845,7 +845,7 @@ RETURNS
 
 
 ### user_stats_get_leaderboard_sort_method(leaderboard)
-Returns the sort method of the leaderboard 
+Returns the sort method of the leaderboard Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardSortMethod
 
 
 PARAMS
@@ -856,7 +856,7 @@ RETURNS
 
 
 ### user_stats_get_leaderboard_display_type(leaderboard)
-Returns the display type of a leaderboard handle. 
+Returns the display type of a leaderboard handle. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardDisplayType
 
 
 PARAMS
@@ -867,7 +867,7 @@ RETURNS
 
 
 ### user_stats_download_leaderboard_entries(leaderboard,request,start,end)
-Asks the Steam back-end for a set of rows in the leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart &amp; nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user
+Asks the Steam back-end for a set of rows in the leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart &amp; nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user https://partner.steamgames.com/doc/api/ISteamUserStats#DownloadLeaderboardEntries
 
 
 PARAMS
@@ -878,7 +878,7 @@ PARAMS
 
 
 ### user_stats_get_downloaded_leaderboard_entry(hSteamLeaderboardEntries,index)
-Returns data about a single leaderboard entry 
+Returns data about a single leaderboard entry Https://partner.steamgames.com/doc/api/ISteamUserStats#GetDownloadedLeaderboardEntry
 
 
 PARAMS
@@ -891,13 +891,25 @@ RETURNS
 
 
 ### user_stats_upload_leaderboard_score(leaderboard,eLeaderboardUploadScoreMethod,nScore)
-Uploads a user score to a specified leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoreUploaded_t.
+Uploads a user score to a specified leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoreUploaded_t. https://partner.steamgames.com/doc/api/ISteamUserStats#UploadLeaderboardScore
 
 
 PARAMS
 * `leaderboard` [`string`] - 
 * `eLeaderboardUploadScoreMethod` [`ELeaderboardUploadScoreMethod`] - 
 * `nScore` [`number`] - 
+
+
+### user_stats_attach_leadboard_ugc(leaderboard,ugc_handle)
+Attaches a piece of user generated content the current user&#x27;s entry on a Leaderboard. https://partner.steamgames.com/doc/api/ISteamUserStats#AttachLeaderboardUGC
+
+
+PARAMS
+* `leaderboard` [`string`] - 
+* `ugc_handle` [`string`] - 
+
+RETURNS
+* `Steam` [`string`] - API call id
 
 
 ---

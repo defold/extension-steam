@@ -11,6 +11,7 @@ int SteamUserStats_OnGlobalStatsReceived(lua_State* L, void* data);
 int SteamUserStats_OnLeaderboardFindResult(lua_State* L, void* data);
 int SteamUserStats_OnLeaderboardScoresDownloaded(lua_State* L, void* data);
 int SteamUserStats_OnLeaderboardScoreUploaded(lua_State* L, void* data);
+int SteamUserStats_OnLeaderboardUGCSet(lua_State* L, void* data);
 
 int SteamUserStats_Init(lua_State* L);
 int SteamUserStats_GetStatInt(lua_State* L);
@@ -41,6 +42,7 @@ int SteamUserStats_GetLeaderboardDisplayType(lua_State* L);
 int SteamUserStats_DownloadLeaderboardEntries(lua_State* L);
 int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L);
 int SteamUserStats_UploadLeaderboardScore(lua_State* L);
+int SteamUserStats_AttachLeaderboardUGC(lua_State* L);
 
 #endif
 

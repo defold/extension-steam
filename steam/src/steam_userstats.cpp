@@ -69,6 +69,19 @@ int SteamUserStats_OnLeaderboardScoreUploaded(lua_State* L, void* data)
 	return 2;
 }
 
+int SteamUserStats_OnLeaderboardUGCSet(lua_State* L, void* data)
+{
+	LeaderboardUGCSet_t* s = (LeaderboardUGCSet_t*)data;
+	lua_pushstring(L, "LeaderboardUGCSet_t");
+
+	lua_newtable(L);
+	table_push_uint64(L, "m_hSteamLeaderboard", s->m_hSteamLeaderboard);
+	table_push_number(L, "m_eResult", s->m_eResult);
+
+	return 2;
+}
+
+
 static ISteamUserStats* g_SteamUserStats = 0;
 
 int SteamUserStats_Init(lua_State* L)
@@ -79,6 +92,7 @@ int SteamUserStats_Init(lua_State* L)
 
 
 /** Get user stat as an integer.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
  * @name user_stats_get_stat_int
  * @string id Id of the stat to get
  * @treturn ok Boolean
@@ -104,6 +118,7 @@ int SteamUserStats_GetStatInt(lua_State* L)
 }
 
 /** Set user stat.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#SetStat
  * @name user_stats_set_stat_int
  * @string id Id of the stat to set
  * @number stat Number to set
@@ -121,6 +136,7 @@ int SteamUserStats_SetStatInt(lua_State* L)
 }
 
 /** Get user stat as a floating point number.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
  * @name user_stats_get_stat_float
  * @string id Id of the stat to get
  * @treturn Boolean ok
@@ -146,6 +162,7 @@ int SteamUserStats_GetStatFloat(lua_State* L)
 }
 
 /** Set user stat.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#SetStat
  * @name user_stats_set_stat_float
  * @string id Id of the stat to set
  * @number stat Number to set
@@ -174,6 +191,7 @@ int SteamUserStats_RequestCurrentStats(lua_State* L)
  * This call is asynchronous, with the results returned in GlobalStatsReceived_t.
  * nHistoryDays specifies how many days of day-by-day history to retrieve in addition
  * to the overall totals. The limit is 60.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#RequestGlobalStats
  * @name user_stats_request_global_stats
  * @number history_days
  * @treturn Boolean ok 
@@ -195,6 +213,7 @@ int SteamUserStats_RequestGlobalStats(lua_State* L)
  * uploaded has been rejected, either because they broke constraints
  * or were out of date. In this case the server sends back updated values.
  * The stats should be re-iterated to keep in sync.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#StoreStats
  * @name user_stats_store_stats
  * @treturn Boolean ok 
  */
@@ -208,6 +227,7 @@ int SteamUserStats_StoreStats(lua_State* L)
 }
 
 /** Reset stats.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#ResetAllStats
  * @name user_stats_reset_all_stats
  * @boolean achievements True if achievements should be reset as well.
  * @treturn Boolean ok
@@ -223,6 +243,7 @@ int SteamUserStats_ResetAllStats(lua_State* L)
 }
 
 /** Set achievement.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#SetAchievement
  * @name user_stats_set_achievement
  * @string name
  * @treturn Boolean ok
@@ -238,6 +259,7 @@ int SteamUserStats_SetAchievement(lua_State* L)
 }
 
 /** Get achievement.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievement
  * @name user_stats_get_achievement
  * @string name
  * @treturn Boolean ok
@@ -263,6 +285,7 @@ int SteamUserStats_GetAchievement(lua_State* L)
 }
 
 /** Clear achievement.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#ClearAchievement
  * @name user_stats_clear_achievement
  * @string name
  * @treturn Boolean ok
@@ -280,6 +303,7 @@ int SteamUserStats_ClearAchievement(lua_State* L)
 /** Used for iterating achievements.
  * In general games should not need these functions because they should have a
  * list of existing achievements compiled into them.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#GetNumAchievements
  * @name user_stats_get_num_achievements
  * @treturn Number num Number of achievements.
  */
@@ -293,6 +317,7 @@ int SteamUserStats_GetNumAchievements(lua_State* L)
 }
 
 /** Get achievement name iAchievement in [0,GetNumAchievements)
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementName
  * @name user_stats_get_achievement_name
  * @number index
  * @treturn String name
@@ -311,6 +336,7 @@ int SteamUserStats_GetAchievementName(lua_State* L)
  * Accepts the following keys
  * * "name" and "desc" for retrieving the localized achievement name and description (returned in UTF8)
  * * "hidden" for retrieving if an achievement is hidden (returns "0" when not hidden, "1" when hidden)
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementDisplayAttribute
  * @name user_stats_get_achievement_display_attribute
  * @string name
  * @string key Either "name", "desc" or "hidden"
@@ -328,6 +354,7 @@ int SteamUserStats_GetAchievementDisplayAttribute(lua_State* L)
 }
 
 /** Returns the percentage of users who have achieved the specified achievement.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementAchievedPercent
  * @name user_stats_get_achievement_achieved_percent
  * @treturn Boolean ok
  * @treturn Number percent
@@ -354,6 +381,7 @@ int SteamUserStats_GetAchievementAchievedPercent(lua_State* L)
 /**
  * Find a leaderboard.
  * Will return leaderboard asynchronously.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#FindLeaderboard
  * @name user_stats_find_leaderboard
  * @string name
  */
@@ -369,6 +397,7 @@ int SteamUserStats_FindLeaderboard(lua_State* L)
 /** Gets a leaderboard by name, it will create it if it's not yet created.
  * This call is asynchronous, with the result returned in a listener callback
  * with event set to LeaderboardFindResult_t.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#FindOrCreateLeaderboard
  * @name user_stats_find_or_create_leaderboard
  * @string leaderboard_name The name of the leaderboard to find or create.
  * @tparam ELeaderboardSortMethod eLeaderboardSortMethod The sort order of the new leaderboard if it's created.
@@ -388,6 +417,7 @@ int SteamUserStats_FindOrCreateLeaderboard(lua_State* L)
 }
 
 /** Get the name of a leaderboard.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardName
  * @name user_stats_get_leaderboard_name
  * @string leaderboard
  * @treturn string name
@@ -403,6 +433,7 @@ int SteamUserStats_GetLeaderboardName(lua_State* L)
 }
 
 /** Get the total number of entries in a leaderboard, as of the last request.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardEntryCount
  * @name user_stats_get_leaderboard_entry_count
  * @string leaderboard
  * @treturn number count
@@ -418,6 +449,7 @@ int SteamUserStats_GetLeaderboardEntryCount(lua_State* L)
 }
 
 /** Returns the sort method of the leaderboard
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardSortMethod
  * @name user_stats_get_leaderboard_sort_method
  * @string leaderboard
  * @treturn number sort order
@@ -434,6 +466,7 @@ int SteamUserStats_GetLeaderboardSortMethod(lua_State* L)
 
 
 /** Returns the display type of a leaderboard handle.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardDisplayType
  * @name user_stats_get_leaderboard_display_type
  * @string leaderboard
  * @treturn number display type
@@ -459,6 +492,7 @@ int SteamUserStats_GetLeaderboardDisplayType(lua_State* L)
  * * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate
  *   e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after
  * * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user 
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#DownloadLeaderboardEntries
  * @name user_stats_download_leaderboard_entries
  * @string leaderboard
  * @tparam ELeaderboardDataRequest request
@@ -478,6 +512,7 @@ int SteamUserStats_DownloadLeaderboardEntries(lua_State* L)
 }
 
 /** Returns data about a single leaderboard entry
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#GetDownloadedLeaderboardEntry
  * @name user_stats_get_downloaded_leaderboard_entry
  * @string hSteamLeaderboardEntries Leaderboard entries handle
  * @number index Which entry to get
@@ -527,6 +562,7 @@ int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L)
 /** Uploads a user score to a specified leaderboard.
  * This call is asynchronous, with the result returned in a listener callback
  * with event set to LeaderboardScoreUploaded_t.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#UploadLeaderboardScore
  * @name user_stats_upload_leaderboard_score
  * @string leaderboard
  * @tparam ELeaderboardUploadScoreMethod eLeaderboardUploadScoreMethod
@@ -546,6 +582,29 @@ int SteamUserStats_UploadLeaderboardScore(lua_State* L)
 
 	g_SteamUserStats->UploadLeaderboardScore(leaderboard, eLeaderboardUploadScoreMethod, nScore, pScoreDetails, cScoreDetailsCount);
 	return 0;
+}
+
+
+
+/** Attaches a piece of user generated content the current user's entry on a
+ * leaderboard.
+ * https://partner.steamgames.com/doc/api/ISteamUserStats#AttachLeaderboardUGC
+ * @name user_stats_attach_leadboard_ugc
+ * @string leaderboard
+ * @string ugc_handle
+ * @treturn string Steam API call id
+ */
+int SteamUserStats_AttachLeaderboardUGC(lua_State* L)
+{
+	if (!g_SteamUserStats) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+
+	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
+	UGCHandle_t ugc = check_uint64(L, 2);
+	SteamAPICall_t call = g_SteamUserStats->AttachLeaderboardUGC(leaderboard, ugc);
+	push_uint64(L, call);
+
+	return 1;
 }
 
 #endif

@@ -5,6 +5,8 @@
 
 #include <dmsdk/sdk.h>
 
+int SteamRemoteStorage_OnRemoteStorageFileShareResult(lua_State* L, void* data);
+
 int SteamRemoteStorage_Init(lua_State* L);
 
 int SteamRemoteStorage_FileShare(lua_State* L);

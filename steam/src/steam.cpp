@@ -154,13 +154,13 @@ static int Update(lua_State* L)
 		else if (id == UserStatsReceived_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnUserStatsReceived, data);
 		else if (id == LeaderboardScoresDownloaded_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardScoresDownloaded, data);
 		else if (id == LeaderboardScoreUploaded_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardScoreUploaded, data);
+		else if (id == LeaderboardUGCSet_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardUGCSet, data);
 		else if (id == UserStatsStored_t::k_iCallback) SteamListener_InvokeGeneric("UserStatsStored_t");
 		else if (id == UserAchievementStored_t::k_iCallback) SteamListener_InvokeGeneric("UserAchievementStored_t");
 		else if (id == NumberOfCurrentPlayers_t::k_iCallback) SteamListener_InvokeGeneric("NumberOfCurrentPlayers_t");
 		else if (id == UserStatsUnloaded_t::k_iCallback) SteamListener_InvokeGeneric("UserStatsUnloaded_t");
 		else if (id == UserAchievementIconFetched_t::k_iCallback) SteamListener_InvokeGeneric("UserAchievementIconFetched_t");
 		else if (id == GlobalAchievementPercentagesReady_t::k_iCallback) SteamListener_InvokeGeneric("GlobalAchievementPercentagesReady_t");
-		else if (id == LeaderboardUGCSet_t::k_iCallback) SteamListener_InvokeGeneric("LeaderboardUGCSet_t");
 		// user
 		else if (id == MicroTxnAuthorizationResponse_t::k_iCallback) SteamListener_Invoke(SteamUser_OnMicroTxnAuthorizationResponse, data);
 		else if (id == SteamServersConnected_t::k_iCallback) SteamListener_InvokeGeneric("SteamServersConnected_t");
@@ -239,7 +239,31 @@ static int Update(lua_State* L)
 		else if (id == SteamNetAuthenticationStatus_t::k_iCallback) SteamListener_InvokeGeneric("SteamNetAuthenticationStatus_t");
 		else if (id == SteamNetworkingMessagesSessionFailed_t::k_iCallback) SteamListener_InvokeGeneric("SteamNetworkingMessagesSessionFailed_t");
 		// remote storage
-
+		else if (id == RemoteStorageFileShareResult_t::k_iCallback) SteamListener_Invoke(SteamRemoteStorage_OnRemoteStorageFileShareResult, data);
+		else if (id == RemoteStoragePublishFileResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStoragePublishFileResult_t");
+		else if (id == RemoteStorageDeletePublishedFileResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageDeletePublishedFileResult_t");
+		else if (id == RemoteStorageEnumerateUserPublishedFilesResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageEnumerateUserPublishedFilesResult_t");
+		else if (id == RemoteStorageSubscribePublishedFileResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageSubscribePublishedFileResult_t");
+		else if (id == RemoteStorageEnumerateUserSubscribedFilesResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageEnumerateUserSubscribedFilesResult_t");
+		else if (id == RemoteStorageUnsubscribePublishedFileResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageUnsubscribePublishedFileResult_t");
+		else if (id == RemoteStorageUpdatePublishedFileResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageUpdatePublishedFileResult_t");
+		else if (id == RemoteStorageDownloadUGCResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageDownloadUGCResult_t");
+		else if (id == RemoteStorageGetPublishedFileDetailsResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageGetPublishedFileDetailsResult_t");
+		else if (id == RemoteStorageEnumerateWorkshopFilesResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageEnumerateWorkshopFilesResult_t");
+		else if (id == RemoteStorageGetPublishedItemVoteDetailsResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageGetPublishedItemVoteDetailsResult_t");
+		else if (id == RemoteStoragePublishedFileSubscribed_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStoragePublishedFileSubscribed_t");
+		else if (id == RemoteStoragePublishedFileUnsubscribed_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStoragePublishedFileUnsubscribed_t");
+		else if (id == RemoteStoragePublishedFileDeleted_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStoragePublishedFileDeleted_t");
+		else if (id == RemoteStorageUpdateUserPublishedItemVoteResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageUpdateUserPublishedItemVoteResult_t");
+		else if (id == RemoteStorageUserVoteDetails_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageUserVoteDetails_t");
+		else if (id == RemoteStorageEnumerateUserSharedWorkshopFilesResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageEnumerateUserSharedWorkshopFilesResult_t");
+		else if (id == RemoteStorageSetUserPublishedFileActionResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageSetUserPublishedFileActionResult_t");
+		else if (id == RemoteStorageEnumeratePublishedFilesByUserActionResult_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageEnumeratePublishedFilesByUserActionResult_t");
+		else if (id == RemoteStoragePublishFileProgress_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStoragePublishFileProgress_t");
+		else if (id == RemoteStoragePublishedFileUpdated_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStoragePublishedFileUpdated_t");
+		else if (id == RemoteStorageFileWriteAsyncComplete_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageFileWriteAsyncComplete_t");
+		else if (id == RemoteStorageFileReadAsyncComplete_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageFileReadAsyncComplete_t");
+		else if (id == RemoteStorageLocalFileChange_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageLocalFileChange_t");
 		else
 		{
 			//dmLogInfo("Unhandled callback with id %d", id);
@@ -327,6 +351,7 @@ static const luaL_reg Module_methods[] = {
 	{ "user_stats_get_downloaded_leaderboard_entry", SteamUserStats_GetDownloadedLeaderboardEntry },
 	{ "user_stats_get_achievement", SteamUserStats_GetAchievement },
 	{ "user_stats_upload_leaderboard_score", SteamUserStats_UploadLeaderboardScore },
+	{ "user_stats_attach_leadboard_ugc", SteamUserStats_UploadLeaderboardScore },
 
 	// FRIENDS
 	{ "friends_get_persona_name", SteamFriends_GetPersonaName },

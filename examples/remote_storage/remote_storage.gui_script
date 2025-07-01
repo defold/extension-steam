@@ -12,6 +12,14 @@ function init(self)
 	local status, error = pcall(steam.init)
 	if not status then print("Error: " .. error) return end
 
+	steam.set_listener(function(self, e, t)
+		print("listener event", e)
+		pprint(t)
+		if e == "RemoteStorageFileShareResult_t" then
+			
+		end
+	end)
+	
 	msg.post("#", "update_quota")
 	msg.post("#", "update_files")
 end
@@ -33,6 +41,9 @@ function on_input(self, action_id, action)
 		local data = steam.remote_storage_file_read(filename)
 		print(filename, data)
 		gui.set_text(gui.get_node("filedata"), data)
+
+		local call_id = steam.remote_storage_file_share(filename)
+		print(call_id)
 	end)
 	rpg.button("write", action_id, action, function()
 		local name = "test.txt"
