@@ -448,6 +448,72 @@
       type: table
       desc: Connection info (state, info, status)
 
+  - name: remote_storage_file_share
+    type: function
+    desc: Share a file 
+    parameters:
+    - name: filename
+      type: string
+      desc: Name of file to share
+    returns:
+    - name: call
+      type: string
+      desc: Id
+
+  - name: remote_storage_get_file_count
+    type: function
+    desc: Get number of uploaded files 
+    returns:
+    - name: File
+      type: number
+      desc: Count
+
+  - name: remote_storage_get_file_name_and_size
+    type: function
+    desc: Get file information 
+    returns:
+    - name: File
+      type: number
+      desc: Count
+
+  - name: remote_storage_get_quota
+    type: function
+    desc: Get storage quota 
+    returns:
+    - name: Available
+      type: number
+      desc: Bytes
+    - name: Total
+      type: number
+      desc: Bytes
+
+  - name: remote_storage_file_write
+    type: function
+    desc: Creates a new file, writes the bytes to the file, and then closes the file. If the target file already exists, it is overwritten.
+    parameters:
+    - name: filename
+      type: string
+      desc: The name of the file to write to.
+    - name: data
+      type: string
+
+    returns:
+    - name: Success
+      type: boolean
+
+
+  - name: remote_storage_file_read
+    type: function
+    desc: Opens a binary file, reads the contents of the file into a byte array, And then closes the file.
+    parameters:
+    - name: filename
+      type: string
+      desc: Name of the file to read from
+    returns:
+    - name: data
+      type: string
+
+
   - name: user_get_steam_id
     type: function
     desc: Returns the CSteamID of the account currently logged into the Steam client. A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.

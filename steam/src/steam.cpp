@@ -154,6 +154,28 @@ static int Update(lua_State* L)
 		else if (id == UserStatsReceived_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnUserStatsReceived, data);
 		else if (id == LeaderboardScoresDownloaded_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardScoresDownloaded, data);
 		else if (id == LeaderboardScoreUploaded_t::k_iCallback) SteamListener_Invoke(SteamUserStats_OnLeaderboardScoreUploaded, data);
+		else if (id == UserStatsStored_t::k_iCallback) SteamListener_InvokeGeneric("UserStatsStored_t");
+		else if (id == UserAchievementStored_t::k_iCallback) SteamListener_InvokeGeneric("UserAchievementStored_t");
+		else if (id == NumberOfCurrentPlayers_t::k_iCallback) SteamListener_InvokeGeneric("NumberOfCurrentPlayers_t");
+		else if (id == UserStatsUnloaded_t::k_iCallback) SteamListener_InvokeGeneric("UserStatsUnloaded_t");
+		else if (id == UserAchievementIconFetched_t::k_iCallback) SteamListener_InvokeGeneric("UserAchievementIconFetched_t");
+		else if (id == GlobalAchievementPercentagesReady_t::k_iCallback) SteamListener_InvokeGeneric("GlobalAchievementPercentagesReady_t");
+		else if (id == LeaderboardUGCSet_t::k_iCallback) SteamListener_InvokeGeneric("LeaderboardUGCSet_t");
+		// user
+		else if (id == SteamServersConnected_t::k_iCallback) SteamListener_InvokeGeneric("SteamServersConnected_t");
+		else if (id == SteamServerConnectFailure_t::k_iCallback) SteamListener_InvokeGeneric("SteamServerConnectFailure_t");
+		else if (id == SteamServersDisconnected_t::k_iCallback) SteamListener_InvokeGeneric("SteamServersDisconnected_t");
+		else if (id == ClientGameServerDeny_t::k_iCallback) SteamListener_InvokeGeneric("ClientGameServerDeny_t");
+		else if (id == IPCFailure_t::k_iCallback) SteamListener_InvokeGeneric("IPCFailure_t");
+		else if (id == LicensesUpdated_t::k_iCallback) SteamListener_InvokeGeneric("LicensesUpdated_t");
+		else if (id == ValidateAuthTicketResponse_t::k_iCallback) SteamListener_InvokeGeneric("ValidateAuthTicketResponse_t");
+		else if (id == EncryptedAppTicketResponse_t::k_iCallback) SteamListener_InvokeGeneric("EncryptedAppTicketResponse_t");
+		else if (id == GetAuthSessionTicketResponse_t::k_iCallback) SteamListener_InvokeGeneric("GetAuthSessionTicketResponse_t");
+		else if (id == GameWebCallback_t::k_iCallback) SteamListener_InvokeGeneric("GameWebCallback_t");
+		else if (id == StoreAuthURLResponse_t::k_iCallback) SteamListener_InvokeGeneric("StoreAuthURLResponse_t");
+		else if (id == MarketEligibilityResponse_t::k_iCallback) SteamListener_InvokeGeneric("MarketEligibilityResponse_t");
+		else if (id == DurationControl_t::k_iCallback) SteamListener_InvokeGeneric("DurationControl_t");
+		else if (id == GetTicketForWebApiResponse_t::k_iCallback) SteamListener_InvokeGeneric("GetTicketForWebApiResponse_t");
 		// utils
 		else if (id == GamepadTextInputDismissed_t::k_iCallback) SteamListener_Invoke(SteamUtils_OnGamepadTextInputDismissed, data);
 		else if (id == FloatingGamepadTextInputDismissed_t::k_iCallback) SteamListener_Invoke(SteamUtils_OnFloatingGamepadTextInputDismissed, data);
@@ -215,6 +237,8 @@ static int Update(lua_State* L)
 		else if (id == SteamRelayNetworkStatus_t::k_iCallback) SteamListener_InvokeGeneric("SteamRelayNetworkStatus_t");
 		else if (id == SteamNetAuthenticationStatus_t::k_iCallback) SteamListener_InvokeGeneric("SteamNetAuthenticationStatus_t");
 		else if (id == SteamNetworkingMessagesSessionFailed_t::k_iCallback) SteamListener_InvokeGeneric("SteamNetworkingMessagesSessionFailed_t");
+		// remote storage
+
 		else
 		{
 			//dmLogInfo("Unhandled callback with id %d", id);
@@ -347,6 +371,14 @@ static const luaL_reg Module_methods[] = {
 	{ "networking_close_session_with_user", SteamNetworking_CloseSessionWithUser },
 	{ "networking_close_channel_with_user", SteamNetworking_CloseChannelWithUser },
 	{ "networking_get_session_connection_info", SteamNetworking_GetSessionConnectionInfo },
+
+	// REMOTESTORAGE
+	{ "remote_storage_file_share", SteamRemoteStorage_FileShare },
+	{ "remote_storage_file_write", SteamRemoteStorage_FileWrite },
+	{ "remote_storage_file_read", SteamRemoteStorage_FileRead },
+	{ "remote_storage_get_file_count", SteamRemoteStorage_GetFileCount },
+	{ "remote_storage_get_file_name_and_size", SteamRemoteStorage_GetFileNameAndSize },
+	{ "remote_storage_get_quota", SteamRemoteStorage_GetQuota },
 
 	{ 0, 0 }
 };

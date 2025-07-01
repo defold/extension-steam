@@ -1022,6 +1022,140 @@
                 {
                     "entries": [
                         {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "remote_storage_file_share",
+                            "params": [
+                                {
+                                    "description": "Name of file to share",
+                                    "name": "filename",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "filename",
+                            "returns": [
+                                {
+                                    "description": "Id",
+                                    "name": "call",
+                                    "type": "string"
+                                }
+                            ],
+                            "summary": "Share a file",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "remote_storage_get_file_count",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Count",
+                                    "name": "File",
+                                    "type": "number"
+                                }
+                            ],
+                            "summary": "Get number of uploaded files",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "remote_storage_get_file_name_and_size",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Count",
+                                    "name": "File",
+                                    "type": "number"
+                                }
+                            ],
+                            "summary": "Get file information",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": false,
+                            "has_returns": true,
+                            "name": "remote_storage_get_quota",
+                            "params": [],
+                            "returns": [
+                                {
+                                    "description": "Bytes",
+                                    "name": "Available",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "Bytes",
+                                    "name": "Total",
+                                    "type": "number"
+                                }
+                            ],
+                            "summary": "Get storage quota",
+                            "usage": null
+                        },
+                        {
+                            "description": "If the target file already exists, it is overwritten.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "remote_storage_file_write",
+                            "params": [
+                                {
+                                    "description": "The name of the file to write to.",
+                                    "name": "filename",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "data",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "filename,data",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "Success",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Creates a new file, writes the bytes to the file, and then closes the file.",
+                            "usage": null
+                        },
+                        {
+                            "description": "And then closes the file.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "remote_storage_file_read",
+                            "params": [
+                                {
+                                    "description": "Name of the file to read from",
+                                    "name": "filename",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "filename",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "data",
+                                    "type": "string"
+                                }
+                            ],
+                            "summary": "Opens a binary file, reads the contents of the file into a byte array,",
+                            "usage": null
+                        }
+                    ],
+                    "filename": "steam/src/steam_remotestorage.cpp",
+                    "group": "src",
+                    "module": "steam_remotestorage"
+                },
+                {
+                    "entries": [
+                        {
                             "description": "A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.",
                             "has_params": false,
                             "has_returns": true,

@@ -7,6 +7,7 @@
   * [steam_listener](#steam_listener)
   * [steam_matchmaking](#steam_matchmaking)
   * [steam_networking](#steam_networking)
+  * [steam_remotestorage](#steam_remotestorage)
   * [steam_user](#steam_user)
   * [steam_userstats](#steam_userstats)
   * [steam_utils](#steam_utils)
@@ -492,6 +493,73 @@ PARAMS
 
 RETURNS
 * `info` [`table`] - Connection info (state, info, status)
+
+
+---
+
+## steam_remotestorage
+*File: `steam/src/steam_remotestorage.cpp`*
+
+
+
+
+### remote_storage_file_share(filename)
+Share a file 
+
+
+PARAMS
+* `filename` [`string`] - Name of file to share
+
+RETURNS
+* `call` [`string`] - Id
+
+
+### remote_storage_get_file_count()
+Get number of uploaded files 
+
+
+RETURNS
+* `File` [`number`] - Count
+
+
+### remote_storage_get_file_name_and_size()
+Get file information 
+
+
+RETURNS
+* `File` [`number`] - Count
+
+
+### remote_storage_get_quota()
+Get storage quota 
+
+
+RETURNS
+* `Available` [`number`] - Bytes
+* `Total` [`number`] - Bytes
+
+
+### remote_storage_file_write(filename,data)
+Creates a new file, writes the bytes to the file, and then closes the file. If the target file already exists, it is overwritten.
+
+
+PARAMS
+* `filename` [`string`] - The name of the file to write to.
+* `data` [`string`] - 
+
+RETURNS
+* `Success` [`boolean`] - 
+
+
+### remote_storage_file_read(filename)
+Opens a binary file, reads the contents of the file into a byte array, And then closes the file.
+
+
+PARAMS
+* `filename` [`string`] - Name of the file to read from
+
+RETURNS
+* `data` [`string`] - 
 
 
 ---

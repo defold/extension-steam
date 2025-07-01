@@ -7,6 +7,13 @@
 
 int SteamRemoteStorage_Init(lua_State* L);
 
+int SteamRemoteStorage_FileShare(lua_State* L);
+int SteamRemoteStorage_GetFileCount(lua_State* L);
+int SteamRemoteStorage_GetFileNameAndSize(lua_State* L);
+int SteamRemoteStorage_GetQuota(lua_State* L);
+int SteamRemoteStorage_FileWrite(lua_State* L);
+int SteamRemoteStorage_FileRead(lua_State* L);
+
 #endif
 
 #endif
