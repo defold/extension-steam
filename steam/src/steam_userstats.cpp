@@ -162,19 +162,12 @@ int SteamUserStats_SetStatFloat(lua_State* L)
 	return 1;
 }
 
-// 
-
-/** Ask the server to send down this user's data and achievements for this game.
- * @name user_stats_request_current_stats
- * @treturn Boolean ok True if successful
- */
 int SteamUserStats_RequestCurrentStats(lua_State* L)
 {
 	if (!g_SteamUserStats) return 0;
-	DM_LUA_STACK_CHECK(L, 1);
-	bool ok = g_SteamUserStats->RequestCurrentStats();
-	lua_pushboolean(L, ok);
-	return 1;
+	DM_LUA_STACK_CHECK(L, 0);
+	dmLogInfo("SteamUserStats_RequestCurrentStats is no longer needed");
+	return 0;
 }
 
 /** Requests global stats data, which is available for stats marked as "aggregated".
