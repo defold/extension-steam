@@ -6,6 +6,7 @@
   * [steam_friends](#steam_friends)
   * [steam_listener](#steam_listener)
   * [steam_matchmaking](#steam_matchmaking)
+  * [steam_networking](#steam_networking)
   * [steam_user](#steam_user)
   * [steam_userstats](#steam_userstats)
   * [steam_utils](#steam_utils)
@@ -350,6 +351,9 @@ PARAMS
 Get a filtered list of relevant lobbies. Will return results as a LobbyMatchList_t event
 
 
+RETURNS
+* `Callback` [`string`] - Id
+
 
 ### matchmaking_get_lobby_by_index(index)
 Gets the Steam ID of the lobby at the specified index. This should only be called after a LobbyMatchList_t call result is received LobbyMatchList_t.m_nLobbiesMatching
@@ -368,6 +372,9 @@ Joins an existing lobby. Will generate a LobbyEnter_t event
 
 PARAMS
 * `lobby_id` [`string`] - The Steam ID of the lobby to join.
+
+RETURNS
+* `Callback` [`string`] - Id
 
 
 ### matchmaking_leave_lobby(lobby_id)
@@ -410,6 +417,81 @@ PARAMS
 
 RETURNS
 * `Id` [`string`] - Of member
+
+
+---
+
+## steam_networking
+*File: `steam/src/steam_networking.cpp`*
+
+
+
+
+### networking_send_message_to_user(identity_remote,data,send_flags,remote_channel)
+Send message 
+
+
+PARAMS
+* `identity_remote` [`string`] - 
+* `data` [`string`] - 
+* `send_flags` [`number`] - A bitmask of k_nSteamNetworkingSend_xxx options
+* `remote_channel` [`number`] - A routing number you can use to help route message to different systems
+
+
+### networking_receive_messages_on_channel(localChannel)
+Receive message 
+
+
+PARAMS
+* `localChannel` [`number`] - 
+
+RETURNS
+* `message` [`table`] - 
+
+
+### networking_accept_session_with_user(identity_remote)
+Accept session Call this in response to a SteamNetworkingMessagesSessionRequest_t callback. pending or otherwise. If there is an existing active session, this function will return true, even if it is not pending.
+
+
+PARAMS
+* `identity_remote` [`string`] - 
+
+RETURNS
+* `result` [`boolean`] - Returns false if there is no session with the user
+
+
+### networking_close_session_with_user(identity_remote)
+Close sesssion Call this when you&#x27;re done talking to a user to immediately free up resources under-the-hood
+
+
+PARAMS
+* `identity_remote` [`string`] - 
+
+RETURNS
+* `result` [`boolean`] - 
+
+
+### networking_close_channel_with_user(identity_remote,local_channel)
+Close channel Call this when you&#x27;re done talking to a user on a specific channel.
+
+
+PARAMS
+* `identity_remote` [`string`] - 
+* `local_channel` [`number`] - 
+
+RETURNS
+* `result` [`boolean`] - 
+
+
+### networking_get_session_connection_info(identity_remote)
+Get connection info Returns information about the latest state of a connection, if any, with the given peer.
+
+
+PARAMS
+* `identity_remote` [`string`] - 
+
+RETURNS
+* `info` [`table`] - Connection info (state, info, status)
 
 
 ---
@@ -556,14 +638,6 @@ PARAMS
 
 RETURNS
 * `ok` [`Boolean`] - 
-
-
-### user_stats_request_current_stats()
-Ask the server to send down this user&#x27;s data and achievements for this game. 
-
-
-RETURNS
-* `ok` [`Boolean`] - True if successful
 
 
 ### user_stats_request_global_stats(history_days)

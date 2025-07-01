@@ -24,6 +24,17 @@ int SteamNetworking_OnSteamNetworkingMessagesSessionFailed(lua_State* L, void* d
 	return 2;
 }
 
+int SteamNetworking_OnSteamNetworkingMessagesSessionRequest(lua_State* L, void* data)
+{
+	SteamNetworkingMessagesSessionRequest_t* s = (SteamNetworkingMessagesSessionRequest_t*)data;
+	lua_pushstring(L, "SteamNetworkingMessagesSessionRequest_t");
+
+	lua_newtable(L);
+	table_push_CSteamID(L, "m_identityRemote", s->m_identityRemote.GetSteamID());
+
+	return 2;
+}
+
 /** Send message
  * 
  * @name networking_send_message_to_user
@@ -137,7 +148,7 @@ int SteamNetworking_CloseChannelWithUser(lua_State* L)
  * given peer.
  * @name networking_get_session_connection_info
  * @string identity_remote
- * @treturn table info Connection info (fields: state, info, status)
+ * @treturn table info Connection info (state, info, status)
  */
 int SteamNetworking_GetSessionConnectionInfo(lua_State* L)
 {
@@ -156,7 +167,6 @@ int SteamNetworking_GetSessionConnectionInfo(lua_State* L)
 	table_push_number(L, "state", state);
 	table_push_SteamNetConnectionInfo(L, "info", connectionInfo);
 	table_push_SteamNetConnectionRealTimeStatus(L, "status", quickStatus);
-	lua_pushnil(L);
 	return 1;
 }
 

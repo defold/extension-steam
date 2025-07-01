@@ -705,10 +705,16 @@
                         {
                             "description": "Will return results as a LobbyMatchList_t event",
                             "has_params": false,
-                            "has_returns": false,
+                            "has_returns": true,
                             "name": "matchmaking_request_lobby_list",
                             "params": [],
-                            "returns": [],
+                            "returns": [
+                                {
+                                    "description": "Id",
+                                    "name": "Callback",
+                                    "type": "string"
+                                }
+                            ],
                             "summary": "Get a filtered list of relevant lobbies.",
                             "usage": null
                         },
@@ -738,7 +744,7 @@
                         {
                             "description": "Will generate a LobbyEnter_t event",
                             "has_params": true,
-                            "has_returns": false,
+                            "has_returns": true,
                             "name": "matchmaking_join_lobby",
                             "params": [
                                 {
@@ -748,7 +754,13 @@
                                 }
                             ],
                             "params_string": "lobby_id",
-                            "returns": [],
+                            "returns": [
+                                {
+                                    "description": "Id",
+                                    "name": "Callback",
+                                    "type": "string"
+                                }
+                            ],
                             "summary": "Joins an existing lobby.",
                             "usage": null
                         },
@@ -847,6 +859,165 @@
                     "filename": "steam/src/steam_matchmaking.cpp",
                     "group": "src",
                     "module": "steam_matchmaking"
+                },
+                {
+                    "entries": [
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": false,
+                            "name": "networking_send_message_to_user",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "identity_remote",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "data",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "A bitmask of k_nSteamNetworkingSend_xxx options",
+                                    "name": "send_flags",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "A routing number you can use to help route message to different systems",
+                                    "name": "remote_channel",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "identity_remote,data,send_flags,remote_channel",
+                            "returns": [],
+                            "summary": "Send message",
+                            "usage": null
+                        },
+                        {
+                            "description": "",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "networking_receive_messages_on_channel",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "localChannel",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "localChannel",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "message",
+                                    "type": "table"
+                                }
+                            ],
+                            "summary": "Receive message",
+                            "usage": null
+                        },
+                        {
+                            "description": "Call this in response to a SteamNetworkingMessagesSessionRequest_t callback. pending or otherwise. If there is an existing active session, this function will return true, even if it is not pending.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "networking_accept_session_with_user",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "identity_remote",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "identity_remote",
+                            "returns": [
+                                {
+                                    "description": "Returns false if there is no session with the user",
+                                    "name": "result",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Accept session",
+                            "usage": null
+                        },
+                        {
+                            "description": "Call this when you're done talking to a user to immediately free up resources under-the-hood",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "networking_close_session_with_user",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "identity_remote",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "identity_remote",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "result",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Close sesssion",
+                            "usage": null
+                        },
+                        {
+                            "description": "Call this when you're done talking to a user on a specific channel.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "networking_close_channel_with_user",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "identity_remote",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "",
+                                    "name": "local_channel",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "identity_remote,local_channel",
+                            "returns": [
+                                {
+                                    "description": "",
+                                    "name": "result",
+                                    "type": "boolean"
+                                }
+                            ],
+                            "summary": "Close channel",
+                            "usage": null
+                        },
+                        {
+                            "description": "Returns information about the latest state of a connection, if any, with the given peer.",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "networking_get_session_connection_info",
+                            "params": [
+                                {
+                                    "description": "",
+                                    "name": "identity_remote",
+                                    "type": "string"
+                                }
+                            ],
+                            "params_string": "identity_remote",
+                            "returns": [
+                                {
+                                    "description": "Connection info (state, info, status)",
+                                    "name": "info",
+                                    "type": "table"
+                                }
+                            ],
+                            "summary": "Get connection info",
+                            "usage": null
+                        }
+                    ],
+                    "filename": "steam/src/steam_networking.cpp",
+                    "group": "src",
+                    "module": "steam_networking"
                 },
                 {
                     "entries": [
@@ -1138,22 +1309,6 @@
                                 }
                             ],
                             "summary": "Set user stat.",
-                            "usage": null
-                        },
-                        {
-                            "description": "",
-                            "has_params": false,
-                            "has_returns": true,
-                            "name": "user_stats_request_current_stats",
-                            "params": [],
-                            "returns": [
-                                {
-                                    "description": "True if successful",
-                                    "name": "ok",
-                                    "type": "Boolean"
-                                }
-                            ],
-                            "summary": "Ask the server to send down this user's data and achievements for this game.",
                             "usage": null
                         },
                         {
