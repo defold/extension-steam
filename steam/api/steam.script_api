@@ -309,6 +309,21 @@
       type: string
       desc: Of lobby
 
+  - name: matchmaking_create_lobby
+    type: function
+    desc: Create a new matchmaking lobby. Will generate a LobbyCreated_t, LobbyEnter_t and LobbyDataUpdate_t event
+    parameters:
+    - name: lobby_type
+      type: number
+      desc: The type and visibility of this lobby.
+    - name: max_members
+      type: number
+      desc: The maximum number of players that can join this lobby.
+    returns:
+    - name: Callback
+      type: string
+      desc: Id
+
   - name: matchmaking_join_lobby
     type: function
     desc: Joins an existing lobby. Will generate a LobbyEnter_t event

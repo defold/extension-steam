@@ -742,6 +742,34 @@
                             "usage": null
                         },
                         {
+                            "description": "Will generate a LobbyCreated_t, LobbyEnter_t and LobbyDataUpdate_t event",
+                            "has_params": true,
+                            "has_returns": true,
+                            "name": "matchmaking_create_lobby",
+                            "params": [
+                                {
+                                    "description": "The type and visibility of this lobby.",
+                                    "name": "lobby_type",
+                                    "type": "number"
+                                },
+                                {
+                                    "description": "The maximum number of players that can join this lobby.",
+                                    "name": "max_members",
+                                    "type": "number"
+                                }
+                            ],
+                            "params_string": "lobby_type,max_members",
+                            "returns": [
+                                {
+                                    "description": "Id",
+                                    "name": "Callback",
+                                    "type": "string"
+                                }
+                            ],
+                            "summary": "Create a new matchmaking lobby.",
+                            "usage": null
+                        },
+                        {
                             "description": "Will generate a LobbyEnter_t event",
                             "has_params": true,
                             "has_returns": true,

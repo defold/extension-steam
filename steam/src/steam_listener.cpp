@@ -101,7 +101,10 @@ int SteamListener_Set(lua_State* L)
 		dmScript::DestroyCallback(g_SteamListener);
 		g_SteamListener = 0;
 	}
-	g_SteamListener = dmScript::CreateCallback(L, 1);
+	if (lua_isfunction(L, 1))
+	{
+		g_SteamListener = dmScript::CreateCallback(L, 1);
+	}
 	return 0;
 }
 

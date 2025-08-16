@@ -367,6 +367,18 @@ RETURNS
 * `Id` [`string`] - Of lobby
 
 
+### matchmaking_create_lobby(lobby_type,max_members)
+Create a new matchmaking lobby. Will generate a LobbyCreated_t, LobbyEnter_t and LobbyDataUpdate_t event
+
+
+PARAMS
+* `lobby_type` [`number`] - The type and visibility of this lobby.
+* `max_members` [`number`] - The maximum number of players that can join this lobby.
+
+RETURNS
+* `Callback` [`string`] - Id
+
+
 ### matchmaking_join_lobby(lobby_id)
 Joins an existing lobby. Will generate a LobbyEnter_t event
 

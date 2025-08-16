@@ -71,6 +71,24 @@ int SteamMatchmaking_GetLobbyByIndex(lua_State* L)
 	return 1;
 }
 
+/** Create a new matchmaking lobby.
+ * Will generate a LobbyCreated_t, LobbyEnter_t and LobbyDataUpdate_t event
+ * @name matchmaking_create_lobby
+ * @number lobby_type The type and visibility of this lobby.
+ * @number max_members The maximum number of players that can join this lobby.
+ * @treturn string Callback id
+ */
+int SteamMatchmaking_CreateLobby(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	ELobbyType lobbyType = (ELobbyType)luaL_checknumber(L, 1);
+	int maxMembers = luaL_checknumber(L, 1);
+	SteamAPICall_t call = g_SteamMatchmaking->CreateLobby(lobbyType, maxMembers);
+	push_uint64(L, call);
+	return 1;
+}
+
 /** Joins an existing lobby.
  * Will generate a LobbyEnter_t event
  * @name matchmaking_join_lobby
@@ -83,7 +101,6 @@ int SteamMatchmaking_JoinLobby(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	CSteamID steamIDLobby = check_CSteamID(L, 1);
 	SteamAPICall_t call = g_SteamMatchmaking->JoinLobby(steamIDLobby);
-	dmLogInfo("JoinLobby SteamAPICall_t %llu", call);
 	push_uint64(L, call);
 	return 1;
 }
@@ -100,6 +117,7 @@ int SteamMatchmaking_LeaveLobby(lua_State* L)
 	if (!g_SteamMatchmaking) return 0;
 	DM_LUA_STACK_CHECK(L, 0);
 	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	dmLogInfo("Leave lobby");
 	g_SteamMatchmaking->LeaveLobby(steamIDLobby);
 	return 0;
 }

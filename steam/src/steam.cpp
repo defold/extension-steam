@@ -384,6 +384,7 @@ static const luaL_reg Module_methods[] = {
 	// MATCHMAKING
 	{ "matchmaking_request_lobby_list", SteamMatchmaking_RequestLobbyList },
 	{ "matchmaking_get_lobby_by_index", SteamMatchmaking_GetLobbyByIndex },
+	{ "matchmaking_create_lobby", SteamMatchmaking_CreateLobby },
 	{ "matchmaking_join_lobby", SteamMatchmaking_JoinLobby },
 	{ "matchmaking_leave_lobby", SteamMatchmaking_LeaveLobby },
 	{ "matchmaking_get_lobby_owner", SteamMatchmaking_GetLobbyOwner },
@@ -864,6 +865,40 @@ static void LuaInit(lua_State* L)
 	 * @field ESteamNetworkingConnectionState_ProblemDetectedLocally
 	 */
 	SETCONSTANT(ESteamNetworkingConnectionState_ProblemDetectedLocally, k_ESteamNetworkingConnectionState_ProblemDetectedLocally);
+
+
+	/**
+	 * ELobbyTypePrivate
+	 * only way to join the lobby is to invite to someone else
+	 * @field ELobbyTypePrivate
+	 */
+	SETCONSTANT(ELobbyTypePrivate, k_ELobbyTypePrivate);
+	/**
+	 * ELobbyTypeFriendsOnly
+	 * shows for friends or invitees, but not in lobby list
+	 * @field ELobbyTypeFriendsOnly
+	 */
+	SETCONSTANT(ELobbyTypeFriendsOnly, k_ELobbyTypeFriendsOnly);
+	/**
+	 * ELobbyTypePublic
+	 * visible for friends and in lobby list
+	 * @field ELobbyTypePublic
+	 */
+	SETCONSTANT(ELobbyTypePublic, k_ELobbyTypePublic);
+	/**
+	 * ELobbyTypeInvisible
+	 * returned by search, but not visible to other friends 
+	 * @field ELobbyTypeInvisible
+	 */
+	SETCONSTANT(ELobbyTypeInvisible, k_ELobbyTypeInvisible);
+	/**
+	 * ELobbyTypePrivateUnique
+	 * private, unique and does not delete when empty
+	 * @field ELobbyTypePrivateUnique
+	 */
+	SETCONSTANT(ELobbyTypePrivateUnique, k_ELobbyTypePrivateUnique);
+
+
 
 	#undef SETCONSTANT
 
