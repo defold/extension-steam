@@ -51,7 +51,7 @@ end
 
 ## Example
 
-[Refer to the example project](https://github.com/defold/extension-steam/blob/master/examples) to see a complete example of how the intergation works.
+[Refer to the example project](https://github.com/defold/extension-steam/blob/master/examples) to see a complete example of how the integration works.
 
 
 ## Source code
