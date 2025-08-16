@@ -20,6 +20,8 @@ function init(self)
 		if e == "LobbyMatchList_t" then
 			print("LobbyMatchList_t")
 			msg.post("#", "refresh_lobbylist", t)
+		elseif e == "LobbyCreated_t" then
+			print("LobbyCreated_t")
 		elseif e == "LobbyEnter_t" then
 			print("LobbyEnter_t")
 			self.current_lobby = t.m_ulSteamIDLobby

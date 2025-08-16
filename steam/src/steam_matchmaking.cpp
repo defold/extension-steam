@@ -31,6 +31,18 @@ int SteamMatchmaking_OnLobbyEnter(lua_State* L, void* data)
 	return 2;
 }
 
+int SteamMatchmaking_OnLobbyCreated(lua_State* L, void* data)
+{
+	LobbyCreated_t* s = (LobbyCreated_t*)data;
+	lua_pushstring(L, "LobbyCreated_t");
+
+	lua_newtable(L);
+	table_push_uint64(L, "m_ulSteamIDLobby", s->m_ulSteamIDLobby);
+	table_push_number(L, "m_eResult", s->m_eResult);
+
+	return 2;
+}
+
 
 int SteamMatchmaking_Init(lua_State* L)
 {

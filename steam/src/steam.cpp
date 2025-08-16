@@ -217,7 +217,7 @@ static int Update(lua_State* L)
 		else if (id == LobbyChatMsg_t::k_iCallback) SteamListener_InvokeGeneric("LobbyChatMsg_t");
 		else if (id == LobbyGameCreated_t::k_iCallback) SteamListener_InvokeGeneric("LobbyGameCreated_t");
 		else if (id == LobbyKicked_t::k_iCallback) SteamListener_InvokeGeneric("LobbyKicked_t");
-		else if (id == LobbyCreated_t::k_iCallback) SteamListener_InvokeGeneric("LobbyCreated_t");
+		else if (id == LobbyCreated_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_OnLobbyCreated, data);
 		else if (id == FavoritesListAccountsUpdated_t::k_iCallback) SteamListener_InvokeGeneric("FavoritesListAccountsUpdated_t");
 		else if (id == SearchForGameProgressCallback_t::k_iCallback) SteamListener_InvokeGeneric("SearchForGameProgressCallback_t");
 		else if (id == SearchForGameResultCallback_t::k_iCallback) SteamListener_InvokeGeneric("SearchForGameResultCallback_t");

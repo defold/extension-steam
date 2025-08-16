@@ -7,6 +7,7 @@
 
 int SteamMatchmaking_OnLobbyMatchList(lua_State* L, void* data);
 int SteamMatchmaking_OnLobbyEnter(lua_State* L, void* data);
+int SteamMatchmaking_OnLobbyCreated(lua_State* L, void* data);
 
 int SteamMatchmaking_Init(lua_State* L);
 int SteamMatchmaking_RequestLobbyList(lua_State* L);
