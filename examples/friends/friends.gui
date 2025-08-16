@@ -1,31 +1,26 @@
 script: "/examples/friends/friends.gui_script"
 fonts {
   name: "rpg"
-  font: "/gooey/themes/rpg/fonts/rpg.font"
+  font: "/gooey-rpg/fonts/rpg.font"
 }
 textures {
   name: "rpg"
-  texture: "/gooey/themes/rpg/images/rpg.atlas"
+  texture: "/gooey-rpg/images/rpg.atlas"
 }
 nodes {
   position {
-    x: 71.0
+    x: 108.0
     y: 683.0
   }
   type: TYPE_TEMPLATE
   id: "back"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 120.0
-    y: 49.0
-  }
   type: TYPE_BOX
   id: "back/bg"
   parent: "back"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
@@ -147,13 +142,13 @@ nodes {
 nodes {
   position {
     x: 1.0
-    y: -129.0
+    y: -165.0
   }
   type: TYPE_TEMPLATE
   id: "invite_friend_to_game"
   parent: "friendspanel"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
   type: TYPE_BOX
@@ -163,7 +158,7 @@ nodes {
 }
 nodes {
   type: TYPE_TEXT
-  text: "Invite friend to game"
+  text: "INVITE"
   id: "invite_friend_to_game/label"
   parent: "invite_friend_to_game/bg"
   overridden_fields: 8
@@ -197,7 +192,7 @@ nodes {
   id: "set_rich_presence"
   parent: "rich_presence_panel"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
   type: TYPE_BOX
@@ -207,7 +202,7 @@ nodes {
 }
 nodes {
   type: TYPE_TEXT
-  text: "Set Rich Presence"
+  text: "SET RICH PRESENCE"
   id: "set_rich_presence/label"
   parent: "set_rich_presence/bg"
   overridden_fields: 8
@@ -221,7 +216,7 @@ nodes {
   id: "clear_rich_presence"
   parent: "rich_presence_panel"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
   type: TYPE_BOX
@@ -231,7 +226,7 @@ nodes {
 }
 nodes {
   type: TYPE_TEXT
-  text: "Clear Rich Presence"
+  text: "CLEAR RICH PRESENCE"
   id: "clear_rich_presence/label"
   parent: "clear_rich_presence/bg"
   overridden_fields: 8

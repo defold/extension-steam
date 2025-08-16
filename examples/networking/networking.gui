@@ -1,31 +1,26 @@
 script: "/examples/networking/networking.gui_script"
 fonts {
   name: "rpg"
-  font: "/gooey/themes/rpg/fonts/rpg.font"
+  font: "/gooey-rpg/fonts/rpg.font"
 }
 textures {
   name: "rpg"
-  texture: "/gooey/themes/rpg/images/rpg.atlas"
+  texture: "/gooey-rpg/images/rpg.atlas"
 }
 nodes {
   position {
-    x: 71.0
+    x: 109.0
     y: 683.0
   }
   type: TYPE_TEMPLATE
   id: "back"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 120.0
-    y: 49.0
-  }
   type: TYPE_BOX
   id: "back/bg"
   parent: "back"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
@@ -38,32 +33,73 @@ nodes {
 }
 nodes {
   position {
-    x: 289.0
-    y: 438.0
+    x: 109.0
+    y: 217.0
   }
   type: TYPE_TEMPLATE
-  id: "test"
+  id: "info"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 120.0
-    y: 49.0
-  }
   type: TYPE_BOX
-  id: "test/bg"
-  parent: "test"
-  overridden_fields: 4
+  id: "info/bg"
+  parent: "info"
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  text: "TEST"
-  id: "test/label"
-  parent: "test/bg"
+  text: "CONNECTION INFO"
+  id: "info/label"
+  parent: "info/bg"
   overridden_fields: 8
   template_node_child: true
+}
+nodes {
+  position {
+    x: 261.0
+    y: 448.0
+  }
+  size {
+    x: 500.0
+    y: 400.0
+  }
+  type: TYPE_BOX
+  texture: "rpg/panel_blue"
+  id: "panel"
+  inherit_alpha: true
+  slice9 {
+    x: 24.0
+    y: 24.0
+    z: 24.0
+    w: 24.0
+  }
+}
+nodes {
+  position {
+    x: -242.0
+    y: 188.0
+  }
+  size {
+    x: 480.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  font: "rpg"
+  id: "panel_text"
+  pivot: PIVOT_NW
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "panel"
+  inherit_alpha: true
 }
 layers {
   name: "below"

@@ -1,5 +1,6 @@
-local rpg = require "gooey.themes.rpg.rpg"
+local rpg = require "gooey-rpg.rpg"
 local monarch = require "monarch.monarch"
+local prettify = require "examples.prettify"
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
@@ -26,9 +27,10 @@ function on_input(self, action_id, action)
 		monarch.back()
 	end)
 
-	rpg.button("test", action_id, action, function()
+	rpg.button("info", action_id, action, function()
 		local i = steam.networking_get_session_connection_info()
-		pprint(i)
+		local t = prettify(i)
+		gui.set_text(gui.get_node("panel_text"), t)
 	end)
 end
 

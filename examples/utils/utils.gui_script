@@ -1,4 +1,4 @@
-local rpg = require "gooey.themes.rpg.rpg"
+local rpg = require "gooey-rpg.rpg"
 local monarch = require "monarch.monarch"
 
 

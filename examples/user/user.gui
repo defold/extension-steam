@@ -1,11 +1,11 @@
 script: "/examples/user/user.gui_script"
 fonts {
   name: "rpg"
-  font: "/gooey/themes/rpg/fonts/rpg.font"
+  font: "/gooey-rpg/fonts/rpg.font"
 }
 textures {
   name: "rpg"
-  texture: "/gooey/themes/rpg/images/rpg.atlas"
+  texture: "/gooey-rpg/images/rpg.atlas"
 }
 nodes {
   position {
@@ -56,23 +56,18 @@ nodes {
 }
 nodes {
   position {
-    x: 71.0
+    x: 112.0
     y: 683.0
   }
   type: TYPE_TEMPLATE
   id: "back"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 120.0
-    y: 49.0
-  }
   type: TYPE_BOX
   id: "back/bg"
   parent: "back"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
@@ -86,34 +81,24 @@ nodes {
 nodes {
   position {
     x: 443.0
-    y: 598.0
+    y: 622.0
   }
   type: TYPE_TEMPLATE
   id: "get_auth_ticket"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 120.0
-    y: 49.0
-  }
   type: TYPE_BOX
   id: "get_auth_ticket/bg"
   parent: "get_auth_ticket"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
-  size {
-    x: 120.0
-    y: 50.0
-  }
   type: TYPE_TEXT
-  text: "GET AUTH"
+  text: "GET AUTH TICKET"
   id: "get_auth_ticket/label"
   parent: "get_auth_ticket/bg"
-  overridden_fields: 4
   overridden_fields: 8
   template_node_child: true
 }

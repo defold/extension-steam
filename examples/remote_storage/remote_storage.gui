@@ -1,11 +1,11 @@
 script: "/examples/remote_storage/remote_storage.gui_script"
 fonts {
   name: "rpg"
-  font: "/gooey/themes/rpg/fonts/rpg.font"
+  font: "/gooey-rpg/fonts/rpg.font"
 }
 textures {
   name: "rpg"
-  texture: "/gooey/themes/rpg/images/rpg.atlas"
+  texture: "/gooey-rpg/images/rpg.atlas"
 }
 nodes {
   position {
@@ -84,24 +84,19 @@ nodes {
 }
 nodes {
   position {
-    x: -77.0
+    x: -33.0
     y: -161.0
   }
   type: TYPE_TEMPLATE
   id: "write"
   parent: "panel"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 120.0
-    y: 49.0
-  }
   type: TYPE_BOX
   id: "write/bg"
   parent: "write"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
@@ -114,23 +109,18 @@ nodes {
 }
 nodes {
   position {
-    x: 71.0
+    x: 112.0
     y: 683.0
   }
   type: TYPE_TEMPLATE
   id: "back"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 120.0
-    y: 49.0
-  }
   type: TYPE_BOX
   id: "back/bg"
   parent: "back"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
@@ -149,7 +139,7 @@ nodes {
   type: TYPE_TEMPLATE
   id: "files"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/dynamiclist.gui"
+  template: "/gooey-rpg/components/dynamiclist.gui"
 }
 nodes {
   size {
@@ -163,14 +153,9 @@ nodes {
   template_node_child: true
 }
 nodes {
-  size {
-    x: 420.0
-    y: 380.0
-  }
   type: TYPE_BOX
   id: "files/stencil"
   parent: "files/bg"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
@@ -183,7 +168,6 @@ nodes {
   type: TYPE_TEXT
   id: "files/listitem_text"
   parent: "files/listitem_bg"
-  overridden_fields: 8
   template_node_child: true
 }
 layers {

@@ -1,11 +1,11 @@
 script: "/examples/user_stats/user_stats.gui_script"
 fonts {
   name: "rpg"
-  font: "/gooey/themes/rpg/fonts/rpg.font"
+  font: "/gooey-rpg/fonts/rpg.font"
 }
 textures {
   name: "rpg"
-  texture: "/gooey/themes/rpg/images/rpg.atlas"
+  texture: "/gooey-rpg/images/rpg.atlas"
 }
 nodes {
   position {
@@ -56,29 +56,24 @@ nodes {
 }
 nodes {
   position {
-    x: 141.0
+    x: 147.0
     y: 170.0
   }
   type: TYPE_TEMPLATE
   id: "num_games_add"
   parent: "user_stats_panel"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 80.0
-    y: 40.0
-  }
   type: TYPE_BOX
   id: "num_games_add/bg"
   parent: "num_games_add"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  text: "PLAY"
+  text: "GAMES +"
   id: "num_games_add/label"
   parent: "num_games_add/bg"
   overridden_fields: 8
@@ -113,29 +108,24 @@ nodes {
 }
 nodes {
   position {
-    x: 141.0
-    y: 128.0
+    x: 147.0
+    y: 117.0
   }
   type: TYPE_TEMPLATE
   id: "feet_traveled_add"
   parent: "user_stats_panel"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 80.0
-    y: 40.0
-  }
   type: TYPE_BOX
   id: "feet_traveled_add/bg"
   parent: "feet_traveled_add"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  text: "TRAVEL"
+  text: "FEET +"
   id: "feet_traveled_add/label"
   parent: "feet_traveled_add/bg"
   overridden_fields: 8
@@ -150,22 +140,17 @@ nodes {
   id: "reset_stats"
   parent: "user_stats_panel"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 160.0
-    y: 40.0
-  }
   type: TYPE_BOX
   id: "reset_stats/bg"
   parent: "reset_stats"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  text: "RESET STATS"
+  text: "RESET"
   id: "reset_stats/label"
   parent: "reset_stats/bg"
   overridden_fields: 8
@@ -201,29 +186,28 @@ nodes {
 }
 nodes {
   position {
-    x: 141.0
+    x: 147.0
     y: 86.0
   }
   type: TYPE_TEMPLATE
   id: "unlock_win_one"
   parent: "user_stats_panel"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 80.0
-    y: 40.0
+  position {
+    y: -24.0
   }
   type: TYPE_BOX
   id: "unlock_win_one/bg"
   parent: "unlock_win_one"
-  overridden_fields: 4
+  overridden_fields: 1
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  text: "WIN ONE"
+  text: "UNLOCK WIN ONE"
   id: "unlock_win_one/label"
   parent: "unlock_win_one/bg"
   overridden_fields: 8
@@ -231,23 +215,18 @@ nodes {
 }
 nodes {
   position {
-    x: 71.0
+    x: 113.0
     y: 683.0
   }
   type: TYPE_TEMPLATE
   id: "back"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 120.0
-    y: 49.0
-  }
   type: TYPE_BOX
   id: "back/bg"
   parent: "back"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {

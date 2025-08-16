@@ -1,19 +1,19 @@
 script: "/examples/utils/utils.gui_script"
 fonts {
   name: "rpg"
-  font: "/gooey/themes/rpg/fonts/rpg.font"
+  font: "/gooey-rpg/fonts/rpg.font"
 }
 textures {
   name: "rpg"
-  texture: "/gooey/themes/rpg/images/rpg.atlas"
+  texture: "/gooey-rpg/images/rpg.atlas"
 }
 nodes {
   position {
-    x: 163.0
+    x: 260.0
     y: 448.0
   }
   size {
-    x: 300.0
+    x: 500.0
     y: 400.0
   }
   type: TYPE_BOX
@@ -29,11 +29,11 @@ nodes {
 }
 nodes {
   position {
-    x: -136.0
+    x: -240.0
     y: 188.0
   }
   size {
-    x: 200.0
+    x: 480.0
     y: 100.0
   }
   type: TYPE_TEXT
@@ -56,11 +56,11 @@ nodes {
 }
 nodes {
   position {
-    x: -136.0
+    x: -240.0
     y: 77.0
   }
   size {
-    x: 200.0
+    x: 480.0
     y: 100.0
   }
   type: TYPE_TEXT
@@ -83,23 +83,18 @@ nodes {
 }
 nodes {
   position {
-    x: 71.0
+    x: 107.0
     y: 683.0
   }
   type: TYPE_TEMPLATE
   id: "back"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 120.0
-    y: 49.0
-  }
   type: TYPE_BOX
   id: "back/bg"
   parent: "back"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
@@ -112,28 +107,23 @@ nodes {
 }
 nodes {
   position {
-    x: 427.0
-    y: 599.0
+    x: 623.0
+    y: 622.0
   }
   type: TYPE_TEMPLATE
   id: "floating_text"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 120.0
-    y: 49.0
-  }
   type: TYPE_BOX
   id: "floating_text/bg"
   parent: "floating_text"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  text: "FLOATING TEXT"
+  text: "FLOATING"
   id: "floating_text/label"
   parent: "floating_text/bg"
   overridden_fields: 8
@@ -141,28 +131,23 @@ nodes {
 }
 nodes {
   position {
-    x: 427.0
-    y: 486.0
+    x: 623.0
+    y: 566.0
   }
   type: TYPE_TEMPLATE
   id: "gamepad_text"
   inherit_alpha: true
-  template: "/gooey/themes/rpg/components/button.gui"
+  template: "/gooey-rpg/components/button.gui"
 }
 nodes {
-  size {
-    x: 120.0
-    y: 49.0
-  }
   type: TYPE_BOX
   id: "gamepad_text/bg"
   parent: "gamepad_text"
-  overridden_fields: 4
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  text: "GAMEPAD TEXT"
+  text: "GAMEPAD"
   id: "gamepad_text/label"
   parent: "gamepad_text/bg"
   overridden_fields: 8
