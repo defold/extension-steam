@@ -1,6 +1,6 @@
 - name: steam
   type: table
-  desc: Functions and constants for interacting with Steamworks
+  desc: Functions and constants for interacting with Steamworks.
 
   members:
   - name: init
@@ -30,6 +30,38 @@
     type: function
     desc: Finalize Steamworks. 
 
+  - name: EFloatingGamepadTextInputModeModeSingleLine
+    type: number
+    desc: Enter dismisses the keyboard
+
+  - name: EFloatingGamepadTextInputModeModeMultipleLines
+    type: number
+    desc: User needs to explicitly dismiss the keyboard
+
+  - name: EFloatingGamepadTextInputModeModeEmail
+    type: number
+    desc: Keyboard is displayed in a special mode that makes it easier to enter emails
+
+  - name: EFloatingGamepadTextInputModeModeNumeric
+    type: number
+    desc: Numeric keypad is shown
+
+  - name: EGamepadTextInputModeNormal
+    type: number
+    desc: Normal text input
+
+  - name: EGamepadTextInputModePassword
+    type: number
+    desc: Password text input
+
+  - name: EGamepadTextInputLineModeSingleLine
+    type: number
+    desc: Single line text
+
+  - name: EGamepadTextInputLineModeMultipleLines
+    type: number
+    desc: Multi line text
+
   - name: ELeaderboardDataRequestGlobal
     type: number
     desc: Requests rows in the leaderboard from the full table 
@@ -42,6 +74,10 @@
     type: number
     desc: Requests all the rows for friends of the current user 
 
+  - name: ELeaderboardSortMethodNone
+    type: number
+    desc: 
+
   - name: ELeaderboardSortMethodAscending
     type: number
     desc: Top-score is lowest number 
@@ -50,6 +86,10 @@
     type: number
     desc: Top-score is highest number 
 
+  - name: ELeaderboardUploadScoreMethodNone
+    type: number
+    desc: 
+
   - name: ELeaderboardUploadScoreMethodKeepBest
     type: number
     desc: Leaderboard will keep user&#x27;s best score 
@@ -57,6 +97,10 @@
   - name: ELeaderboardUploadScoreMethodForceUpdate
     type: number
     desc: Leaderboard will always replace score with specified 
+
+  - name: ELeaderboardDisplayTypeNone
+    type: number
+    desc: 
 
   - name: ELeaderboardDisplayTypeNumeric
     type: number
@@ -121,6 +165,222 @@
   - name: EPersonaStateInvisible
     type: number
     desc: Online, but appears offline to friends.  This status is never published to clients. 
+
+  - name: EFriendFlagNone
+    type: number
+    desc: EFriendFlagNone
+
+  - name: EFriendFlagBlocked
+    type: number
+    desc: EFriendFlagBlocked
+
+  - name: EFriendFlagFriendshipRequested
+    type: number
+    desc: EFriendFlagFriendshipRequested
+
+  - name: EFriendFlagImmediate
+    type: number
+    desc: EFriendFlagImmediate
+
+  - name: EFriendFlagClanMember
+    type: number
+    desc: EFriendFlagClanMember
+
+  - name: EFriendFlagOnGameServer
+    type: number
+    desc: EFriendFlagOnGameServer
+
+  - name: EFriendFlagRequestingFriendship
+    type: number
+    desc: EFriendFlagRequestingFriendship
+
+  - name: EFriendFlagRequestingInfo
+    type: number
+    desc: EFriendFlagRequestingInfo
+
+  - name: EFriendFlagIgnored
+    type: number
+    desc: EFriendFlagIgnored
+
+  - name: EFriendFlagIgnoredFriend
+    type: number
+    desc: EFriendFlagIgnoredFriend
+
+  - name: EFriendFlagChatMember
+    type: number
+    desc: EFriendFlagChatMember
+
+  - name: EFriendFlagAll
+    type: number
+    desc: EFriendFlagAll
+
+  - name: SteamNetworkingSend_Unreliable
+    type: number
+    desc: SteamNetworkingSend_Unreliable
+
+  - name: SteamNetworkingSend_NoNagle
+    type: number
+    desc: SteamNetworkingSend_NoNagle
+
+  - name: SteamNetworkingSend_UnreliableNoNagle
+    type: number
+    desc: SteamNetworkingSend_UnreliableNoNagle
+
+  - name: SteamNetworkingSend_NoDelay
+    type: number
+    desc: SteamNetworkingSend_NoDelay
+
+  - name: SteamNetworkingSend_UnreliableNoDelay
+    type: number
+    desc: SteamNetworkingSend_UnreliableNoDelay
+
+  - name: SteamNetworkingSend_Reliable
+    type: number
+    desc: SteamNetworkingSend_Reliable
+
+  - name: SteamNetworkingSend_ReliableNoNagle
+    type: number
+    desc: SteamNetworkingSend_ReliableNoNagle
+
+  - name: SteamNetworkingSend_UseCurrentThread
+    type: number
+    desc: SteamNetworkingSend_UseCurrentThread
+
+  - name: SteamNetworkingSend_AutoRestartBrokenSession
+    type: number
+    desc: SteamNetworkingSend_AutoRestartBrokenSession
+
+  - name: ESteamNetConnectionEnd_Invalid
+    type: number
+    desc: ESteamNetConnectionEnd_Invalid
+
+  - name: ESteamNetConnectionEnd_App_Generic
+    type: number
+    desc: ESteamNetConnectionEnd_App_Generic
+
+  - name: ESteamNetConnectionEnd_AppException_Generic
+    type: number
+    desc: ESteamNetConnectionEnd_AppException_Generic
+
+  - name: ESteamNetConnectionEnd_Local_OfflineMode
+    type: number
+    desc: ESteamNetConnectionEnd_Local_OfflineMode
+
+  - name: ESteamNetConnectionEnd_Local_ManyRelayConnectivity
+    type: number
+    desc: ESteamNetConnectionEnd_Local_ManyRelayConnectivity
+
+  - name: ESteamNetConnectionEnd_Local_HostedServerPrimaryRelay
+    type: number
+    desc: ESteamNetConnectionEnd_Local_HostedServerPrimaryRelay
+
+  - name: ESteamNetConnectionEnd_Local_NetworkConfig
+    type: number
+    desc: ESteamNetConnectionEnd_Local_NetworkConfig
+
+  - name: ESteamNetConnectionEnd_Local_Rights
+    type: number
+    desc: ESteamNetConnectionEnd_Local_Rights
+
+  - name: ESteamNetConnectionEnd_Local_P2P_ICE_NoPublicAddresses
+    type: number
+    desc: ESteamNetConnectionEnd_Local_P2P_ICE_NoPublicAddresses
+
+  - name: ESteamNetConnectionEnd_Remote_Timeout
+    type: number
+    desc: ESteamNetConnectionEnd_Remote_Timeout
+
+  - name: ESteamNetConnectionEnd_Remote_BadCrypt
+    type: number
+    desc: ESteamNetConnectionEnd_Remote_BadCrypt
+
+  - name: ESteamNetConnectionEnd_Remote_BadCert
+    type: number
+    desc: ESteamNetConnectionEnd_Remote_BadCert
+
+  - name: ESteamNetConnectionEnd_Remote_BadProtocolVersion
+    type: number
+    desc: ESteamNetConnectionEnd_Remote_BadProtocolVersion
+
+  - name: ESteamNetConnectionEnd_Remote_P2P_ICE_NoPublicAddresses
+    type: number
+    desc: ESteamNetConnectionEnd_Remote_P2P_ICE_NoPublicAddresses
+
+  - name: ESteamNetConnectionEnd_Misc_Generic
+    type: number
+    desc: ESteamNetConnectionEnd_Misc_Generic
+
+  - name: ESteamNetConnectionEnd_Misc_InternalError
+    type: number
+    desc: ESteamNetConnectionEnd_Misc_InternalError
+
+  - name: ESteamNetConnectionEnd_Misc_Timeout
+    type: number
+    desc: ESteamNetConnectionEnd_Misc_Timeout
+
+  - name: ESteamNetConnectionEnd_Misc_SteamConnectivity
+    type: number
+    desc: ESteamNetConnectionEnd_Misc_SteamConnectivity
+
+  - name: ESteamNetConnectionEnd_Misc_NoRelaySessionsToClient
+    type: number
+    desc: ESteamNetConnectionEnd_Misc_NoRelaySessionsToClient
+
+  - name: ESteamNetConnectionEnd_Misc_P2P_Rendezvous
+    type: number
+    desc: ESteamNetConnectionEnd_Misc_P2P_Rendezvous
+
+  - name: ESteamNetConnectionEnd_Misc_P2P_NAT_Firewall
+    type: number
+    desc: ESteamNetConnectionEnd_Misc_P2P_NAT_Firewall
+
+  - name: ESteamNetConnectionEnd_Misc_PeerSentNoConnection
+    type: number
+    desc: ESteamNetConnectionEnd_Misc_PeerSentNoConnection
+
+  - name: ESteamNetworkingConnectionState_None
+    type: number
+    desc: ESteamNetworkingConnectionState_None
+
+  - name: ESteamNetworkingConnectionState_Connecting
+    type: number
+    desc: ESteamNetworkingConnectionState_Connecting
+
+  - name: ESteamNetworkingConnectionState_FindingRoute
+    type: number
+    desc: ESteamNetworkingConnectionState_FindingRoute
+
+  - name: ESteamNetworkingConnectionState_Connected
+    type: number
+    desc: ESteamNetworkingConnectionState_Connected
+
+  - name: ESteamNetworkingConnectionState_ClosedByPeer
+    type: number
+    desc: ESteamNetworkingConnectionState_ClosedByPeer
+
+  - name: ESteamNetworkingConnectionState_ProblemDetectedLocally
+    type: number
+    desc: ESteamNetworkingConnectionState_ProblemDetectedLocally
+
+  - name: ELobbyTypePrivate
+    type: number
+    desc: ELobbyTypePrivate only way to join the lobby is to invite to someone else
+
+  - name: ELobbyTypeFriendsOnly
+    type: number
+    desc: ELobbyTypeFriendsOnly shows for friends or invitees, but not in lobby list
+
+  - name: ELobbyTypePublic
+    type: number
+    desc: ELobbyTypePublic visible for friends and in lobby list
+
+  - name: ELobbyTypeInvisible
+    type: number
+    desc: ELobbyTypeInvisible returned by search, but not visible to other friends
+
+  - name: ELobbyTypePrivateUnique
+    type: number
+    desc: ELobbyTypePrivateUnique private, unique and does not delete when empty
 
   - name: apps_is_dlc_installed
     type: function
@@ -790,6 +1050,14 @@
 
     - name: percent
       type: Number
+
+
+  - name: user_stats_find_leaderboard
+    type: function
+    desc: Find a leaderboard. Will return leaderboard asynchronously. https://partner.steamgames.com/doc/api/ISteamUserStats#FindLeaderboard
+    parameters:
+    - name: name
+      type: string
 
 
   - name: user_stats_find_or_create_leaderboard

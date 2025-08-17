@@ -1,5 +1,6 @@
-/** Provides functions for accessing and submitting stats, achievements, and
- * leaderboards.
+/**
+ * @document
+ * @namespace steam
  */
 
 #if defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_WINDOWS) || defined(DM_PLATFORM_LINUX)

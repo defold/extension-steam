@@ -1,15 +1,15 @@
-- name: steam
+{{#namespaces}}
+- name: {{namespace}}
   type: table
-  desc: Functions and constants for interacting with Steamworks
+  desc: {{description}}
 
   members:
-{{#groups}}
 {{#files}}
 {{#entries}}
 {{^field}}
   - name: {{name}}
     type: function
-    desc: {{#summary}}{{summary}} {{/summary}}{{description}}
+    desc: {{#summary}}{{summary}} {{/summary}}{{#description}}{{description}}{{/description}}
     {{#has_params}}
     parameters:
     {{#params}}
@@ -30,9 +30,9 @@
 {{#field}}
   - name: {{name}}
     type: number
-    desc: {{#summary}}{{summary}} {{/summary}}{{description}}
+    desc: {{#summary}}{{summary}} {{/summary}}{{#description}}{{description}}{{/description}}
 {{/field}}
 
 {{/entries}}
 {{/files}}
-{{/groups}}
+{{/namespaces}}

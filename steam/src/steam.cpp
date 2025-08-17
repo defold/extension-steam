@@ -1,3 +1,10 @@
+/** Steam API
+ * Functions and constants for interacting with Steamworks.
+ * @document
+ * @name Steam
+ * @namespace steam
+ */
+
 #define LIB_NAME "Steam"
 #define MODULE_NAME "steam"
 
