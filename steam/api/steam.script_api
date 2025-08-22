@@ -25,7 +25,6 @@
     - name: appid
       type: number
 
-
   - name: final
     type: function
     desc: Finalize Steamworks. 
@@ -388,11 +387,9 @@
     parameters:
     - name: app_id
       type: number
-
     returns:
     - name: installed
       type: bool
-
 
   - name: friends_get_friend_persona_name
     type: function
@@ -400,7 +397,6 @@
     parameters:
     - name: CSteamID
       type: friendId
-
     returns:
     - name: String
       type: name
@@ -424,7 +420,7 @@
 
   - name: friends_get_friend_count
     type: function
-    desc: Friend iteration. Takes a set of EFriendFlags, and returns the number of users the client knows about who meet that criteria. Then GetFriendByIndex() can then be used to return the id&#x27;s of each of those users.
+    desc: Friend iteration. Takes a set of EFriendFlags, and returns the number of users the client knows about who meet that criteria. Then GetFriendByIndex() can then be used to return the id's of each of those users.
     parameters:
     - name: iFriendFlags
       type: number
@@ -491,7 +487,6 @@
     parameters:
     - name: app_id
       type: number
-
     - name: flag
       type: number
       desc: EOverlayToStoreFlag
@@ -502,7 +497,6 @@
     parameters:
     - name: url
       type: string
-
     - name: mode
       type: number
       desc: EActivateGameOverlayToWebPageMode
@@ -513,10 +507,8 @@
     parameters:
     - name: key
       type: string
-
     - name: value
       type: string
-
     returns:
     - name: success
       type: bool
@@ -539,7 +531,6 @@
     returns:
     - name: success
       type: boolean
-
 
   - name: set_listener
     type: function
@@ -634,10 +625,8 @@
     parameters:
     - name: lobby_id
       type: string
-
     - name: index
       type: number
-
     returns:
     - name: Id
       type: string
@@ -649,10 +638,8 @@
     parameters:
     - name: identity_remote
       type: string
-
     - name: data
       type: string
-
     - name: send_flags
       type: number
       desc: A bitmask of k_nSteamNetworkingSend_xxx options
@@ -666,11 +653,9 @@
     parameters:
     - name: localChannel
       type: number
-
     returns:
     - name: message
       type: table
-
 
   - name: networking_accept_session_with_user
     type: function
@@ -678,7 +663,6 @@
     parameters:
     - name: identity_remote
       type: string
-
     returns:
     - name: result
       type: boolean
@@ -686,30 +670,25 @@
 
   - name: networking_close_session_with_user
     type: function
-    desc: Close sesssion Call this when you&#x27;re done talking to a user to immediately free up resources under-the-hood
+    desc: Close sesssion Call this when you're done talking to a user to immediately free up resources under-the-hood
     parameters:
     - name: identity_remote
       type: string
-
     returns:
     - name: result
       type: boolean
-
 
   - name: networking_close_channel_with_user
     type: function
-    desc: Close channel Call this when you&#x27;re done talking to a user on a specific channel.
+    desc: Close channel Call this when you're done talking to a user on a specific channel.
     parameters:
     - name: identity_remote
       type: string
-
     - name: local_channel
       type: number
-
     returns:
     - name: result
       type: boolean
-
 
   - name: networking_get_session_connection_info
     type: function
@@ -717,7 +696,6 @@
     parameters:
     - name: identity_remote
       type: string
-
     returns:
     - name: info
       type: table
@@ -771,11 +749,9 @@
       desc: The name of the file to write to.
     - name: data
       type: string
-
     returns:
     - name: Success
       type: boolean
-
 
   - name: remote_storage_file_read
     type: function
@@ -788,14 +764,12 @@
     - name: data
       type: string
 
-
   - name: user_get_steam_id
     type: function
     desc: Returns the CSteamID of the account currently logged into the Steam client. A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.
     returns:
     - name: id
       type: CSteamID
-
 
   - name: user_get_player_steam_level
     type: function
@@ -804,17 +778,14 @@
     - name: level
       type: number
 
-
   - name: user_get_game_badge_level
     type: function
     desc: Trading Card badges data access. If you only have one set of cards, the series will be 1. The user has can have two different badges for a series; the regular (max level 5) and the foil (max level 1).
     returns:
     - name: series
       type: number
-
     - name: foil
       type: boolean
-
 
   - name: user_logged_on
     type: function
@@ -823,14 +794,12 @@
     - name: logged_on
       type: boolean
 
-
   - name: user_is_behind_nat
     type: function
     desc: Returns true if this users looks like they are behind a NAT device. Only valid once the user has connected to steam .
     returns:
     - name: behind_nat
       type: boolean
-
 
   - name: user_is_phone_verified
     type: function
@@ -839,14 +808,12 @@
     - name: verified
       type: boolean
 
-
   - name: user_is_phone_identifying
     type: function
     desc: Gets whether the users phone number is identifying. 
     returns:
     - name: verifying
       type: boolean
-
 
   - name: user_is_phone_requiring_verification
     type: function
@@ -855,14 +822,12 @@
     - name: verification
       type: boolean
 
-
   - name: user_is_two_factor_enabled
     type: function
     desc: Gets whether the user has two factor enabled on their account. 
     returns:
     - name: enabled
       type: boolean
-
 
   - name: user_get_auth_session_ticket
     type: function
@@ -885,7 +850,6 @@
     returns:
     - name: Boolean
       type: ok
-
     - name: Number
       type: stat
       desc: The stat or nil
@@ -904,7 +868,6 @@
     - name: ok
       type: boolean
 
-
   - name: user_stats_get_stat_float
     type: function
     desc: Get user stat as a floating point number. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
@@ -915,7 +878,6 @@
     returns:
     - name: ok
       type: Boolean
-
     - name: stat
       type: Number
       desc: The stat
@@ -934,18 +896,15 @@
     - name: ok
       type: Boolean
 
-
   - name: user_stats_request_global_stats
     type: function
     desc: Requests global stats data, which is available for stats marked as &quot;aggregated&quot;. This call is asynchronous, with the results returned in GlobalStatsReceived_t. nHistoryDays specifies how many days of day-by-day history to retrieve in addition to the overall totals. The limit is 60. https://partner.steamgames.com/doc/api/ISteamUserStats#RequestGlobalStats
     parameters:
     - name: history_days
       type: number
-
     returns:
     - name: ok
       type: Boolean
-
 
   - name: user_stats_store_stats
     type: function
@@ -953,7 +912,6 @@
     returns:
     - name: ok
       type: Boolean
-
 
   - name: user_stats_reset_all_stats
     type: function
@@ -966,18 +924,15 @@
     - name: ok
       type: Boolean
 
-
   - name: user_stats_set_achievement
     type: function
     desc: Set achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#SetAchievement
     parameters:
     - name: name
       type: string
-
     returns:
     - name: ok
       type: Boolean
-
 
   - name: user_stats_get_achievement
     type: function
@@ -985,14 +940,11 @@
     parameters:
     - name: name
       type: string
-
     returns:
     - name: ok
       type: Boolean
-
     - name: achieved
       type: Boolean
-
 
   - name: user_stats_clear_achievement
     type: function
@@ -1000,11 +952,9 @@
     parameters:
     - name: name
       type: string
-
     returns:
     - name: ok
       type: Boolean
-
 
   - name: user_stats_get_num_achievements
     type: function
@@ -1020,26 +970,22 @@
     parameters:
     - name: index
       type: number
-
     returns:
     - name: name
       type: String
-
 
   - name: user_stats_get_achievement_display_attribute
     type: function
-    desc: Get general attributes for an achievement. Accepts the following keys * &quot;name&quot; and &quot;desc&quot; for retrieving the localized achievement name and description (returned in UTF8) * &quot;hidden&quot; for retrieving if an achievement is hidden (returns &quot;0&quot; when not hidden, &quot;1&quot; when hidden) https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementDisplayAttribute
+    desc: Get general attributes for an achievement. Accepts the following keys * "name" and "desc" for retrieving the localized achievement name and description (returned in UTF8) * "hidden" for retrieving if an achievement is hidden (returns "0" when not hidden, "1" when hidden) https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementDisplayAttribute
     parameters:
     - name: name
       type: string
-
     - name: key
       type: string
-      desc: Either &quot;name&quot;, &quot;desc&quot; or &quot;hidden&quot;
+      desc: Either "name", "desc" or "hidden"
     returns:
     - name: attribute
       type: String
-
 
   - name: user_stats_get_achievement_achieved_percent
     type: function
@@ -1047,10 +993,8 @@
     returns:
     - name: ok
       type: Boolean
-
     - name: percent
       type: Number
-
 
   - name: user_stats_find_leaderboard
     type: function
@@ -1058,7 +1002,6 @@
     parameters:
     - name: name
       type: string
-
 
   - name: user_stats_find_or_create_leaderboard
     type: function
@@ -1069,10 +1012,10 @@
       desc: The name of the leaderboard to find or create.
     - name: eLeaderboardSortMethod
       type: ELeaderboardSortMethod
-      desc: The sort order of the new leaderboard if it&#x27;s created.
+      desc: The sort order of the new leaderboard if it's created.
     - name: eLeaderboardDisplayType
       type: ELeaderboardDisplayType
-      desc: The display type (used by the Steam Community web site) of the new leaderboard if it&#x27;s created.
+      desc: The display type (used by the Steam Community web site) of the new leaderboard if it's created.
 
   - name: user_stats_get_leaderboard_name
     type: function
@@ -1080,11 +1023,9 @@
     parameters:
     - name: leaderboard
       type: string
-
     returns:
     - name: name
       type: string
-
 
   - name: user_stats_get_leaderboard_entry_count
     type: function
@@ -1092,11 +1033,9 @@
     parameters:
     - name: leaderboard
       type: string
-
     returns:
     - name: count
       type: number
-
 
   - name: user_stats_get_leaderboard_sort_method
     type: function
@@ -1104,7 +1043,6 @@
     parameters:
     - name: leaderboard
       type: string
-
     returns:
     - name: sort
       type: number
@@ -1116,7 +1054,6 @@
     parameters:
     - name: leaderboard
       type: string
-
     returns:
     - name: display
       type: number
@@ -1124,20 +1061,16 @@
 
   - name: user_stats_download_leaderboard_entries
     type: function
-    desc: Asks the Steam back-end for a set of rows in the leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart &amp; nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user https://partner.steamgames.com/doc/api/ISteamUserStats#DownloadLeaderboardEntries
+    desc: Asks the Steam back-end for a set of rows in the leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user https://partner.steamgames.com/doc/api/ISteamUserStats#DownloadLeaderboardEntries
     parameters:
     - name: leaderboard
       type: string
-
     - name: request
       type: ELeaderboardDataRequest
-
     - name: start
       type: number
-
     - name: end
       type: number
-
 
   - name: user_stats_get_downloaded_leaderboard_entry
     type: function
@@ -1152,7 +1085,6 @@
     returns:
     - name: ok
       type: Boolean
-
     - name: entry
       type: Table
       desc: The requested leaderboard entry.
@@ -1163,13 +1095,10 @@
     parameters:
     - name: leaderboard
       type: string
-
     - name: eLeaderboardUploadScoreMethod
       type: ELeaderboardUploadScoreMethod
-
     - name: nScore
       type: number
-
 
   - name: user_stats_attach_leadboard_ugc
     type: function
@@ -1177,10 +1106,8 @@
     parameters:
     - name: leaderboard
       type: string
-
     - name: ugc_handle
       type: string
-
     returns:
     - name: Steam
       type: string
@@ -1193,7 +1120,6 @@
     - name: app_id
       type: Number
 
-
   - name: utils_get_seconds_since_app_active
     type: function
     desc: Return the number of seconds since the user. 
@@ -1201,14 +1127,12 @@
     - name: seconds
       type: Number
 
-
   - name: utils_is_steam_running_on_steam_deck
     type: function
     desc: Returns true if currently running on the Steam Deck device. 
     returns:
     - name: running_on_steamdeck
       type: Boolean
-
 
   - name: utils_get_image_size
     type: function
@@ -1244,7 +1168,6 @@
       desc: True if size of image was read successfully
     - name: Image
       type: String
-
 
   - name: utils_get_server_real_time
     type: function
