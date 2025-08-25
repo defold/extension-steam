@@ -1,6 +1,9 @@
 name: "steam"
 
 platforms:
+    common:
+        context:
+            flags: ["-std=c++11"]
     x86_64-linux:
         context:
             dynamicLibs: ['steam_api', 'sdkencryptedappticket']
