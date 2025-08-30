@@ -55,6 +55,32 @@ nodes {
 }
 nodes {
   position {
+    x: -225.0
+    y: -73.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  font: "rpg"
+  id: "lobbychat"
+  pivot: PIVOT_NW
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "lobby_panel"
+  inherit_alpha: true
+}
+nodes {
+  position {
     x: 110.0
     y: 683.0
   }
@@ -171,6 +197,126 @@ nodes {
   text: "LEAVE LOBBY"
   id: "leave_lobby/label"
   parent: "leave_lobby/bg"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 839.0
+    y: 214.0
+  }
+  type: TYPE_TEMPLATE
+  id: "send_message"
+  inherit_alpha: true
+  template: "/gooey-rpg/components/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "send_message/bg"
+  parent: "send_message"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "SEND MESSAGE"
+  id: "send_message/label"
+  parent: "send_message/bg"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 839.0
+    y: 157.0
+  }
+  type: TYPE_TEMPLATE
+  id: "set_lobby_data"
+  inherit_alpha: true
+  template: "/gooey-rpg/components/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "set_lobby_data/bg"
+  parent: "set_lobby_data"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "SET DATA"
+  id: "set_lobby_data/label"
+  parent: "set_lobby_data/bg"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 839.0
+    y: 101.0
+  }
+  type: TYPE_TEMPLATE
+  id: "get_lobby_data"
+  inherit_alpha: true
+  template: "/gooey-rpg/components/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "get_lobby_data/bg"
+  parent: "get_lobby_data"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "GET DATA"
+  id: "get_lobby_data/label"
+  parent: "get_lobby_data/bg"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 1049.0
+    y: 157.0
+  }
+  type: TYPE_TEMPLATE
+  id: "set_lobby_member_data"
+  inherit_alpha: true
+  template: "/gooey-rpg/components/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "set_lobby_member_data/bg"
+  parent: "set_lobby_member_data"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "SET MEMBER DATA"
+  id: "set_lobby_member_data/label"
+  parent: "set_lobby_member_data/bg"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 1049.0
+    y: 101.0
+  }
+  type: TYPE_TEMPLATE
+  id: "get_lobby_member_data"
+  inherit_alpha: true
+  template: "/gooey-rpg/components/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "get_lobby_member_data/bg"
+  parent: "get_lobby_member_data"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "GET MEMBER DATA"
+  id: "get_lobby_member_data/label"
+  parent: "get_lobby_member_data/bg"
   overridden_fields: 8
   template_node_child: true
 }

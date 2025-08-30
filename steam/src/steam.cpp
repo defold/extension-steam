@@ -144,7 +144,7 @@ static int Update(lua_State* L)
 			{
 				id = callCompleted->m_iCallback;
 				data = callResultData;
-				//dmLogInfo("SteamAPICallCompleted_t %llu result %d", callCompleted->m_hAsyncCall, id);
+				dmLogInfo("SteamAPICallCompleted_t %llu result %d", callCompleted->m_hAsyncCall, id);
 			}
 			else
 			{
@@ -219,9 +219,9 @@ static int Update(lua_State* L)
 		else if (id == LobbyEnter_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_OnLobbyEnter, data);
 		else if (id == FavoritesListChanged_t::k_iCallback) SteamListener_InvokeGeneric("FavoritesListChanged_t");
 		else if (id == LobbyInvite_t::k_iCallback) SteamListener_InvokeGeneric("LobbyInvite_t");
-		else if (id == LobbyDataUpdate_t::k_iCallback) SteamListener_InvokeGeneric("LobbyDataUpdate_t");
-		else if (id == LobbyChatUpdate_t::k_iCallback) SteamListener_InvokeGeneric("LobbyChatUpdate_t");
-		else if (id == LobbyChatMsg_t::k_iCallback) SteamListener_InvokeGeneric("LobbyChatMsg_t");
+		else if (id == LobbyDataUpdate_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_OnLobbyDataUpdate, data);
+		else if (id == LobbyChatUpdate_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_OnLobbyChatUpdate, data);
+		else if (id == LobbyChatMsg_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_OnLobbyChatMsg, data);
 		else if (id == LobbyGameCreated_t::k_iCallback) SteamListener_InvokeGeneric("LobbyGameCreated_t");
 		else if (id == LobbyKicked_t::k_iCallback) SteamListener_InvokeGeneric("LobbyKicked_t");
 		else if (id == LobbyCreated_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_OnLobbyCreated, data);
@@ -397,6 +397,14 @@ static const luaL_reg Module_methods[] = {
 	{ "matchmaking_get_lobby_owner", SteamMatchmaking_GetLobbyOwner },
 	{ "matchmaking_get_num_lobby_members", SteamMatchmaking_GetNumLobbyMembers },
 	{ "matchmaking_get_lobby_member_by_index", SteamMatchmaking_GetLobbyMemberByIndex },
+	{ "matchmaking_set_lobby_member_data", SteamMatchmaking_SetLobbyMemberData },
+	{ "matchmaking_get_lobby_member_data", SteamMatchmaking_GetLobbyMemberData },
+	{ "matchmaking_set_lobby_data", SteamMatchmaking_SetLobbyData },
+	{ "matchmaking_get_lobby_data", SteamMatchmaking_GetLobbyData },
+	{ "matchmaking_get_lobby_data_count", SteamMatchmaking_GetLobbyDataCount },
+	{ "matchmaking_get_lobby_data_by_index", SteamMatchmaking_GetLobbyDataByIndex },
+	{ "matchmaking_send_lobby_chat_message", SteamMatchmaking_SendLobbyChatMsg },
+	{ "matchmaking_get_lobby_chat_entry", SteamMatchmaking_GetLobbyChatEntry },
 
 	// NETWORKING
 	{ "networking_send_message_to_user", SteamNetworking_SendMessageToUser },

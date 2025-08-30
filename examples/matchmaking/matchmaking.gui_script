@@ -26,6 +26,13 @@ function init(self)
 			print("LobbyEnter_t")
 			self.current_lobby = t.m_ulSteamIDLobby
 			msg.post("#", "refresh_lobbyinfo", t)
+		elseif e == "LobbyChatMsg_t" then
+			print("LobbyChatMsg_t")
+			pprint(t)
+			local user, data, type = steam.matchmaking_get_lobby_chat_entry(self.current_lobby, t.m_iChatID)
+			gui.set_text(gui.get_node("lobbychat"), data)
+		elseif e == "LobbyDataUpdate" then
+			steam.matchmaking_get_lobby_data_count(self.current_lobby, index)
 		end
 	end)
 
@@ -66,6 +73,47 @@ function on_input(self, action_id, action)
 		steam.matchmaking_leave_lobby(self.current_lobby)
 		self.current_lobby = nil
 		gui.set_text(gui.get_node("lobbyinfo"), "")
+	end)
+	rpg.button("send_message", action_id, action, function()
+		if not self.current_lobby then
+			print("Not in lobby")
+			return
+		end
+		steam.matchmaking_send_lobby_chat_message(self.current_lobby, "Hello")
+	end)
+	rpg.button("set_lobby_data", action_id, action, function()
+		if not self.current_lobby then
+			print("Not in lobby")                                                                                              
+			return
+		end
+		steam.matchmaking_set_lobby_data(self.current_lobby,"fookey", "barvalue")
+	end)
+	rpg.button("get_lobby_data", action_id, action, function()
+		if not self.current_lobby then
+			print("Not in lobby")                                                                                              
+			return
+		end
+		local count = steam.matchmaking_get_lobby_data_count(self.current_lobby)
+		for i=1,count do
+			local ok, key, value = steam.matchmaking_get_lobby_data_by_index(self.current_lobby, i - 1)
+			print(i, ok, key, value)
+		end
+	end)
+	rpg.button("get_lobby_member_data", action_id, action, function()
+		if not self.current_lobby then
+			print("Not in lobby")                                                                                              
+			return
+		end
+		local my_id = steam.user_get_steam_id()
+		local value = steam.matchmaking_get_lobby_member_data(self.current_lobby, my_id, "fookeymember")
+		print(value)
+	end)
+	rpg.button("set_lobby_member_data", action_id, action, function()
+		if not self.current_lobby then
+			print("Not in lobby")                                                                                              
+			return
+		end
+		steam.matchmaking_set_lobby_member_data(self.current_lobby, "fookeymember", "barvaluemember")
 	end)
 end
 

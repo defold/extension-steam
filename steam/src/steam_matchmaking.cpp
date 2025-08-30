@@ -48,6 +48,47 @@ int SteamMatchmaking_OnLobbyCreated(lua_State* L, void* data)
 	return 2;
 }
 
+int SteamMatchmaking_OnLobbyChatMsg(lua_State* L, void* data)
+{
+	LobbyChatMsg_t* s = (LobbyChatMsg_t*)data;
+	lua_pushstring(L, "LobbyChatMsg_t");
+
+	lua_newtable(L);
+	table_push_uint64(L, "m_ulSteamIDLobby", s->m_ulSteamIDLobby);
+	table_push_uint64(L, "m_ulSteamIDUser", s->m_ulSteamIDUser);
+	table_push_number(L, "m_eChatEntryType", s->m_eChatEntryType);
+	table_push_number(L, "m_iChatID", s->m_iChatID);
+
+	return 2;
+}
+
+int SteamMatchmaking_OnLobbyDataUpdate(lua_State* L, void* data)
+{
+	LobbyDataUpdate_t* s = (LobbyDataUpdate_t*)data;
+	lua_pushstring(L, "LobbyDataUpdate");
+
+	lua_newtable(L);
+	table_push_uint64(L, "m_ulSteamIDLobby", s->m_ulSteamIDLobby);
+	table_push_uint64(L, "m_ulSteamIDMember", s->m_ulSteamIDMember);
+	table_push_boolean(L, "m_bSuccess", s->m_bSuccess);
+
+	return 2;
+}
+
+int SteamMatchmaking_OnLobbyChatUpdate(lua_State* L, void* data)
+{
+	LobbyChatUpdate_t* s = (LobbyChatUpdate_t*)data;
+	lua_pushstring(L, "LobbyChatUpdate_t");
+
+	lua_newtable(L);
+	table_push_uint64(L, "m_ulSteamIDLobby", s->m_ulSteamIDLobby);
+	table_push_uint64(L, "m_ulSteamIDUserChanged", s->m_ulSteamIDUserChanged);
+	table_push_uint64(L, "m_ulSteamIDMakingChange", s->m_ulSteamIDMakingChange);
+	table_push_number(L, "m_rgfChatMemberStateChange", s->m_rgfChatMemberStateChange);
+
+	return 2;
+}
+
 
 int SteamMatchmaking_Init(lua_State* L)
 {
@@ -65,7 +106,6 @@ int SteamMatchmaking_RequestLobbyList(lua_State* L)
 	if (!g_SteamMatchmaking) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
 	SteamAPICall_t call = g_SteamMatchmaking->RequestLobbyList();
-	dmLogInfo("RequestLobbyList SteamAPICall_t %llu", call);
 	push_uint64(L, call);
 	return 1;
 }
@@ -134,7 +174,6 @@ int SteamMatchmaking_LeaveLobby(lua_State* L)
 	if (!g_SteamMatchmaking) return 0;
 	DM_LUA_STACK_CHECK(L, 0);
 	CSteamID steamIDLobby = check_CSteamID(L, 1);
-	dmLogInfo("Leave lobby");
 	g_SteamMatchmaking->LeaveLobby(steamIDLobby);
 	return 0;
 }
@@ -202,4 +241,173 @@ int SteamMatchmaking_GetLobbyMemberByIndex(lua_State* L)
 	push_CSteamID(L, member);
 	return 1;
 }
+
+
+/** Sets a key/value pair in the lobby metadata
+ * @name matchmaking_set_lobby_data
+ * @string lobby_id
+ * @string key
+ * @string data
+ * @treturn boolean result
+ */
+int SteamMatchmaking_SetLobbyData(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	const char* key = luaL_checkstring(L, 2);
+	const char* data = luaL_checkstring(L, 3);
+	bool result = g_SteamMatchmaking->SetLobbyData(steamIDLobby, key, data);
+	lua_pushboolean(L, result);
+	return 1;
+}
+
+
+/** Sets per-user metadata for the local user.
+ * @name matchmaking_set_lobby_member_data
+ * @string lobby_id
+ * @string key
+ * @string data
+ */
+int SteamMatchmaking_SetLobbyMemberData(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 0);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	const char* key = luaL_checkstring(L, 2);
+	const char* data = luaL_checkstring(L, 3);
+	g_SteamMatchmaking->SetLobbyMemberData(steamIDLobby, key, data);
+	return 0;
+}
+
+
+/** Get data associated with this lobby.
+ * @name matchmaking_get_lobby_data
+ * @string lobby_id
+ * @string key
+ * @treturn string Data
+ */
+int SteamMatchmaking_GetLobbyData(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	const char* key = luaL_checkstring(L, 2);
+	const char* data = g_SteamMatchmaking->GetLobbyData(steamIDLobby, key);
+	lua_pushstring(L, data);
+	return 1;
+}
+
+
+/** Gets per-user metadata from another player in the specified lobby.
+ * @name matchmaking_get_lobby_member_data
+ * @string lobby_id
+ * @string user_id
+ * @string key
+ * @treturn string Data
+ */
+int SteamMatchmaking_GetLobbyMemberData(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	CSteamID steamIDUser = check_CSteamID(L, 2);
+	const char* key = luaL_checkstring(L, 3);
+	const char* data = g_SteamMatchmaking->GetLobbyMemberData(steamIDLobby, steamIDUser, key);
+	lua_pushstring(L, data);
+	return 1;
+}
+
+/** Returns the number of metadata keys set on the specified lobby
+ * @name matchmaking_get_lobby_data_count
+ * @string lobby_id
+ * @treturn number Number of keys
+ */
+int SteamMatchmaking_GetLobbyDataCount(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	int count = g_SteamMatchmaking->GetLobbyDataCount(steamIDLobby);
+	lua_pushnumber(L, count);
+	return 1;
+}
+
+
+/** Returns a lobby metadata key/values pair by index
+ * @name matchmaking_get_lobby_data_by_index
+ * @string lobby_id
+ * @number index
+ * @treturn boolean success
+ * @treturn string key
+ * @treturn string value
+ */
+int SteamMatchmaking_GetLobbyDataByIndex(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 3);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	int index = luaL_checknumber(L, 2);
+
+	char key[256];
+	char* keyp = key;
+	char value[4096];
+	bool ok = g_SteamMatchmaking->GetLobbyDataByIndex(steamIDLobby, index, key, 256, value, 4096);
+	if (!ok)
+	{
+		lua_pushboolean(L, 0);
+		lua_pushnil(L);
+		lua_pushnil(L);
+		return 3;
+	}
+	lua_pushboolean(L, 1);
+	lua_pushstring(L, key);
+	lua_pushstring(L,value);
+	return 3;
+}
+
+/** Broadcasts a chat message to the all the users in the lobby
+ * @name matchmaking_send_lobby_chat_message
+ * @string lobby_id
+ * @string body
+ * @treturn boolean success
+ */
+int SteamMatchmaking_SendLobbyChatMsg(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	size_t l;
+	const char* body = luaL_checklstring(L, 2, &l);
+	bool ok = g_SteamMatchmaking->SendLobbyChatMsg(steamIDLobby, body, l);
+	lua_pushboolean(L, ok);
+	return 1;
+}
+
+/** Get a chat message as specified in a LobbyChatMsg_t callback
+ * @name matchmaking_get_lobby_chat_entry
+ * @string lobby_id
+ * @number index
+ * @treturn data
+ * @treturn type
+ */
+int SteamMatchmaking_GetLobbyChatEntry(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 3);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	int index = luaL_checknumber(L, 2);
+
+	CSteamID steamIDUser;
+	char data[4096];
+	EChatEntryType peChatEntryType;
+	int count = g_SteamMatchmaking->GetLobbyChatEntry(steamIDLobby, index, &steamIDUser, data, 4096, &peChatEntryType);
+	push_CSteamID(L, steamIDUser);
+	lua_pushlstring(L, data, count);
+	lua_pushnumber(L, peChatEntryType);
+	return 3;
+}
+
+
+
 #endif

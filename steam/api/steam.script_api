@@ -632,6 +632,110 @@
       type: string
       desc: Of member
 
+  - name: matchmaking_set_lobby_data
+    type: function
+    desc: Sets a key/value pair in the lobby metadata 
+    parameters:
+    - name: lobby_id
+      type: string
+    - name: key
+      type: string
+    - name: data
+      type: string
+    returns:
+    - name: result
+      type: boolean
+
+  - name: matchmaking_set_lobby_member_data
+    type: function
+    desc: Sets per-user metadata for the local user. 
+    parameters:
+    - name: lobby_id
+      type: string
+    - name: key
+      type: string
+    - name: data
+      type: string
+
+  - name: matchmaking_get_lobby_data
+    type: function
+    desc: Get data associated with this lobby. 
+    parameters:
+    - name: lobby_id
+      type: string
+    - name: key
+      type: string
+    returns:
+    - name: Data
+      type: string
+
+  - name: matchmaking_get_lobby_member_data
+    type: function
+    desc: Gets per-user metadata from another player in the specified lobby. 
+    parameters:
+    - name: lobby_id
+      type: string
+    - name: user_id
+      type: string
+    - name: key
+      type: string
+    returns:
+    - name: Data
+      type: string
+
+  - name: matchmaking_get_lobby_data_count
+    type: function
+    desc: Returns the number of metadata keys set on the specified lobby 
+    parameters:
+    - name: lobby_id
+      type: string
+    returns:
+    - name: Number
+      type: number
+      desc: Of keys
+
+  - name: matchmaking_get_lobby_data_by_index
+    type: function
+    desc: Returns a lobby metadata key/values pair by index 
+    parameters:
+    - name: lobby_id
+      type: string
+    - name: index
+      type: number
+    returns:
+    - name: success
+      type: boolean
+    - name: key
+      type: string
+    - name: value
+      type: string
+
+  - name: matchmaking_send_lobby_chat_message
+    type: function
+    desc: Broadcasts a chat message to the all the users in the lobby 
+    parameters:
+    - name: lobby_id
+      type: string
+    - name: body
+      type: string
+    returns:
+    - name: success
+      type: boolean
+
+  - name: matchmaking_get_lobby_chat_entry
+    type: function
+    desc: Get a chat message as specified in a LobbyChatMsg_t callback 
+    parameters:
+    - name: lobby_id
+      type: string
+    - name: index
+      type: number
+    returns:
+    - name: a
+      type: dat
+    - name: e
+      type: typ
+
   - name: networking_send_message_to_user
     type: function
     desc: Send message 
