@@ -1,5 +1,4 @@
-/** Interface to access information about individual users and interact with the
- * Steam Overlay.
+/**
  * @document
  * @namespace steam
  */
