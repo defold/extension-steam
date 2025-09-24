@@ -1,4 +1,5 @@
-/** 
+/** Interface to access information about individual users and interact with the
+ * Steam Overlay.
  * @document
  * @namespace steam
  */
@@ -214,6 +215,25 @@ int SteamFriends_GetSmallFriendAvatar(lua_State* L)
 	return 1;
 }
 
+int SteamFriends_GetMediumFriendAvatar(lua_State* L)
+{
+	if (!g_SteamFriends) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDFriend = check_uint64(L, 1);
+	int handle = g_SteamFriends->GetMediumFriendAvatar(steamIDFriend);
+	lua_pushnumber(L, handle);
+	return 1;
+}
+
+int SteamFriends_GetLargeFriendAvatar(lua_State* L)
+{
+	if (!g_SteamFriends) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDFriend = check_uint64(L, 1);
+	int handle = g_SteamFriends->GetLargeFriendAvatar(steamIDFriend);
+	lua_pushnumber(L, handle);
+	return 1;
+}
 
 /** Activates game overlay to store page for app.
  * @name friends_activate_game_overlay_to_store
@@ -301,7 +321,7 @@ int SteamFriends_InviteUserToGame(lua_State* L)
 	if (!g_SteamFriends) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
 	CSteamID steamIDFriend = check_uint64(L, 1);
-	const char *pchConnectString = luaL_checkstring(L, 1);
+	const char *pchConnectString = luaL_checkstring(L, 2);
 	bool success = g_SteamFriends->InviteUserToGame(steamIDFriend, pchConnectString);
 	lua_pushboolean(L, success);
 	return 1;
