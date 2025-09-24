@@ -80,6 +80,11 @@ int SteamNetworking_ReceiveMessagesOnChannel(lua_State* L)
 	SteamNetworkingMessage_t* outMessages = (SteamNetworkingMessage_t*)malloc(nMaxMessages * sizeof(SteamNetworkingMessage_t));
 	SteamNetworkingMessage_t** out = &outMessages;
 	int count = g_SteamNetworking->ReceiveMessagesOnChannel(localChannel, out, nMaxMessages);
+	if (count == 0)
+	{
+		lua_pushnil(L);
+		return 1;
+	}
 	SteamNetworkingMessage_t* message = &outMessages[0];
 	push_SteamNetworkingMessage(L, message);
 	message->Release();
