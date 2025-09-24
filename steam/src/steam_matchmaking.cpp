@@ -96,6 +96,111 @@ int SteamMatchmaking_Init(lua_State* L)
 	return 0;
 }
 
+
+/** Adds a string comparison filter to the next RequestLobbyList call.
+ * @name matchmaking_add_request_lobby_list_string_filter
+ * @string key
+ * @number value
+ * @number cmp
+ */
+int SteamMatchmaking_AddRequestLobbyListStringFilter(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 0);
+	const char* key = luaL_checkstring(L, 1);
+	const char* value = luaL_checkstring(L, 2);
+	ELobbyComparison cmp = (ELobbyComparison)luaL_checknumber(L, 3);
+	g_SteamMatchmaking->AddRequestLobbyListStringFilter(key, value, cmp);
+	return 0;
+}
+
+/** Adds a numerical comparison filter to the next RequestLobbyList call.
+ * @name matchmaking_add_request_lobby_list_numerical_filter
+ * @string key
+ * @number value
+ * @number cmp
+ */
+int SteamMatchmaking_AddRequestLobbyListNumericalFilter(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 0);
+	const char* key = luaL_checkstring(L, 1);
+	int value = (int)luaL_checknumber(L, 2);
+	ELobbyComparison cmp = (ELobbyComparison)luaL_checknumber(L, 3);
+	g_SteamMatchmaking->AddRequestLobbyListNumericalFilter(key, value, cmp);
+	return 0;
+}
+
+/** Sorts the results closest to the specified value.
+ * @name matchmaking_add_request_lobby_list_near_value_filter
+ * @string key
+ * @number value
+ */
+int SteamMatchmaking_AddRequestLobbyListNearValueFilter(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 0);
+	const char* key = luaL_checkstring(L, 1);
+	int value = (int)luaL_checknumber(L, 2);
+	g_SteamMatchmaking->AddRequestLobbyListNearValueFilter(key, value);
+	return 0;
+}
+
+/** Filters to only return lobbies with the specified number of open slots
+ * available.
+ * @name matchmaking_add_request_lobby_list_filter_slots_available
+ * @number slots
+ */
+int SteamMatchmaking_AddRequestLobbyListFilterSlotsAvailable(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 0);
+	int slots = (int)luaL_checknumber(L, 1);
+	g_SteamMatchmaking->AddRequestLobbyListFilterSlotsAvailable(slots);
+	return 0;
+}
+
+/** Sets the physical distance for which we should search for lobbies, this is
+ * based on the users IP address and a IP location map on the Steam backed.
+ * @name matchmaking_add_request_lobby_list_distance_filter
+ * @number dist
+ */
+int SteamMatchmaking_AddRequestLobbyListDistanceFilter(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 0);
+	ELobbyDistanceFilter dist = (ELobbyDistanceFilter)luaL_checknumber(L, 1);
+	g_SteamMatchmaking->AddRequestLobbyListDistanceFilter(dist);
+	return 0;
+}
+
+/** Sets the maximum number of lobbies to return. The lower the count the faster
+ * it is to download the lobby results & details to the client.
+ * @name matchmaking_add_request_lobby_list_result_count_filter
+ * @number max_count
+ */
+int SteamMatchmaking_AddRequestLobbyListResultCountFilter(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 0);
+	int maxCount = (int)luaL_checknumber(L, 1);
+	g_SteamMatchmaking->AddRequestLobbyListResultCountFilter(maxCount);
+	return 0;
+}
+
+/** Unused - Checks the player compatibility based on the frenemy system.
+ * @name matchmaking_add_request_lobby_list_compatible_members_filter
+ * @string steam_id
+ */
+int SteamMatchmaking_AddRequestLobbyListCompatibleMembersFilter(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 0);
+	CSteamID steamID = check_CSteamID(L, 1);
+	g_SteamMatchmaking->AddRequestLobbyListCompatibleMembersFilter(steamID);
+	return 0;
+}
+
 /** Get a filtered list of relevant lobbies.
  * Will return results as a LobbyMatchList_t event
  * @name matchmaking_request_lobby_list

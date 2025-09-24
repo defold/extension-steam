@@ -392,6 +392,14 @@ static const luaL_reg Module_methods[] = {
 
 	// MATCHMAKING
 	{ "matchmaking_request_lobby_list", SteamMatchmaking_RequestLobbyList },
+	{ "matchmaking_add_request_lobby_list_string_filter", SteamMatchmaking_AddRequestLobbyListStringFilter },
+	{ "matchmaking_add_request_lobby_list_numerical_filter", SteamMatchmaking_AddRequestLobbyListNumericalFilter },
+	{ "matchmaking_add_request_lobby_list_near_value_filter", SteamMatchmaking_AddRequestLobbyListNearValueFilter },
+	{ "matchmaking_add_request_lobby_list_filter_slots_available", SteamMatchmaking_AddRequestLobbyListFilterSlotsAvailable },
+	{ "matchmaking_add_request_lobby_list_distance_filter", SteamMatchmaking_AddRequestLobbyListDistanceFilter },
+	{ "matchmaking_add_request_lobby_list_result_count_filter", SteamMatchmaking_AddRequestLobbyListResultCountFilter },
+	{ "matchmaking_add_request_lobby_list_compatible_members_filter", SteamMatchmaking_AddRequestLobbyListCompatibleMembersFilter },
+
 	{ "matchmaking_get_lobby_by_index", SteamMatchmaking_GetLobbyByIndex },
 	{ "matchmaking_create_lobby", SteamMatchmaking_CreateLobby },
 	{ "matchmaking_join_lobby", SteamMatchmaking_JoinLobby },
@@ -915,7 +923,19 @@ static void LuaInit(lua_State* L)
 	 */
 	SETCONSTANT(ELobbyTypePrivateUnique, k_ELobbyTypePrivateUnique);
 
+	// ELobbyDistanceFilter
+	SETCONSTANT(ELobbyDistanceFilterClose, k_ELobbyDistanceFilterClose);
+	SETCONSTANT(ELobbyDistanceFilterDefault, k_ELobbyDistanceFilterDefault);
+	SETCONSTANT(ELobbyDistanceFilterFar, k_ELobbyDistanceFilterFar);
+	SETCONSTANT(ELobbyDistanceFilterWorldwide, k_ELobbyDistanceFilterWorldwide);
 
+	// EMatchMakingLobbyComparison
+	SETCONSTANT(ELobbyComparisonEqual, k_ELobbyComparisonEqual);
+	SETCONSTANT(ELobbyComparisonNotEqual, k_ELobbyComparisonNotEqual);
+	SETCONSTANT(ELobbyComparisonGreaterThan, k_ELobbyComparisonGreaterThan);
+	SETCONSTANT(ELobbyComparisonGreaterThanOrEqual, k_ELobbyComparisonEqualToOrGreaterThan);
+	SETCONSTANT(ELobbyComparisonLessThan, k_ELobbyComparisonLessThan);
+	SETCONSTANT(ELobbyComparisonLessThanOrEqual, k_ELobbyComparisonEqualToOrLessThan);
 
 	#undef SETCONSTANT
 

@@ -14,6 +14,13 @@ int SteamMatchmaking_OnLobbyChatUpdate(lua_State* L, void* data);
 
 int SteamMatchmaking_Init(lua_State* L);
 int SteamMatchmaking_RequestLobbyList(lua_State* L);
+int SteamMatchmaking_AddRequestLobbyListStringFilter(lua_State* L);
+int SteamMatchmaking_AddRequestLobbyListNumericalFilter(lua_State* L);
+int SteamMatchmaking_AddRequestLobbyListNearValueFilter(lua_State* L);
+int SteamMatchmaking_AddRequestLobbyListFilterSlotsAvailable(lua_State* L);
+int SteamMatchmaking_AddRequestLobbyListDistanceFilter(lua_State* L);
+int SteamMatchmaking_AddRequestLobbyListResultCountFilter(lua_State* L);
+int SteamMatchmaking_AddRequestLobbyListCompatibleMembersFilter(lua_State* L);
 int SteamMatchmaking_GetLobbyByIndex(lua_State* L);
 int SteamMatchmaking_GetLobbyOwner(lua_State* L);
 int SteamMatchmaking_CreateLobby(lua_State* L);
