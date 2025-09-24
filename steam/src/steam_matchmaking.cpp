@@ -305,6 +305,99 @@ int SteamMatchmaking_GetLobbyOwner(lua_State* L)
 }
 
 
+/** Changes who the lobby owner is.
+ * This can only be set by the owner of the lobby. This will trigger a
+ * LobbyDataUpdate_t for all of the users in the lobby, each user should update
+ * their local state to reflect the new owner. This is typically accomplished by
+ * displaying a crown icon next to the owners name.
+ * @name matchmaking_set_lobby_owner
+ * @string lobby_id The Steam ID of the lobby to get the owner of.
+ * @string new_owner The new owner
+ */
+int SteamMatchmaking_SetLobbyOwner(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	CSteamID newOwner = check_CSteamID(L, 2);
+	bool ok = g_SteamMatchmaking->SetLobbyOwner(steamIDLobby, newOwner);
+	lua_pushboolean(L, ok);
+	return 1;
+}
+
+/** Updates what type of lobby this is.
+ * This is also set when you create the lobby with CreateLobby.
+ * This can only be set by the owner of the lobby.
+ * @name matchmaking_set_lobby_type
+ * @string lobby_id The Steam ID of the lobby
+ * @number type The lobby type
+ */
+int SteamMatchmaking_SetLobbyType(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	ELobbyType type = (ELobbyType)luaL_checknumber(L, 2);
+	bool ok = g_SteamMatchmaking->SetLobbyType(steamIDLobby, type);
+	lua_pushboolean(L, ok);
+	return 1;
+}
+
+/** Sets whether or not a lobby is joinable by other players.
+ * This always defaults to enabled for a new lobby. If joining is disabled, then
+ * no players can join, even if they are a friend or have been invited. Lobbies
+ * with joining disabled will not be returned from a lobby search.
+ * @name matchmaking_set_lobby_joinable
+ * @string lobby_id The Steam ID of the lobby
+ * @boolean joinable Enable or disable allowing users to join this lobby?
+ * @treturn boolean Success
+ */
+int SteamMatchmaking_SetLobbyJoinable(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	bool joinable = lua_toboolean(L, 2) != 0;
+	bool ok = g_SteamMatchmaking->SetLobbyJoinable(steamIDLobby, joinable);
+	lua_pushboolean(L, ok);
+	return 1;
+}
+
+/** Set the maximum number of players that can join the lobby.
+ * This is also set when you create the lobby with CreateLobby.
+ * This can only be set by the owner of the lobby.
+ * @name matchmaking_set_lobby_member_limit
+ * @string lobby_id The Steam ID of the lobby to set the member limit for.
+ * @number max_members The maximum number of players allowed in this lobby. This
+ * can not be above 250.
+ * @treturn boolean Success
+ */
+int SteamMatchmaking_SetLobbyMemberLimit(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	int limit = (int)luaL_checknumber(L, 2);
+	bool ok = g_SteamMatchmaking->SetLobbyMemberLimit(steamIDLobby, limit);
+	lua_pushboolean(L, ok);
+	return 1;
+}
+
+/** The current limit on the # of users who can join the lobby.
+ * @name matchmaking_get_lobby_member_limit
+ * @string lobby_id The Steam ID of the lobby to get the member limit of.
+ * @treturn number Limit
+ */
+int SteamMatchmaking_GetLobbyMemberLimit(lua_State* L)
+{
+	if (!g_SteamMatchmaking) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	CSteamID steamIDLobby = check_CSteamID(L, 1);
+	int limit = g_SteamMatchmaking->GetLobbyMemberLimit(steamIDLobby);
+	lua_pushnumber(L, limit);
+	return 1;
+}
+
 /** Gets the number of users in a lobby.
  * This is used for iteration, after calling this then GetLobbyMemberByIndex can
  * be used to get the Steam ID of each person in the lobby. Persona information

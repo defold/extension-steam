@@ -409,6 +409,12 @@ static const luaL_reg Module_methods[] = {
 	{ "matchmaking_get_lobby_member_by_index", SteamMatchmaking_GetLobbyMemberByIndex },
 	{ "matchmaking_set_lobby_member_data", SteamMatchmaking_SetLobbyMemberData },
 	{ "matchmaking_get_lobby_member_data", SteamMatchmaking_GetLobbyMemberData },
+	{ "matchmaking_set_lobby_owner", SteamMatchmaking_SetLobbyOwner },
+	{ "matchmaking_set_lobby_type", SteamMatchmaking_SetLobbyType },
+	{ "matchmaking_set_lobby_joinable", SteamMatchmaking_SetLobbyJoinable },
+	{ "matchmaking_set_lobby_member_limit", SteamMatchmaking_SetLobbyMemberLimit },
+	{ "matchmaking_get_lobby_member_limit", SteamMatchmaking_GetLobbyMemberLimit },
+
 	{ "matchmaking_set_lobby_data", SteamMatchmaking_SetLobbyData },
 	{ "matchmaking_get_lobby_data", SteamMatchmaking_GetLobbyData },
 	{ "matchmaking_get_lobby_data_count", SteamMatchmaking_GetLobbyDataCount },
