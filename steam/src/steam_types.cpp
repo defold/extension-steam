@@ -130,6 +130,12 @@ void table_push_number(lua_State* L, const char* key, lua_Number value)
 	lua_pushnumber(L, value);
 	lua_settable(L, -3);
 }
+void table_push_integer(lua_State* L, const char* key, lua_Integer value)
+{
+	lua_pushstring(L, key);
+	lua_pushinteger(L, value);
+	lua_settable(L, -3);
+}
 void table_push_boolean(lua_State* L, const char* key, bool value)
 {
 	lua_pushstring(L, key);

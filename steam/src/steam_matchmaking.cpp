@@ -17,7 +17,7 @@ int SteamMatchmaking_OnLobbyMatchList(lua_State* L, void* data)
 	lua_pushstring(L, "LobbyMatchList_t");
 
 	lua_newtable(L);
-	table_push_uint64(L, "m_nLobbiesMatching", s->m_nLobbiesMatching);
+	table_push_integer(L, "m_nLobbiesMatching", (lua_Integer)s->m_nLobbiesMatching);
 
 	return 2;
 }

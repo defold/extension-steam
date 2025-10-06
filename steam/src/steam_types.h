@@ -18,6 +18,7 @@ void push_SteamNetworkingMessage(lua_State* L, SteamNetworkingMessage_t* msg);
 void table_push_stringl(lua_State* L, const char* key, const char* value, size_t length);
 void table_push_string(lua_State* L, const char* key, const char* value);
 void table_push_number(lua_State* L, const char* key, lua_Number value);
+void table_push_integer(lua_State* L, const char* key, lua_Integer value);
 void table_push_boolean(lua_State* L, const char* key, bool value);
 void table_push_uint64(lua_State* L, const char* key, uint64 value);
 void table_push_CSteamID(lua_State* L, const char* key, CSteamID value);
