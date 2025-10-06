@@ -29,9 +29,9 @@ int SteamMatchmaking_OnLobbyEnter(lua_State* L, void* data)
 
 	lua_newtable(L);
 	table_push_uint64(L, "m_ulSteamIDLobby", s->m_ulSteamIDLobby);
-	table_push_number(L, "m_rgfChatPermissions", s->m_rgfChatPermissions);
+	table_push_integer(L, "m_rgfChatPermissions", s->m_rgfChatPermissions);
 	table_push_boolean(L, "m_bLocked", s->m_bLocked);
-	table_push_number(L, "m_EChatRoomEnterResponse", s->m_EChatRoomEnterResponse);
+	table_push_integer(L, "m_EChatRoomEnterResponse", s->m_EChatRoomEnterResponse);
 
 	return 2;
 }
@@ -43,7 +43,7 @@ int SteamMatchmaking_OnLobbyCreated(lua_State* L, void* data)
 
 	lua_newtable(L);
 	table_push_uint64(L, "m_ulSteamIDLobby", s->m_ulSteamIDLobby);
-	table_push_number(L, "m_eResult", s->m_eResult);
+	table_push_integer(L, "m_eResult", s->m_eResult);
 
 	return 2;
 }
@@ -56,8 +56,8 @@ int SteamMatchmaking_OnLobbyChatMsg(lua_State* L, void* data)
 	lua_newtable(L);
 	table_push_uint64(L, "m_ulSteamIDLobby", s->m_ulSteamIDLobby);
 	table_push_uint64(L, "m_ulSteamIDUser", s->m_ulSteamIDUser);
-	table_push_number(L, "m_eChatEntryType", s->m_eChatEntryType);
-	table_push_number(L, "m_iChatID", s->m_iChatID);
+	table_push_integer(L, "m_eChatEntryType", s->m_eChatEntryType);
+	table_push_integer(L, "m_iChatID", s->m_iChatID);
 
 	return 2;
 }
@@ -84,7 +84,7 @@ int SteamMatchmaking_OnLobbyChatUpdate(lua_State* L, void* data)
 	table_push_uint64(L, "m_ulSteamIDLobby", s->m_ulSteamIDLobby);
 	table_push_uint64(L, "m_ulSteamIDUserChanged", s->m_ulSteamIDUserChanged);
 	table_push_uint64(L, "m_ulSteamIDMakingChange", s->m_ulSteamIDMakingChange);
-	table_push_number(L, "m_rgfChatMemberStateChange", s->m_rgfChatMemberStateChange);
+	table_push_integer(L, "m_rgfChatMemberStateChange", s->m_rgfChatMemberStateChange);
 
 	return 2;
 }
@@ -394,7 +394,7 @@ int SteamMatchmaking_GetLobbyMemberLimit(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	CSteamID steamIDLobby = check_CSteamID(L, 1);
 	int limit = g_SteamMatchmaking->GetLobbyMemberLimit(steamIDLobby);
-	lua_pushnumber(L, limit);
+	lua_pushinteger(L, limit);
 	return 1;
 }
 
@@ -415,7 +415,7 @@ int SteamMatchmaking_GetNumLobbyMembers(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	CSteamID steamIDLobby = check_CSteamID(L, 1);
 	int count = g_SteamMatchmaking->GetNumLobbyMembers(steamIDLobby);
-	lua_pushnumber(L, count);
+	lua_pushinteger(L, count);
 	return 1;
 }
 
@@ -527,7 +527,7 @@ int SteamMatchmaking_GetLobbyDataCount(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	CSteamID steamIDLobby = check_CSteamID(L, 1);
 	int count = g_SteamMatchmaking->GetLobbyDataCount(steamIDLobby);
-	lua_pushnumber(L, count);
+	lua_pushinteger(L, count);
 	return 1;
 }
 
@@ -602,7 +602,7 @@ int SteamMatchmaking_GetLobbyChatEntry(lua_State* L)
 	int count = g_SteamMatchmaking->GetLobbyChatEntry(steamIDLobby, index, &steamIDUser, data, 4096, &peChatEntryType);
 	push_CSteamID(L, steamIDUser);
 	lua_pushlstring(L, data, count);
-	lua_pushnumber(L, peChatEntryType);
+	lua_pushinteger(L, peChatEntryType);
 	return 3;
 }
 

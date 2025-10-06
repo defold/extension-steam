@@ -46,7 +46,7 @@ void check_uint64_array(lua_State* L, int index, uint64 * arr, unsigned int size
 	}
 	for(int i=1; i<=table_size; i++)
 	{
-		lua_pushnumber(L, i);
+		lua_pushinteger(L, i);
 		lua_gettable(L, index);
 		arr[i] = check_uint64(L, -1);
 	}
@@ -62,7 +62,7 @@ void push_int64_array(lua_State* L, int64 arr[], unsigned int size)
 	lua_newtable(L);
 	for(int i=1; i <= size; i++)
 	{
-		lua_pushnumber(L, i);
+		lua_pushinteger(L, i);
 		push_int64(L, arr[i]);
 		lua_settable(L, -3);
 	}
@@ -78,7 +78,7 @@ void push_uint64_array(lua_State* L, uint64 arr[], unsigned int size)
 	lua_newtable(L);
 	for(int i=1; i <= size; i++)
 	{
-		lua_pushnumber(L, i);
+		lua_pushinteger(L, i);
 		push_uint64(L, arr[i]);
 		lua_settable(L, -3);
 	}
@@ -102,7 +102,7 @@ void push_CSteamID_array(lua_State* L, CSteamID steamId[], unsigned int size)
 {
 	lua_newtable(L);
 	for(int i=1; i <= size; i++) {
-		lua_pushnumber(L, i);
+		lua_pushinteger(L, i);
 		push_CSteamID(L, steamId[i]);
 		lua_settable(L, -3);
 	}
@@ -166,9 +166,9 @@ void table_push_SteamNetConnectionInfo(lua_State* L, const char* key, SteamNetCo
 	lua_pushstring(L, key);
 	lua_newtable(L);
 
-	table_push_number(L, "m_eState", info.m_eState);
-	table_push_number(L, "m_eEndReason", info.m_eEndReason);
-	table_push_number(L, "m_nFlags", info.m_nFlags);
+	table_push_integer(L, "m_eState", info.m_eState);
+	table_push_integer(L, "m_eEndReason", info.m_eEndReason);
+	table_push_integer(L, "m_nFlags", info.m_nFlags);
 	// TODO push more info
 
 	lua_settable(L, -3);
@@ -179,18 +179,18 @@ void table_push_SteamNetConnectionRealTimeStatus(lua_State* L, const char* key, 
 	lua_pushstring(L, key);
 	lua_newtable(L);
 
-	table_push_number(L, "m_nPing", status.m_nPing);
+	table_push_integer(L, "m_nPing", status.m_nPing);
 	table_push_number(L, "m_flConnectionQualityLocal", status.m_flConnectionQualityLocal);
 	table_push_number(L, "m_flConnectionQualityRemote", status.m_flConnectionQualityRemote);
 	table_push_number(L, "m_flOutPacketsPerSec", status.m_flOutPacketsPerSec);
 	table_push_number(L, "m_flOutBytesPerSec", status.m_flOutBytesPerSec);
 	table_push_number(L, "m_flInPacketsPerSec", status.m_flInPacketsPerSec);
 	table_push_number(L, "m_flInBytesPerSec", status.m_flInBytesPerSec);
-	table_push_number(L, "m_nSendRateBytesPerSecond", status.m_nSendRateBytesPerSecond);
-	table_push_number(L, "m_cbPendingUnreliable", status.m_cbPendingUnreliable);
-	table_push_number(L, "m_cbPendingReliable", status.m_cbPendingReliable);
-	table_push_number(L, "m_cbSentUnackedReliable", status.m_cbSentUnackedReliable);
-	table_push_uint64(L, "m_usecQueueTime", status.m_usecQueueTime);
+	table_push_integer(L, "m_nSendRateBytesPerSecond", status.m_nSendRateBytesPerSecond);
+	table_push_integer(L, "m_cbPendingUnreliable", status.m_cbPendingUnreliable);
+	table_push_integer(L, "m_cbPendingReliable", status.m_cbPendingReliable);
+	table_push_integer(L, "m_cbSentUnackedReliable", status.m_cbSentUnackedReliable);
+	table_push_integer(L, "m_usecQueueTime", status.m_usecQueueTime);
 
 	lua_settable(L, -3);
 }
@@ -207,10 +207,10 @@ void push_SteamNetworkingMessage(lua_State* L, SteamNetworkingMessage_t* msg)
 	table_push_number(L, "m_conn", msg->m_conn);
 	table_push_CSteamID(L, "m_identityPeer", msg->m_identityPeer.GetSteamID());
 	table_push_int64(L, "m_nConnUserData", msg->m_nConnUserData);
-	table_push_uint64(L, "m_usecTimeReceived", msg->m_usecTimeReceived);
-	table_push_int64(L, "m_nMessageNumber", msg->m_nMessageNumber);
-	table_push_number(L, "m_nChannel", msg->m_nChannel);
-	table_push_number(L, "m_nFlags", msg->m_nFlags);
+	table_push_integer(L, "m_usecTimeReceived", msg->m_usecTimeReceived);
+	table_push_integer(L, "m_nMessageNumber", msg->m_nMessageNumber);
+	table_push_integer(L, "m_nChannel", msg->m_nChannel);
+	table_push_integer(L, "m_nFlags", msg->m_nFlags);
 	table_push_int64(L, "m_nUserData", msg->m_nUserData);
 }
 

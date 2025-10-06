@@ -36,7 +36,7 @@ int SteamUserStats_OnUserStatsReceived(lua_State* L, void* data)
 
 	lua_newtable(L);
 	table_push_uint64(L, "m_nGameID", s->m_nGameID);
-	table_push_number(L, "m_eResult", s->m_eResult);
+	table_push_integer(L, "m_eResult", s->m_eResult);
 	table_push_CSteamID(L, "m_steamIDUser", s->m_steamIDUser);
 
 	return 2;
@@ -50,7 +50,7 @@ int SteamUserStats_OnLeaderboardScoresDownloaded(lua_State* L, void* data)
 	lua_newtable(L);
 	table_push_uint64(L, "m_hSteamLeaderboard", s->m_hSteamLeaderboard);
 	table_push_uint64(L, "m_hSteamLeaderboardEntries", s->m_hSteamLeaderboardEntries);
-	table_push_number(L, "m_cEntryCount", s->m_cEntryCount);
+	table_push_integer(L, "m_cEntryCount", s->m_cEntryCount);
 
 	return 2;
 }
@@ -62,10 +62,10 @@ int SteamUserStats_OnLeaderboardScoreUploaded(lua_State* L, void* data)
 
 	lua_newtable(L);
 	table_push_uint64(L, "m_hSteamLeaderboard", s->m_hSteamLeaderboard);
-	table_push_number(L, "m_nScore", s->m_nScore);
+	table_push_integer(L, "m_nScore", s->m_nScore);
 	table_push_boolean(L, "m_bScoreChanged", s->m_bScoreChanged);
-	table_push_number(L, "m_nGlobalRankNew", s->m_nGlobalRankNew);
-	table_push_number(L, "m_nGlobalRankPrevious", s->m_nGlobalRankPrevious);
+	table_push_integer(L, "m_nGlobalRankNew", s->m_nGlobalRankNew);
+	table_push_integer(L, "m_nGlobalRankPrevious", s->m_nGlobalRankPrevious);
 
 	return 2;
 }
@@ -77,7 +77,7 @@ int SteamUserStats_OnLeaderboardUGCSet(lua_State* L, void* data)
 
 	lua_newtable(L);
 	table_push_uint64(L, "m_hSteamLeaderboard", s->m_hSteamLeaderboard);
-	table_push_number(L, "m_eResult", s->m_eResult);
+	table_push_integer(L, "m_eResult", s->m_eResult);
 
 	return 2;
 }
@@ -113,7 +113,7 @@ int SteamUserStats_GetStatInt(lua_State* L)
 	}
 	else
 	{
-		lua_pushnumber(L, stat);
+		lua_pushinteger(L, stat);
 	}
 	return 2;
 }
@@ -313,7 +313,7 @@ int SteamUserStats_GetNumAchievements(lua_State* L)
 	if (!g_SteamUserStats) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
 	int num = g_SteamUserStats->GetNumAchievements();
-	lua_pushnumber(L, num);
+	lua_pushinteger(L, num);
 	return 1;
 }
 
@@ -445,7 +445,7 @@ int SteamUserStats_GetLeaderboardEntryCount(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
 	int count = g_SteamUserStats->GetLeaderboardEntryCount(leaderboard);
-	lua_pushnumber(L, count);
+	lua_pushinteger(L, count);
 	return 1;
 }
 
@@ -461,7 +461,7 @@ int SteamUserStats_GetLeaderboardSortMethod(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
 	ELeaderboardSortMethod order = g_SteamUserStats->GetLeaderboardSortMethod(leaderboard);
-	lua_pushnumber(L, order);
+	lua_pushinteger(L, order);
 	return 1;
 }
 
@@ -478,7 +478,7 @@ int SteamUserStats_GetLeaderboardDisplayType(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	SteamLeaderboard_t leaderboard = check_uint64(L, 1);
 	ELeaderboardDisplayType displayType = g_SteamUserStats->GetLeaderboardDisplayType(leaderboard);
-	lua_pushnumber(L, displayType);
+	lua_pushinteger(L, displayType);
 	return 1;
 }
 
@@ -544,13 +544,13 @@ int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L)
 		push_CSteamID(L, leaderboardEntry.m_steamIDUser);
 		lua_settable(L, -3);
 		lua_pushstring(L, "m_nGlobalRank");
-		lua_pushnumber(L, leaderboardEntry.m_nGlobalRank);
+		lua_pushinteger(L, leaderboardEntry.m_nGlobalRank);
 		lua_settable(L, -3);
 		lua_pushstring(L, "m_nScore");
-		lua_pushnumber(L, leaderboardEntry.m_nScore);
+		lua_pushinteger(L, leaderboardEntry.m_nScore);
 		lua_settable(L, -3);
 		lua_pushstring(L, "m_cDetails");
-		lua_pushnumber(L, leaderboardEntry.m_cDetails);
+		lua_pushinteger(L, leaderboardEntry.m_cDetails);
 		lua_settable(L, -3);
 		lua_pushstring(L, "m_hUGC");
 		push_uint64(L, leaderboardEntry.m_hUGC);

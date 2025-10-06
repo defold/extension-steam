@@ -448,7 +448,7 @@ static void LuaInit(lua_State* L)
 	luaL_register(L, MODULE_NAME, Module_methods);
 
 	#define SETCONSTANT(name, val) \
-	lua_pushnumber(L, (lua_Number) val); \
+	lua_pushinteger(L, (lua_Number) val); \
 	lua_setfield(L, -2, #name);
 
 	//

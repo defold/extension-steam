@@ -60,7 +60,7 @@ int SteamNetworking_SendMessageToUser(lua_State* L)
 	int sendFlags = luaL_checknumber(L, 3);
 	int remoteChannel = luaL_checknumber(L, 4);
 	EResult result = g_SteamNetworking->SendMessageToUser(identityRemote, pubData, (uint32)cubData, sendFlags, remoteChannel);
-	lua_pushnumber(L, result);
+	lua_pushinteger(L, result);
 	return 1;
 }
 
@@ -174,7 +174,7 @@ int SteamNetworking_GetSessionConnectionInfo(lua_State* L)
 	ESteamNetworkingConnectionState state = g_SteamNetworking->GetSessionConnectionInfo(identityRemote, &connectionInfo, &quickStatus);
 
 	lua_newtable(L);
-	table_push_number(L, "state", state);
+	table_push_integer(L, "state", state);
 	table_push_SteamNetConnectionInfo(L, "info", connectionInfo);
 	table_push_SteamNetConnectionRealTimeStatus(L, "status", quickStatus);
 	return 1;

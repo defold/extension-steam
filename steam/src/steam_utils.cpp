@@ -81,7 +81,7 @@ int SteamUtils_GetAppId(lua_State* L)
 {
 	if (!g_SteamUtils) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
-	lua_pushnumber(L, g_SteamUtils->GetAppID());
+	lua_pushinteger(L, g_SteamUtils->GetAppID());
 	return 1;
 }
 
@@ -94,7 +94,7 @@ int SteamUtils_GetSecondsSinceAppActive(lua_State* L)
 	if (!g_SteamUtils) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
 
-	lua_pushnumber(L, g_SteamUtils->GetSecondsSinceAppActive());
+	lua_pushinteger(L, g_SteamUtils->GetSecondsSinceAppActive());
 	return 1;
 }
 
@@ -132,8 +132,8 @@ int SteamUtils_GetImageSize(lua_State* L)
 	lua_pushboolean(L, ok);
 	if (ok)
 	{
-		lua_pushnumber(L, pnWidth);
-		lua_pushnumber(L, pnWidth);
+		lua_pushinteger(L, pnWidth);
+		lua_pushinteger(L, pnWidth);
 	}
 	else
 	{
@@ -182,7 +182,7 @@ int SteamUtils_GetServerRealTime(lua_State* L)
 	if (!g_SteamUtils) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
 	uint32 time = g_SteamUtils->GetServerRealTime();
-	lua_pushnumber(L, time);
+	lua_pushinteger(L, time);
 	return 1;
 }
 

@@ -34,7 +34,7 @@ int SteamFriends_OnFriendRichPresenceUpdate(lua_State* L, void* data)
 
 	lua_newtable(L);
 	table_push_CSteamID(L, "m_steamIDFriend", s->m_steamIDFriend);
-	table_push_number(L, "m_nAppID", s->m_nAppID);
+	table_push_integer(L, "m_nAppID", s->m_nAppID);
 
 	return 2;
 }
@@ -46,7 +46,7 @@ int SteamFriends_OnPersonaStateChange(lua_State* L, void* data)
 
 	lua_newtable(L);
 	table_push_uint64(L, "m_ulSteamID", s->m_ulSteamID);
-	table_push_number(L, "m_nChangeFlags", s->m_nChangeFlags);
+	table_push_integer(L, "m_nChangeFlags", s->m_nChangeFlags);
 
 	return 2;
 }
@@ -102,7 +102,7 @@ int SteamFriends_GetPersonaState(lua_State* L)
 	if (!g_SteamFriends) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
 	EPersonaState e = g_SteamFriends->GetPersonaState();
-	lua_pushnumber(L, e);
+	lua_pushinteger(L, e);
 	return 1;
 }
 
@@ -122,7 +122,7 @@ int SteamFriends_GetPersonaState(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	int iFriendFlags = luaL_checknumber(L, 1);
 	int count = g_SteamFriends->GetFriendCount(iFriendFlags);
-	lua_pushnumber(L, count);
+	lua_pushinteger(L, count);
 	return 1;
 }
 
@@ -161,7 +161,7 @@ int SteamFriends_GetFriendPersonaState(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	CSteamID steamIDFriend = check_uint64(L, 1);
 	EPersonaState state = g_SteamFriends->GetFriendPersonaState(steamIDFriend);
-	lua_pushnumber(L, state);
+	lua_pushinteger(L, state);
 	return 1;
 }
 
@@ -177,7 +177,7 @@ int SteamFriends_GetFriendSteamLevel(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	CSteamID steamIDFriend = check_uint64(L, 1);
 	int level = g_SteamFriends->GetFriendSteamLevel(steamIDFriend);
-	lua_pushnumber(L, level);
+	lua_pushinteger(L, level);
 	return 1;
 }
 
@@ -193,7 +193,7 @@ int SteamFriends_GetFriendRelationship(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	CSteamID steamIDFriend = check_uint64(L, 1);
 	EFriendRelationship relationship = g_SteamFriends->GetFriendRelationship(steamIDFriend);
-	lua_pushnumber(L, relationship);
+	lua_pushinteger(L, relationship);
 	return 1;
 }
 
@@ -210,7 +210,7 @@ int SteamFriends_GetSmallFriendAvatar(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	CSteamID steamIDFriend = check_uint64(L, 1);
 	int handle = g_SteamFriends->GetSmallFriendAvatar(steamIDFriend);
-	lua_pushnumber(L, handle);
+	lua_pushinteger(L, handle);
 	return 1;
 }
 
@@ -220,7 +220,7 @@ int SteamFriends_GetMediumFriendAvatar(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	CSteamID steamIDFriend = check_uint64(L, 1);
 	int handle = g_SteamFriends->GetMediumFriendAvatar(steamIDFriend);
-	lua_pushnumber(L, handle);
+	lua_pushinteger(L, handle);
 	return 1;
 }
 
@@ -230,7 +230,7 @@ int SteamFriends_GetLargeFriendAvatar(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	CSteamID steamIDFriend = check_uint64(L, 1);
 	int handle = g_SteamFriends->GetLargeFriendAvatar(steamIDFriend);
-	lua_pushnumber(L, handle);
+	lua_pushinteger(L, handle);
 	return 1;
 }
 

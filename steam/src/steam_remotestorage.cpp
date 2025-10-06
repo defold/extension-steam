@@ -56,7 +56,7 @@ int SteamRemoteStorage_GetFileCount(lua_State* L)
 	if (!g_SteamRemoteStorage) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
 	int count = g_SteamRemoteStorage->GetFileCount();
-	lua_pushnumber(L, count);
+	lua_pushinteger(L, count);
 	return 1;
 }
 
@@ -72,7 +72,7 @@ int SteamRemoteStorage_GetFileNameAndSize(lua_State* L)
 	int32 pnFileSizeInBytes;
 	const char* name = g_SteamRemoteStorage->GetFileNameAndSize(index, &pnFileSizeInBytes);
 	lua_pushstring(L, name);
-	lua_pushnumber(L, pnFileSizeInBytes);
+	lua_pushinteger(L, pnFileSizeInBytes);
 	return 2;
 }
 
@@ -95,8 +95,8 @@ int SteamRemoteStorage_GetQuota(lua_State* L)
 	}
 	else
 	{
-		lua_pushnumber(L, puAvailableBytes);
-		lua_pushnumber(L, pnTotalBytes);
+		lua_pushinteger(L, puAvailableBytes);
+		lua_pushinteger(L, pnTotalBytes);
 	}
 	return 2;
 }

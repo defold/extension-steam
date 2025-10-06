@@ -20,9 +20,9 @@ int SteamUser_OnMicroTxnAuthorizationResponse(lua_State* L, void* data)
 	lua_pushstring(L, "MicroTxnAuthorizationResponse_t");
 
 	lua_newtable(L);
-	table_push_number(L, "m_unAppID", s->m_unAppID);
+	table_push_integer(L, "m_unAppID", s->m_unAppID);
 	table_push_uint64(L, "m_ulOrderID", s->m_ulOrderID);
-	table_push_number(L, "m_bAuthorized", s->m_bAuthorized);
+	table_push_integer(L, "m_bAuthorized", s->m_bAuthorized);
 
 	return 2;
 }
@@ -56,7 +56,7 @@ int SteamUser_GetPlayerSteamLevel(lua_State* L)
 {
 	if (!g_SteamUser) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
-	lua_pushnumber(L, g_SteamUser->GetPlayerSteamLevel());
+	lua_pushinteger(L, g_SteamUser->GetPlayerSteamLevel());
 	return 1;
 }
 
@@ -74,7 +74,7 @@ int SteamUser_GetGameBadgeLevel(lua_State* L)
 	DM_LUA_STACK_CHECK(L, 1);
 	int series = luaL_checknumber(L, 1);
 	bool foil = lua_toboolean(L, 2);
-	lua_pushnumber(L, g_SteamUser->GetGameBadgeLevel(series, foil));
+	lua_pushinteger(L, g_SteamUser->GetGameBadgeLevel(series, foil));
 	return 1;
 }
 
