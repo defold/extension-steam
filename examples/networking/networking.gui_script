@@ -2,6 +2,8 @@ local rpg = require "gooey-rpg.rpg"
 local monarch = require "monarch.monarch"
 local prettify = require "examples.prettify"
 
+local CHANNEL = 2
+
 function init(self)
 	msg.post(".", "acquire_input_focus")
 
@@ -20,6 +22,11 @@ end
 
 function update(self, dt)
 	steam.update()
+	local message = steam.networking_receive_messages_on_channel(CHANNEL)
+	if message then
+		local text = prettify(message)
+		gui.set_text(gui.get_node("panel_text"), text)
+	end
 end
 
 function on_input(self, action_id, action)
@@ -28,9 +35,13 @@ function on_input(self, action_id, action)
 	end)
 
 	rpg.button("info", action_id, action, function()
-		local i = steam.networking_get_session_connection_info()
-		local t = prettify(i)
-		gui.set_text(gui.get_node("panel_text"), t)
+		local info = steam.networking_get_session_connection_info()
+		local text = prettify(info)
+		gui.set_text(gui.get_node("panel_text"), text)
+	end)
+
+	rpg.button("send_message", action_id, action, function()
+		steam.networking_send_message_to_user(steam.user_get_steam_id(), "foobar", 0, CHANNEL)
 	end)
 end
 

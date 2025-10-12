@@ -101,6 +101,30 @@ nodes {
   parent: "panel"
   inherit_alpha: true
 }
+nodes {
+  position {
+    x: 327.0
+    y: 217.0
+  }
+  type: TYPE_TEMPLATE
+  id: "send_message"
+  inherit_alpha: true
+  template: "/gooey-rpg/components/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "send_message/bg"
+  parent: "send_message"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "SEND MESSAGE"
+  id: "send_message/label"
+  parent: "send_message/bg"
+  overridden_fields: 8
+  template_node_child: true
+}
 layers {
   name: "below"
 }

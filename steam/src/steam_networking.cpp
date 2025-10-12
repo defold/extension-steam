@@ -11,9 +11,13 @@
 
 static ISteamNetworkingMessages* g_SteamNetworking = 0;
 
+static const int MAX_STEAM_NETWORKING_MESSAGES = 1;
+static SteamNetworkingMessage_t* g_SteamNetworkingMessage = 0;
+
 int SteamNetworking_Init(lua_State* L)
 {
 	g_SteamNetworking = SteamNetworkingMessages();
+	g_SteamNetworkingMessage = (SteamNetworkingMessage_t*)malloc(MAX_STEAM_NETWORKING_MESSAGES * sizeof(SteamNetworkingMessage_t));
 	return 0;
 }
 
@@ -76,20 +80,17 @@ int SteamNetworking_ReceiveMessagesOnChannel(lua_State* L)
 	if (!g_SteamNetworking) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
 	int localChannel = luaL_checknumber(L, 1);
-	const int nMaxMessages = 1;
-	SteamNetworkingMessage_t* outMessages = (SteamNetworkingMessage_t*)malloc(nMaxMessages * sizeof(SteamNetworkingMessage_t));
-	SteamNetworkingMessage_t** out = &outMessages;
+	const int nMaxMessages = MAX_STEAM_NETWORKING_MESSAGES;
+	SteamNetworkingMessage_t** out = &g_SteamNetworkingMessage;
 	int count = g_SteamNetworking->ReceiveMessagesOnChannel(localChannel, out, nMaxMessages);
 	if (count == 0)
 	{
 		lua_pushnil(L);
 		return 1;
 	}
-	SteamNetworkingMessage_t* message = &outMessages[0];
+	SteamNetworkingMessage_t* message = &g_SteamNetworkingMessage[0];
 	push_SteamNetworkingMessage(L, message);
 	message->Release();
-	free(outMessages);
-
 	return 1;
 }
 
