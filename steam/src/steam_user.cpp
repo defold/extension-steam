@@ -27,6 +27,19 @@ int SteamUser_OnMicroTxnAuthorizationResponse(lua_State* L, void* data)
 	return 2;
 }
 
+int SteamUser_OnGetTicketForWebApiResponse(lua_State * L, void* data)
+{
+	GetTicketForWebApiResponse_t* s = (GetTicketForWebApiResponse_t*)data;
+	lua_pushstring(L, "GetTicketForWebApiResponse_t");
+
+	lua_newtable(L);
+	table_push_integer(L, "m_hAuthTicket", s->m_hAuthTicket);
+	table_push_integer(L, "m_eResult", s->m_eResult);
+	table_push_stringl(L, "m_rgubTicket", (const char*)s->m_rgubTicket, (size_t)s->m_cubTicket);
+
+	return 2;
+}
+
 
 int SteamUser_Init(lua_State* L)
 {
@@ -183,6 +196,37 @@ int SteamUser_GetAuthSessionTicket(lua_State* L)
 
 	g_AuthSessionTicket = ticket;
 	lua_pushlstring(L, pTicket, pcbTicket);
+	lua_pushnil(L);
+	return 2;
+}
+
+/** Get an authentication ticket for web API.
+ * Request an authentication ticket suitable to authenticated in a web backend. Will
+ * trigger a GetTicketForWebApiResponse_t callback when the ticket is ready.
+ * @name user_get_auth_ticket_for_web_api
+ * @string identity Optional identity string to associate with the ticket
+ * @treturn number hAuthTicket or null The handle of the requested ticket
+ * @treturn string error or null
+ */
+int SteamUser_GetAuthTicketForWebAPI(lua_State* L) {
+	if (!g_SteamUser) return 0;
+	DM_LUA_STACK_CHECK(L, 2);
+
+	const char* pchIdentity = nullptr;
+	if (lua_gettop(L) >= 1)
+	{
+		pchIdentity = luaL_checkstring(L, 1);
+	}
+
+	HAuthTicket ticket = g_SteamUser->GetAuthTicketForWebApi(pchIdentity);
+	if (ticket == k_HAuthTicketInvalid)
+	{
+		lua_pushnil(L);
+		lua_pushstring(L, "k_HAuthTicketInvalid");
+		return 2;
+	}
+
+	lua_pushnumber(L, ticket);
 	lua_pushnil(L);
 	return 2;
 }
