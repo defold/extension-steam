@@ -39,6 +39,18 @@ function init(self)
 	))
 
 	steam.set_listener(function(self, e, t)
+		if e == "GetTicketForWebApiResponse_t" then
+			if t.m_hAuthTicket ~= self.expected_ticket_handle then
+				print("unexpected ticket handle", t.m_hAuthTicket, self.expected_ticket_handle)
+				return
+			end
+			local ticket = t.m_rgubTicket
+			local hex = ticket:gsub(".", function(char)
+				return string.format("%02X", char:byte())
+			end)
+			print("ticket", hex)
+			return
+		end
 		print("listener event", e)
 		pprint(t)
 	end)
@@ -64,6 +76,16 @@ function on_input(self, action_id, action)
 				return string.format("%02X", char:byte())
 			end)
 			print("ticket", hex)
+		else
+			print("error", err)
+		end
+	end)
+
+	rpg.button("get_auth_for_webapi", action_id, action, function()
+		local hAuthTicket, err = steam.user_get_auth_ticket_for_web_api("your-backend.example.com")
+		if hAuthTicket then
+			self.expected_ticket_handle = hAuthTicket
+			print("ticket", hAuthTicket)
 		else
 			print("error", err)
 		end

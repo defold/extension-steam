@@ -170,6 +170,7 @@ static int Update(lua_State* L)
 		else if (id == GlobalAchievementPercentagesReady_t::k_iCallback) SteamListener_InvokeGeneric("GlobalAchievementPercentagesReady_t");
 		// user
 		else if (id == MicroTxnAuthorizationResponse_t::k_iCallback) SteamListener_Invoke(SteamUser_OnMicroTxnAuthorizationResponse, data);
+		else if (id == GetTicketForWebApiResponse_t::k_iCallback) SteamListener_Invoke(SteamUser_OnGetTicketForWebApiResponse, data);
 		else if (id == SteamServersConnected_t::k_iCallback) SteamListener_InvokeGeneric("SteamServersConnected_t");
 		else if (id == SteamServerConnectFailure_t::k_iCallback) SteamListener_InvokeGeneric("SteamServerConnectFailure_t");
 		else if (id == SteamServersDisconnected_t::k_iCallback) SteamListener_InvokeGeneric("SteamServersDisconnected_t");
@@ -389,6 +390,7 @@ static const luaL_reg Module_methods[] = {
 	{ "user_is_phone_requiring_verification", SteamUser_IsPhoneRequiringVerification },
 	{ "user_is_two_factor_enabled", SteamUser_IsTwoFactorEnabled },
 	{ "user_get_auth_session_ticket", SteamUser_GetAuthSessionTicket },
+	{ "user_get_auth_ticket_for_web_api", SteamUser_GetAuthTicketForWebAPI },
 
 	// MATCHMAKING
 	{ "matchmaking_request_lobby_list", SteamMatchmaking_RequestLobbyList },

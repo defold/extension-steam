@@ -6,6 +6,7 @@
 #include <dmsdk/sdk.h>
 
 int SteamUser_OnMicroTxnAuthorizationResponse(lua_State* L, void* data);
+int SteamUser_OnGetTicketForWebApiResponse(lua_State* L, void* data);
 
 int SteamUser_Init(lua_State* L);
 int SteamUser_GetSteamId(lua_State* L);
@@ -18,6 +19,7 @@ int SteamUser_IsPhoneIdentifying(lua_State* L);
 int SteamUser_IsPhoneRequiringVerification(lua_State* L);
 int SteamUser_IsTwoFactorEnabled(lua_State* L);
 int SteamUser_GetAuthSessionTicket(lua_State* L);
+int SteamUser_GetAuthTicketForWebAPI(lua_State* L);
 
 #endif
 

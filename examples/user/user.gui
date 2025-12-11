@@ -102,6 +102,30 @@ nodes {
   overridden_fields: 8
   template_node_child: true
 }
+nodes {
+  position {
+    x: 443.0
+    y: 559.0
+  }
+  type: TYPE_TEMPLATE
+  id: "get_auth_for_webapi"
+  inherit_alpha: true
+  template: "/gooey-rpg/components/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "get_auth_for_webapi/bg"
+  parent: "get_auth_for_webapi"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "GET AUTH FOR WEBAPI"
+  id: "get_auth_for_webapi/label"
+  parent: "get_auth_for_webapi/bg"
+  overridden_fields: 8
+  template_node_child: true
+}
 layers {
   name: "below"
 }
