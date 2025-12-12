@@ -9,10 +9,14 @@
     returns:
     - name: success
       type: Boolean
-      desc: True if successful
+      desc: |
+        True if successful
+        
     - name: message
       type: String
-      desc: Error message if unsuccessful.
+      desc: |
+        Error message if unsuccessful.
+        
 
   - name: update
     type: function
@@ -63,15 +67,15 @@
 
   - name: ELeaderboardDataRequestGlobal
     type: number
-    desc: Requests rows in the leaderboard from the full table 
+    desc: Requests rows in the leaderboard from the full table. 
 
   - name: ELeaderboardDataRequestGlobalAroundUser
     type: number
-    desc: Requests rows in the leaderboard from rows around the user 
+    desc: Requests rows in the leaderboard from rows around the user. 
 
   - name: ELeaderboardDataRequestFriends
     type: number
-    desc: Requests all the rows for friends of the current user 
+    desc: Requests all the rows for friends of the current user. 
 
   - name: ELeaderboardSortMethodNone
     type: number
@@ -79,11 +83,11 @@
 
   - name: ELeaderboardSortMethodAscending
     type: number
-    desc: Top-score is lowest number 
+    desc: Top-score is lowest number. 
 
   - name: ELeaderboardSortMethodDescending
     type: number
-    desc: Top-score is highest number 
+    desc: Top-score is highest number. 
 
   - name: ELeaderboardUploadScoreMethodNone
     type: number
@@ -91,11 +95,11 @@
 
   - name: ELeaderboardUploadScoreMethodKeepBest
     type: number
-    desc: Leaderboard will keep user&#x27;s best score 
+    desc: Leaderboard will keep user&#x27;s best score. 
 
   - name: ELeaderboardUploadScoreMethodForceUpdate
     type: number
-    desc: Leaderboard will always replace score with specified 
+    desc: Leaderboard will always replace score with specified. 
 
   - name: ELeaderboardDisplayTypeNone
     type: number
@@ -103,63 +107,63 @@
 
   - name: ELeaderboardDisplayTypeNumeric
     type: number
-    desc: Simple numerical score 
+    desc: Simple numerical score. 
 
   - name: ELeaderboardDisplayTypeTimeSeconds
     type: number
-    desc: The score represents a time, in seconds 
+    desc: The score represents a time, in seconds. 
 
   - name: ELeaderboardDisplayTypeTimeMilliSeconds
     type: number
-    desc: The score represents a time, in milliseconds 
+    desc: The score represents a time, in milliseconds. 
 
   - name: EOverlayToStoreFlag_None
     type: number
-    desc: Passed as parameter to the store 
+    desc: Passed as parameter to the store. 
 
   - name: EOverlayToStoreFlag_AddToCart
     type: number
-    desc: Passed as parameter to the store 
+    desc: Passed as parameter to the store. 
 
   - name: EOverlayToStoreFlag_AddToCartAndShow
     type: number
-    desc: Passed as parameter to the store 
+    desc: Passed as parameter to the store. 
 
   - name: EActivateGameOverlayToWebPageMode_Default
     type: number
-    desc: Passed as parameter to ActivateGameOverlayToWebPage 
+    desc: Passed as parameter to ActivateGameOverlayToWebPage. 
 
   - name: EActivateGameOverlayToWebPageMode_Modal
     type: number
-    desc: Passed as parameter to ActivateGameOverlayToWebPage 
+    desc: Passed as parameter to ActivateGameOverlayToWebPage. 
 
   - name: EPersonaStateOffline
     type: number
-    desc: Friend is not currently logged on 
+    desc: Friend is not currently logged on. 
 
   - name: EPersonaStateOnline
     type: number
-    desc: Friend is logged on 
+    desc: Friend is logged on. 
 
   - name: EPersonaStateBusy
     type: number
-    desc: User is on, but busy 
+    desc: User is on, but busy. 
 
   - name: EPersonaStateAway
     type: number
-    desc: Auto-away feature 
+    desc: Auto-away feature. 
 
   - name: EPersonaStateSnooze
     type: number
-    desc: Auto-away for a long time 
+    desc: Auto-away for a long time. 
 
   - name: EPersonaStateLookingToTrade
     type: number
-    desc: Online, trading 
+    desc: Online, trading. 
 
   - name: EPersonaStateLookingToPlay
     type: number
-    desc: Online, wanting to play 
+    desc: Online, wanting to play. 
 
   - name: EPersonaStateInvisible
     type: number
@@ -400,7 +404,9 @@
     returns:
     - name: String
       type: name
-      desc: Name of user
+      desc: |
+        Name of user
+        
 
   - name: friends_get_persona_name
     type: function
@@ -408,7 +414,9 @@
     returns:
     - name: String
       type: name
-      desc: Name of user
+      desc: |
+        Name of user
+        
 
   - name: friends_get_persona_state
     type: function
@@ -416,7 +424,9 @@
     returns:
     - name: Number
       type: state
-      desc: Status of user.
+      desc: |
+        Status of user.
+        
 
   - name: friends_get_friend_count
     type: function
@@ -424,11 +434,15 @@
     parameters:
     - name: iFriendFlags
       type: number
-      desc: Set of friend flags to match friends against.
+      desc: |
+        Set of friend flags to match friends against.
+        
     returns:
     - name: Number
       type: count
-      desc: Number of users matching search.
+      desc: |
+        Number of users matching search.
+        
 
   - name: friends_get_friend_by_index
     type: function
@@ -436,14 +450,20 @@
     parameters:
     - name: iFriend
       type: number
-      desc: Is a index of range [0, GetFriendCount())
+      desc: |
+        Is a index of range [0, GetFriendCount())
+        
     - name: iFriendsFlags
       type: number
-      desc: Must be the same value as used in GetFriendCount()
+      desc: |
+        Must be the same value as used in GetFriendCount()
+        
     returns:
     - name: Number
       type: steamID
-      desc: Steam id of the user
+      desc: |
+        Steam id of the user
+        
 
   - name: friends_get_friend_persona_state
     type: function
@@ -451,11 +471,15 @@
     parameters:
     - name: steamIDFriend
       type: number
-      desc: Id of friend
+      desc: |
+        Id of friend
+        
     returns:
     - name: Number
       type: state
-      desc: State of friend
+      desc: |
+        State of friend
+        
 
   - name: friends_get_friend_steam_level
     type: function
@@ -463,11 +487,15 @@
     parameters:
     - name: steamIDFriend
       type: number
-      desc: Id of friend
+      desc: |
+        Id of friend
+        
     returns:
     - name: Number
       type: level
-      desc: Steam level of friend
+      desc: |
+        Steam level of friend
+        
 
   - name: friends_get_friend_relationship
     type: function
@@ -475,11 +503,15 @@
     parameters:
     - name: steamIDFriend
       type: number
-      desc: Id of friend
+      desc: |
+        Id of friend
+        
     returns:
     - name: Number
       type: relationship
-      desc: Relationship to the user.
+      desc: |
+        Relationship to the user.
+        
 
   - name: friends_activate_game_overlay_to_store
     type: function
@@ -489,7 +521,9 @@
       type: number
     - name: flag
       type: number
-      desc: EOverlayToStoreFlag
+      desc: |
+        EOverlayToStoreFlag
+        
 
   - name: friends_activate_game_overlay_to_web_page
     type: function
@@ -499,7 +533,9 @@
       type: string
     - name: mode
       type: number
-      desc: EActivateGameOverlayToWebPageMode
+      desc: |
+        EActivateGameOverlayToWebPageMode
+        
 
   - name: friends_set_rich_presence
     type: function
@@ -512,7 +548,9 @@
     returns:
     - name: success
       type: bool
-      desc: True if the rich presence was set successfully, otherwise False.
+      desc: |
+        True if the rich presence was set successfully, otherwise False.
+        
 
   - name: friends_clear_rich_presence
     type: function
@@ -524,10 +562,14 @@
     parameters:
     - name: steamIDFriend
       type: number
-      desc: Id of friend
+      desc: |
+        Id of friend
+        
     - name: connect
       type: string
-      desc: String
+      desc: |
+        String
+        
     returns:
     - name: success
       type: boolean
@@ -538,7 +580,9 @@
     parameters:
     - name: listener
       type: function
-      desc: Listener function to call
+      desc: |
+        Listener function to call
+        
 
   - name: matchmaking_add_request_lobby_list_string_filter
     type: function
@@ -573,21 +617,21 @@
 
   - name: matchmaking_add_request_lobby_list_filter_slots_available
     type: function
-    desc: Filters to only return lobbies with the specified number of open slots Available.
+    desc: Filters to only return lobbies with the specified number of open slots. Available.
     parameters:
     - name: slots
       type: number
 
   - name: matchmaking_add_request_lobby_list_distance_filter
     type: function
-    desc: Sets the physical distance for which we should search for lobbies, this is Based on the users IP address and a IP location map on the Steam backed.
+    desc: Sets the physical distance for which we should search for lobbies, this is. Based on the users IP address and a IP location map on the Steam backed.
     parameters:
     - name: dist
       type: number
 
   - name: matchmaking_add_request_lobby_list_result_count_filter
     type: function
-    desc: Sets the maximum number of lobbies to return. The lower the count the faster It is to download the lobby results & details to the client.
+    desc: Sets the maximum number of lobbies to return. The lower the count the faster. It is to download the lobby results & details to the client.
     parameters:
     - name: max_count
       type: number
@@ -605,19 +649,26 @@
     returns:
     - name: Callback
       type: string
-      desc: Id
+      desc: |
+        Id
+        
 
   - name: matchmaking_get_lobby_by_index
     type: function
-    desc: Gets the Steam ID of the lobby at the specified index. This should only be called after a LobbyMatchList_t call result is received LobbyMatchList_t.m_nLobbiesMatching
+    desc: Gets the Steam ID of the lobby at the specified index. This should only be called after a LobbyMatchList_t call result is received
     parameters:
     - name: index
       type: number
-      desc: The index of the lobby to get the Steam ID of, from 0 to
+      desc: |
+        The index of the lobby to get the Steam ID of, from 0 to
+        LobbyMatchList_t.m_nLobbiesMatching
+        
     returns:
     - name: Id
       type: string
-      desc: Of lobby
+      desc: |
+        Of lobby
+        
 
   - name: matchmaking_create_lobby
     type: function
@@ -625,14 +676,20 @@
     parameters:
     - name: lobby_type
       type: number
-      desc: The type and visibility of this lobby.
+      desc: |
+        The type and visibility of this lobby.
+        
     - name: max_members
       type: number
-      desc: The maximum number of players that can join this lobby.
+      desc: |
+        The maximum number of players that can join this lobby.
+        
     returns:
     - name: Callback
       type: string
-      desc: Id
+      desc: |
+        Id
+        
 
   - name: matchmaking_join_lobby
     type: function
@@ -640,19 +697,25 @@
     parameters:
     - name: lobby_id
       type: string
-      desc: The Steam ID of the lobby to join.
+      desc: |
+        The Steam ID of the lobby to join.
+        
     returns:
     - name: Callback
       type: string
-      desc: Id
+      desc: |
+        Id
+        
 
   - name: matchmaking_leave_lobby
     type: function
-    desc: Leave a lobby that the user is currently in Leave a lobby that the user is currently in; this will take effect immediately on the client side, other users in the lobby will be notified by a LobbyChatUpdate_t callback.
+    desc: Leave a lobby that the user is currently in. Leave a lobby that the user is currently in; this will take effect immediately on the client side, other users in the lobby will be notified by a LobbyChatUpdate_t callback.
     parameters:
     - name: lobby_id
       type: string
-      desc: The lobby to leave
+      desc: |
+        The lobby to leave
+        
 
   - name: matchmaking_get_lobby_owner
     type: function
@@ -660,11 +723,15 @@
     parameters:
     - name: lobby_id
       type: string
-      desc: The Steam ID of the lobby to get the owner of.
+      desc: |
+        The Steam ID of the lobby to get the owner of.
+        
     returns:
     - name: Id
       type: string
-      desc: Of owner
+      desc: |
+        Of owner
+        
 
   - name: matchmaking_set_lobby_owner
     type: function
@@ -672,10 +739,14 @@
     parameters:
     - name: lobby_id
       type: string
-      desc: The Steam ID of the lobby to get the owner of.
+      desc: |
+        The Steam ID of the lobby to get the owner of.
+        
     - name: new_owner
       type: string
-      desc: The new owner
+      desc: |
+        The new owner
+        
 
   - name: matchmaking_set_lobby_type
     type: function
@@ -683,10 +754,14 @@
     parameters:
     - name: lobby_id
       type: string
-      desc: The Steam ID of the lobby
+      desc: |
+        The Steam ID of the lobby
+        
     - name: type
       type: number
-      desc: The lobby type
+      desc: |
+        The lobby type
+        
 
   - name: matchmaking_set_lobby_joinable
     type: function
@@ -694,24 +769,33 @@
     parameters:
     - name: lobby_id
       type: string
-      desc: The Steam ID of the lobby
+      desc: |
+        The Steam ID of the lobby
+        
     - name: joinable
       type: boolean
-      desc: Enable or disable allowing users to join this lobby?
+      desc: |
+        Enable or disable allowing users to join this lobby?
+        
     returns:
     - name: Success
       type: boolean
 
   - name: matchmaking_set_lobby_member_limit
     type: function
-    desc: Set the maximum number of players that can join the lobby. This is also set when you create the lobby with CreateLobby. This can only be set by the owner of the lobby. can not be above 250.
+    desc: Set the maximum number of players that can join the lobby. This is also set when you create the lobby with CreateLobby. This can only be set by the owner of the lobby.
     parameters:
     - name: lobby_id
       type: string
-      desc: The Steam ID of the lobby to set the member limit for.
+      desc: |
+        The Steam ID of the lobby to set the member limit for.
+        
     - name: max_members
       type: number
-      desc: The maximum number of players allowed in this lobby. This
+      desc: |
+        The maximum number of players allowed in this lobby. This
+        can not be above 250.
+        
     returns:
     - name: Success
       type: boolean
@@ -722,7 +806,9 @@
     parameters:
     - name: lobby_id
       type: string
-      desc: The Steam ID of the lobby to get the member limit of.
+      desc: |
+        The Steam ID of the lobby to get the member limit of.
+        
     returns:
     - name: Limit
       type: number
@@ -733,11 +819,15 @@
     parameters:
     - name: lobby_id
       type: string
-      desc: The Steam ID of the lobby to get the owner of.
+      desc: |
+        The Steam ID of the lobby to get the owner of.
+        
     returns:
     - name: Number
       type: number
-      desc: Of users in the lobby
+      desc: |
+        Of users in the lobby
+        
 
   - name: matchmaking_get_lobby_member_by_index
     type: function
@@ -750,11 +840,13 @@
     returns:
     - name: Id
       type: string
-      desc: Of member
+      desc: |
+        Of member
+        
 
   - name: matchmaking_set_lobby_data
     type: function
-    desc: Sets a key/value pair in the lobby metadata 
+    desc: Sets a key/value pair in the lobby metadata. 
     parameters:
     - name: lobby_id
       type: string
@@ -805,18 +897,20 @@
 
   - name: matchmaking_get_lobby_data_count
     type: function
-    desc: Returns the number of metadata keys set on the specified lobby 
+    desc: Returns the number of metadata keys set on the specified lobby. 
     parameters:
     - name: lobby_id
       type: string
     returns:
     - name: Number
       type: number
-      desc: Of keys
+      desc: |
+        Of keys
+        
 
   - name: matchmaking_get_lobby_data_by_index
     type: function
-    desc: Returns a lobby metadata key/values pair by index 
+    desc: Returns a lobby metadata key/values pair by index. 
     parameters:
     - name: lobby_id
       type: string
@@ -832,7 +926,7 @@
 
   - name: matchmaking_send_lobby_chat_message
     type: function
-    desc: Broadcasts a chat message to the all the users in the lobby 
+    desc: Broadcasts a chat message to the all the users in the lobby. 
     parameters:
     - name: lobby_id
       type: string
@@ -844,21 +938,16 @@
 
   - name: matchmaking_get_lobby_chat_entry
     type: function
-    desc: Get a chat message as specified in a LobbyChatMsg_t callback 
+    desc: Get a chat message as specified in a LobbyChatMsg_t callback. 
     parameters:
     - name: lobby_id
       type: string
     - name: index
       type: number
-    returns:
-    - name: a
-      type: dat
-    - name: e
-      type: typ
 
   - name: networking_send_message_to_user
     type: function
-    desc: Send message 
+    desc: Send message. 
     parameters:
     - name: identity_remote
       type: string
@@ -866,14 +955,18 @@
       type: string
     - name: send_flags
       type: number
-      desc: A bitmask of k_nSteamNetworkingSend_xxx options
+      desc: |
+        A bitmask of k_nSteamNetworkingSend_xxx options
+        
     - name: remote_channel
       type: number
-      desc: A routing number you can use to help route message to different systems
+      desc: |
+        A routing number you can use to help route message to different systems
+        
 
   - name: networking_receive_messages_on_channel
     type: function
-    desc: Receive message 
+    desc: Receive message. 
     parameters:
     - name: localChannel
       type: number
@@ -883,18 +976,22 @@
 
   - name: networking_accept_session_with_user
     type: function
-    desc: Accept session Call this in response to a SteamNetworkingMessagesSessionRequest_t callback. pending or otherwise. If there is an existing active session, this function will return true, even if it is not pending.
+    desc: Accept session. Call this in response to a SteamNetworkingMessagesSessionRequest_t callback.
     parameters:
     - name: identity_remote
       type: string
     returns:
     - name: result
       type: boolean
-      desc: Returns false if there is no session with the user
+      desc: |
+        Returns false if there is no session with the user
+        pending or otherwise. If there is an existing active session, this function
+        will return true, even if it is not pending.
+        
 
   - name: networking_close_session_with_user
     type: function
-    desc: Close sesssion Call this when you're done talking to a user to immediately free up resources under-the-hood
+    desc: Close sesssion. Call this when you're done talking to a user to immediately free up resources under-the-hood
     parameters:
     - name: identity_remote
       type: string
@@ -904,7 +1001,7 @@
 
   - name: networking_close_channel_with_user
     type: function
-    desc: Close channel Call this when you're done talking to a user on a specific channel.
+    desc: Close channel. Call this when you're done talking to a user on a specific channel.
     parameters:
     - name: identity_remote
       type: string
@@ -916,53 +1013,67 @@
 
   - name: networking_get_session_connection_info
     type: function
-    desc: Get connection info Returns information about the latest state of a connection, if any, with the given peer.
+    desc: Get connection info. Returns information about the latest state of a connection, if any, with the given peer.
     parameters:
     - name: identity_remote
       type: string
     returns:
     - name: info
       type: table
-      desc: Connection info (state, info, status)
+      desc: |
+        Connection info (state, info, status)
+        
 
   - name: remote_storage_file_share
     type: function
-    desc: Share a file 
+    desc: Share a file. 
     parameters:
     - name: filename
       type: string
-      desc: Name of file to share
+      desc: |
+        Name of file to share
+        
     returns:
     - name: call
       type: string
-      desc: Id
+      desc: |
+        Id
+        
 
   - name: remote_storage_get_file_count
     type: function
-    desc: Get number of uploaded files 
+    desc: Get number of uploaded files. 
     returns:
     - name: File
       type: number
-      desc: Count
+      desc: |
+        Count
+        
 
   - name: remote_storage_get_file_name_and_size
     type: function
-    desc: Get file information 
+    desc: Get file information. 
     returns:
     - name: File
       type: number
-      desc: Count
+      desc: |
+        Count
+        
 
   - name: remote_storage_get_quota
     type: function
-    desc: Get storage quota 
+    desc: Get storage quota. 
     returns:
     - name: Available
       type: number
-      desc: Bytes
+      desc: |
+        Bytes
+        
     - name: Total
       type: number
-      desc: Bytes
+      desc: |
+        Bytes
+        
 
   - name: remote_storage_file_write
     type: function
@@ -970,7 +1081,9 @@
     parameters:
     - name: filename
       type: string
-      desc: The name of the file to write to.
+      desc: |
+        The name of the file to write to.
+        
     - name: data
       type: string
     returns:
@@ -979,11 +1092,13 @@
 
   - name: remote_storage_file_read
     type: function
-    desc: Opens a binary file, reads the contents of the file into a byte array, And then closes the file.
+    desc: Opens a binary file, reads the contents of the file into a byte array,. And then closes the file.
     parameters:
     - name: filename
       type: string
-      desc: Name of the file to read from
+      desc: |
+        Name of the file to read from
+        
     returns:
     - name: data
       type: string
@@ -1013,7 +1128,7 @@
 
   - name: user_logged_on
     type: function
-    desc: Returns true if the Steam client current has a live connection to the Steam Servers.
+    desc: Returns true if the Steam client current has a live connection to the Steam. Servers.
     returns:
     - name: logged_on
       type: boolean
@@ -1059,10 +1174,35 @@
     returns:
     - name: ticket
       type: string
-      desc: Or null
+      desc: |
+        Or null
+        
     - name: error
       type: string
-      desc: Or null
+      desc: |
+        Or null
+        
+
+  - name: user_get_auth_ticket_for_web_api
+    type: function
+    desc: Get an authentication ticket for web API. Request an authentication ticket suitable to authenticated in a web backend. Will trigger a GetTicketForWebApiResponse_t callback when the ticket is ready.
+    parameters:
+    - name: identity
+      type: string
+      desc: |
+        Optional identity string to associate with the ticket
+        
+    returns:
+    - name: hAuthTicket
+      type: number
+      desc: |
+        Or null The handle of the requested ticket
+        
+    - name: error
+      type: string
+      desc: |
+        Or null
+        
 
   - name: user_stats_get_stat_int
     type: function
@@ -1070,13 +1210,17 @@
     parameters:
     - name: id
       type: string
-      desc: Id of the stat to get
+      desc: |
+        Id of the stat to get
+        
     returns:
     - name: Boolean
       type: ok
     - name: Number
       type: stat
-      desc: The stat or nil
+      desc: |
+        The stat or nil
+        
 
   - name: user_stats_set_stat_int
     type: function
@@ -1084,10 +1228,14 @@
     parameters:
     - name: id
       type: string
-      desc: Id of the stat to set
+      desc: |
+        Id of the stat to set
+        
     - name: stat
       type: number
-      desc: Number to set
+      desc: |
+        Number to set
+        
     returns:
     - name: ok
       type: boolean
@@ -1098,13 +1246,17 @@
     parameters:
     - name: id
       type: string
-      desc: Id of the stat to get
+      desc: |
+        Id of the stat to get
+        
     returns:
     - name: ok
       type: Boolean
     - name: stat
       type: Number
-      desc: The stat
+      desc: |
+        The stat
+        
 
   - name: user_stats_set_stat_float
     type: function
@@ -1112,10 +1264,14 @@
     parameters:
     - name: id
       type: string
-      desc: Id of the stat to set
+      desc: |
+        Id of the stat to set
+        
     - name: stat
       type: number
-      desc: Number to set
+      desc: |
+        Number to set
+        
     returns:
     - name: ok
       type: Boolean
@@ -1143,7 +1299,9 @@
     parameters:
     - name: achievements
       type: boolean
-      desc: True if achievements should be reset as well.
+      desc: |
+        True if achievements should be reset as well.
+        
     returns:
     - name: ok
       type: Boolean
@@ -1186,11 +1344,13 @@
     returns:
     - name: num
       type: Number
-      desc: Number of achievements.
+      desc: |
+        Number of achievements.
+        
 
   - name: user_stats_get_achievement_name
     type: function
-    desc: Get achievement name iAchievement in [0,GetNumAchievements) Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementName
+    desc: Get achievement name iAchievement in [0,GetNumAchievements). Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementName
     parameters:
     - name: index
       type: number
@@ -1206,7 +1366,9 @@
       type: string
     - name: key
       type: string
-      desc: Either "name", "desc" or "hidden"
+      desc: |
+        Either "name", "desc" or "hidden"
+        
     returns:
     - name: attribute
       type: String
@@ -1233,13 +1395,19 @@
     parameters:
     - name: leaderboard_name
       type: string
-      desc: The name of the leaderboard to find or create.
+      desc: |
+        The name of the leaderboard to find or create.
+        
     - name: eLeaderboardSortMethod
       type: ELeaderboardSortMethod
-      desc: The sort order of the new leaderboard if it's created.
+      desc: |
+        The sort order of the new leaderboard if it's created.
+        
     - name: eLeaderboardDisplayType
       type: ELeaderboardDisplayType
-      desc: The display type (used by the Steam Community web site) of the new leaderboard if it's created.
+      desc: |
+        The display type (used by the Steam Community web site) of the new leaderboard if it's created.
+        
 
   - name: user_stats_get_leaderboard_name
     type: function
@@ -1263,14 +1431,16 @@
 
   - name: user_stats_get_leaderboard_sort_method
     type: function
-    desc: Returns the sort method of the leaderboard Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardSortMethod
+    desc: Returns the sort method of the leaderboard. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardSortMethod
     parameters:
     - name: leaderboard
       type: string
     returns:
     - name: sort
       type: number
-      desc: Order
+      desc: |
+        Order
+        
 
   - name: user_stats_get_leaderboard_display_type
     type: function
@@ -1281,7 +1451,9 @@
     returns:
     - name: display
       type: number
-      desc: Type
+      desc: |
+        Type
+        
 
   - name: user_stats_download_leaderboard_entries
     type: function
@@ -1298,20 +1470,26 @@
 
   - name: user_stats_get_downloaded_leaderboard_entry
     type: function
-    desc: Returns data about a single leaderboard entry Https://partner.steamgames.com/doc/api/ISteamUserStats#GetDownloadedLeaderboardEntry
+    desc: Returns data about a single leaderboard entry. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetDownloadedLeaderboardEntry
     parameters:
     - name: hSteamLeaderboardEntries
       type: string
-      desc: Leaderboard entries handle
+      desc: |
+        Leaderboard entries handle
+        
     - name: index
       type: number
-      desc: Which entry to get
+      desc: |
+        Which entry to get
+        
     returns:
     - name: ok
       type: Boolean
     - name: entry
       type: Table
-      desc: The requested leaderboard entry.
+      desc: |
+        The requested leaderboard entry.
+        
 
   - name: user_stats_upload_leaderboard_score
     type: function
@@ -1326,7 +1504,7 @@
 
   - name: user_stats_attach_leadboard_ugc
     type: function
-    desc: Attaches a piece of user generated content the current user&#x27;s entry on a Leaderboard. https://partner.steamgames.com/doc/api/ISteamUserStats#AttachLeaderboardUGC
+    desc: Attaches a piece of user generated content the current user&#x27;s entry on a. Leaderboard. https://partner.steamgames.com/doc/api/ISteamUserStats#AttachLeaderboardUGC
     parameters:
     - name: leaderboard
       type: string
@@ -1335,7 +1513,9 @@
     returns:
     - name: Steam
       type: string
-      desc: API call id
+      desc: |
+        API call id
+        
 
   - name: utils_get_app_id
     type: function
@@ -1360,21 +1540,29 @@
 
   - name: utils_get_image_size
     type: function
-    desc: Get size of image 
+    desc: Get size of image. 
     parameters:
     - name: image
       type: number
-      desc: Image handle
+      desc: |
+        Image handle
+        
     returns:
     - name: ok
       type: Boolean
-      desc: True if size of image was read successfully
+      desc: |
+        True if size of image was read successfully
+        
     - name: width
       type: Number
-      desc: Image width or nil
+      desc: |
+        Image width or nil
+        
     - name: height
       type: Number
-      desc: Image height or nil
+      desc: |
+        Image height or nil
+        
 
   - name: utils_get_image_rgba
     type: function
@@ -1382,24 +1570,32 @@
     parameters:
     - name: image
       type: number
-      desc: Image handle
+      desc: |
+        Image handle
+        
     - name: size
       type: number
-      desc: Size of image
+      desc: |
+        Size of image
+        
     returns:
     - name: ok
       type: Boolean
-      desc: True if size of image was read successfully
+      desc: |
+        True if size of image was read successfully
+        
     - name: Image
       type: String
 
   - name: utils_get_server_real_time
     type: function
-    desc: Returns the Steam server time in Unix epoch format. (Number of seconds since Jan 1, 1970 UTC) 
+    desc: Returns the Steam server time in Unix epoch format. (Number of seconds since Jan 1, 1970 UTC). 
     returns:
     - name: Server
       type: number
-      desc: Time
+      desc: |
+        Time
+        
 
   - name: utils_show_floating_gamepad_text_input
     type: function
@@ -1407,23 +1603,35 @@
     parameters:
     - name: mode
       type: number
-      desc: EFloatingGamepadTextInputMode
+      desc: |
+        EFloatingGamepadTextInputMode
+        
     - name: x
       type: number
-      desc: Text field x position
+      desc: |
+        Text field x position
+        
     - name: y
       type: number
-      desc: Text field y position
+      desc: |
+        Text field y position
+        
     - name: width
       type: number
-      desc: Text field width
+      desc: |
+        Text field width
+        
     - name: height
       type: number
-      desc: Text field height
+      desc: |
+        Text field height
+        
     returns:
     - name: result
       type: bool
-      desc: True if the floating keyboard was shown, otherwise, false.
+      desc: |
+        True if the floating keyboard was shown, otherwise, false.
+        
 
   - name: utils_show_gamepad_text_input
     type: function
@@ -1431,18 +1639,28 @@
     parameters:
     - name: input_mode
       type: number
-      desc: EGamepadTextInputMode
+      desc: |
+        EGamepadTextInputMode
+        
     - name: line_input_mode
       type: number
-      desc: EGamepadTextInputLineMode
+      desc: |
+        EGamepadTextInputLineMode
+        
     - name: description
       type: string
-      desc: Sets the description that should inform the user what the input dialog is for
+      desc: |
+        Sets the description that should inform the user what the input dialog is for
+        
     - name: existing_text
       type: string
-      desc: Sets the preexisting text which the user can edit.
+      desc: |
+        Sets the preexisting text which the user can edit.
+        
     returns:
     - name: result
       type: bool
-      desc: True if the big picture overlay is running; otherwise, false
+      desc: |
+        True if the big picture overlay is running; otherwise, false
+        
 
