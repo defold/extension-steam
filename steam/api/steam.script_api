@@ -513,6 +513,54 @@
         Relationship to the user.
         
 
+  - name: friends_get_small_friend_avatar
+    type: function
+    desc: Gets a handle to the small (32*32px) avatar for the specified user. This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
+    parameters:
+    - name: steamIDFriend
+      type: number
+      desc: |
+        Id of friend
+        
+    returns:
+    - name: handle
+      type: number
+      desc: |
+        Image handle.
+        
+
+  - name: friends_get_medium_friend_avatar
+    type: function
+    desc: Gets a handle to the medium (64*64px) avatar for the specified user. This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
+    parameters:
+    - name: steamIDFriend
+      type: number
+      desc: |
+        Id of friend
+        
+    returns:
+    - name: handle
+      type: number
+      desc: |
+        Image handle.
+        
+
+  - name: friends_get_large_friend_avatar
+    type: function
+    desc: Gets a handle to the large (128*128px) avatar for the specified user. This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
+    parameters:
+    - name: steamIDFriend
+      type: number
+      desc: |
+        Id of friend
+        
+    returns:
+    - name: handle
+      type: number
+      desc: |
+        Image handle.
+        
+
   - name: friends_activate_game_overlay_to_store
     type: function
     desc: Activates game overlay to store page for app. 
