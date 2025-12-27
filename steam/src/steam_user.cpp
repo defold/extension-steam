@@ -170,8 +170,8 @@ int SteamUser_IsTwoFactorEnabled(lua_State* L)
  * Retrieve an authentication ticket to be sent to the entity who wishes to
  * authenticate you.
  * @name user_get_auth_session_ticket
- * @treturn string ticket or null
- * @treturn string error or null
+ * @treturn string ticket Auth ticket or null
+ * @treturn string error Error message or null
  */
 int SteamUser_GetAuthSessionTicket(lua_State* L)
 {
@@ -205,8 +205,8 @@ int SteamUser_GetAuthSessionTicket(lua_State* L)
  * trigger a GetTicketForWebApiResponse_t callback when the ticket is ready.
  * @name user_get_auth_ticket_for_web_api
  * @string identity Optional identity string to associate with the ticket
- * @treturn number hAuthTicket or null The handle of the requested ticket
- * @treturn string error or null
+ * @treturn number hAuthTicket The handle of the requested ticket
+ * @treturn string error Error message or null
  */
 int SteamUser_GetAuthTicketForWebAPI(lua_State* L) {
 	if (!g_SteamUser) return 0;

@@ -20,7 +20,7 @@ int SteamApps_Init(lua_State* L)
 /** Takes AppID of DLC and checks if the user owns the DLC & if the DLC is installed.
  * @name apps_is_dlc_installed
  * @number app_id
- * @treturn bool installed
+ * @treturn boolean installed
  */
 int SteamApps_IsDlcInstalled(lua_State* L)
 {

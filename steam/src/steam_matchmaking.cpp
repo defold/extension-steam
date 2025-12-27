@@ -204,7 +204,7 @@ int SteamMatchmaking_AddRequestLobbyListCompatibleMembersFilter(lua_State* L)
 /** Get a filtered list of relevant lobbies.
  * Will return results as a LobbyMatchList_t event
  * @name matchmaking_request_lobby_list
- * @treturn string Callback id 
+ * @treturn string id Callback id 
  */
 int SteamMatchmaking_RequestLobbyList(lua_State* L)
 {
@@ -221,7 +221,7 @@ int SteamMatchmaking_RequestLobbyList(lua_State* L)
  * @name matchmaking_get_lobby_by_index
  * @number index The index of the lobby to get the Steam ID of, from 0 to
  * LobbyMatchList_t.m_nLobbiesMatching
- * @treturn string Id of lobby
+ * @treturn string id Id of lobby
  */
 int SteamMatchmaking_GetLobbyByIndex(lua_State* L)
 {
@@ -238,7 +238,7 @@ int SteamMatchmaking_GetLobbyByIndex(lua_State* L)
  * @name matchmaking_create_lobby
  * @number lobby_type The type and visibility of this lobby.
  * @number max_members The maximum number of players that can join this lobby.
- * @treturn string Callback id
+ * @treturn string id Callback id
  */
 int SteamMatchmaking_CreateLobby(lua_State* L)
 {
@@ -255,7 +255,7 @@ int SteamMatchmaking_CreateLobby(lua_State* L)
  * Will generate a LobbyEnter_t event
  * @name matchmaking_join_lobby
  * @string lobby_id The Steam ID of the lobby to join.
- * @treturn string Callback id
+ * @treturn string id Callback id
  */
 int SteamMatchmaking_JoinLobby(lua_State* L)
 {
@@ -292,7 +292,7 @@ int SteamMatchmaking_LeaveLobby(lua_State* L)
  * You must be a member of the lobby to access this.
  * @name matchmaking_get_lobby_owner
  * @string lobby_id The Steam ID of the lobby to get the owner of.
- * @treturn string Id of owner
+ * @treturn string id Id of owner
  */
 int SteamMatchmaking_GetLobbyOwner(lua_State* L)
 {
@@ -350,7 +350,7 @@ int SteamMatchmaking_SetLobbyType(lua_State* L)
  * @name matchmaking_set_lobby_joinable
  * @string lobby_id The Steam ID of the lobby
  * @boolean joinable Enable or disable allowing users to join this lobby?
- * @treturn boolean Success
+ * @treturn boolean result Success
  */
 int SteamMatchmaking_SetLobbyJoinable(lua_State* L)
 {
@@ -370,7 +370,7 @@ int SteamMatchmaking_SetLobbyJoinable(lua_State* L)
  * @string lobby_id The Steam ID of the lobby to set the member limit for.
  * @number max_members The maximum number of players allowed in this lobby. This
  * can not be above 250.
- * @treturn boolean Success
+ * @treturn boolean result Success
  */
 int SteamMatchmaking_SetLobbyMemberLimit(lua_State* L)
 {
@@ -386,7 +386,7 @@ int SteamMatchmaking_SetLobbyMemberLimit(lua_State* L)
 /** The current limit on the # of users who can join the lobby.
  * @name matchmaking_get_lobby_member_limit
  * @string lobby_id The Steam ID of the lobby to get the member limit of.
- * @treturn number Limit
+ * @treturn number limit The current limit
  */
 int SteamMatchmaking_GetLobbyMemberLimit(lua_State* L)
 {
@@ -407,7 +407,7 @@ int SteamMatchmaking_GetLobbyMemberLimit(lua_State* L)
  * other users in that lobby.
  * @name matchmaking_get_num_lobby_members
  * @string lobby_id The Steam ID of the lobby to get the owner of.
- * @treturn number Number of users in the lobby
+ * @treturn number count Number of users in the lobby
  */
 int SteamMatchmaking_GetNumLobbyMembers(lua_State* L)
 {
@@ -427,7 +427,7 @@ int SteamMatchmaking_GetNumLobbyMembers(lua_State* L)
  * @name matchmaking_get_lobby_member_by_index
  * @string lobby_id
  * @number index
- * @treturn string Id of member
+ * @treturn string id Id of member
  */
 int SteamMatchmaking_GetLobbyMemberByIndex(lua_State* L)
 {
@@ -483,7 +483,7 @@ int SteamMatchmaking_SetLobbyMemberData(lua_State* L)
  * @name matchmaking_get_lobby_data
  * @string lobby_id
  * @string key
- * @treturn string Data
+ * @treturn string data Data
  */
 int SteamMatchmaking_GetLobbyData(lua_State* L)
 {
@@ -502,7 +502,7 @@ int SteamMatchmaking_GetLobbyData(lua_State* L)
  * @string lobby_id
  * @string user_id
  * @string key
- * @treturn string Data
+ * @treturn string data Data
  */
 int SteamMatchmaking_GetLobbyMemberData(lua_State* L)
 {
@@ -519,7 +519,7 @@ int SteamMatchmaking_GetLobbyMemberData(lua_State* L)
 /** Returns the number of metadata keys set on the specified lobby
  * @name matchmaking_get_lobby_data_count
  * @string lobby_id
- * @treturn number Number of keys
+ * @treturn number count Number of keys
  */
 int SteamMatchmaking_GetLobbyDataCount(lua_State* L)
 {
@@ -586,8 +586,9 @@ int SteamMatchmaking_SendLobbyChatMsg(lua_State* L)
  * @name matchmaking_get_lobby_chat_entry
  * @string lobby_id
  * @number index
- * @treturn data
- * @treturn type
+ * @treturn string user
+ * @treturn string data
+ * @treturn number type
  */
 int SteamMatchmaking_GetLobbyChatEntry(lua_State* L)
 {

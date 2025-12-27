@@ -8,12 +8,12 @@
     desc: Initialize Steamworks. 
     returns:
     - name: success
-      type: Boolean
+      type: boolean
       desc: |
         True if successful
         
     - name: message
-      type: String
+      type: string
       desc: |
         Error message if unsuccessful.
         
@@ -393,7 +393,7 @@
       type: number
     returns:
     - name: installed
-      type: bool
+      type: boolean
 
   - name: friends_get_friend_persona_name
     type: function
@@ -402,8 +402,8 @@
     - name: CSteamID
       type: friendId
     returns:
-    - name: String
-      type: name
+    - name: name
+      type: string
       desc: |
         Name of user
         
@@ -412,8 +412,8 @@
     type: function
     desc: Returns the local players name - guaranteed to not be NULL. This is the same name as on the users community profile page. This is stored in UTF-8 format.
     returns:
-    - name: String
-      type: name
+    - name: name
+      type: string
       desc: |
         Name of user
         
@@ -422,8 +422,8 @@
     type: function
     desc: Gets the status of the current user. Returned as EPersonaState.
     returns:
-    - name: Number
-      type: state
+    - name: state
+      type: number
       desc: |
         Status of user.
         
@@ -438,8 +438,8 @@
         Set of friend flags to match friends against.
         
     returns:
-    - name: Number
-      type: count
+    - name: count
+      type: number
       desc: |
         Number of users matching search.
         
@@ -459,8 +459,8 @@
         Must be the same value as used in GetFriendCount()
         
     returns:
-    - name: Number
-      type: steamID
+    - name: steamID
+      type: number
       desc: |
         Steam id of the user
         
@@ -475,8 +475,8 @@
         Id of friend
         
     returns:
-    - name: Number
-      type: state
+    - name: state
+      type: number
       desc: |
         State of friend
         
@@ -491,8 +491,8 @@
         Id of friend
         
     returns:
-    - name: Number
-      type: level
+    - name: level
+      type: number
       desc: |
         Steam level of friend
         
@@ -507,8 +507,8 @@
         Id of friend
         
     returns:
-    - name: Number
-      type: relationship
+    - name: relationship
+      type: number
       desc: |
         Relationship to the user.
         
@@ -547,7 +547,7 @@
       type: string
     returns:
     - name: success
-      type: bool
+      type: boolean
       desc: |
         True if the rich presence was set successfully, otherwise False.
         
@@ -647,10 +647,10 @@
     type: function
     desc: Get a filtered list of relevant lobbies. Will return results as a LobbyMatchList_t event
     returns:
-    - name: Callback
+    - name: id
       type: string
       desc: |
-        Id
+        Callback id
         
 
   - name: matchmaking_get_lobby_by_index
@@ -664,10 +664,10 @@
         LobbyMatchList_t.m_nLobbiesMatching
         
     returns:
-    - name: Id
+    - name: id
       type: string
       desc: |
-        Of lobby
+        Id of lobby
         
 
   - name: matchmaking_create_lobby
@@ -685,10 +685,10 @@
         The maximum number of players that can join this lobby.
         
     returns:
-    - name: Callback
+    - name: id
       type: string
       desc: |
-        Id
+        Callback id
         
 
   - name: matchmaking_join_lobby
@@ -701,10 +701,10 @@
         The Steam ID of the lobby to join.
         
     returns:
-    - name: Callback
+    - name: id
       type: string
       desc: |
-        Id
+        Callback id
         
 
   - name: matchmaking_leave_lobby
@@ -727,10 +727,10 @@
         The Steam ID of the lobby to get the owner of.
         
     returns:
-    - name: Id
+    - name: id
       type: string
       desc: |
-        Of owner
+        Id of owner
         
 
   - name: matchmaking_set_lobby_owner
@@ -778,8 +778,11 @@
         Enable or disable allowing users to join this lobby?
         
     returns:
-    - name: Success
+    - name: result
       type: boolean
+      desc: |
+        Success
+        
 
   - name: matchmaking_set_lobby_member_limit
     type: function
@@ -797,8 +800,11 @@
         can not be above 250.
         
     returns:
-    - name: Success
+    - name: result
       type: boolean
+      desc: |
+        Success
+        
 
   - name: matchmaking_get_lobby_member_limit
     type: function
@@ -810,8 +816,11 @@
         The Steam ID of the lobby to get the member limit of.
         
     returns:
-    - name: Limit
+    - name: limit
       type: number
+      desc: |
+        The current limit
+        
 
   - name: matchmaking_get_num_lobby_members
     type: function
@@ -823,10 +832,10 @@
         The Steam ID of the lobby to get the owner of.
         
     returns:
-    - name: Number
+    - name: count
       type: number
       desc: |
-        Of users in the lobby
+        Number of users in the lobby
         
 
   - name: matchmaking_get_lobby_member_by_index
@@ -838,10 +847,10 @@
     - name: index
       type: number
     returns:
-    - name: Id
+    - name: id
       type: string
       desc: |
-        Of member
+        Id of member
         
 
   - name: matchmaking_set_lobby_data
@@ -878,8 +887,11 @@
     - name: key
       type: string
     returns:
-    - name: Data
+    - name: data
       type: string
+      desc: |
+        Data
+        
 
   - name: matchmaking_get_lobby_member_data
     type: function
@@ -892,8 +904,11 @@
     - name: key
       type: string
     returns:
-    - name: Data
+    - name: data
       type: string
+      desc: |
+        Data
+        
 
   - name: matchmaking_get_lobby_data_count
     type: function
@@ -902,10 +917,10 @@
     - name: lobby_id
       type: string
     returns:
-    - name: Number
+    - name: count
       type: number
       desc: |
-        Of keys
+        Number of keys
         
 
   - name: matchmaking_get_lobby_data_by_index
@@ -943,6 +958,13 @@
     - name: lobby_id
       type: string
     - name: index
+      type: number
+    returns:
+    - name: user
+      type: string
+    - name: data
+      type: string
+    - name: type
       type: number
 
   - name: networking_send_message_to_user
@@ -1034,45 +1056,42 @@
         Name of file to share
         
     returns:
-    - name: call
+    - name: id
       type: string
-      desc: |
-        Id
-        
 
   - name: remote_storage_get_file_count
     type: function
     desc: Get number of uploaded files. 
     returns:
-    - name: File
+    - name: count
       type: number
       desc: |
-        Count
+        File count
         
 
   - name: remote_storage_get_file_name_and_size
     type: function
     desc: Get file information. 
     returns:
-    - name: File
+    - name: count
       type: number
       desc: |
-        Count
+        File count
         
 
   - name: remote_storage_get_quota
     type: function
     desc: Get storage quota. 
     returns:
-    - name: Available
+    - name: available
       type: number
       desc: |
-        Bytes
+        Available bytes
         
-    - name: Total
+    - name: total
       type: number
       desc: |
-        Bytes
+        Total bytes
         
 
   - name: remote_storage_file_write
@@ -1087,8 +1106,11 @@
     - name: data
       type: string
     returns:
-    - name: Success
+    - name: result
       type: boolean
+      desc: |
+        Success
+        
 
   - name: remote_storage_file_read
     type: function
@@ -1175,12 +1197,13 @@
     - name: ticket
       type: string
       desc: |
-        Or null
+        Auth ticket or null
+        
         
     - name: error
       type: string
       desc: |
-        Or null
+        Error message or null
         
 
   - name: user_get_auth_ticket_for_web_api
@@ -1214,10 +1237,10 @@
         Id of the stat to get
         
     returns:
-    - name: Boolean
-      type: ok
-    - name: Number
-      type: stat
+    - name: ok
+      type: boolean
+    - name: stat
+      type: number
       desc: |
         The stat or nil
         
@@ -1251,9 +1274,9 @@
         
     returns:
     - name: ok
-      type: Boolean
+      type: boolean
     - name: stat
-      type: Number
+      type: number
       desc: |
         The stat
         
@@ -1274,7 +1297,7 @@
         
     returns:
     - name: ok
-      type: Boolean
+      type: boolean
 
   - name: user_stats_request_global_stats
     type: function
@@ -1284,14 +1307,14 @@
       type: number
     returns:
     - name: ok
-      type: Boolean
+      type: boolean
 
   - name: user_stats_store_stats
     type: function
     desc: Store the current data on the server. Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync. https://partner.steamgames.com/doc/api/ISteamUserStats#StoreStats
     returns:
     - name: ok
-      type: Boolean
+      type: boolean
 
   - name: user_stats_reset_all_stats
     type: function
@@ -1304,7 +1327,7 @@
         
     returns:
     - name: ok
-      type: Boolean
+      type: boolean
 
   - name: user_stats_set_achievement
     type: function
@@ -1314,7 +1337,7 @@
       type: string
     returns:
     - name: ok
-      type: Boolean
+      type: boolean
 
   - name: user_stats_get_achievement
     type: function
@@ -1324,9 +1347,9 @@
       type: string
     returns:
     - name: ok
-      type: Boolean
+      type: boolean
     - name: achieved
-      type: Boolean
+      type: boolean
 
   - name: user_stats_clear_achievement
     type: function
@@ -1336,14 +1359,14 @@
       type: string
     returns:
     - name: ok
-      type: Boolean
+      type: boolean
 
   - name: user_stats_get_num_achievements
     type: function
     desc: Used for iterating achievements. In general games should not need these functions because they should have a list of existing achievements compiled into them. https://partner.steamgames.com/doc/api/ISteamUserStats#GetNumAchievements
     returns:
     - name: num
-      type: Number
+      type: number
       desc: |
         Number of achievements.
         
@@ -1356,7 +1379,7 @@
       type: number
     returns:
     - name: name
-      type: String
+      type: string
 
   - name: user_stats_get_achievement_display_attribute
     type: function
@@ -1371,16 +1394,16 @@
         
     returns:
     - name: attribute
-      type: String
+      type: string
 
   - name: user_stats_get_achievement_achieved_percent
     type: function
     desc: Returns the percentage of users who have achieved the specified achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementAchievedPercent
     returns:
     - name: ok
-      type: Boolean
+      type: boolean
     - name: percent
-      type: Number
+      type: number
 
   - name: user_stats_find_leaderboard
     type: function
@@ -1436,11 +1459,8 @@
     - name: leaderboard
       type: string
     returns:
-    - name: sort
+    - name: sort_order
       type: number
-      desc: |
-        Order
-        
 
   - name: user_stats_get_leaderboard_display_type
     type: function
@@ -1449,11 +1469,8 @@
     - name: leaderboard
       type: string
     returns:
-    - name: display
+    - name: display_type
       type: number
-      desc: |
-        Type
-        
 
   - name: user_stats_download_leaderboard_entries
     type: function
@@ -1484,9 +1501,9 @@
         
     returns:
     - name: ok
-      type: Boolean
+      type: boolean
     - name: entry
-      type: Table
+      type: table
       desc: |
         The requested leaderboard entry.
         
@@ -1522,21 +1539,21 @@
     desc: Returns the appID of the current process. 
     returns:
     - name: app_id
-      type: Number
+      type: number
 
   - name: utils_get_seconds_since_app_active
     type: function
     desc: Return the number of seconds since the user. 
     returns:
     - name: seconds
-      type: Number
+      type: number
 
   - name: utils_is_steam_running_on_steam_deck
     type: function
     desc: Returns true if currently running on the Steam Deck device. 
     returns:
     - name: running_on_steamdeck
-      type: Boolean
+      type: boolean
 
   - name: utils_get_image_size
     type: function
@@ -1549,17 +1566,17 @@
         
     returns:
     - name: ok
-      type: Boolean
+      type: boolean
       desc: |
         True if size of image was read successfully
         
     - name: width
-      type: Number
+      type: number
       desc: |
         Image width or nil
         
     - name: height
-      type: Number
+      type: number
       desc: |
         Image height or nil
         
@@ -1580,12 +1597,12 @@
         
     returns:
     - name: ok
-      type: Boolean
+      type: boolean
       desc: |
         True if size of image was read successfully
         
     - name: Image
-      type: String
+      type: string
 
   - name: utils_get_server_real_time
     type: function
@@ -1628,7 +1645,7 @@
         
     returns:
     - name: result
-      type: bool
+      type: boolean
       desc: |
         True if the floating keyboard was shown, otherwise, false.
         
@@ -1659,7 +1676,7 @@
         
     returns:
     - name: result
-      type: bool
+      type: boolean
       desc: |
         True if the big picture overlay is running; otherwise, false
         

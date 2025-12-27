@@ -75,7 +75,7 @@ int SteamUtils_Init(lua_State* L)
 
 /** Returns the appID of the current process.
  * @name utils_get_app_id
- * @treturn Number app_id
+ * @treturn number app_id
  */
 int SteamUtils_GetAppId(lua_State* L)
 {
@@ -87,7 +87,7 @@ int SteamUtils_GetAppId(lua_State* L)
 
 /** Return the number of seconds since the user.
  * @name utils_get_seconds_since_app_active
- * @treturn Number seconds
+ * @treturn number seconds
  */
 int SteamUtils_GetSecondsSinceAppActive(lua_State* L)
 {
@@ -100,7 +100,7 @@ int SteamUtils_GetSecondsSinceAppActive(lua_State* L)
 
 /** Returns true if currently running on the Steam Deck device.
  * @name utils_is_steam_running_on_steam_deck
- * @treturn Boolean running_on_steamdeck
+ * @treturn boolean running_on_steamdeck
  */
 int SteamUtils_IsSteamRunningOnSteamDeck(lua_State* L)
 {
@@ -115,9 +115,9 @@ int SteamUtils_IsSteamRunningOnSteamDeck(lua_State* L)
 /** Get size of image
  * @name utils_get_image_size
  * @number image Image handle
- * @treturn Boolean ok True if size of image was read successfully
- * @treturn Number width Image width or nil
- * @treturn Number height Image height or nil
+ * @treturn boolean ok True if size of image was read successfully
+ * @treturn number width Image width or nil
+ * @treturn number height Image height or nil
  */
 int SteamUtils_GetImageSize(lua_State* L)
 {
@@ -147,8 +147,8 @@ int SteamUtils_GetImageSize(lua_State* L)
  * @name utils_get_image_rgba
  * @number image Image handle
  * @number size Size of image
- * @treturn Boolean ok True if size of image was read successfully
- * @treturn String Image
+ * @treturn boolean ok True if size of image was read successfully
+ * @treturn string Image
  */
 int SteamUtils_GetImageRGBA(lua_State* L)
 {
@@ -195,7 +195,7 @@ int SteamUtils_GetServerRealTime(lua_State* L)
  * @number y Text field y position
  * @number width Text field width
  * @number height Text field height
- * @treturn bool result True if the floating keyboard was shown, otherwise, false.
+ * @treturn boolean result True if the floating keyboard was shown, otherwise, false.
  */
 int SteamUtils_ShowFloatingGamepadTextInput(lua_State* L)
 {
@@ -220,7 +220,7 @@ int SteamUtils_ShowFloatingGamepadTextInput(lua_State* L)
  * @number line_input_mode EGamepadTextInputLineMode
  * @string description Sets the description that should inform the user what the input dialog is for
  * @string existing_text Sets the preexisting text which the user can edit.
- * @treturn bool result True if the big picture overlay is running; otherwise, false
+ * @treturn boolean result True if the big picture overlay is running; otherwise, false
  */
 int SteamUtils_ShowGamepadTextInput(lua_State* L)
 {

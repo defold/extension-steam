@@ -64,7 +64,7 @@ int SteamFriends_Init(lua_State* L)
  * automatically; that information will arrive asyncronously.
  * @name friends_get_friend_persona_name
  * @tparam friendId CSteamID
- * @treturn name String Name of user
+ * @treturn string name Name of user
  */
 int SteamFriends_GetFriendPersonaName(lua_State* L)
 {
@@ -81,7 +81,7 @@ int SteamFriends_GetFriendPersonaName(lua_State* L)
  * This is the same name as on the users community profile page.
  * This is stored in UTF-8 format.
  * @name friends_get_persona_name
- * @treturn name String Name of user
+ * @treturn string name Name of user
  */
 int SteamFriends_GetPersonaName(lua_State* L)
 {
@@ -95,7 +95,7 @@ int SteamFriends_GetPersonaName(lua_State* L)
 /** Gets the status of the current user.
  * Returned as EPersonaState.
  * @name friends_get_persona_state
- * @treturn state Number Status of user.
+ * @treturn number state Status of user.
  */
 int SteamFriends_GetPersonaState(lua_State* L)
 {
@@ -114,7 +114,7 @@ int SteamFriends_GetPersonaState(lua_State* L)
  * users.
  * @name friends_get_friend_count
  * @number iFriendFlags Set of friend flags to match friends against.
- * @treturn count Number Number of users matching search.
+ * @treturn number count Number of users matching search.
  */
  int SteamFriends_GetFriendCount(lua_State* L)
 {
@@ -133,7 +133,7 @@ int SteamFriends_GetPersonaState(lua_State* L)
  * @name friends_get_friend_by_index
  * @number iFriend is a index of range [0, GetFriendCount())
  * @number iFriendsFlags must be the same value as used in GetFriendCount()
- * @treturn steamID Number Steam id of the user
+ * @treturn number steamID Steam id of the user
  */
 int SteamFriends_GetFriendByIndex(lua_State* L)
 {
@@ -153,7 +153,7 @@ int SteamFriends_GetFriendByIndex(lua_State* L)
  * group with the local user.
  * @name friends_get_friend_persona_state
  * @number steamIDFriend Id of friend
- * @treturn state Number State of friend
+ * @treturn number state State of friend
  */
 int SteamFriends_GetFriendPersonaState(lua_State* L)
 {
@@ -169,7 +169,7 @@ int SteamFriends_GetFriendPersonaState(lua_State* L)
 /** Get friends steam level.
  * @name friends_get_friend_steam_level
  * @number steamIDFriend Id of friend
- * @treturn level Number Steam level of friend
+ * @treturn number level Steam level of friend
  */
 int SteamFriends_GetFriendSteamLevel(lua_State* L)
 {
@@ -185,7 +185,7 @@ int SteamFriends_GetFriendSteamLevel(lua_State* L)
 /** Returns a relationship to a user.
  * @name friends_get_friend_relationship
  * @number steamIDFriend Id of friend
- * @treturn relationship Number Relationship to the user.
+ * @treturn number relationship Relationship to the user.
  */
 int SteamFriends_GetFriendRelationship(lua_State* L)
 {
@@ -198,11 +198,11 @@ int SteamFriends_GetFriendRelationship(lua_State* L)
 }
 
 
-/*** Gets the small (32x32) avatar of the current user.
+/** Gets a handle to the small (32*32px) avatar for the specified user.
  * This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
  * @name friends_get_small_friend_avatar
  * @number steamIDFriend Id of friend
- * @treturn handle Number Image handle.
+ * @treturn number handle Image handle.
  */
 int SteamFriends_GetSmallFriendAvatar(lua_State* L)
 {
@@ -214,6 +214,12 @@ int SteamFriends_GetSmallFriendAvatar(lua_State* L)
 	return 1;
 }
 
+/** Gets a handle to the medium (64*64px) avatar for the specified user.
+ * This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
+ * @name friends_get_medium_friend_avatar
+ * @number steamIDFriend Id of friend
+ * @treturn number handle Image handle.
+ */
 int SteamFriends_GetMediumFriendAvatar(lua_State* L)
 {
 	if (!g_SteamFriends) return 0;
@@ -224,6 +230,12 @@ int SteamFriends_GetMediumFriendAvatar(lua_State* L)
 	return 1;
 }
 
+/** Gets a handle to the large (128*128px) avatar for the specified user.
+ * This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
+ * @name friends_get_large_friend_avatar
+ * @number steamIDFriend Id of friend
+ * @treturn number handle Image handle.
+ */
 int SteamFriends_GetLargeFriendAvatar(lua_State* L)
 {
 	if (!g_SteamFriends) return 0;
@@ -283,7 +295,7 @@ int SteamFriends_ActivateGameOverlayToWebPage(lua_State* L)
  * @name friends_set_rich_presence
  * @string key
  * @string value
- * @treturn bool success True if the rich presence was set successfully, otherwise False.
+ * @treturn boolean success True if the rich presence was set successfully, otherwise False.
  */
 int SteamFriends_SetRichPresence(lua_State* L)
 {

@@ -96,8 +96,8 @@ int SteamUserStats_Init(lua_State* L)
  * https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
  * @name user_stats_get_stat_int
  * @string id Id of the stat to get
- * @treturn ok Boolean
- * @treturn stat Number The stat or nil
+ * @treturn boolean ok
+ * @treturn number stat The stat or nil
  */
 int SteamUserStats_GetStatInt(lua_State* L)
 {
@@ -140,8 +140,8 @@ int SteamUserStats_SetStatInt(lua_State* L)
  * https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
  * @name user_stats_get_stat_float
  * @string id Id of the stat to get
- * @treturn Boolean ok
- * @treturn Number stat The stat
+ * @treturn boolean ok
+ * @treturn number stat The stat
  */
 int SteamUserStats_GetStatFloat(lua_State* L)
 {
@@ -167,7 +167,7 @@ int SteamUserStats_GetStatFloat(lua_State* L)
  * @name user_stats_set_stat_float
  * @string id Id of the stat to set
  * @number stat Number to set
- * @treturn Boolean ok
+ * @treturn boolean ok
  */
 int SteamUserStats_SetStatFloat(lua_State* L)
 {
@@ -195,7 +195,7 @@ int SteamUserStats_RequestCurrentStats(lua_State* L)
  * https://partner.steamgames.com/doc/api/ISteamUserStats#RequestGlobalStats
  * @name user_stats_request_global_stats
  * @number history_days
- * @treturn Boolean ok 
+ * @treturn boolean ok 
  */
 int SteamUserStats_RequestGlobalStats(lua_State* L)
 {
@@ -216,7 +216,7 @@ int SteamUserStats_RequestGlobalStats(lua_State* L)
  * The stats should be re-iterated to keep in sync.
  * https://partner.steamgames.com/doc/api/ISteamUserStats#StoreStats
  * @name user_stats_store_stats
- * @treturn Boolean ok 
+ * @treturn boolean ok 
  */
 int SteamUserStats_StoreStats(lua_State* L)
 {
@@ -231,7 +231,7 @@ int SteamUserStats_StoreStats(lua_State* L)
  * https://partner.steamgames.com/doc/api/ISteamUserStats#ResetAllStats
  * @name user_stats_reset_all_stats
  * @boolean achievements True if achievements should be reset as well.
- * @treturn Boolean ok
+ * @treturn boolean ok
  */
 int SteamUserStats_ResetAllStats(lua_State* L)
 {
@@ -247,7 +247,7 @@ int SteamUserStats_ResetAllStats(lua_State* L)
  * https://partner.steamgames.com/doc/api/ISteamUserStats#SetAchievement
  * @name user_stats_set_achievement
  * @string name
- * @treturn Boolean ok
+ * @treturn boolean ok
  */
 int SteamUserStats_SetAchievement(lua_State* L)
 {
@@ -263,8 +263,8 @@ int SteamUserStats_SetAchievement(lua_State* L)
  * https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievement
  * @name user_stats_get_achievement
  * @string name
- * @treturn Boolean ok
- * @treturn Boolean achieved
+ * @treturn boolean ok
+ * @treturn boolean achieved
  */
 int SteamUserStats_GetAchievement(lua_State* L)
 {
@@ -289,7 +289,7 @@ int SteamUserStats_GetAchievement(lua_State* L)
  * https://partner.steamgames.com/doc/api/ISteamUserStats#ClearAchievement
  * @name user_stats_clear_achievement
  * @string name
- * @treturn Boolean ok
+ * @treturn boolean ok
  */
 int SteamUserStats_ClearAchievement(lua_State* L)
 {
@@ -306,7 +306,7 @@ int SteamUserStats_ClearAchievement(lua_State* L)
  * list of existing achievements compiled into them.
  * https://partner.steamgames.com/doc/api/ISteamUserStats#GetNumAchievements
  * @name user_stats_get_num_achievements
- * @treturn Number num Number of achievements.
+ * @treturn number num Number of achievements.
  */
 int SteamUserStats_GetNumAchievements(lua_State* L)
 {
@@ -321,7 +321,7 @@ int SteamUserStats_GetNumAchievements(lua_State* L)
  * https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementName
  * @name user_stats_get_achievement_name
  * @number index
- * @treturn String name
+ * @treturn string name
  */
 int SteamUserStats_GetAchievementName(lua_State* L)
 {
@@ -341,7 +341,7 @@ int SteamUserStats_GetAchievementName(lua_State* L)
  * @name user_stats_get_achievement_display_attribute
  * @string name
  * @string key Either "name", "desc" or "hidden"
- * @treturn String attribute
+ * @treturn string attribute
  */
 int SteamUserStats_GetAchievementDisplayAttribute(lua_State* L)
 {
@@ -357,8 +357,8 @@ int SteamUserStats_GetAchievementDisplayAttribute(lua_State* L)
 /** Returns the percentage of users who have achieved the specified achievement.
  * https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementAchievedPercent
  * @name user_stats_get_achievement_achieved_percent
- * @treturn Boolean ok
- * @treturn Number percent
+ * @treturn boolean ok
+ * @treturn number percent
  */
 int SteamUserStats_GetAchievementAchievedPercent(lua_State* L)
 {
@@ -453,7 +453,7 @@ int SteamUserStats_GetLeaderboardEntryCount(lua_State* L)
  * https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardSortMethod
  * @name user_stats_get_leaderboard_sort_method
  * @string leaderboard
- * @treturn number sort order
+ * @treturn number sort_order
  */
 int SteamUserStats_GetLeaderboardSortMethod(lua_State* L)
 {
@@ -470,7 +470,7 @@ int SteamUserStats_GetLeaderboardSortMethod(lua_State* L)
  * https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardDisplayType
  * @name user_stats_get_leaderboard_display_type
  * @string leaderboard
- * @treturn number display type
+ * @treturn number display_type
  */
 int SteamUserStats_GetLeaderboardDisplayType(lua_State* L)
 {
@@ -517,8 +517,8 @@ int SteamUserStats_DownloadLeaderboardEntries(lua_State* L)
  * @name user_stats_get_downloaded_leaderboard_entry
  * @string hSteamLeaderboardEntries Leaderboard entries handle
  * @number index Which entry to get
- * @treturn Boolean ok
- * @treturn Table entry The requested leaderboard entry.
+ * @treturn boolean ok
+ * @treturn table entry The requested leaderboard entry.
  */
 int SteamUserStats_GetDownloadedLeaderboardEntry(lua_State* L)
 {

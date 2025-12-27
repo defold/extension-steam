@@ -68,8 +68,8 @@ int Steam_OnGameOverlayActivated(lua_State* L, void* data)
 
 /** Initialize Steamworks.
  * @name init
- * @treturn Boolean success True if successful
- * @treturn String message Error message if unsuccessful.
+ * @treturn boolean success True if successful
+ * @treturn string message Error message if unsuccessful.
  */
 static int Init(lua_State* L)
 {

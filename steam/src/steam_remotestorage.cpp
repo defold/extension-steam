@@ -35,7 +35,7 @@ int SteamRemoteStorage_Init(lua_State* L)
 /** Share a file
  * @name remote_storage_file_share
  * @string filename Name of file to share
- * @treturn string call id
+ * @treturn string id
  */
 int SteamRemoteStorage_FileShare(lua_State* L)
 {
@@ -49,7 +49,7 @@ int SteamRemoteStorage_FileShare(lua_State* L)
 
 /** Get number of uploaded files
  * @name remote_storage_get_file_count
- * @treturn number File count
+ * @treturn number count File count
  */
 int SteamRemoteStorage_GetFileCount(lua_State* L)
 {
@@ -62,7 +62,7 @@ int SteamRemoteStorage_GetFileCount(lua_State* L)
 
 /** Get file information
  * @name remote_storage_get_file_name_and_size
- * @treturn number File count
+ * @treturn number count File count
  */
 int SteamRemoteStorage_GetFileNameAndSize(lua_State* L)
 {
@@ -78,8 +78,8 @@ int SteamRemoteStorage_GetFileNameAndSize(lua_State* L)
 
 /** Get storage quota
  * @name remote_storage_get_quota
- * @treturn number Available bytes
- * @treturn number Total bytes
+ * @treturn number available Available bytes
+ * @treturn number total Total bytes
  */
 int SteamRemoteStorage_GetQuota(lua_State* L)
 {
@@ -106,7 +106,7 @@ int SteamRemoteStorage_GetQuota(lua_State* L)
  * @name remote_storage_file_write
  * @string filename The name of the file to write to.
  * @string data
- * @treturn boolean Success
+ * @treturn boolean result Success
  */
 int SteamRemoteStorage_FileWrite(lua_State* L)
 {
