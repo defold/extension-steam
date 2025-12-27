@@ -948,6 +948,74 @@ static void LuaInit(lua_State* L)
 	SETCONSTANT(ELobbyComparisonLessThan, k_ELobbyComparisonLessThan);
 	SETCONSTANT(ELobbyComparisonLessThanOrEqual, k_ELobbyComparisonEqualToOrLessThan);
 
+
+	/**
+	 * EAuthSessionResponseOK 
+	 * Steam has verified the user is online, the ticket is valid and ticket has not been reused.
+	 * @field EAuthSessionResponseOK
+	 */
+	SETCONSTANT(EAuthSessionResponseOK, k_EAuthSessionResponseOK);
+	/**
+	 * EAuthSessionResponseUserNotConnectedToSteam 
+	 * The user in question is not connected to steam.
+	 * @field EAuthSessionResponseUserNotConnectedToSteam
+	 */
+	SETCONSTANT(EAuthSessionResponseUserNotConnectedToSteam, k_EAuthSessionResponseUserNotConnectedToSteam);
+	/**
+	 * EAuthSessionResponseNoLicenseOrExpired 
+	 * The user doesn't have a license for this App ID or the ticket has expired.
+	 * @field EAuthSessionResponseNoLicenseOrExpired
+	 */
+	SETCONSTANT(EAuthSessionResponseNoLicenseOrExpired, k_EAuthSessionResponseNoLicenseOrExpired);
+	/**
+	 * EAuthSessionResponseVACBanned 
+	 * The user is VAC banned for this game.
+	 * @field EAuthSessionResponseVACBanned
+	 */
+	SETCONSTANT(EAuthSessionResponseVACBanned, k_EAuthSessionResponseVACBanned);
+	/**
+	 * EAuthSessionResponseLoggedInElseWhere 
+	 * The user account has logged in elsewhere and the session containing the game instance has been disconnected.
+	 * @field EAuthSessionResponseLoggedInElseWhere
+	 */
+	SETCONSTANT(EAuthSessionResponseLoggedInElseWhere, k_EAuthSessionResponseLoggedInElseWhere);
+	/**
+	 * EAuthSessionResponseVACCheckTimedOut 
+	 * VAC has been unable to perform anti-cheat checks on this user.
+	 * @field EAuthSessionResponseVACCheckTimedOut
+	 */
+	SETCONSTANT(EAuthSessionResponseVACCheckTimedOut, k_EAuthSessionResponseVACCheckTimedOut);
+	/**
+	 * EAuthSessionResponseAuthTicketCanceled 
+	 * The ticket has been canceled by the issuer.
+	 * @field EAuthSessionResponseAuthTicketCanceled
+	 */
+	SETCONSTANT(EAuthSessionResponseAuthTicketCanceled, k_EAuthSessionResponseAuthTicketCanceled);
+	/**
+	 * EAuthSessionResponseAuthTicketInvalidAlreadyUsed 
+	 * This ticket has already been used, it is not valid.
+	 * @field EAuthSessionResponseAuthTicketInvalidAlreadyUsed
+	 */
+	SETCONSTANT(EAuthSessionResponseAuthTicketInvalidAlreadyUsed, k_EAuthSessionResponseAuthTicketInvalidAlreadyUsed);
+	/**
+	 * EAuthSessionResponseAuthTicketInvalid 
+	 * This ticket is not from a user instance currently connected to steam.
+	 * @field EAuthSessionResponseAuthTicketInvalid
+	 */
+	SETCONSTANT(EAuthSessionResponseAuthTicketInvalid, k_EAuthSessionResponseAuthTicketInvalid);
+	/**
+	 * EAuthSessionResponsePublisherIssuedBan 
+	 * The user is banned for this game. The ban came via the web api and not VAC.
+	 * @field EAuthSessionResponsePublisherIssuedBan
+	 */
+	SETCONSTANT(EAuthSessionResponsePublisherIssuedBan, k_EAuthSessionResponsePublisherIssuedBan);
+	/**
+	 * EAuthSessionResponseAuthTicketNetworkIdentityFailure 
+	 * The network identity in the ticket does not match the server authenticating the ticket.
+	 * @field EAuthSessionResponseAuthTicketNetworkIdentityFailure
+	 */
+	SETCONSTANT(EAuthSessionResponseAuthTicketNetworkIdentityFailure, k_EAuthSessionResponseAuthTicketNetworkIdentityFailure);
+
 	#undef SETCONSTANT
 
 	lua_pop(L, 1);

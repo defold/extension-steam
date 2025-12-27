@@ -385,6 +385,50 @@
     type: number
     desc: ELobbyTypePrivateUnique private, unique and does not delete when empty
 
+  - name: EAuthSessionResponseOK
+    type: number
+    desc: EAuthSessionResponseOK Steam has verified the user is online, the ticket is valid and ticket has not been reused.
+
+  - name: EAuthSessionResponseUserNotConnectedToSteam
+    type: number
+    desc: EAuthSessionResponseUserNotConnectedToSteam The user in question is not connected to steam.
+
+  - name: EAuthSessionResponseNoLicenseOrExpired
+    type: number
+    desc: EAuthSessionResponseNoLicenseOrExpired The user doesn't have a license for this App ID or the ticket has expired.
+
+  - name: EAuthSessionResponseVACBanned
+    type: number
+    desc: EAuthSessionResponseVACBanned The user is VAC banned for this game.
+
+  - name: EAuthSessionResponseLoggedInElseWhere
+    type: number
+    desc: EAuthSessionResponseLoggedInElseWhere The user account has logged in elsewhere and the session containing the game instance has been disconnected.
+
+  - name: EAuthSessionResponseVACCheckTimedOut
+    type: number
+    desc: EAuthSessionResponseVACCheckTimedOut VAC has been unable to perform anti-cheat checks on this user.
+
+  - name: EAuthSessionResponseAuthTicketCanceled
+    type: number
+    desc: EAuthSessionResponseAuthTicketCanceled The ticket has been canceled by the issuer.
+
+  - name: EAuthSessionResponseAuthTicketInvalidAlreadyUsed
+    type: number
+    desc: EAuthSessionResponseAuthTicketInvalidAlreadyUsed This ticket has already been used, it is not valid.
+
+  - name: EAuthSessionResponseAuthTicketInvalid
+    type: number
+    desc: EAuthSessionResponseAuthTicketInvalid This ticket is not from a user instance currently connected to steam.
+
+  - name: EAuthSessionResponsePublisherIssuedBan
+    type: number
+    desc: EAuthSessionResponsePublisherIssuedBan The user is banned for this game. The ban came via the web api and not VAC.
+
+  - name: EAuthSessionResponseAuthTicketNetworkIdentityFailure
+    type: number
+    desc: EAuthSessionResponseAuthTicketNetworkIdentityFailure The network identity in the ticket does not match the server authenticating the ticket.
+
   - name: apps_is_dlc_installed
     type: function
     desc: Takes AppID of DLC and checks if the user owns the DLC &amp; if the DLC is installed. 
