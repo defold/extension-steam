@@ -1199,11 +1199,53 @@
       desc: |
         Auth ticket or null
         
+    - name: handle
+      type: string
+      desc: |
+        Ticket handle or null
         
     - name: error
       type: string
       desc: |
         Error message or null
+        
+
+  - name: user_begin_auth_session
+    type: function
+    desc: Validate an authentication ticket. Authenticate the ticket from the entity Steam ID to be sure it is valid and isn't reused. Note that identity is not confirmed until the callback ValidateAuthTicketResponse_t is received and the return value in that callback is checked for success.
+    parameters:
+    - name: ticket
+      type: string
+      desc: |
+        The auth ticket to validate
+        
+    - name: steamId
+      type: string
+      desc: |
+        The entity's Steam ID that sent this ticket.
+        
+    returns:
+    - name: result
+      type: number
+
+  - name: cancel_auth_ticket
+    type: function
+    desc: Cancels an auth ticket. Cancels an auth ticket received from GetAuthSessionTicket or GetAuthTicketForWebApi. This should be called when no longer playing with the specified entity.
+    parameters:
+    - name: ticket
+      type: number
+      desc: |
+        The active auth ticket to cancel.
+        
+
+  - name: end_auth_session
+    type: function
+    desc: Ends an auth session. Ends an auth session that was started with BeginAuthSession. This should be called when no longer playing with the specified entity.
+    parameters:
+    - name: steamId
+      type: string
+      desc: |
+        The entity to end the active auth session with.
         
 
   - name: user_get_auth_ticket_for_web_api
@@ -1219,12 +1261,12 @@
     - name: hAuthTicket
       type: number
       desc: |
-        Or null The handle of the requested ticket
+        The handle of the requested ticket
         
     - name: error
       type: string
       desc: |
-        Or null
+        Error message or null
         
 
   - name: user_stats_get_stat_int

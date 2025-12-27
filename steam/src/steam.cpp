@@ -177,9 +177,9 @@ static int Update(lua_State* L)
 		else if (id == ClientGameServerDeny_t::k_iCallback) SteamListener_InvokeGeneric("ClientGameServerDeny_t");
 		else if (id == IPCFailure_t::k_iCallback) SteamListener_InvokeGeneric("IPCFailure_t");
 		else if (id == LicensesUpdated_t::k_iCallback) SteamListener_InvokeGeneric("LicensesUpdated_t");
-		else if (id == ValidateAuthTicketResponse_t::k_iCallback) SteamListener_InvokeGeneric("ValidateAuthTicketResponse_t");
+		else if (id == ValidateAuthTicketResponse_t::k_iCallback) SteamListener_Invoke(SteamUser_OnValidateAuthTicketResponse, data);
 		else if (id == EncryptedAppTicketResponse_t::k_iCallback) SteamListener_InvokeGeneric("EncryptedAppTicketResponse_t");
-		else if (id == GetAuthSessionTicketResponse_t::k_iCallback) SteamListener_InvokeGeneric("GetAuthSessionTicketResponse_t");
+		else if (id == GetAuthSessionTicketResponse_t::k_iCallback) SteamListener_Invoke(SteamUser_OnGetAuthSessionTicketResponse, data);
 		else if (id == GameWebCallback_t::k_iCallback) SteamListener_InvokeGeneric("GameWebCallback_t");
 		else if (id == StoreAuthURLResponse_t::k_iCallback) SteamListener_InvokeGeneric("StoreAuthURLResponse_t");
 		else if (id == MarketEligibilityResponse_t::k_iCallback) SteamListener_InvokeGeneric("MarketEligibilityResponse_t");
@@ -389,6 +389,9 @@ static const luaL_reg Module_methods[] = {
 	{ "user_is_phone_identifying", SteamUser_IsPhoneIdentifying },
 	{ "user_is_phone_requiring_verification", SteamUser_IsPhoneRequiringVerification },
 	{ "user_is_two_factor_enabled", SteamUser_IsTwoFactorEnabled },
+	{ "user_begin_auth_session", SteamUser_BeginAuthSession },
+	{ "user_cancel_auth_ticket", SteamUser_CancelAuthTicket },
+	{ "user_end_auth_session", SteamUser_EndAuthSession },
 	{ "user_get_auth_session_ticket", SteamUser_GetAuthSessionTicket },
 	{ "user_get_auth_ticket_for_web_api", SteamUser_GetAuthTicketForWebAPI },
 

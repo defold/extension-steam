@@ -44,12 +44,17 @@ function init(self)
 				print("unexpected ticket handle", t.m_hAuthTicket, self.expected_ticket_handle)
 				return
 			end
+			self.ticket_handle = self.expected_ticket_handle
+			self.expected_ticket_handle = nil
 			local ticket = t.m_rgubTicket
 			local hex = ticket:gsub(".", function(char)
 				return string.format("%02X", char:byte())
 			end)
 			print("ticket", hex)
 			return
+		elseif e == "GetAuthSessionTicketResponse_t" then
+			print("ticket handle", t.m_hAuthTicket)
+			print("result", t.m_eResult)
 		end
 		print("listener event", e)
 		pprint(t)
@@ -70,8 +75,10 @@ function on_input(self, action_id, action)
 	end)
 
 	rpg.button("get_auth_ticket", action_id, action, function()
-		local ticket, err = steam.user_get_auth_session_ticket()
+		local ticket, handle, err = steam.user_get_auth_session_ticket()
 		if ticket then
+			self.ticket = ticket
+			self.ticket_handle = handle
 			local hex = ticket:gsub(".", function(char)
 				return string.format("%02X", char:byte())
 			end)
@@ -82,12 +89,46 @@ function on_input(self, action_id, action)
 	end)
 
 	rpg.button("get_auth_for_webapi", action_id, action, function()
-		local hAuthTicket, err = steam.user_get_auth_ticket_for_web_api("your-backend.example.com")
-		if hAuthTicket then
-			self.expected_ticket_handle = hAuthTicket
-			print("ticket", hAuthTicket)
+		local handle, err = steam.user_get_auth_ticket_for_web_api("your-backend.example.com")
+		if handle then
+			self.expected_ticket_handle = handle
+			print("ticket", handle)
 		else
 			print("error", err)
 		end
+	end)
+	
+	rpg.button("cancel_auth_ticket", action_id, action, function()
+		if not self.ticket_handle then
+			print("No auth ticket")
+			return
+		end
+		print("Cancel auth ticket")
+		steam.user_cancel_auth_ticket(self.ticket_handle)
+		self.ticket_handle = nil
+		self.ticket = nil
+	end)
+
+	rpg.button("begin_auth_session", action_id, action, function()
+		if not self.ticket then
+			print("No auth ticket")
+			return
+		end
+		print("Begin auth session")
+		local steamId = steam.user_get_steam_id()
+		local result = steam.user_begin_auth_session(self.ticket, steamId)
+		print(result)
+	end)
+
+	rpg.button("end_auth_session", action_id, action, function()
+		if not self.ticket then
+			print("No auth ticket")
+			return
+		end
+		print("End auth session")
+		local steamId = steam.user_get_steam_id()
+		steam.user_end_auth_session(steamId)
+		self.ticket_handle = nil
+		self.ticket = nil
 	end)
 end
