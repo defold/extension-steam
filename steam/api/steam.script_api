@@ -1320,7 +1320,7 @@
     - name: result
       type: number
 
-  - name: cancel_auth_ticket
+  - name: user_cancel_auth_ticket
     type: function
     desc: Cancels an auth ticket. Cancels an auth ticket received from GetAuthSessionTicket or GetAuthTicketForWebApi. This should be called when no longer playing with the specified entity.
     parameters:
@@ -1330,7 +1330,7 @@
         The active auth ticket to cancel.
         
 
-  - name: end_auth_session
+  - name: user_end_auth_session
     type: function
     desc: Ends an auth session. Ends an auth session that was started with BeginAuthSession. This should be called when no longer playing with the specified entity.
     parameters:

@@ -256,7 +256,7 @@ int SteamUser_BeginAuthSession(lua_State* L)
  * Cancels an auth ticket received from GetAuthSessionTicket or
  * GetAuthTicketForWebApi. This should be called when no longer playing with the
  * specified entity.
- * @name cancel_auth_ticket
+ * @name user_cancel_auth_ticket
  * @number ticket The active auth ticket to cancel.
  */
 int SteamUser_CancelAuthTicket(lua_State* L)
@@ -274,7 +274,7 @@ int SteamUser_CancelAuthTicket(lua_State* L)
 /** Ends an auth session.
  * Ends an auth session that was started with BeginAuthSession. This should be
  * called when no longer playing with the specified entity.
- * @name end_auth_session
+ * @name user_end_auth_session
  * @string steamId The entity to end the active auth session with.
  */
 int SteamUser_EndAuthSession(lua_State* L)
