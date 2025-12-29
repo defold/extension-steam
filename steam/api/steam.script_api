@@ -1292,7 +1292,7 @@
         Auth ticket or null
         
     - name: handle
-      type: string
+      type: number
       desc: |
         Ticket handle or null
         

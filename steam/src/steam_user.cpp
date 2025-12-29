@@ -195,7 +195,7 @@ int SteamUser_IsTwoFactorEnabled(lua_State* L)
  * authenticate you.
  * @name user_get_auth_session_ticket
  * @treturn string ticket Auth ticket or null
- * @treturn string handle Ticket handle or null
+ * @treturn number handle Ticket handle or null
  * @treturn string error Error message or null
  */
 int SteamUser_GetAuthSessionTicket(lua_State* L)
