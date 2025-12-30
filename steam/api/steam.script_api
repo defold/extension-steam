@@ -1689,6 +1689,13 @@
     - name: running_on_steamdeck
       type: boolean
 
+  - name: utils_is_steam_overlay_available
+    type: function
+    desc: Returns true if the Steam Overlay is running and the user can access it.
+    returns:
+    - name: steam_overlay_available
+      type: boolean
+
   - name: utils_get_image_size
     type: function
     desc: Get size of image. 

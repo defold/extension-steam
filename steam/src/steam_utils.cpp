@@ -111,6 +111,19 @@ int SteamUtils_IsSteamRunningOnSteamDeck(lua_State* L)
 	return 1;
 }
 
+/** Returns true if the Steam Overlay is running and the user can access it.
+ * @name utils_is_steam_overlay_available
+ * @treturn boolean steam_overlay_available
+ */
+int SteamUtils_IsSteamOverlayAvailable(lua_State* L)
+{
+	if (!g_SteamUtils) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+
+	lua_pushboolean(L, g_SteamUtils->IsOverlayEnabled());
+	return 1;
+}
+
 
 /** Get size of image
  * @name utils_get_image_size
