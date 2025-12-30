@@ -385,6 +385,50 @@
     type: number
     desc: ELobbyTypePrivateUnique private, unique and does not delete when empty
 
+  - name: EAuthSessionResponseOK
+    type: number
+    desc: EAuthSessionResponseOK Steam has verified the user is online, the ticket is valid and ticket has not been reused.
+
+  - name: EAuthSessionResponseUserNotConnectedToSteam
+    type: number
+    desc: EAuthSessionResponseUserNotConnectedToSteam The user in question is not connected to steam.
+
+  - name: EAuthSessionResponseNoLicenseOrExpired
+    type: number
+    desc: EAuthSessionResponseNoLicenseOrExpired The user doesn't have a license for this App ID or the ticket has expired.
+
+  - name: EAuthSessionResponseVACBanned
+    type: number
+    desc: EAuthSessionResponseVACBanned The user is VAC banned for this game.
+
+  - name: EAuthSessionResponseLoggedInElseWhere
+    type: number
+    desc: EAuthSessionResponseLoggedInElseWhere The user account has logged in elsewhere and the session containing the game instance has been disconnected.
+
+  - name: EAuthSessionResponseVACCheckTimedOut
+    type: number
+    desc: EAuthSessionResponseVACCheckTimedOut VAC has been unable to perform anti-cheat checks on this user.
+
+  - name: EAuthSessionResponseAuthTicketCanceled
+    type: number
+    desc: EAuthSessionResponseAuthTicketCanceled The ticket has been canceled by the issuer.
+
+  - name: EAuthSessionResponseAuthTicketInvalidAlreadyUsed
+    type: number
+    desc: EAuthSessionResponseAuthTicketInvalidAlreadyUsed This ticket has already been used, it is not valid.
+
+  - name: EAuthSessionResponseAuthTicketInvalid
+    type: number
+    desc: EAuthSessionResponseAuthTicketInvalid This ticket is not from a user instance currently connected to steam.
+
+  - name: EAuthSessionResponsePublisherIssuedBan
+    type: number
+    desc: EAuthSessionResponsePublisherIssuedBan The user is banned for this game. The ban came via the web api and not VAC.
+
+  - name: EAuthSessionResponseAuthTicketNetworkIdentityFailure
+    type: number
+    desc: EAuthSessionResponseAuthTicketNetworkIdentityFailure The network identity in the ticket does not match the server authenticating the ticket.
+
   - name: apps_is_dlc_installed
     type: function
     desc: Takes AppID of DLC and checks if the user owns the DLC &amp; if the DLC is installed. 
@@ -1247,11 +1291,53 @@
       desc: |
         Auth ticket or null
         
+    - name: handle
+      type: number
+      desc: |
+        Ticket handle or null
         
     - name: error
       type: string
       desc: |
         Error message or null
+        
+
+  - name: user_begin_auth_session
+    type: function
+    desc: Validate an authentication ticket. Authenticate the ticket from the entity Steam ID to be sure it is valid and isn't reused. Note that identity is not confirmed until the callback ValidateAuthTicketResponse_t is received and the return value in that callback is checked for success.
+    parameters:
+    - name: ticket
+      type: string
+      desc: |
+        The auth ticket to validate
+        
+    - name: steamId
+      type: string
+      desc: |
+        The entity's Steam ID that sent this ticket.
+        
+    returns:
+    - name: result
+      type: number
+
+  - name: user_cancel_auth_ticket
+    type: function
+    desc: Cancels an auth ticket. Cancels an auth ticket received from GetAuthSessionTicket or GetAuthTicketForWebApi. This should be called when no longer playing with the specified entity.
+    parameters:
+    - name: ticket
+      type: number
+      desc: |
+        The active auth ticket to cancel.
+        
+
+  - name: user_end_auth_session
+    type: function
+    desc: Ends an auth session. Ends an auth session that was started with BeginAuthSession. This should be called when no longer playing with the specified entity.
+    parameters:
+    - name: steamId
+      type: string
+      desc: |
+        The entity to end the active auth session with.
         
 
   - name: user_get_auth_ticket_for_web_api
@@ -1267,12 +1353,12 @@
     - name: hAuthTicket
       type: number
       desc: |
-        Or null The handle of the requested ticket
+        The handle of the requested ticket
         
     - name: error
       type: string
       desc: |
-        Or null
+        Error message or null
         
 
   - name: user_stats_get_stat_int

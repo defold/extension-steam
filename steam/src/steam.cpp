@@ -177,9 +177,9 @@ static int Update(lua_State* L)
 		else if (id == ClientGameServerDeny_t::k_iCallback) SteamListener_InvokeGeneric("ClientGameServerDeny_t");
 		else if (id == IPCFailure_t::k_iCallback) SteamListener_InvokeGeneric("IPCFailure_t");
 		else if (id == LicensesUpdated_t::k_iCallback) SteamListener_InvokeGeneric("LicensesUpdated_t");
-		else if (id == ValidateAuthTicketResponse_t::k_iCallback) SteamListener_InvokeGeneric("ValidateAuthTicketResponse_t");
+		else if (id == ValidateAuthTicketResponse_t::k_iCallback) SteamListener_Invoke(SteamUser_OnValidateAuthTicketResponse, data);
 		else if (id == EncryptedAppTicketResponse_t::k_iCallback) SteamListener_InvokeGeneric("EncryptedAppTicketResponse_t");
-		else if (id == GetAuthSessionTicketResponse_t::k_iCallback) SteamListener_InvokeGeneric("GetAuthSessionTicketResponse_t");
+		else if (id == GetAuthSessionTicketResponse_t::k_iCallback) SteamListener_Invoke(SteamUser_OnGetAuthSessionTicketResponse, data);
 		else if (id == GameWebCallback_t::k_iCallback) SteamListener_InvokeGeneric("GameWebCallback_t");
 		else if (id == StoreAuthURLResponse_t::k_iCallback) SteamListener_InvokeGeneric("StoreAuthURLResponse_t");
 		else if (id == MarketEligibilityResponse_t::k_iCallback) SteamListener_InvokeGeneric("MarketEligibilityResponse_t");
@@ -389,6 +389,9 @@ static const luaL_reg Module_methods[] = {
 	{ "user_is_phone_identifying", SteamUser_IsPhoneIdentifying },
 	{ "user_is_phone_requiring_verification", SteamUser_IsPhoneRequiringVerification },
 	{ "user_is_two_factor_enabled", SteamUser_IsTwoFactorEnabled },
+	{ "user_begin_auth_session", SteamUser_BeginAuthSession },
+	{ "user_cancel_auth_ticket", SteamUser_CancelAuthTicket },
+	{ "user_end_auth_session", SteamUser_EndAuthSession },
 	{ "user_get_auth_session_ticket", SteamUser_GetAuthSessionTicket },
 	{ "user_get_auth_ticket_for_web_api", SteamUser_GetAuthTicketForWebAPI },
 
@@ -944,6 +947,74 @@ static void LuaInit(lua_State* L)
 	SETCONSTANT(ELobbyComparisonGreaterThanOrEqual, k_ELobbyComparisonEqualToOrGreaterThan);
 	SETCONSTANT(ELobbyComparisonLessThan, k_ELobbyComparisonLessThan);
 	SETCONSTANT(ELobbyComparisonLessThanOrEqual, k_ELobbyComparisonEqualToOrLessThan);
+
+
+	/**
+	 * EAuthSessionResponseOK 
+	 * Steam has verified the user is online, the ticket is valid and ticket has not been reused.
+	 * @field EAuthSessionResponseOK
+	 */
+	SETCONSTANT(EAuthSessionResponseOK, k_EAuthSessionResponseOK);
+	/**
+	 * EAuthSessionResponseUserNotConnectedToSteam 
+	 * The user in question is not connected to steam.
+	 * @field EAuthSessionResponseUserNotConnectedToSteam
+	 */
+	SETCONSTANT(EAuthSessionResponseUserNotConnectedToSteam, k_EAuthSessionResponseUserNotConnectedToSteam);
+	/**
+	 * EAuthSessionResponseNoLicenseOrExpired 
+	 * The user doesn't have a license for this App ID or the ticket has expired.
+	 * @field EAuthSessionResponseNoLicenseOrExpired
+	 */
+	SETCONSTANT(EAuthSessionResponseNoLicenseOrExpired, k_EAuthSessionResponseNoLicenseOrExpired);
+	/**
+	 * EAuthSessionResponseVACBanned 
+	 * The user is VAC banned for this game.
+	 * @field EAuthSessionResponseVACBanned
+	 */
+	SETCONSTANT(EAuthSessionResponseVACBanned, k_EAuthSessionResponseVACBanned);
+	/**
+	 * EAuthSessionResponseLoggedInElseWhere 
+	 * The user account has logged in elsewhere and the session containing the game instance has been disconnected.
+	 * @field EAuthSessionResponseLoggedInElseWhere
+	 */
+	SETCONSTANT(EAuthSessionResponseLoggedInElseWhere, k_EAuthSessionResponseLoggedInElseWhere);
+	/**
+	 * EAuthSessionResponseVACCheckTimedOut 
+	 * VAC has been unable to perform anti-cheat checks on this user.
+	 * @field EAuthSessionResponseVACCheckTimedOut
+	 */
+	SETCONSTANT(EAuthSessionResponseVACCheckTimedOut, k_EAuthSessionResponseVACCheckTimedOut);
+	/**
+	 * EAuthSessionResponseAuthTicketCanceled 
+	 * The ticket has been canceled by the issuer.
+	 * @field EAuthSessionResponseAuthTicketCanceled
+	 */
+	SETCONSTANT(EAuthSessionResponseAuthTicketCanceled, k_EAuthSessionResponseAuthTicketCanceled);
+	/**
+	 * EAuthSessionResponseAuthTicketInvalidAlreadyUsed 
+	 * This ticket has already been used, it is not valid.
+	 * @field EAuthSessionResponseAuthTicketInvalidAlreadyUsed
+	 */
+	SETCONSTANT(EAuthSessionResponseAuthTicketInvalidAlreadyUsed, k_EAuthSessionResponseAuthTicketInvalidAlreadyUsed);
+	/**
+	 * EAuthSessionResponseAuthTicketInvalid 
+	 * This ticket is not from a user instance currently connected to steam.
+	 * @field EAuthSessionResponseAuthTicketInvalid
+	 */
+	SETCONSTANT(EAuthSessionResponseAuthTicketInvalid, k_EAuthSessionResponseAuthTicketInvalid);
+	/**
+	 * EAuthSessionResponsePublisherIssuedBan 
+	 * The user is banned for this game. The ban came via the web api and not VAC.
+	 * @field EAuthSessionResponsePublisherIssuedBan
+	 */
+	SETCONSTANT(EAuthSessionResponsePublisherIssuedBan, k_EAuthSessionResponsePublisherIssuedBan);
+	/**
+	 * EAuthSessionResponseAuthTicketNetworkIdentityFailure 
+	 * The network identity in the ticket does not match the server authenticating the ticket.
+	 * @field EAuthSessionResponseAuthTicketNetworkIdentityFailure
+	 */
+	SETCONSTANT(EAuthSessionResponseAuthTicketNetworkIdentityFailure, k_EAuthSessionResponseAuthTicketNetworkIdentityFailure);
 
 	#undef SETCONSTANT
 

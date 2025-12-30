@@ -7,6 +7,8 @@
 
 int SteamUser_OnMicroTxnAuthorizationResponse(lua_State* L, void* data);
 int SteamUser_OnGetTicketForWebApiResponse(lua_State* L, void* data);
+int SteamUser_OnValidateAuthTicketResponse(lua_State* L, void* data);
+int SteamUser_OnGetAuthSessionTicketResponse(lua_State* L, void* data);
 
 int SteamUser_Init(lua_State* L);
 int SteamUser_GetSteamId(lua_State* L);
@@ -20,6 +22,10 @@ int SteamUser_IsPhoneRequiringVerification(lua_State* L);
 int SteamUser_IsTwoFactorEnabled(lua_State* L);
 int SteamUser_GetAuthSessionTicket(lua_State* L);
 int SteamUser_GetAuthTicketForWebAPI(lua_State* L);
+int SteamUser_BeginAuthSession(lua_State* L);
+int SteamUser_CancelAuthTicket(lua_State* L);
+int SteamUser_EndAuthSession(lua_State* L);
+
 
 #endif
 

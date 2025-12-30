@@ -40,6 +40,30 @@ int SteamUser_OnGetTicketForWebApiResponse(lua_State * L, void* data)
 	return 2;
 }
 
+int SteamUser_OnValidateAuthTicketResponse(lua_State * L, void* data)
+{
+	ValidateAuthTicketResponse_t* s = (ValidateAuthTicketResponse_t*)data;
+	lua_pushstring(L, "ValidateAuthTicketResponse_t");
+
+	lua_newtable(L);
+	table_push_CSteamID(L, "m_SteamID", s->m_SteamID);
+	table_push_integer(L, "m_eAuthSessionResponse", s->m_eAuthSessionResponse);
+	table_push_CSteamID(L, "m_OwnerSteamID", s->m_OwnerSteamID);
+
+	return 2;
+}
+
+int SteamUser_OnGetAuthSessionTicketResponse(lua_State* L, void* data)
+{
+	GetAuthSessionTicketResponse_t* s = (GetAuthSessionTicketResponse_t*)data;
+	lua_pushstring(L, "GetAuthSessionTicketResponse_t");
+
+	lua_newtable(L);
+	table_push_integer(L, "m_hAuthTicket", s->m_hAuthTicket);
+	table_push_integer(L, "m_eResult", s->m_eResult);
+
+	return 2;
+}
 
 int SteamUser_Init(lua_State* L)
 {
@@ -171,12 +195,13 @@ int SteamUser_IsTwoFactorEnabled(lua_State* L)
  * authenticate you.
  * @name user_get_auth_session_ticket
  * @treturn string ticket Auth ticket or null
+ * @treturn number handle Ticket handle or null
  * @treturn string error Error message or null
  */
 int SteamUser_GetAuthSessionTicket(lua_State* L)
 {
 	if (!g_SteamUser) return 0;
-	DM_LUA_STACK_CHECK(L, 2);
+	DM_LUA_STACK_CHECK(L, 3);
 
 	if (g_AuthSessionTicket)
 	{
@@ -190,14 +215,78 @@ int SteamUser_GetAuthSessionTicket(lua_State* L)
 	if (ticket == k_HAuthTicketInvalid)
 	{
 		lua_pushnil(L);
+		lua_pushnil(L);
 		lua_pushstring(L, "k_HAuthTicketInvalid");
-		return 2;
+		return 3;
 	}
 
 	g_AuthSessionTicket = ticket;
 	lua_pushlstring(L, pTicket, pcbTicket);
+	lua_pushnumber(L, ticket);
 	lua_pushnil(L);
-	return 2;
+	return 3;
+}
+
+
+/** Validate an authentication ticket.
+ * Authenticate the ticket from the entity Steam ID to be sure it is valid and
+ * isn't reused. Note that identity is not confirmed until the callback
+ * ValidateAuthTicketResponse_t is received and the return value in that
+ * callback is checked for success.
+ * @name user_begin_auth_session
+ * @string ticket The auth ticket to validate
+ * @string steamId The entity's Steam ID that sent this ticket.
+ * @treturn number result
+ */
+int SteamUser_BeginAuthSession(lua_State* L)
+{
+	if (!g_SteamUser) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+
+	size_t cbAuthTicket = 0;
+	const void* pAuthTicket = (const void*)luaL_checklstring(L, 1, &cbAuthTicket);
+	CSteamID steamID = check_uint64(L, 2);
+
+	EBeginAuthSessionResult result = g_SteamUser->BeginAuthSession(pAuthTicket, cbAuthTicket, steamID);
+	lua_pushinteger(L, result);
+	return 1;
+}
+
+/** Cancels an auth ticket.
+ * Cancels an auth ticket received from GetAuthSessionTicket or
+ * GetAuthTicketForWebApi. This should be called when no longer playing with the
+ * specified entity.
+ * @name user_cancel_auth_ticket
+ * @number ticket The active auth ticket to cancel.
+ */
+int SteamUser_CancelAuthTicket(lua_State* L)
+{
+	if (!g_SteamUser) return 0;
+	DM_LUA_STACK_CHECK(L, 0);
+
+	HAuthTicket hAuthTicket = luaL_checknumber(L, 1);
+
+	g_SteamUser->CancelAuthTicket(hAuthTicket);
+
+	return 0;
+}
+
+/** Ends an auth session.
+ * Ends an auth session that was started with BeginAuthSession. This should be
+ * called when no longer playing with the specified entity.
+ * @name user_end_auth_session
+ * @string steamId The entity to end the active auth session with.
+ */
+int SteamUser_EndAuthSession(lua_State* L)
+{
+	if (!g_SteamUser) return 0;
+	DM_LUA_STACK_CHECK(L, 0);
+
+	CSteamID steamID = check_uint64(L, 1);
+
+	g_SteamUser->EndAuthSession(steamID);
+
+	return 0;
 }
 
 /** Get an authentication ticket for web API.

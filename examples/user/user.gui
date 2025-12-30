@@ -126,6 +126,78 @@ nodes {
   overridden_fields: 8
   template_node_child: true
 }
+nodes {
+  position {
+    x: 443.0
+    y: 503.0
+  }
+  type: TYPE_TEMPLATE
+  id: "cancel_auth_ticket"
+  inherit_alpha: true
+  template: "/gooey-rpg/components/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "cancel_auth_ticket/bg"
+  parent: "cancel_auth_ticket"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "CANCEL AUTH TICKET"
+  id: "cancel_auth_ticket/label"
+  parent: "cancel_auth_ticket/bg"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 443.0
+    y: 442.0
+  }
+  type: TYPE_TEMPLATE
+  id: "begin_auth_session"
+  inherit_alpha: true
+  template: "/gooey-rpg/components/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "begin_auth_session/bg"
+  parent: "begin_auth_session"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "BEGIN AUTH SESSION"
+  id: "begin_auth_session/label"
+  parent: "begin_auth_session/bg"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 443.0
+    y: 378.0
+  }
+  type: TYPE_TEMPLATE
+  id: "end_auth_session"
+  inherit_alpha: true
+  template: "/gooey-rpg/components/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "end_auth_session/bg"
+  parent: "end_auth_session"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "END AUTH SESSION"
+  id: "end_auth_session/label"
+  parent: "end_auth_session/bg"
+  overridden_fields: 8
+  template_node_child: true
+}
 layers {
   name: "below"
 }
