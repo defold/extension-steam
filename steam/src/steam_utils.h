@@ -12,6 +12,7 @@ int SteamUtils_Init(lua_State* L);
 int SteamUtils_GetAppId(lua_State* L);
 int SteamUtils_GetSecondsSinceAppActive(lua_State* L);
 int SteamUtils_IsSteamRunningOnSteamDeck(lua_State* L);
+int SteamUtils_IsSteamOverlayAvailable(lua_State* L);
 int SteamUtils_GetImageSize(lua_State* L);
 int SteamUtils_GetImageRGBA(lua_State* L);
 int SteamUtils_GetServerRealTime(lua_State* L);

@@ -323,6 +323,7 @@ static const luaL_reg Module_methods[] = {
 	{ "utils_get_app_id", SteamUtils_GetAppId },
 	{ "utils_get_seconds_since_app_active", SteamUtils_GetSecondsSinceAppActive },
 	{ "utils_is_steam_running_on_steam_deck", SteamUtils_IsSteamRunningOnSteamDeck },
+	{ "utils_is_steam_overlay_available", SteamUtils_IsSteamOverlayAvailable },
 	{ "utils_get_image_size", SteamUtils_GetImageSize },
 	{ "utils_get_image_rgba", SteamUtils_GetImageRGBA },
 	{ "utils_get_server_real_time", SteamUtils_GetServerRealTime },
