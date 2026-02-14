@@ -33,7 +33,7 @@ end
 
 function init(self)
 	-- initialize the Steamworks SDK
-	local status, error = pcall(steam.init)
+	local status, error = steam.init()
 	if not status then
 		print("Error: " .. error)
 		return
