@@ -152,7 +152,7 @@ int SteamFriends_GetFriendByIndex(lua_State* L)
  * friends list; on the same game server; in a chat room or lobby; or in a small
  * group with the local user.
  * @name friends_get_friend_persona_state
- * @number steamIDFriend Id of friend
+ * @string steamIDFriend Id of friend
  * @treturn number state State of friend
  */
 int SteamFriends_GetFriendPersonaState(lua_State* L)
@@ -168,7 +168,7 @@ int SteamFriends_GetFriendPersonaState(lua_State* L)
 
 /** Get friends steam level.
  * @name friends_get_friend_steam_level
- * @number steamIDFriend Id of friend
+ * @string steamIDFriend Id of friend
  * @treturn number level Steam level of friend
  */
 int SteamFriends_GetFriendSteamLevel(lua_State* L)
@@ -184,7 +184,7 @@ int SteamFriends_GetFriendSteamLevel(lua_State* L)
 
 /** Returns a relationship to a user.
  * @name friends_get_friend_relationship
- * @number steamIDFriend Id of friend
+ * @string steamIDFriend Id of friend
  * @treturn number relationship Relationship to the user.
  */
 int SteamFriends_GetFriendRelationship(lua_State* L)
@@ -201,7 +201,7 @@ int SteamFriends_GetFriendRelationship(lua_State* L)
 /** Gets a handle to the small (32*32px) avatar for the specified user.
  * This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
  * @name friends_get_small_friend_avatar
- * @number steamIDFriend Id of friend
+ * @string steamIDFriend Id of friend
  * @treturn number handle Image handle.
  */
 int SteamFriends_GetSmallFriendAvatar(lua_State* L)
@@ -217,7 +217,7 @@ int SteamFriends_GetSmallFriendAvatar(lua_State* L)
 /** Gets a handle to the medium (64*64px) avatar for the specified user.
  * This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
  * @name friends_get_medium_friend_avatar
- * @number steamIDFriend Id of friend
+ * @string steamIDFriend Id of friend
  * @treturn number handle Image handle.
  */
 int SteamFriends_GetMediumFriendAvatar(lua_State* L)
@@ -233,7 +233,7 @@ int SteamFriends_GetMediumFriendAvatar(lua_State* L)
 /** Gets a handle to the large (128*128px) avatar for the specified user.
  * This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
  * @name friends_get_large_friend_avatar
- * @number steamIDFriend Id of friend
+ * @string steamIDFriend Id of friend
  * @treturn number handle Image handle.
  */
 int SteamFriends_GetLargeFriendAvatar(lua_State* L)
@@ -323,7 +323,7 @@ int SteamFriends_ClearRichPresence(lua_State* L)
 /** Invites a friend or clan member to the current game using a special invite string.
  * If the target accepts the invite, a GameRichPresenceJoinRequested_t callback is posted containing the connect string.
  * @name friends_invite_user_to_game
- * @number steamIDFriend Id of friend
+ * @string steamIDFriend Id of friend
  * @string connect string
  * @treturn boolean success
  */
