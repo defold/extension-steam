@@ -419,48 +419,48 @@ function steam.friends_get_friend_count(friend_flags) end
 ---Returns the steamID of a user. The returned CSteamID can then be used by all the functions below to access details about the user.
 ---@param index number Is a index of range [0, GetFriendCount())
 ---@param friend_flags number Must be the same value as used in GetFriendCount()
----@return number steam_id Steam id of the user
+---@return string steam_id Steam id of the user
 function steam.friends_get_friend_by_index(index, friend_flags) end
 
 
 ---Returns the name of another user. Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.
----@param steam_id number
+---@param steam_id string
 ---@return string name Name of user
 function steam.friends_get_friend_persona_name(steam_id) end
 
 
 ---Returns the current status of the specified user. This will only be known by the local user if steamIDFriend is in their friends list; on the same game server; in a chat room or lobby; or in a small group with the local user.
----@param steam_id number Id of friend
+---@param steam_id string Id of friend
 ---@return number state State of friend
 function steam.friends_get_friend_persona_state(steam_id) end
 
 
 ---Get friends steam level.
----@param steam_id number Id of friend
+---@param steam_id string Id of friend
 ---@return number level Steam level of friend
 function steam.friends_get_friend_steam_level(steam_id) end
 
 
 ---Returns a relationship to a user.
----@param steam_id number Id of friend
+---@param steam_id string Id of friend
 ---@return number relationship Relationship to the user.
 function steam.friends_get_friend_relationship(steam_id) end
 
 
 ---Gets a handle to the small (32*32px) avatar for the specified user. This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
----@param steam_id number Id of friend
+---@param steam_id string Id of friend
 ---@return number handle Image handle.
 function steam.friends_get_small_friend_avatar(steam_id) end
 
 
 ---Gets a handle to the medium (64*64px) avatar for the specified user. This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
----@param steam_id number Id of friend
+---@param steam_id string Id of friend
 ---@return number handle Image handle.
 function steam.friends_get_medium_friend_avatar(steam_id) end
 
 
 ---Gets a handle to the large (128*128px) avatar for the specified user. This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
----@param steam_id number Id of friend
+---@param steam_id string Id of friend
 ---@return number handle Image handle.
 function steam.friends_get_large_friend_avatar(steam_id) end
 
@@ -489,7 +489,7 @@ function steam.friends_clear_rich_presence() end
 
 
 ---Invites a friend or clan member to the current game using a special invite string. If the target accepts the invite, a GameRichPresenceJoinRequested_t callback is posted containing the connect string.
----@param steam_id number Id of friend
+---@param steam_id string Id of friend
 ---@param connect string String
 ---@return boolean success
 function steam.friends_invite_user_to_game(steam_id, connect) end
@@ -685,7 +685,7 @@ function steam.matchmaking_get_lobby_chat_entry(lobby_id, index) end
 ----------------------------------------------------------------
 
 ---Returns the CSteamID of the account currently logged into the Steam client. A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.
----@return number steam_id
+---@return string steam_id
 function steam.user_get_steam_id() end
 
 

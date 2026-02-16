@@ -443,8 +443,8 @@
     type: function
     desc: Returns the name of another user. Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.
     parameters:
-    - name: CSteamID
-      type: friendId
+    - name: steamIDFriend
+      type: string
     returns:
     - name: name
       type: string
@@ -504,7 +504,7 @@
         
     returns:
     - name: steamID
-      type: number
+      type: string
       desc: |
         Steam id of the user
         
@@ -1222,7 +1222,7 @@
     desc: Returns the CSteamID of the account currently logged into the Steam client. A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.
     returns:
     - name: id
-      type: CSteamID
+      type: string
 
   - name: user_get_player_steam_level
     type: function
