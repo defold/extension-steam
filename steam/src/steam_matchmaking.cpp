@@ -100,7 +100,7 @@ int SteamMatchmaking_Init(lua_State* L)
 /** Adds a string comparison filter to the next RequestLobbyList call.
  * @name matchmaking_add_request_lobby_list_string_filter
  * @string key
- * @number value
+ * @string value
  * @number cmp
  */
 int SteamMatchmaking_AddRequestLobbyListStringFilter(lua_State* L)
@@ -245,7 +245,7 @@ int SteamMatchmaking_CreateLobby(lua_State* L)
 	if (!g_SteamMatchmaking) return 0;
 	DM_LUA_STACK_CHECK(L, 1);
 	ELobbyType lobbyType = (ELobbyType)luaL_checknumber(L, 1);
-	int maxMembers = luaL_checknumber(L, 1);
+	int maxMembers = luaL_checknumber(L, 2);
 	SteamAPICall_t call = g_SteamMatchmaking->CreateLobby(lobbyType, maxMembers);
 	push_uint64(L, call);
 	return 1;

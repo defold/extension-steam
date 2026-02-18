@@ -1,3 +1,4 @@
+---@meta
 --[[
 Steam API documentation.
 --]]
@@ -501,7 +502,7 @@ function steam.friends_invite_user_to_game(steam_id, connect) end
 
 ---Adds a string comparison filter to the next RequestLobbyList call.
 ---@param key string
----@param value number
+---@param value string
 ---@param cmp number
 function steam.matchmaking_add_request_lobby_list_string_filter(key, value, cmp) end
 
