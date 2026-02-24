@@ -441,7 +441,7 @@
 
   - name: apps_get_current_game_language
     type: function
-    desc: ...
+    desc: Gets the current game language.
     returns:
     - name: language
       type: string

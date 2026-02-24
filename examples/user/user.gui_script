@@ -10,6 +10,7 @@ Logged on: %s
 Behind NAT: %s
 Phone: %s
 2FA enabled: %s
+Game Language: %s
 ]]
 
 
@@ -28,6 +29,7 @@ function init(self)
 	or (steam.user_is_phone_identifying() and "IDENTIFYING")
 	or (steam.user_is_phone_requiring_verification() and "REQ.VERIFICATION")
 	local two_factor_enabled = steam.user_is_two_factor_enabled()
+	local current_game_language = steam.apps_get_current_game_language()
 	gui.set_text(gui.get_node("userinfo"), USER_TEXT:format(
 		user_id,
 		steam_level,
@@ -35,7 +37,8 @@ function init(self)
 		tostring(logged_on),
 		tostring(behind_nat),
 		tostring(phone_status),
-		tostring(two_factor_enabled)
+		tostring(two_factor_enabled),
+		tostring(current_game_language)
 	))
 
 	steam.set_listener(function(self, e, t)
