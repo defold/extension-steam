@@ -32,4 +32,18 @@ int SteamApps_IsDlcInstalled(lua_State* L)
 	return 1;
 }
 
+/** Gets the current game language.
+ * @name apps_get_current_game_language
+ * @treturn string language
+ */
+int SteamApps_GetCurrentGameLanguage(lua_State* L) {
+	if (!g_SteamApps) return 0;
+    DM_LUA_STACK_CHECK(L, 1);
+    // Call the Steamworks API
+    const char* language = g_SteamApps->GetCurrentGameLanguage();
+    // Push the result to the Lua stack
+    lua_pushstring(L, language);
+    return 1;
+}
+
 #endif
