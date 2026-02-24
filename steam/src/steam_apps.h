@@ -7,6 +7,7 @@
 
 int SteamApps_Init(lua_State* L);
 int SteamApps_IsDlcInstalled(lua_State* L);
+int SteamApps_GetCurrentGameLanguage(lua_State* L);
 
 #endif
 

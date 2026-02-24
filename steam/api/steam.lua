@@ -396,6 +396,10 @@ function steam.final() end
 ---@return boolean installed
 function steam.apps_is_dlc_installed(app_id) end
 
+---Gets the current game language.
+---@return string language Current game language
+function steam.apps_get_current_game_language() end
+
 
 ----------------------------------------------------------------
 -- Friends
