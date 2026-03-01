@@ -319,6 +319,7 @@ static const luaL_reg Module_methods[] = {
 	// APPS
 	{ "apps_is_dlc_installed", SteamApps_IsDlcInstalled },
 	{ "apps_get_current_game_language", SteamApps_GetCurrentGameLanguage },
+	{ "apps_is_subscribed_app", SteamApps_IsSubscribedApp},
 
 	// UTILS
 	{ "utils_get_app_id", SteamUtils_GetAppId },

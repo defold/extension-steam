@@ -12,7 +12,7 @@ Server Real Time: %d
 function init(self)
 	msg.post(".", "acquire_input_focus")
 
-	local status, error = pcall(steam.init)
+	local status, error = steam.init()
 	if not status then print("Error: " .. error) return end
 
 	local seconds = steam.utils_get_seconds_since_app_active()

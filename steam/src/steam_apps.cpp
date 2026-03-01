@@ -46,4 +46,19 @@ int SteamApps_GetCurrentGameLanguage(lua_State* L) {
     return 1;
 }
 
+/** Takes AppID and checks if the user is subscribed to a specified app.
+* @name apps_is_subscribed_app
+* @number app_id
+* @treturn boolean installed
+*/
+int SteamApps_IsSubscribedApp(lua_State* L)
+{
+	if (!g_SteamApps) return 0;
+	DM_LUA_STACK_CHECK(L, 1);
+	AppId_t appID = luaL_checknumber(L, 1);
+	bool installed = g_SteamApps->BIsSubscribedApp(appID);
+	lua_pushboolean(L, installed);
+	return 1;
+}
+
 #endif
