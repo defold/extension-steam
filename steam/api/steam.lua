@@ -400,6 +400,10 @@ function steam.apps_is_dlc_installed(app_id) end
 ---@return string language Current game language
 function steam.apps_get_current_game_language() end
 
+---Takes AppID and checks if the user is subscribed to a specified app.
+---@param app_id number
+---@return boolean installed
+function steam.apps_is_subscribed_app(app_id) end
 
 ----------------------------------------------------------------
 -- Friends
