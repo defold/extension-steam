@@ -6,6 +6,10 @@
 #include <dmsdk/sdk.h>
 
 int SteamInput_Init(lua_State* L);
+void SteamInput_Update();
+void SteamInput_Shutdown();
+
+int SteamInput_GetConnectedControllers(lua_State* L);
 
 #endif
 

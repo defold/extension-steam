@@ -49,6 +49,8 @@ struct SteamBootstrap
 	{
 		SteamAPI_Init();
 	}
+
+	bool m_UseSteamInput;
 } g_SteamBootstrap;
 
 
@@ -92,7 +94,6 @@ static int Init(lua_State* L)
 	SteamApps_Init(L);
 	SteamFriends_Init(L);
 	SteamGameSearch_Init(L);
-	SteamInput_Init(L);
 	SteamInventory_Init(L);
 	SteamMatchmaking_Init(L);
 	SteamMusic_Init(L);
@@ -106,6 +107,8 @@ static int Init(lua_State* L)
 	SteamUserStats_Init(L);
 	SteamUtils_Init(L);
 	SteamVideo_Init(L);
+
+	if (g_SteamBootstrap.m_UseSteamInput) SteamInput_Init(L);
 
 	lua_pushboolean(L, 1);
 	lua_pushnil(L);
@@ -279,6 +282,7 @@ static int Update(lua_State* L)
 		free(callResultData);
 		SteamAPI_ManualDispatch_FreeLastCallback(steamPipe);
 	}
+	if (g_SteamBootstrap.m_UseSteamInput) SteamInput_Update();
 	return 0;
 }
 
@@ -302,6 +306,7 @@ static int Restart(lua_State* L)
 static int Final(lua_State* L)
 {
 	DM_LUA_STACK_CHECK(L, 0);
+	if (g_SteamBootstrap.m_UseSteamInput) SteamInput_Shutdown();
 	SteamAPI_Shutdown();
 	return 0;
 }
@@ -445,6 +450,9 @@ static const luaL_reg Module_methods[] = {
 	{ "remote_storage_get_file_count", SteamRemoteStorage_GetFileCount },
 	{ "remote_storage_get_file_name_and_size", SteamRemoteStorage_GetFileNameAndSize },
 	{ "remote_storage_get_quota", SteamRemoteStorage_GetQuota },
+
+	// INPUT
+	{ "input_get_connected_controllers", SteamInput_GetConnectedControllers },
 
 	{ 0, 0 }
 };
@@ -1034,6 +1042,10 @@ dmExtension::Result InitializeSteam(dmExtension::Params* params)
 {
 	LuaInit(params->m_L);
 	dmLogInfo("Registered %s Extension", MODULE_NAME);
+
+	dmLogInfo("config %d", dmConfigFile::GetInt(params->m_ConfigFile, "steam.use_steam_input", 0));
+	g_SteamBootstrap.m_UseSteamInput = (bool)(dmConfigFile::GetInt(params->m_ConfigFile, "steam.use_steam_input", 0) == 1);
+
 	return dmExtension::RESULT_OK;
 }
 

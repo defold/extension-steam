@@ -52,6 +52,9 @@ function on_input(self, action_id, action)
 		print("Not implemented")
 		--monarch.show("inventory")
 	end)
+	rpg.button("input", action_id, action, function()
+		monarch.show("input")
+	end)
 end
 
 function on_reload(self)

@@ -214,3 +214,22 @@ embedded_instances {
   "}\n"
   ""
 }
+embedded_instances {
+  id: "input"
+  data: "components {\n"
+  "  id: \"screen_proxy\"\n"
+  "  component: \"/monarch/screen_proxy.script\"\n"
+  "  properties {\n"
+  "    id: \"screen_id\"\n"
+  "    value: \"input\"\n"
+  "    type: PROPERTY_TYPE_HASH\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"collectionproxy\"\n"
+  "  type: \"collectionproxy\"\n"
+  "  data: \"collection: \\\"/examples/input/input.collection\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
