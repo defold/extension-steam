@@ -18,6 +18,7 @@ int SteamInput_Init(lua_State* L)
 	g_SteamInput = SteamInput();
 	const bool bExplicitlyCallRunFrame = false;
 	g_SteamInput->Init(bExplicitlyCallRunFrame);
+	g_SteamInput->EnableDeviceCallbacks();
 	return 0;
 }
 
@@ -39,11 +40,88 @@ int SteamInput_GetConnectedControllers(lua_State* L)
 {
 	if (!g_SteamInput) return 0;
 
+	DM_LUA_STACK_CHECK(L, 1);
 	int count = g_SteamInput->GetConnectedControllers(g_InputHandles);
 
-	dmLogInfo("count %d", count);
+	lua_newtable(L);
+	for (int i = 0; i < count; i++)
+	{
+		lua_pushnumber(L, i + 1);
+		push_uint64(L, g_InputHandles[i]);
+		lua_settable(L, -3);
+	}
 
-	return 0;
+	return 1;
 }
+
+int SteamInput_GetDigitalActionHandle(lua_State* L)
+{
+	if (!g_SteamInput) return 0;
+
+	DM_LUA_STACK_CHECK(L, 1);
+	const char* pszActionName = luaL_checkstring(L, 1);
+	InputDigitalActionHandle_t handle = g_SteamInput->GetDigitalActionHandle(pszActionName);
+	push_uint64(L, handle);
+	return 1;
+}
+int SteamInput_GetDigitalActionData(lua_State* L)
+{
+	if (!g_SteamInput) return 0;
+
+	DM_LUA_STACK_CHECK(L, 1);
+	InputHandle_t inputHandle = check_uint64(L, 1);
+	InputDigitalActionHandle_t digitalActionHandle = check_uint64(L, 2);
+	InputDigitalActionData_t data = g_SteamInput->GetDigitalActionData(inputHandle, digitalActionHandle);
+
+	lua_newtable(L);
+	lua_pushstring(L, "state");
+	lua_pushboolean(L, data.bState);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "active");
+	lua_pushboolean(L, data.bActive);
+	lua_settable(L, -3);
+
+	return 1;
+}
+int SteamInput_GetAnalogActionHandle(lua_State* L)
+{
+	if (!g_SteamInput) return 0;
+
+	DM_LUA_STACK_CHECK(L, 1);
+	const char* pszActionName = luaL_checkstring(L, 1);
+	InputAnalogActionHandle_t handle = g_SteamInput->GetAnalogActionHandle(pszActionName);
+	push_uint64(L, handle);
+	return 1;
+}
+int SteamInput_GetAnalogActionData(lua_State* L)
+{
+	if (!g_SteamInput) return 0;
+
+	DM_LUA_STACK_CHECK(L, 1);
+	InputHandle_t inputHandle = check_uint64(L, 1);
+	InputAnalogActionHandle_t digitalActionHandle = check_uint64(L, 2);
+	InputAnalogActionData_t data = g_SteamInput->GetAnalogActionData(inputHandle, digitalActionHandle);
+
+	lua_newtable(L);
+	lua_pushstring(L, "mode");
+	lua_pushinteger(L, data.eMode);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "x");
+	lua_pushnumber(L, data.x);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "y");
+	lua_pushnumber(L, data.y);
+	lua_settable(L, -3);
+
+	lua_pushstring(L, "active");
+	lua_pushboolean(L, data.bActive);
+	lua_settable(L, -3);
+
+	return 1;
+}
+
 
 #endif

@@ -530,6 +530,91 @@
     desc: |
       EAuthSessionResponseAuthTicketNetworkIdentityFailure The network identity in the ticket does not match the server authenticating the ticket.
 
+  - name: EInputSourceMode_None
+    type: number
+    desc: |
+      EInputSourceMode_None
+
+  - name: EInputSourceMode_Dpad
+    type: number
+    desc: |
+      EInputSourceMode_Dpad
+
+  - name: EInputSourceMode_Buttons
+    type: number
+    desc: |
+      EInputSourceMode_Buttons
+
+  - name: EInputSourceMode_FourButtons
+    type: number
+    desc: |
+      EInputSourceMode_FourButtons
+
+  - name: EInputSourceMode_AbsoluteMouse
+    type: number
+    desc: |
+      EInputSourceMode_AbsoluteMouse
+
+  - name: EInputSourceMode_RelativeMouse
+    type: number
+    desc: |
+      EInputSourceMode_RelativeMouse
+
+  - name: EInputSourceMode_JoystickMove
+    type: number
+    desc: |
+      EInputSourceMode_JoystickMove
+
+  - name: EInputSourceMode_JoystickMouse
+    type: number
+    desc: |
+      EInputSourceMode_JoystickMouse
+
+  - name: EInputSourceMode_JoystickCamera
+    type: number
+    desc: |
+      EInputSourceMode_JoystickCamera
+
+  - name: EInputSourceMode_ScrollWheel
+    type: number
+    desc: |
+      EInputSourceMode_ScrollWheel
+
+  - name: EInputSourceMode_Trigger
+    type: number
+    desc: |
+      EInputSourceMode_Trigger
+
+  - name: EInputSourceMode_TouchMenu
+    type: number
+    desc: |
+      EInputSourceMode_TouchMenu
+
+  - name: EInputSourceMode_MouseJoystick
+    type: number
+    desc: |
+      EInputSourceMode_MouseJoystick
+
+  - name: EInputSourceMode_MouseRegion
+    type: number
+    desc: |
+      EInputSourceMode_MouseRegion
+
+  - name: EInputSourceMode_RadialMenu
+    type: number
+    desc: |
+      EInputSourceMode_RadialMenu
+
+  - name: EInputSourceMode_SingleButton
+    type: number
+    desc: |
+      EInputSourceMode_SingleButton
+
+  - name: EInputSourceMode_Switches
+    type: number
+    desc: |
+      EInputSourceMode_Switches
+
   - name: apps_is_dlc_installed
     type: function
     desc: |

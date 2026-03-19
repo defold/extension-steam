@@ -12,7 +12,8 @@ function init(self)
 		pprint(t)
 	end)
 
-	steam.input_get_connected_controllers()
+	local controllers = steam.input_get_connected_controllers()
+	pprint(controllers)
 end
 
 function final(self)
