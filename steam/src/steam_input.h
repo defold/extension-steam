@@ -9,14 +9,27 @@ int SteamInput_Init(lua_State* L);
 void SteamInput_Update();
 void SteamInput_Shutdown();
 
+/**
+ * Enumerate currently connected Steam Input enabled devices.
+ * @name input_get_connected_controllers
+ * @treturn table Table with input handles
+ */
 int SteamInput_GetConnectedControllers(lua_State* L);
+
+/**
+ * Invokes the Steam overlay and brings up the binding screen.
+ * @name input_show_binding_panel
+ * @param string input_handle
+ * @treturn boolean Success
+ */
+int SteamInput_ShowBindingPanel(lua_State* L);
 
 /**
  * Lookup the handle for a digital action. Best to do this once on startup, and
  * store the handles for all future API calls.
  * @name input_get_digital_action_handle
  * @string action_name
- * @treturn string handle
+ * @treturn string action_handle
  */
 int SteamInput_GetDigitalActionHandle(lua_State* L);
 
@@ -34,7 +47,7 @@ int SteamInput_GetDigitalActionData(lua_State* L);
  * store the handles for all future API calls.
  * @name input_get_analog_action_handle
  * @string action_name
- * @treturn string handle
+ * @treturn string action_handle
  */
 int SteamInput_GetAnalogActionHandle(lua_State* L);
 

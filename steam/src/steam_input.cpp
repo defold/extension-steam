@@ -54,6 +54,17 @@ int SteamInput_GetConnectedControllers(lua_State* L)
 	return 1;
 }
 
+int SteamInput_ShowBindingPanel(lua_State* L)
+{
+	if (!g_SteamInput) return 0;
+
+	DM_LUA_STACK_CHECK(L, 1);
+	InputHandle_t inputHandle = check_uint64(L, 1);
+	bool ok = g_SteamInput->ShowBindingPanel(inputHandle);
+	lua_pushboolean(L, ok);
+	return 1;
+}
+
 int SteamInput_GetDigitalActionHandle(lua_State* L)
 {
 	if (!g_SteamInput) return 0;

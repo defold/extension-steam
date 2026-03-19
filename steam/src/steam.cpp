@@ -456,6 +456,7 @@ static const luaL_reg Module_methods[] = {
 	{ "remote_storage_get_quota", SteamRemoteStorage_GetQuota },
 
 	// INPUT
+	{ "input_show_binding_panel", SteamInput_ShowBindingPanel },
 	{ "input_get_connected_controllers", SteamInput_GetConnectedControllers },
 	{ "input_get_digital_action_handle", SteamInput_GetDigitalActionHandle },
 	{ "input_get_digital_action_data", SteamInput_GetDigitalActionData },
