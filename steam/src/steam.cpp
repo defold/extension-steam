@@ -49,6 +49,8 @@ struct SteamBootstrap
 	{
 		SteamAPI_Init();
 	}
+
+	bool m_UseSteamInput;
 } g_SteamBootstrap;
 
 
@@ -92,7 +94,6 @@ static int Init(lua_State* L)
 	SteamApps_Init(L);
 	SteamFriends_Init(L);
 	SteamGameSearch_Init(L);
-	SteamInput_Init(L);
 	SteamInventory_Init(L);
 	SteamMatchmaking_Init(L);
 	SteamMusic_Init(L);
@@ -106,6 +107,8 @@ static int Init(lua_State* L)
 	SteamUserStats_Init(L);
 	SteamUtils_Init(L);
 	SteamVideo_Init(L);
+
+	if (g_SteamBootstrap.m_UseSteamInput) SteamInput_Init(L);
 
 	lua_pushboolean(L, 1);
 	lua_pushnil(L);
@@ -272,6 +275,10 @@ static int Update(lua_State* L)
 		else if (id == RemoteStorageFileWriteAsyncComplete_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageFileWriteAsyncComplete_t");
 		else if (id == RemoteStorageFileReadAsyncComplete_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageFileReadAsyncComplete_t");
 		else if (id == RemoteStorageLocalFileChange_t::k_iCallback) SteamListener_InvokeGeneric("RemoteStorageLocalFileChange_t");
+		// input
+		else if (id == SteamInputDeviceConnected_t::k_iCallback) SteamListener_InvokeGeneric("SteamInputDeviceConnected_t");
+		else if (id == SteamInputDeviceDisconnected_t::k_iCallback) SteamListener_InvokeGeneric("SteamInputDeviceDisconnected_t");
+		else if (id == SteamInputGamepadSlotChange_t::k_iCallback) SteamListener_InvokeGeneric("SteamInputGamepadSlotChange_t");
 		else
 		{
 			//dmLogInfo("Unhandled callback with id %d", id);
@@ -279,6 +286,7 @@ static int Update(lua_State* L)
 		free(callResultData);
 		SteamAPI_ManualDispatch_FreeLastCallback(steamPipe);
 	}
+	if (g_SteamBootstrap.m_UseSteamInput) SteamInput_Update();
 	return 0;
 }
 
@@ -302,6 +310,7 @@ static int Restart(lua_State* L)
 static int Final(lua_State* L)
 {
 	DM_LUA_STACK_CHECK(L, 0);
+	if (g_SteamBootstrap.m_UseSteamInput) SteamInput_Shutdown();
 	SteamAPI_Shutdown();
 	return 0;
 }
@@ -445,6 +454,14 @@ static const luaL_reg Module_methods[] = {
 	{ "remote_storage_get_file_count", SteamRemoteStorage_GetFileCount },
 	{ "remote_storage_get_file_name_and_size", SteamRemoteStorage_GetFileNameAndSize },
 	{ "remote_storage_get_quota", SteamRemoteStorage_GetQuota },
+
+	// INPUT
+	{ "input_show_binding_panel", SteamInput_ShowBindingPanel },
+	{ "input_get_connected_controllers", SteamInput_GetConnectedControllers },
+	{ "input_get_digital_action_handle", SteamInput_GetDigitalActionHandle },
+	{ "input_get_digital_action_data", SteamInput_GetDigitalActionData },
+	{ "input_get_analog_action_handle", SteamInput_GetAnalogActionHandle },
+	{ "input_get_analog_action_data", SteamInput_GetAnalogActionData },
 
 	{ 0, 0 }
 };
@@ -1019,6 +1036,95 @@ static void LuaInit(lua_State* L)
 	 */
 	SETCONSTANT(EAuthSessionResponseAuthTicketNetworkIdentityFailure, k_EAuthSessionResponseAuthTicketNetworkIdentityFailure);
 
+
+	/**
+	 * EInputSourceMode_None 
+	 * @field EInputSourceMode_None
+	 */
+	SETCONSTANT(EInputSourceMode_None, k_EInputSourceMode_None);
+	/**
+	 * EInputSourceMode_Dpad 
+	 * @field EInputSourceMode_Dpad
+	 */
+	SETCONSTANT(EInputSourceMode_Dpad, k_EInputSourceMode_Dpad);
+	/**
+	 * EInputSourceMode_Buttons 
+	 * @field EInputSourceMode_Buttons
+	 */
+	SETCONSTANT(EInputSourceMode_Buttons, k_EInputSourceMode_Buttons);
+	/**
+	 * EInputSourceMode_FourButtons 
+	 * @field EInputSourceMode_FourButtons
+	 */
+	SETCONSTANT(EInputSourceMode_FourButtons, k_EInputSourceMode_FourButtons);
+	/**
+	 * EInputSourceMode_AbsoluteMouse 
+	 * @field EInputSourceMode_AbsoluteMouse
+	 */
+	SETCONSTANT(EInputSourceMode_AbsoluteMouse, k_EInputSourceMode_AbsoluteMouse);
+	/**
+	 * EInputSourceMode_RelativeMouse 
+	 * @field EInputSourceMode_RelativeMouse
+	 */
+	SETCONSTANT(EInputSourceMode_RelativeMouse, k_EInputSourceMode_RelativeMouse);
+	/**
+	 * EInputSourceMode_JoystickMove 
+	 * @field EInputSourceMode_JoystickMove
+	 */
+	SETCONSTANT(EInputSourceMode_JoystickMove, k_EInputSourceMode_JoystickMove);
+	/**
+	 * EInputSourceMode_JoystickMouse 
+	 * @field EInputSourceMode_JoystickMouse
+	 */
+	SETCONSTANT(EInputSourceMode_JoystickMouse, k_EInputSourceMode_JoystickMouse);
+	/**
+	 * EInputSourceMode_JoystickCamera 
+	 * @field EInputSourceMode_JoystickCamera
+	 */
+	SETCONSTANT(EInputSourceMode_JoystickCamera, k_EInputSourceMode_JoystickCamera);
+	/**
+	 * EInputSourceMode_ScrollWheel 
+	 * @field EInputSourceMode_ScrollWheel
+	 */
+	SETCONSTANT(EInputSourceMode_ScrollWheel, k_EInputSourceMode_ScrollWheel);
+	/**
+	 * EInputSourceMode_Trigger 
+	 * @field EInputSourceMode_Trigger
+	 */
+	SETCONSTANT(EInputSourceMode_Trigger, k_EInputSourceMode_Trigger);
+	/**
+	 * EInputSourceMode_TouchMenu 
+	 * @field EInputSourceMode_TouchMenu
+	 */
+	SETCONSTANT(EInputSourceMode_TouchMenu, k_EInputSourceMode_TouchMenu);
+	/**
+	 * EInputSourceMode_MouseJoystick 
+	 * @field EInputSourceMode_MouseJoystick
+	 */
+	SETCONSTANT(EInputSourceMode_MouseJoystick, k_EInputSourceMode_MouseJoystick);
+	/**
+	 * EInputSourceMode_MouseRegion 
+	 * @field EInputSourceMode_MouseRegion
+	 */
+	SETCONSTANT(EInputSourceMode_MouseRegion, k_EInputSourceMode_MouseRegion);
+	/**
+	 * EInputSourceMode_RadialMenu 
+	 * @field EInputSourceMode_RadialMenu
+	 */
+	SETCONSTANT(EInputSourceMode_RadialMenu, k_EInputSourceMode_RadialMenu);
+	/**
+	 * EInputSourceMode_SingleButton 
+	 * @field EInputSourceMode_SingleButton
+	 */
+	SETCONSTANT(EInputSourceMode_SingleButton, k_EInputSourceMode_SingleButton);
+	/**
+	 * EInputSourceMode_Switches 
+	 * @field EInputSourceMode_Switches
+	 */
+	SETCONSTANT(EInputSourceMode_Switches, k_EInputSourceMode_Switches);
+
+
+
 	#undef SETCONSTANT
 
 	lua_pop(L, 1);
@@ -1034,6 +1140,10 @@ dmExtension::Result InitializeSteam(dmExtension::Params* params)
 {
 	LuaInit(params->m_L);
 	dmLogInfo("Registered %s Extension", MODULE_NAME);
+
+	dmLogInfo("config %d", dmConfigFile::GetInt(params->m_ConfigFile, "steam.use_steam_input", 0));
+	g_SteamBootstrap.m_UseSteamInput = (bool)(dmConfigFile::GetInt(params->m_ConfigFile, "steam.use_steam_input", 0) == 1);
+
 	return dmExtension::RESULT_OK;
 }
 
