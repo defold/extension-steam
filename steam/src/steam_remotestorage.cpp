@@ -12,7 +12,7 @@
 
 int SteamRemoteStorage_OnRemoteStorageFileShareResult(lua_State* L, const void* data)
 {
-	RemoteStorageFileShareResult_t* s = (RemoteStorageFileShareResult_t*)data;
+	const RemoteStorageFileShareResult_t* s = (const RemoteStorageFileShareResult_t*)data;
 	lua_pushstring(L, "RemoteStorageFileShareResult_t");
 
 	lua_newtable(L);

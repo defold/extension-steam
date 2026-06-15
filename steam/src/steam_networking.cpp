@@ -24,7 +24,7 @@ int SteamNetworking_Init(lua_State* L)
 
 int SteamNetworking_OnSteamNetworkingMessagesSessionFailed(lua_State* L, const void* data)
 {
-	SteamNetworkingMessagesSessionFailed_t* s = (SteamNetworkingMessagesSessionFailed_t*)data;
+	const SteamNetworkingMessagesSessionFailed_t* s = (const SteamNetworkingMessagesSessionFailed_t*)data;
 	lua_pushstring(L, "SteamNetworkingMessagesSessionFailed_t");
 
 	lua_newtable(L);
@@ -35,7 +35,7 @@ int SteamNetworking_OnSteamNetworkingMessagesSessionFailed(lua_State* L, const v
 
 int SteamNetworking_OnSteamNetworkingMessagesSessionRequest(lua_State* L, const void* data)
 {
-	SteamNetworkingMessagesSessionRequest_t* s = (SteamNetworkingMessagesSessionRequest_t*)data;
+	const SteamNetworkingMessagesSessionRequest_t* s = (const SteamNetworkingMessagesSessionRequest_t*)data;
 	lua_pushstring(L, "SteamNetworkingMessagesSessionRequest_t");
 
 	lua_newtable(L);

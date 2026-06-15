@@ -12,7 +12,7 @@
 
 int SteamUserStats_OnLeaderboardFindResult(lua_State* L, const void* data)
 {
-	LeaderboardFindResult_t* s = (LeaderboardFindResult_t*)data;
+	const LeaderboardFindResult_t* s = (const LeaderboardFindResult_t*)data;
 	lua_pushstring(L, "LeaderboardFindResult_t");
 
 	lua_newtable(L);
@@ -24,14 +24,14 @@ int SteamUserStats_OnLeaderboardFindResult(lua_State* L, const void* data)
 
 int SteamUserStats_OnGlobalStatsReceived(lua_State* L, const void* data)
 {
-	GlobalStatsReceived_t* s = (GlobalStatsReceived_t*)data;
+	const GlobalStatsReceived_t* s = (const GlobalStatsReceived_t*)data;
 	lua_pushstring(L, "GlobalStatsReceived_t");
 	return 1;
 }
 
 int SteamUserStats_OnUserStatsReceived(lua_State* L, const void* data)
 {
-	UserStatsReceived_t* s = (UserStatsReceived_t*)data;
+	const UserStatsReceived_t* s = (const UserStatsReceived_t*)data;
 	lua_pushstring(L, "UserStatsReceived_t");
 
 	lua_newtable(L);
@@ -44,7 +44,7 @@ int SteamUserStats_OnUserStatsReceived(lua_State* L, const void* data)
 
 int SteamUserStats_OnLeaderboardScoresDownloaded(lua_State* L, const void* data)
 {
-	LeaderboardScoresDownloaded_t* s = (LeaderboardScoresDownloaded_t*)data;
+	const LeaderboardScoresDownloaded_t* s = (const LeaderboardScoresDownloaded_t*)data;
 	lua_pushstring(L, "LeaderboardScoresDownloaded_t");
 
 	lua_newtable(L);
@@ -57,7 +57,7 @@ int SteamUserStats_OnLeaderboardScoresDownloaded(lua_State* L, const void* data)
 
 int SteamUserStats_OnLeaderboardScoreUploaded(lua_State* L, const void* data)
 {
-	LeaderboardScoreUploaded_t* s = (LeaderboardScoreUploaded_t*)data;
+	const LeaderboardScoreUploaded_t* s = (const LeaderboardScoreUploaded_t*)data;
 	lua_pushstring(L, "LeaderboardScoreUploaded_t");
 
 	lua_newtable(L);
@@ -72,7 +72,7 @@ int SteamUserStats_OnLeaderboardScoreUploaded(lua_State* L, const void* data)
 
 int SteamUserStats_OnLeaderboardUGCSet(lua_State* L, const void* data)
 {
-	LeaderboardUGCSet_t* s = (LeaderboardUGCSet_t*)data;
+	const LeaderboardUGCSet_t* s = (const LeaderboardUGCSet_t*)data;
 	lua_pushstring(L, "LeaderboardUGCSet_t");
 
 	lua_newtable(L);

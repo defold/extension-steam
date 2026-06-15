@@ -54,7 +54,7 @@ struct SteamBootstrap
 
 int Steam_OnGameOverlayActivated(lua_State* L, const void* data)
 {
-	GameOverlayActivated_t* s = (GameOverlayActivated_t*)data;
+	const GameOverlayActivated_t* s = (const GameOverlayActivated_t*)data;
 	lua_pushstring(L, "GameOverlayActivated_t");
 	lua_newtable(L);
 	table_push_boolean(L, "m_bActive", s->m_bActive);
@@ -130,14 +130,14 @@ static int Update(lua_State* L)
 	while (SteamAPI_ManualDispatch_GetNextCallback(steamPipe, &callback))
 	{
 		int id = callback.m_iCallback;
-		void* data = callback.m_pubParam;
+		const void* data = callback.m_pubParam;
 		void* callResultData = 0;
 
 		// handle SteamAPICall_t result
 		// unpack the result struct
 		if (id == SteamAPICallCompleted_t::k_iCallback)
 		{
-			SteamAPICallCompleted_t* callCompleted = (SteamAPICallCompleted_t*)data;
+			const SteamAPICallCompleted_t* callCompleted = (const SteamAPICallCompleted_t*)data;
 			callResultData = malloc(callCompleted->m_cubParam);
 			bool failed;
 			if (SteamAPI_ManualDispatch_GetAPICallResult(steamPipe, callCompleted->m_hAsyncCall, callResultData, callCompleted->m_cubParam, callCompleted->m_iCallback, &failed))
