@@ -199,7 +199,7 @@ static int Update(lua_State* L)
 		else if (id == FriendRichPresenceUpdate_t::k_iCallback) SteamListener_Invoke(SteamFriends_OnFriendRichPresenceUpdate, data);
 		else if (id == PersonaStateChange_t::k_iCallback) SteamListener_Invoke(SteamFriends_OnPersonaStateChange, data);
 		else if (id == GameServerChangeRequested_t::k_iCallback) SteamListener_InvokeGeneric("GameServerChangeRequested_t");
-		else if (id == GameLobbyJoinRequested_t::k_iCallback) SteamListener_InvokeGeneric("GameLobbyJoinRequested_t");
+		else if (id == GameLobbyJoinRequested_t::k_iCallback) SteamListener_Invoke(SteamMatchmaking_GameLobbyJoinRequested, data);
 		else if (id == AvatarImageLoaded_t::k_iCallback) SteamListener_InvokeGeneric("AvatarImageLoaded_t");
 		else if (id == ClanOfficerListResponse_t::k_iCallback) SteamListener_InvokeGeneric("ClanOfficerListResponse_t");
 		else if (id == GameConnectedClanChatMsg_t::k_iCallback) SteamListener_InvokeGeneric("GameConnectedClanChatMsg_t");

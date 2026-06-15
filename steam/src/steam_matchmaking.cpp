@@ -89,6 +89,18 @@ int SteamMatchmaking_OnLobbyChatUpdate(lua_State* L, const void* data)
 	return 2;
 }
 
+int SteamMatchmaking_GameLobbyJoinRequested(lua_State* L, const void* data)
+{
+	const GameLobbyJoinRequested_t* s = (const GameLobbyJoinRequested_t*)data;
+	lua_pushstring(L, "GameLobbyJoinRequested_t");
+
+	lua_newtable(L);
+	table_push_CSteamID(L, "m_steamIDLobby", s->m_steamIDLobby);
+	table_push_CSteamID(L, "m_steamIDFriend", s->m_steamIDFriend);
+
+	return 2;
+}
+
 
 int SteamMatchmaking_Init(lua_State* L)
 {
