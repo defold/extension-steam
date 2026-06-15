@@ -13,14 +13,14 @@ const uint32 MAX_INPUT_LENGTH = 1024;
 const uint32 FOO = MAX_INPUT_LENGTH + 1;
 
 
-int SteamUtils_OnFloatingGamepadTextInputDismissed(lua_State* L, void* data)
+int SteamUtils_OnFloatingGamepadTextInputDismissed(lua_State* L, const void* data)
 {
 	FloatingGamepadTextInputDismissed_t* s = (FloatingGamepadTextInputDismissed_t*)data;
 	lua_pushstring(L, "FloatingGamepadTextInputDismissed_t");
 	return 1;
 }
 
-int SteamUtils_OnGamepadTextInputDismissed(lua_State* L, void* data)
+int SteamUtils_OnGamepadTextInputDismissed(lua_State* L, const void* data)
 {
 	GamepadTextInputDismissed_t* s = (GamepadTextInputDismissed_t*)data;
 	// The user canceled,

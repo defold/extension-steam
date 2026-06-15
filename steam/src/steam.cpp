@@ -52,7 +52,7 @@ struct SteamBootstrap
 } g_SteamBootstrap;
 
 
-int Steam_OnGameOverlayActivated(lua_State* L, void* data)
+int Steam_OnGameOverlayActivated(lua_State* L, const void* data)
 {
 	GameOverlayActivated_t* s = (GameOverlayActivated_t*)data;
 	lua_pushstring(L, "GameOverlayActivated_t");
@@ -132,7 +132,7 @@ static int Update(lua_State* L)
 		int id = callback.m_iCallback;
 		void* data = callback.m_pubParam;
 		void* callResultData = 0;
-		
+
 		// handle SteamAPICall_t result
 		// unpack the result struct
 		if (id == SteamAPICallCompleted_t::k_iCallback)
@@ -315,7 +315,7 @@ static const luaL_reg Module_methods[] = {
 	{ "update", Update },
 	{ "final", Final },
 	{ "set_listener", SteamListener_Set },
-	
+
 	// APPS
 	{ "apps_is_dlc_installed", SteamApps_IsDlcInstalled },
 	{ "apps_get_current_game_language", SteamApps_GetCurrentGameLanguage },
@@ -341,7 +341,7 @@ static const luaL_reg Module_methods[] = {
 	{ "user_stats_request_global_stats", SteamUserStats_RequestGlobalStats },
 	{ "user_stats_store_stats", SteamUserStats_StoreStats },
 	{ "user_stats_reset_all_stats", SteamUserStats_ResetAllStats },
-	
+
 	// USERSTATS - achievements
 	{ "user_stats_set_achievement", SteamUserStats_SetAchievement },
 	{ "user_stats_get_achievement", SteamUserStats_GetAchievement },
@@ -350,7 +350,7 @@ static const luaL_reg Module_methods[] = {
 	{ "user_stats_get_achievement_name", SteamUserStats_GetAchievementName },
 	{ "user_stats_get_achievement_display_attribute", SteamUserStats_GetAchievementDisplayAttribute },
 	{ "user_stats_get_achievement_achieved_percent", SteamUserStats_GetAchievementAchievedPercent },
-	
+
 	// USERSTATS - leaderboard
 	{ "user_stats_find_leaderboard", SteamUserStats_FindLeaderboard },
 	{ "user_stats_find_or_create_leaderboard", SteamUserStats_FindOrCreateLeaderboard },
@@ -535,7 +535,7 @@ static void LuaInit(lua_State* L)
 	//
 	// ELeaderboardSortMethod
 	//
-	/** 
+	/**
 	 * @field ELeaderboardSortMethodNone
 	 */
 	SETCONSTANT(ELeaderboardSortMethodNone, k_ELeaderboardSortMethodNone);
@@ -926,7 +926,7 @@ static void LuaInit(lua_State* L)
 	SETCONSTANT(ELobbyTypePublic, k_ELobbyTypePublic);
 	/**
 	 * ELobbyTypeInvisible
-	 * returned by search, but not visible to other friends 
+	 * returned by search, but not visible to other friends
 	 * @field ELobbyTypeInvisible
 	 */
 	SETCONSTANT(ELobbyTypeInvisible, k_ELobbyTypeInvisible);
@@ -953,67 +953,67 @@ static void LuaInit(lua_State* L)
 
 
 	/**
-	 * EAuthSessionResponseOK 
+	 * EAuthSessionResponseOK
 	 * Steam has verified the user is online, the ticket is valid and ticket has not been reused.
 	 * @field EAuthSessionResponseOK
 	 */
 	SETCONSTANT(EAuthSessionResponseOK, k_EAuthSessionResponseOK);
 	/**
-	 * EAuthSessionResponseUserNotConnectedToSteam 
+	 * EAuthSessionResponseUserNotConnectedToSteam
 	 * The user in question is not connected to steam.
 	 * @field EAuthSessionResponseUserNotConnectedToSteam
 	 */
 	SETCONSTANT(EAuthSessionResponseUserNotConnectedToSteam, k_EAuthSessionResponseUserNotConnectedToSteam);
 	/**
-	 * EAuthSessionResponseNoLicenseOrExpired 
+	 * EAuthSessionResponseNoLicenseOrExpired
 	 * The user doesn't have a license for this App ID or the ticket has expired.
 	 * @field EAuthSessionResponseNoLicenseOrExpired
 	 */
 	SETCONSTANT(EAuthSessionResponseNoLicenseOrExpired, k_EAuthSessionResponseNoLicenseOrExpired);
 	/**
-	 * EAuthSessionResponseVACBanned 
+	 * EAuthSessionResponseVACBanned
 	 * The user is VAC banned for this game.
 	 * @field EAuthSessionResponseVACBanned
 	 */
 	SETCONSTANT(EAuthSessionResponseVACBanned, k_EAuthSessionResponseVACBanned);
 	/**
-	 * EAuthSessionResponseLoggedInElseWhere 
+	 * EAuthSessionResponseLoggedInElseWhere
 	 * The user account has logged in elsewhere and the session containing the game instance has been disconnected.
 	 * @field EAuthSessionResponseLoggedInElseWhere
 	 */
 	SETCONSTANT(EAuthSessionResponseLoggedInElseWhere, k_EAuthSessionResponseLoggedInElseWhere);
 	/**
-	 * EAuthSessionResponseVACCheckTimedOut 
+	 * EAuthSessionResponseVACCheckTimedOut
 	 * VAC has been unable to perform anti-cheat checks on this user.
 	 * @field EAuthSessionResponseVACCheckTimedOut
 	 */
 	SETCONSTANT(EAuthSessionResponseVACCheckTimedOut, k_EAuthSessionResponseVACCheckTimedOut);
 	/**
-	 * EAuthSessionResponseAuthTicketCanceled 
+	 * EAuthSessionResponseAuthTicketCanceled
 	 * The ticket has been canceled by the issuer.
 	 * @field EAuthSessionResponseAuthTicketCanceled
 	 */
 	SETCONSTANT(EAuthSessionResponseAuthTicketCanceled, k_EAuthSessionResponseAuthTicketCanceled);
 	/**
-	 * EAuthSessionResponseAuthTicketInvalidAlreadyUsed 
+	 * EAuthSessionResponseAuthTicketInvalidAlreadyUsed
 	 * This ticket has already been used, it is not valid.
 	 * @field EAuthSessionResponseAuthTicketInvalidAlreadyUsed
 	 */
 	SETCONSTANT(EAuthSessionResponseAuthTicketInvalidAlreadyUsed, k_EAuthSessionResponseAuthTicketInvalidAlreadyUsed);
 	/**
-	 * EAuthSessionResponseAuthTicketInvalid 
+	 * EAuthSessionResponseAuthTicketInvalid
 	 * This ticket is not from a user instance currently connected to steam.
 	 * @field EAuthSessionResponseAuthTicketInvalid
 	 */
 	SETCONSTANT(EAuthSessionResponseAuthTicketInvalid, k_EAuthSessionResponseAuthTicketInvalid);
 	/**
-	 * EAuthSessionResponsePublisherIssuedBan 
+	 * EAuthSessionResponsePublisherIssuedBan
 	 * The user is banned for this game. The ban came via the web api and not VAC.
 	 * @field EAuthSessionResponsePublisherIssuedBan
 	 */
 	SETCONSTANT(EAuthSessionResponsePublisherIssuedBan, k_EAuthSessionResponsePublisherIssuedBan);
 	/**
-	 * EAuthSessionResponseAuthTicketNetworkIdentityFailure 
+	 * EAuthSessionResponseAuthTicketNetworkIdentityFailure
 	 * The network identity in the ticket does not match the server authenticating the ticket.
 	 * @field EAuthSessionResponseAuthTicketNetworkIdentityFailure
 	 */

@@ -11,7 +11,7 @@
 
 static ISteamFriends* g_SteamFriends = 0;
 
-int SteamFriends_OnGameRichPresenceJoinRequested(lua_State* L, void* data)
+int SteamFriends_OnGameRichPresenceJoinRequested(lua_State* L, const void* data)
 {
 	GameRichPresenceJoinRequested_t* s = (GameRichPresenceJoinRequested_t*)data;
 	lua_pushstring(L, "GameRichPresenceJoinRequested_t");
@@ -27,7 +27,7 @@ int SteamFriends_OnGameRichPresenceJoinRequested(lua_State* L, void* data)
 	return 2;
 }
 
-int SteamFriends_OnFriendRichPresenceUpdate(lua_State* L, void* data)
+int SteamFriends_OnFriendRichPresenceUpdate(lua_State* L, const void* data)
 {
 	FriendRichPresenceUpdate_t* s = (FriendRichPresenceUpdate_t*)data;
 	lua_pushstring(L, "FriendRichPresenceUpdate_t");
@@ -39,7 +39,7 @@ int SteamFriends_OnFriendRichPresenceUpdate(lua_State* L, void* data)
 	return 2;
 }
 
-int SteamFriends_OnPersonaStateChange(lua_State* L, void* data)
+int SteamFriends_OnPersonaStateChange(lua_State* L, const void* data)
 {
 	PersonaStateChange_t* s = (PersonaStateChange_t*)data;
 	lua_pushstring(L, "PersonaStateChange_t");

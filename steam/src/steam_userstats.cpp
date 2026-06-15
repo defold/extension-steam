@@ -10,7 +10,7 @@
 #include "steam_types.h"
 
 
-int SteamUserStats_OnLeaderboardFindResult(lua_State* L, void* data)
+int SteamUserStats_OnLeaderboardFindResult(lua_State* L, const void* data)
 {
 	LeaderboardFindResult_t* s = (LeaderboardFindResult_t*)data;
 	lua_pushstring(L, "LeaderboardFindResult_t");
@@ -22,14 +22,14 @@ int SteamUserStats_OnLeaderboardFindResult(lua_State* L, void* data)
 	return 2;
 }
 
-int SteamUserStats_OnGlobalStatsReceived(lua_State* L, void* data)
+int SteamUserStats_OnGlobalStatsReceived(lua_State* L, const void* data)
 {
 	GlobalStatsReceived_t* s = (GlobalStatsReceived_t*)data;
 	lua_pushstring(L, "GlobalStatsReceived_t");
 	return 1;
 }
 
-int SteamUserStats_OnUserStatsReceived(lua_State* L, void* data)
+int SteamUserStats_OnUserStatsReceived(lua_State* L, const void* data)
 {
 	UserStatsReceived_t* s = (UserStatsReceived_t*)data;
 	lua_pushstring(L, "UserStatsReceived_t");
@@ -42,7 +42,7 @@ int SteamUserStats_OnUserStatsReceived(lua_State* L, void* data)
 	return 2;
 }
 
-int SteamUserStats_OnLeaderboardScoresDownloaded(lua_State* L, void* data)
+int SteamUserStats_OnLeaderboardScoresDownloaded(lua_State* L, const void* data)
 {
 	LeaderboardScoresDownloaded_t* s = (LeaderboardScoresDownloaded_t*)data;
 	lua_pushstring(L, "LeaderboardScoresDownloaded_t");
@@ -55,7 +55,7 @@ int SteamUserStats_OnLeaderboardScoresDownloaded(lua_State* L, void* data)
 	return 2;
 }
 
-int SteamUserStats_OnLeaderboardScoreUploaded(lua_State* L, void* data)
+int SteamUserStats_OnLeaderboardScoreUploaded(lua_State* L, const void* data)
 {
 	LeaderboardScoreUploaded_t* s = (LeaderboardScoreUploaded_t*)data;
 	lua_pushstring(L, "LeaderboardScoreUploaded_t");
@@ -70,7 +70,7 @@ int SteamUserStats_OnLeaderboardScoreUploaded(lua_State* L, void* data)
 	return 2;
 }
 
-int SteamUserStats_OnLeaderboardUGCSet(lua_State* L, void* data)
+int SteamUserStats_OnLeaderboardUGCSet(lua_State* L, const void* data)
 {
 	LeaderboardUGCSet_t* s = (LeaderboardUGCSet_t*)data;
 	lua_pushstring(L, "LeaderboardUGCSet_t");
@@ -195,7 +195,7 @@ int SteamUserStats_RequestCurrentStats(lua_State* L)
  * https://partner.steamgames.com/doc/api/ISteamUserStats#RequestGlobalStats
  * @name user_stats_request_global_stats
  * @number history_days
- * @treturn boolean ok 
+ * @treturn boolean ok
  */
 int SteamUserStats_RequestGlobalStats(lua_State* L)
 {
@@ -210,13 +210,13 @@ int SteamUserStats_RequestGlobalStats(lua_State* L)
 /** Store the current data on the server.
  * Will get a callback when set and one callback for every new achievement
  *
- * If the callback has a result of k_EResultInvalidParam, one or more stats 
+ * If the callback has a result of k_EResultInvalidParam, one or more stats
  * uploaded has been rejected, either because they broke constraints
  * or were out of date. In this case the server sends back updated values.
  * The stats should be re-iterated to keep in sync.
  * https://partner.steamgames.com/doc/api/ISteamUserStats#StoreStats
  * @name user_stats_store_stats
- * @treturn boolean ok 
+ * @treturn boolean ok
  */
 int SteamUserStats_StoreStats(lua_State* L)
 {
@@ -492,7 +492,7 @@ int SteamUserStats_GetLeaderboardDisplayType(lua_State* L)
  * * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries]
  * * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate
  *   e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after
- * * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user 
+ * * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user
  * https://partner.steamgames.com/doc/api/ISteamUserStats#DownloadLeaderboardEntries
  * @name user_stats_download_leaderboard_entries
  * @string leaderboard
