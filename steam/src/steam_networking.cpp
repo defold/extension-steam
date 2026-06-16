@@ -22,9 +22,9 @@ int SteamNetworking_Init(lua_State* L)
 }
 
 
-int SteamNetworking_OnSteamNetworkingMessagesSessionFailed(lua_State* L, void* data)
+int SteamNetworking_OnSteamNetworkingMessagesSessionFailed(lua_State* L, const void* data)
 {
-	SteamNetworkingMessagesSessionFailed_t* s = (SteamNetworkingMessagesSessionFailed_t*)data;
+	const SteamNetworkingMessagesSessionFailed_t* s = (const SteamNetworkingMessagesSessionFailed_t*)data;
 	lua_pushstring(L, "SteamNetworkingMessagesSessionFailed_t");
 
 	lua_newtable(L);
@@ -33,9 +33,9 @@ int SteamNetworking_OnSteamNetworkingMessagesSessionFailed(lua_State* L, void* d
 	return 2;
 }
 
-int SteamNetworking_OnSteamNetworkingMessagesSessionRequest(lua_State* L, void* data)
+int SteamNetworking_OnSteamNetworkingMessagesSessionRequest(lua_State* L, const void* data)
 {
-	SteamNetworkingMessagesSessionRequest_t* s = (SteamNetworkingMessagesSessionRequest_t*)data;
+	const SteamNetworkingMessagesSessionRequest_t* s = (const SteamNetworkingMessagesSessionRequest_t*)data;
 	lua_pushstring(L, "SteamNetworkingMessagesSessionRequest_t");
 
 	lua_newtable(L);
@@ -45,7 +45,7 @@ int SteamNetworking_OnSteamNetworkingMessagesSessionRequest(lua_State* L, void* 
 }
 
 /** Send message
- * 
+ *
  * @name networking_send_message_to_user
  * @string identity_remote
  * @string data
@@ -69,7 +69,7 @@ int SteamNetworking_SendMessageToUser(lua_State* L)
 }
 
 /** Receive message
- * 
+ *
  * @name networking_receive_messages_on_channel
  * @number localChannel
  * @treturn table message

@@ -11,9 +11,9 @@
 
 static ISteamMatchmaking* g_SteamMatchmaking = 0;
 
-int SteamMatchmaking_OnLobbyMatchList(lua_State* L, void* data)
+int SteamMatchmaking_OnLobbyMatchList(lua_State* L, const void* data)
 {
-	LobbyMatchList_t* s = (LobbyMatchList_t*)data;
+	const LobbyMatchList_t* s = (const LobbyMatchList_t*)data;
 	lua_pushstring(L, "LobbyMatchList_t");
 
 	lua_newtable(L);
@@ -22,9 +22,9 @@ int SteamMatchmaking_OnLobbyMatchList(lua_State* L, void* data)
 	return 2;
 }
 
-int SteamMatchmaking_OnLobbyEnter(lua_State* L, void* data)
+int SteamMatchmaking_OnLobbyEnter(lua_State* L, const void* data)
 {
-	LobbyEnter_t* s = (LobbyEnter_t*)data;
+	const LobbyEnter_t* s = (const LobbyEnter_t*)data;
 	lua_pushstring(L, "LobbyEnter_t");
 
 	lua_newtable(L);
@@ -36,9 +36,9 @@ int SteamMatchmaking_OnLobbyEnter(lua_State* L, void* data)
 	return 2;
 }
 
-int SteamMatchmaking_OnLobbyCreated(lua_State* L, void* data)
+int SteamMatchmaking_OnLobbyCreated(lua_State* L, const void* data)
 {
-	LobbyCreated_t* s = (LobbyCreated_t*)data;
+	const LobbyCreated_t* s = (const LobbyCreated_t*)data;
 	lua_pushstring(L, "LobbyCreated_t");
 
 	lua_newtable(L);
@@ -48,9 +48,9 @@ int SteamMatchmaking_OnLobbyCreated(lua_State* L, void* data)
 	return 2;
 }
 
-int SteamMatchmaking_OnLobbyChatMsg(lua_State* L, void* data)
+int SteamMatchmaking_OnLobbyChatMsg(lua_State* L, const void* data)
 {
-	LobbyChatMsg_t* s = (LobbyChatMsg_t*)data;
+	const LobbyChatMsg_t* s = (const LobbyChatMsg_t*)data;
 	lua_pushstring(L, "LobbyChatMsg_t");
 
 	lua_newtable(L);
@@ -62,9 +62,9 @@ int SteamMatchmaking_OnLobbyChatMsg(lua_State* L, void* data)
 	return 2;
 }
 
-int SteamMatchmaking_OnLobbyDataUpdate(lua_State* L, void* data)
+int SteamMatchmaking_OnLobbyDataUpdate(lua_State* L, const void* data)
 {
-	LobbyDataUpdate_t* s = (LobbyDataUpdate_t*)data;
+	const LobbyDataUpdate_t* s = (const LobbyDataUpdate_t*)data;
 	lua_pushstring(L, "LobbyDataUpdate");
 
 	lua_newtable(L);
@@ -75,9 +75,9 @@ int SteamMatchmaking_OnLobbyDataUpdate(lua_State* L, void* data)
 	return 2;
 }
 
-int SteamMatchmaking_OnLobbyChatUpdate(lua_State* L, void* data)
+int SteamMatchmaking_OnLobbyChatUpdate(lua_State* L, const void* data)
 {
-	LobbyChatUpdate_t* s = (LobbyChatUpdate_t*)data;
+	const LobbyChatUpdate_t* s = (const LobbyChatUpdate_t*)data;
 	lua_pushstring(L, "LobbyChatUpdate_t");
 
 	lua_newtable(L);
@@ -204,7 +204,7 @@ int SteamMatchmaking_AddRequestLobbyListCompatibleMembersFilter(lua_State* L)
 /** Get a filtered list of relevant lobbies.
  * Will return results as a LobbyMatchList_t event
  * @name matchmaking_request_lobby_list
- * @treturn string id Callback id 
+ * @treturn string id Callback id
  */
 int SteamMatchmaking_RequestLobbyList(lua_State* L)
 {

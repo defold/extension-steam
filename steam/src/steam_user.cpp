@@ -14,9 +14,9 @@ static HAuthTicket g_AuthSessionTicket = 0;
 
 #define MAX_TICKET_SIZE 4096
 
-int SteamUser_OnMicroTxnAuthorizationResponse(lua_State* L, void* data)
+int SteamUser_OnMicroTxnAuthorizationResponse(lua_State* L, const void* data)
 {
-	MicroTxnAuthorizationResponse_t* s = (MicroTxnAuthorizationResponse_t*)data;
+	const MicroTxnAuthorizationResponse_t* s = (const MicroTxnAuthorizationResponse_t*)data;
 	lua_pushstring(L, "MicroTxnAuthorizationResponse_t");
 
 	lua_newtable(L);
@@ -27,9 +27,9 @@ int SteamUser_OnMicroTxnAuthorizationResponse(lua_State* L, void* data)
 	return 2;
 }
 
-int SteamUser_OnGetTicketForWebApiResponse(lua_State * L, void* data)
+int SteamUser_OnGetTicketForWebApiResponse(lua_State * L, const void* data)
 {
-	GetTicketForWebApiResponse_t* s = (GetTicketForWebApiResponse_t*)data;
+	const GetTicketForWebApiResponse_t* s = (const GetTicketForWebApiResponse_t*)data;
 	lua_pushstring(L, "GetTicketForWebApiResponse_t");
 
 	lua_newtable(L);
@@ -40,9 +40,9 @@ int SteamUser_OnGetTicketForWebApiResponse(lua_State * L, void* data)
 	return 2;
 }
 
-int SteamUser_OnValidateAuthTicketResponse(lua_State * L, void* data)
+int SteamUser_OnValidateAuthTicketResponse(lua_State * L, const void* data)
 {
-	ValidateAuthTicketResponse_t* s = (ValidateAuthTicketResponse_t*)data;
+	const ValidateAuthTicketResponse_t* s = (const ValidateAuthTicketResponse_t*)data;
 	lua_pushstring(L, "ValidateAuthTicketResponse_t");
 
 	lua_newtable(L);
@@ -53,9 +53,9 @@ int SteamUser_OnValidateAuthTicketResponse(lua_State * L, void* data)
 	return 2;
 }
 
-int SteamUser_OnGetAuthSessionTicketResponse(lua_State* L, void* data)
+int SteamUser_OnGetAuthSessionTicketResponse(lua_State* L, const void* data)
 {
-	GetAuthSessionTicketResponse_t* s = (GetAuthSessionTicketResponse_t*)data;
+	const GetAuthSessionTicketResponse_t* s = (const GetAuthSessionTicketResponse_t*)data;
 	lua_pushstring(L, "GetAuthSessionTicketResponse_t");
 
 	lua_newtable(L);

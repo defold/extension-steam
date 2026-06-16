@@ -12,7 +12,7 @@
 
 static dmScript::LuaCallbackInfo* g_SteamListener = 0;
 
-void SteamListener_Invoke(int (*fn)(lua_State*, void*), void* data)
+void SteamListener_Invoke(int (*fn)(lua_State*, const void*), const void* data)
 {
 	if (!g_SteamListener)
 	{
@@ -27,6 +27,9 @@ void SteamListener_Invoke(int (*fn)(lua_State*, void*), void* data)
 		return;
 	}
 
+	lua_State* L = dmScript::GetCallbackLuaContext(g_SteamListener);
+    DM_LUA_STACK_CHECK(L, 0)
+
 	if (!dmScript::SetupCallback(g_SteamListener))
 	{
 		dmLogWarning("Steam callback setup failed");
@@ -35,49 +38,21 @@ void SteamListener_Invoke(int (*fn)(lua_State*, void*), void* data)
 		return;
 	}
 
-	lua_State* L = dmScript::GetCallbackLuaContext(g_SteamListener);
 	int num = (*fn)(L, data);
-	int ret = lua_pcall(L, 1 + num, 0, 0);
-	if (ret != 0)
-	{
-		lua_pop(L, 1);
-	}
+	int ret = dmScript::PCall(L, 1 + num, 0);
 	dmScript::TeardownCallback(g_SteamListener);
+}
+
+static int SteamListener_GenericCallbackArgs(lua_State* L, const void* data) {
+    lua_pushstring(L, (const char*)data);
+	lua_newtable(L);
+	table_push_boolean(L, "not_implemented_yet", true);
+    return 2;
 }
 
 void SteamListener_InvokeGeneric(const char* id)
 {
-	if (!g_SteamListener)
-	{
-		dmLogWarning("Steam callback is not set");
-		return;
-	}
-
-	if (!dmScript::IsCallbackValid(g_SteamListener))
-	{
-		dmLogWarning("Steam callback is not valid");
-		g_SteamListener = 0;
-		return;
-	}
-
-	if (!dmScript::SetupCallback(g_SteamListener))
-	{
-		dmLogWarning("Steam callback setup failed");
-		dmScript::DestroyCallback(g_SteamListener);
-		g_SteamListener = 0;
-		return;
-	}
-
-	lua_State* L = dmScript::GetCallbackLuaContext(g_SteamListener);
-	lua_pushstring(L, id);
-	lua_newtable(L);
-	table_push_boolean(L, "not_implemented_yet", true);
-	int ret = lua_pcall(L, 2, 0, 0);
-	if (ret != 0)
-	{
-		lua_pop(L, 2);
-	}
-	dmScript::TeardownCallback(g_SteamListener);
+    SteamListener_Invoke(&SteamListener_GenericCallbackArgs, id);
 }
 
 void SteamListener_Destroy()

@@ -5,8 +5,8 @@
 
 #include <dmsdk/sdk.h>
 
-int SteamNetworking_OnSteamNetworkingMessagesSessionFailed(lua_State* L, void* data);
-int SteamNetworking_OnSteamNetworkingMessagesSessionRequest(lua_State* L, void* data);
+int SteamNetworking_OnSteamNetworkingMessagesSessionFailed(lua_State* L, const void* data);
+int SteamNetworking_OnSteamNetworkingMessagesSessionRequest(lua_State* L, const void* data);
 
 int SteamNetworking_Init(lua_State* L);
 int SteamNetworking_SendMessageToUser(lua_State* L);

@@ -5,8 +5,8 @@
 
 #include <dmsdk/sdk.h>
 
-int SteamUtils_OnGamepadTextInputDismissed(lua_State* L, void* data);
-int SteamUtils_OnFloatingGamepadTextInputDismissed(lua_State* L, void* data);
+int SteamUtils_OnGamepadTextInputDismissed(lua_State* L, const void* data);
+int SteamUtils_OnFloatingGamepadTextInputDismissed(lua_State* L, const void* data);
 
 int SteamUtils_Init(lua_State* L);
 int SteamUtils_GetAppId(lua_State* L);

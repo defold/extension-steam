@@ -5,10 +5,10 @@
 
 #include <dmsdk/sdk.h>
 
-int SteamUser_OnMicroTxnAuthorizationResponse(lua_State* L, void* data);
-int SteamUser_OnGetTicketForWebApiResponse(lua_State* L, void* data);
-int SteamUser_OnValidateAuthTicketResponse(lua_State* L, void* data);
-int SteamUser_OnGetAuthSessionTicketResponse(lua_State* L, void* data);
+int SteamUser_OnMicroTxnAuthorizationResponse(lua_State* L, const void* data);
+int SteamUser_OnGetTicketForWebApiResponse(lua_State* L, const void* data);
+int SteamUser_OnValidateAuthTicketResponse(lua_State* L, const void* data);
+int SteamUser_OnGetAuthSessionTicketResponse(lua_State* L, const void* data);
 
 int SteamUser_Init(lua_State* L);
 int SteamUser_GetSteamId(lua_State* L);

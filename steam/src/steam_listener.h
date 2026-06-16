@@ -5,7 +5,7 @@
 
 #include <dmsdk/sdk.h>
 
-void SteamListener_Invoke(int (*fn)(lua_State*, void*), void* data);
+void SteamListener_Invoke(int (*fn)(lua_State*, const void*), const void* data);
 void SteamListener_InvokeGeneric(const char* id);
 void SteamListener_Destroy();
 int SteamListener_Set(lua_State* L);
