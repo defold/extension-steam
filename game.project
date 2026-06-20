@@ -28,3 +28,6 @@ include_dirs = steam
 [collection_proxy]
 max_count = 16
 
+[steam]
+use_steam_input = 1
+
