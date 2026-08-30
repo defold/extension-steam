@@ -5,7 +5,8 @@
   members:
   - name: init
     type: function
-    desc: Initialize Steamworks. 
+    desc: |
+      Initialize Steamworks.
     returns:
     - name: success
       type: boolean
@@ -20,418 +21,604 @@
 
   - name: update
     type: function
-    desc: Update Steamworks. Call this from a script component.
+    desc: |
+      Update Steamworks.
+      Call this from a script component.
 
   - name: restart
     type: function
-    desc: Restart Steamworks. 
+    desc: |
+      Restart Steamworks.
     parameters:
     - name: appid
       type: number
 
   - name: final
     type: function
-    desc: Finalize Steamworks. 
+    desc: |
+      Finalize Steamworks.
 
   - name: EFloatingGamepadTextInputModeModeSingleLine
     type: number
-    desc: Enter dismisses the keyboard
+    desc: |
+      Enter dismisses the keyboard
 
   - name: EFloatingGamepadTextInputModeModeMultipleLines
     type: number
-    desc: User needs to explicitly dismiss the keyboard
+    desc: |
+      User needs to explicitly dismiss the keyboard
 
   - name: EFloatingGamepadTextInputModeModeEmail
     type: number
-    desc: Keyboard is displayed in a special mode that makes it easier to enter emails
+    desc: |
+      Keyboard is displayed in a special mode that makes it easier to enter emails
 
   - name: EFloatingGamepadTextInputModeModeNumeric
     type: number
-    desc: Numeric keypad is shown
+    desc: |
+      Numeric keypad is shown
 
   - name: EGamepadTextInputModeNormal
     type: number
-    desc: Normal text input
+    desc: |
+      Normal text input
 
   - name: EGamepadTextInputModePassword
     type: number
-    desc: Password text input
+    desc: |
+      Password text input
 
   - name: EGamepadTextInputLineModeSingleLine
     type: number
-    desc: Single line text
+    desc: |
+      Single line text
 
   - name: EGamepadTextInputLineModeMultipleLines
     type: number
-    desc: Multi line text
+    desc: |
+      Multi line text
 
   - name: ELeaderboardDataRequestGlobal
     type: number
-    desc: Requests rows in the leaderboard from the full table. 
+    desc: |
+      Requests rows in the leaderboard from the full table.
 
   - name: ELeaderboardDataRequestGlobalAroundUser
     type: number
-    desc: Requests rows in the leaderboard from rows around the user. 
+    desc: |
+      Requests rows in the leaderboard from rows around the user.
 
   - name: ELeaderboardDataRequestFriends
     type: number
-    desc: Requests all the rows for friends of the current user. 
+    desc: |
+      Requests all the rows for friends of the current user.
 
   - name: ELeaderboardSortMethodNone
     type: number
-    desc: 
+    desc: |
 
   - name: ELeaderboardSortMethodAscending
     type: number
-    desc: Top-score is lowest number. 
+    desc: |
+      Top-score is lowest number.
 
   - name: ELeaderboardSortMethodDescending
     type: number
-    desc: Top-score is highest number. 
+    desc: |
+      Top-score is highest number.
 
   - name: ELeaderboardUploadScoreMethodNone
     type: number
-    desc: 
+    desc: |
 
   - name: ELeaderboardUploadScoreMethodKeepBest
     type: number
-    desc: Leaderboard will keep user&#x27;s best score. 
+    desc: |
+      Leaderboard will keep user&#x27;s best score.
 
   - name: ELeaderboardUploadScoreMethodForceUpdate
     type: number
-    desc: Leaderboard will always replace score with specified. 
+    desc: |
+      Leaderboard will always replace score with specified.
 
   - name: ELeaderboardDisplayTypeNone
     type: number
-    desc: 
+    desc: |
 
   - name: ELeaderboardDisplayTypeNumeric
     type: number
-    desc: Simple numerical score. 
+    desc: |
+      Simple numerical score.
 
   - name: ELeaderboardDisplayTypeTimeSeconds
     type: number
-    desc: The score represents a time, in seconds. 
+    desc: |
+      The score represents a time, in seconds.
 
   - name: ELeaderboardDisplayTypeTimeMilliSeconds
     type: number
-    desc: The score represents a time, in milliseconds. 
+    desc: |
+      The score represents a time, in milliseconds.
 
   - name: EOverlayToStoreFlag_None
     type: number
-    desc: Passed as parameter to the store. 
+    desc: |
+      Passed as parameter to the store.
 
   - name: EOverlayToStoreFlag_AddToCart
     type: number
-    desc: Passed as parameter to the store. 
+    desc: |
+      Passed as parameter to the store.
 
   - name: EOverlayToStoreFlag_AddToCartAndShow
     type: number
-    desc: Passed as parameter to the store. 
+    desc: |
+      Passed as parameter to the store.
 
   - name: EActivateGameOverlayToWebPageMode_Default
     type: number
-    desc: Passed as parameter to ActivateGameOverlayToWebPage. 
+    desc: |
+      Passed as parameter to ActivateGameOverlayToWebPage.
 
   - name: EActivateGameOverlayToWebPageMode_Modal
     type: number
-    desc: Passed as parameter to ActivateGameOverlayToWebPage. 
+    desc: |
+      Passed as parameter to ActivateGameOverlayToWebPage.
 
   - name: EPersonaStateOffline
     type: number
-    desc: Friend is not currently logged on. 
+    desc: |
+      Friend is not currently logged on.
 
   - name: EPersonaStateOnline
     type: number
-    desc: Friend is logged on. 
+    desc: |
+      Friend is logged on.
 
   - name: EPersonaStateBusy
     type: number
-    desc: User is on, but busy. 
+    desc: |
+      User is on, but busy.
 
   - name: EPersonaStateAway
     type: number
-    desc: Auto-away feature. 
+    desc: |
+      Auto-away feature.
 
   - name: EPersonaStateSnooze
     type: number
-    desc: Auto-away for a long time. 
+    desc: |
+      Auto-away for a long time.
 
   - name: EPersonaStateLookingToTrade
     type: number
-    desc: Online, trading. 
+    desc: |
+      Online, trading.
 
   - name: EPersonaStateLookingToPlay
     type: number
-    desc: Online, wanting to play. 
+    desc: |
+      Online, wanting to play.
 
   - name: EPersonaStateInvisible
     type: number
-    desc: Online, but appears offline to friends.  This status is never published to clients. 
+    desc: |
+      Online, but appears offline to friends.  This status is never published to clients.
 
   - name: EFriendFlagNone
     type: number
-    desc: EFriendFlagNone
+    desc: |
+      EFriendFlagNone
 
   - name: EFriendFlagBlocked
     type: number
-    desc: EFriendFlagBlocked
+    desc: |
+      EFriendFlagBlocked
 
   - name: EFriendFlagFriendshipRequested
     type: number
-    desc: EFriendFlagFriendshipRequested
+    desc: |
+      EFriendFlagFriendshipRequested
 
   - name: EFriendFlagImmediate
     type: number
-    desc: EFriendFlagImmediate
+    desc: |
+      EFriendFlagImmediate
 
   - name: EFriendFlagClanMember
     type: number
-    desc: EFriendFlagClanMember
+    desc: |
+      EFriendFlagClanMember
 
   - name: EFriendFlagOnGameServer
     type: number
-    desc: EFriendFlagOnGameServer
+    desc: |
+      EFriendFlagOnGameServer
 
   - name: EFriendFlagRequestingFriendship
     type: number
-    desc: EFriendFlagRequestingFriendship
+    desc: |
+      EFriendFlagRequestingFriendship
 
   - name: EFriendFlagRequestingInfo
     type: number
-    desc: EFriendFlagRequestingInfo
+    desc: |
+      EFriendFlagRequestingInfo
 
   - name: EFriendFlagIgnored
     type: number
-    desc: EFriendFlagIgnored
+    desc: |
+      EFriendFlagIgnored
 
   - name: EFriendFlagIgnoredFriend
     type: number
-    desc: EFriendFlagIgnoredFriend
+    desc: |
+      EFriendFlagIgnoredFriend
 
   - name: EFriendFlagChatMember
     type: number
-    desc: EFriendFlagChatMember
+    desc: |
+      EFriendFlagChatMember
 
   - name: EFriendFlagAll
     type: number
-    desc: EFriendFlagAll
+    desc: |
+      EFriendFlagAll
 
   - name: SteamNetworkingSend_Unreliable
     type: number
-    desc: SteamNetworkingSend_Unreliable
+    desc: |
+      SteamNetworkingSend_Unreliable
 
   - name: SteamNetworkingSend_NoNagle
     type: number
-    desc: SteamNetworkingSend_NoNagle
+    desc: |
+      SteamNetworkingSend_NoNagle
 
   - name: SteamNetworkingSend_UnreliableNoNagle
     type: number
-    desc: SteamNetworkingSend_UnreliableNoNagle
+    desc: |
+      SteamNetworkingSend_UnreliableNoNagle
 
   - name: SteamNetworkingSend_NoDelay
     type: number
-    desc: SteamNetworkingSend_NoDelay
+    desc: |
+      SteamNetworkingSend_NoDelay
 
   - name: SteamNetworkingSend_UnreliableNoDelay
     type: number
-    desc: SteamNetworkingSend_UnreliableNoDelay
+    desc: |
+      SteamNetworkingSend_UnreliableNoDelay
 
   - name: SteamNetworkingSend_Reliable
     type: number
-    desc: SteamNetworkingSend_Reliable
+    desc: |
+      SteamNetworkingSend_Reliable
 
   - name: SteamNetworkingSend_ReliableNoNagle
     type: number
-    desc: SteamNetworkingSend_ReliableNoNagle
+    desc: |
+      SteamNetworkingSend_ReliableNoNagle
 
   - name: SteamNetworkingSend_UseCurrentThread
     type: number
-    desc: SteamNetworkingSend_UseCurrentThread
+    desc: |
+      SteamNetworkingSend_UseCurrentThread
 
   - name: SteamNetworkingSend_AutoRestartBrokenSession
     type: number
-    desc: SteamNetworkingSend_AutoRestartBrokenSession
+    desc: |
+      SteamNetworkingSend_AutoRestartBrokenSession
 
   - name: ESteamNetConnectionEnd_Invalid
     type: number
-    desc: ESteamNetConnectionEnd_Invalid
+    desc: |
+      ESteamNetConnectionEnd_Invalid
 
   - name: ESteamNetConnectionEnd_App_Generic
     type: number
-    desc: ESteamNetConnectionEnd_App_Generic
+    desc: |
+      ESteamNetConnectionEnd_App_Generic
 
   - name: ESteamNetConnectionEnd_AppException_Generic
     type: number
-    desc: ESteamNetConnectionEnd_AppException_Generic
+    desc: |
+      ESteamNetConnectionEnd_AppException_Generic
 
   - name: ESteamNetConnectionEnd_Local_OfflineMode
     type: number
-    desc: ESteamNetConnectionEnd_Local_OfflineMode
+    desc: |
+      ESteamNetConnectionEnd_Local_OfflineMode
 
   - name: ESteamNetConnectionEnd_Local_ManyRelayConnectivity
     type: number
-    desc: ESteamNetConnectionEnd_Local_ManyRelayConnectivity
+    desc: |
+      ESteamNetConnectionEnd_Local_ManyRelayConnectivity
 
   - name: ESteamNetConnectionEnd_Local_HostedServerPrimaryRelay
     type: number
-    desc: ESteamNetConnectionEnd_Local_HostedServerPrimaryRelay
+    desc: |
+      ESteamNetConnectionEnd_Local_HostedServerPrimaryRelay
 
   - name: ESteamNetConnectionEnd_Local_NetworkConfig
     type: number
-    desc: ESteamNetConnectionEnd_Local_NetworkConfig
+    desc: |
+      ESteamNetConnectionEnd_Local_NetworkConfig
 
   - name: ESteamNetConnectionEnd_Local_Rights
     type: number
-    desc: ESteamNetConnectionEnd_Local_Rights
+    desc: |
+      ESteamNetConnectionEnd_Local_Rights
 
   - name: ESteamNetConnectionEnd_Local_P2P_ICE_NoPublicAddresses
     type: number
-    desc: ESteamNetConnectionEnd_Local_P2P_ICE_NoPublicAddresses
+    desc: |
+      ESteamNetConnectionEnd_Local_P2P_ICE_NoPublicAddresses
 
   - name: ESteamNetConnectionEnd_Remote_Timeout
     type: number
-    desc: ESteamNetConnectionEnd_Remote_Timeout
+    desc: |
+      ESteamNetConnectionEnd_Remote_Timeout
 
   - name: ESteamNetConnectionEnd_Remote_BadCrypt
     type: number
-    desc: ESteamNetConnectionEnd_Remote_BadCrypt
+    desc: |
+      ESteamNetConnectionEnd_Remote_BadCrypt
 
   - name: ESteamNetConnectionEnd_Remote_BadCert
     type: number
-    desc: ESteamNetConnectionEnd_Remote_BadCert
+    desc: |
+      ESteamNetConnectionEnd_Remote_BadCert
 
   - name: ESteamNetConnectionEnd_Remote_BadProtocolVersion
     type: number
-    desc: ESteamNetConnectionEnd_Remote_BadProtocolVersion
+    desc: |
+      ESteamNetConnectionEnd_Remote_BadProtocolVersion
 
   - name: ESteamNetConnectionEnd_Remote_P2P_ICE_NoPublicAddresses
     type: number
-    desc: ESteamNetConnectionEnd_Remote_P2P_ICE_NoPublicAddresses
+    desc: |
+      ESteamNetConnectionEnd_Remote_P2P_ICE_NoPublicAddresses
 
   - name: ESteamNetConnectionEnd_Misc_Generic
     type: number
-    desc: ESteamNetConnectionEnd_Misc_Generic
+    desc: |
+      ESteamNetConnectionEnd_Misc_Generic
 
   - name: ESteamNetConnectionEnd_Misc_InternalError
     type: number
-    desc: ESteamNetConnectionEnd_Misc_InternalError
+    desc: |
+      ESteamNetConnectionEnd_Misc_InternalError
 
   - name: ESteamNetConnectionEnd_Misc_Timeout
     type: number
-    desc: ESteamNetConnectionEnd_Misc_Timeout
+    desc: |
+      ESteamNetConnectionEnd_Misc_Timeout
 
   - name: ESteamNetConnectionEnd_Misc_SteamConnectivity
     type: number
-    desc: ESteamNetConnectionEnd_Misc_SteamConnectivity
+    desc: |
+      ESteamNetConnectionEnd_Misc_SteamConnectivity
 
   - name: ESteamNetConnectionEnd_Misc_NoRelaySessionsToClient
     type: number
-    desc: ESteamNetConnectionEnd_Misc_NoRelaySessionsToClient
+    desc: |
+      ESteamNetConnectionEnd_Misc_NoRelaySessionsToClient
 
   - name: ESteamNetConnectionEnd_Misc_P2P_Rendezvous
     type: number
-    desc: ESteamNetConnectionEnd_Misc_P2P_Rendezvous
+    desc: |
+      ESteamNetConnectionEnd_Misc_P2P_Rendezvous
 
   - name: ESteamNetConnectionEnd_Misc_P2P_NAT_Firewall
     type: number
-    desc: ESteamNetConnectionEnd_Misc_P2P_NAT_Firewall
+    desc: |
+      ESteamNetConnectionEnd_Misc_P2P_NAT_Firewall
 
   - name: ESteamNetConnectionEnd_Misc_PeerSentNoConnection
     type: number
-    desc: ESteamNetConnectionEnd_Misc_PeerSentNoConnection
+    desc: |
+      ESteamNetConnectionEnd_Misc_PeerSentNoConnection
 
   - name: ESteamNetworkingConnectionState_None
     type: number
-    desc: ESteamNetworkingConnectionState_None
+    desc: |
+      ESteamNetworkingConnectionState_None
 
   - name: ESteamNetworkingConnectionState_Connecting
     type: number
-    desc: ESteamNetworkingConnectionState_Connecting
+    desc: |
+      ESteamNetworkingConnectionState_Connecting
 
   - name: ESteamNetworkingConnectionState_FindingRoute
     type: number
-    desc: ESteamNetworkingConnectionState_FindingRoute
+    desc: |
+      ESteamNetworkingConnectionState_FindingRoute
 
   - name: ESteamNetworkingConnectionState_Connected
     type: number
-    desc: ESteamNetworkingConnectionState_Connected
+    desc: |
+      ESteamNetworkingConnectionState_Connected
 
   - name: ESteamNetworkingConnectionState_ClosedByPeer
     type: number
-    desc: ESteamNetworkingConnectionState_ClosedByPeer
+    desc: |
+      ESteamNetworkingConnectionState_ClosedByPeer
 
   - name: ESteamNetworkingConnectionState_ProblemDetectedLocally
     type: number
-    desc: ESteamNetworkingConnectionState_ProblemDetectedLocally
+    desc: |
+      ESteamNetworkingConnectionState_ProblemDetectedLocally
 
   - name: ELobbyTypePrivate
     type: number
-    desc: ELobbyTypePrivate only way to join the lobby is to invite to someone else
+    desc: |
+      ELobbyTypePrivate only way to join the lobby is to invite to someone else
 
   - name: ELobbyTypeFriendsOnly
     type: number
-    desc: ELobbyTypeFriendsOnly shows for friends or invitees, but not in lobby list
+    desc: |
+      ELobbyTypeFriendsOnly shows for friends or invitees, but not in lobby list
 
   - name: ELobbyTypePublic
     type: number
-    desc: ELobbyTypePublic visible for friends and in lobby list
+    desc: |
+      ELobbyTypePublic visible for friends and in lobby list
 
   - name: ELobbyTypeInvisible
     type: number
-    desc: ELobbyTypeInvisible returned by search, but not visible to other friends
+    desc: |
+      ELobbyTypeInvisible returned by search, but not visible to other friends
 
   - name: ELobbyTypePrivateUnique
     type: number
-    desc: ELobbyTypePrivateUnique private, unique and does not delete when empty
+    desc: |
+      ELobbyTypePrivateUnique private, unique and does not delete when empty
 
   - name: EAuthSessionResponseOK
     type: number
-    desc: EAuthSessionResponseOK Steam has verified the user is online, the ticket is valid and ticket has not been reused.
+    desc: |
+      EAuthSessionResponseOK Steam has verified the user is online, the ticket is valid and ticket has not been reused.
 
   - name: EAuthSessionResponseUserNotConnectedToSteam
     type: number
-    desc: EAuthSessionResponseUserNotConnectedToSteam The user in question is not connected to steam.
+    desc: |
+      EAuthSessionResponseUserNotConnectedToSteam The user in question is not connected to steam.
 
   - name: EAuthSessionResponseNoLicenseOrExpired
     type: number
-    desc: EAuthSessionResponseNoLicenseOrExpired The user doesn't have a license for this App ID or the ticket has expired.
+    desc: |
+      EAuthSessionResponseNoLicenseOrExpired The user doesn't have a license for this App ID or the ticket has expired.
 
   - name: EAuthSessionResponseVACBanned
     type: number
-    desc: EAuthSessionResponseVACBanned The user is VAC banned for this game.
+    desc: |
+      EAuthSessionResponseVACBanned The user is VAC banned for this game.
 
   - name: EAuthSessionResponseLoggedInElseWhere
     type: number
-    desc: EAuthSessionResponseLoggedInElseWhere The user account has logged in elsewhere and the session containing the game instance has been disconnected.
+    desc: |
+      EAuthSessionResponseLoggedInElseWhere The user account has logged in elsewhere and the session containing the game instance has been disconnected.
 
   - name: EAuthSessionResponseVACCheckTimedOut
     type: number
-    desc: EAuthSessionResponseVACCheckTimedOut VAC has been unable to perform anti-cheat checks on this user.
+    desc: |
+      EAuthSessionResponseVACCheckTimedOut VAC has been unable to perform anti-cheat checks on this user.
 
   - name: EAuthSessionResponseAuthTicketCanceled
     type: number
-    desc: EAuthSessionResponseAuthTicketCanceled The ticket has been canceled by the issuer.
+    desc: |
+      EAuthSessionResponseAuthTicketCanceled The ticket has been canceled by the issuer.
 
   - name: EAuthSessionResponseAuthTicketInvalidAlreadyUsed
     type: number
-    desc: EAuthSessionResponseAuthTicketInvalidAlreadyUsed This ticket has already been used, it is not valid.
+    desc: |
+      EAuthSessionResponseAuthTicketInvalidAlreadyUsed This ticket has already been used, it is not valid.
 
   - name: EAuthSessionResponseAuthTicketInvalid
     type: number
-    desc: EAuthSessionResponseAuthTicketInvalid This ticket is not from a user instance currently connected to steam.
+    desc: |
+      EAuthSessionResponseAuthTicketInvalid This ticket is not from a user instance currently connected to steam.
 
   - name: EAuthSessionResponsePublisherIssuedBan
     type: number
-    desc: EAuthSessionResponsePublisherIssuedBan The user is banned for this game. The ban came via the web api and not VAC.
+    desc: |
+      EAuthSessionResponsePublisherIssuedBan The user is banned for this game. The ban came via the web api and not VAC.
 
   - name: EAuthSessionResponseAuthTicketNetworkIdentityFailure
     type: number
-    desc: EAuthSessionResponseAuthTicketNetworkIdentityFailure The network identity in the ticket does not match the server authenticating the ticket.
+    desc: |
+      EAuthSessionResponseAuthTicketNetworkIdentityFailure The network identity in the ticket does not match the server authenticating the ticket.
+
+  - name: EInputSourceMode_None
+    type: number
+    desc: |
+      EInputSourceMode_None
+
+  - name: EInputSourceMode_Dpad
+    type: number
+    desc: |
+      EInputSourceMode_Dpad
+
+  - name: EInputSourceMode_Buttons
+    type: number
+    desc: |
+      EInputSourceMode_Buttons
+
+  - name: EInputSourceMode_FourButtons
+    type: number
+    desc: |
+      EInputSourceMode_FourButtons
+
+  - name: EInputSourceMode_AbsoluteMouse
+    type: number
+    desc: |
+      EInputSourceMode_AbsoluteMouse
+
+  - name: EInputSourceMode_RelativeMouse
+    type: number
+    desc: |
+      EInputSourceMode_RelativeMouse
+
+  - name: EInputSourceMode_JoystickMove
+    type: number
+    desc: |
+      EInputSourceMode_JoystickMove
+
+  - name: EInputSourceMode_JoystickMouse
+    type: number
+    desc: |
+      EInputSourceMode_JoystickMouse
+
+  - name: EInputSourceMode_JoystickCamera
+    type: number
+    desc: |
+      EInputSourceMode_JoystickCamera
+
+  - name: EInputSourceMode_ScrollWheel
+    type: number
+    desc: |
+      EInputSourceMode_ScrollWheel
+
+  - name: EInputSourceMode_Trigger
+    type: number
+    desc: |
+      EInputSourceMode_Trigger
+
+  - name: EInputSourceMode_TouchMenu
+    type: number
+    desc: |
+      EInputSourceMode_TouchMenu
+
+  - name: EInputSourceMode_MouseJoystick
+    type: number
+    desc: |
+      EInputSourceMode_MouseJoystick
+
+  - name: EInputSourceMode_MouseRegion
+    type: number
+    desc: |
+      EInputSourceMode_MouseRegion
+
+  - name: EInputSourceMode_RadialMenu
+    type: number
+    desc: |
+      EInputSourceMode_RadialMenu
+
+  - name: EInputSourceMode_SingleButton
+    type: number
+    desc: |
+      EInputSourceMode_SingleButton
+
+  - name: EInputSourceMode_Switches
+    type: number
+    desc: |
+      EInputSourceMode_Switches
 
   - name: apps_is_dlc_installed
     type: function
-    desc: Takes AppID of DLC and checks if the user owns the DLC &amp; if the DLC is installed. 
+    desc: |
+      Takes AppID of DLC and checks if the user owns the DLC &amp; if the DLC is installed.
     parameters:
     - name: app_id
       type: number
@@ -441,17 +628,31 @@
 
   - name: apps_get_current_game_language
     type: function
-    desc: Gets the current game language.
+    desc: |
+      Gets the current game language.
     returns:
     - name: language
       type: string
 
+  - name: apps_is_subscribed_app
+    type: function
+    desc: |
+      Takes AppID and checks if the user is subscribed to a specified app.
+    parameters:
+    - name: app_id
+      type: number
+    returns:
+    - name: installed
+      type: boolean
+
   - name: friends_get_friend_persona_name
     type: function
-    desc: Returns the name of another user. Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.
+    desc: |
+      Returns the name of another user.
+      Same rules as GetFriendPersonaState() apply as to whether or not the user knowns the name of the other user note that on first joining a lobby, chat room or game server the local user will not known the name of the other users automatically; that information will arrive asyncronously.
     parameters:
-    - name: steamIDFriend
-      type: string
+    - name: CSteamID
+      type: friendId
     returns:
     - name: name
       type: string
@@ -461,7 +662,9 @@
 
   - name: friends_get_persona_name
     type: function
-    desc: Returns the local players name - guaranteed to not be NULL. This is the same name as on the users community profile page. This is stored in UTF-8 format.
+    desc: |
+      Returns the local players name - guaranteed to not be NULL.
+      This is the same name as on the users community profile page. This is stored in UTF-8 format.
     returns:
     - name: name
       type: string
@@ -471,7 +674,9 @@
 
   - name: friends_get_persona_state
     type: function
-    desc: Gets the status of the current user. Returned as EPersonaState.
+    desc: |
+      Gets the status of the current user.
+      Returned as EPersonaState.
     returns:
     - name: state
       type: number
@@ -481,7 +686,9 @@
 
   - name: friends_get_friend_count
     type: function
-    desc: Friend iteration. Takes a set of EFriendFlags, and returns the number of users the client knows about who meet that criteria. Then GetFriendByIndex() can then be used to return the id's of each of those users.
+    desc: |
+      Friend iteration.
+      Takes a set of EFriendFlags, and returns the number of users the client knows about who meet that criteria. Then GetFriendByIndex() can then be used to return the id's of each of those users.
     parameters:
     - name: iFriendFlags
       type: number
@@ -497,7 +704,9 @@
 
   - name: friends_get_friend_by_index
     type: function
-    desc: Returns the steamID of a user. The returned CSteamID can then be used by all the functions below to access details about the user.
+    desc: |
+      Returns the steamID of a user.
+      The returned CSteamID can then be used by all the functions below to access details about the user.
     parameters:
     - name: iFriend
       type: number
@@ -511,14 +720,16 @@
         
     returns:
     - name: steamID
-      type: string
+      type: number
       desc: |
         Steam id of the user
         
 
   - name: friends_get_friend_persona_state
     type: function
-    desc: Returns the current status of the specified user. This will only be known by the local user if steamIDFriend is in their friends list; on the same game server; in a chat room or lobby; or in a small group with the local user.
+    desc: |
+      Returns the current status of the specified user.
+      This will only be known by the local user if steamIDFriend is in their friends list; on the same game server; in a chat room or lobby; or in a small group with the local user.
     parameters:
     - name: steamIDFriend
       type: string
@@ -534,7 +745,8 @@
 
   - name: friends_get_friend_steam_level
     type: function
-    desc: Get friends steam level. 
+    desc: |
+      Get friends steam level.
     parameters:
     - name: steamIDFriend
       type: string
@@ -550,7 +762,8 @@
 
   - name: friends_get_friend_relationship
     type: function
-    desc: Returns a relationship to a user. 
+    desc: |
+      Returns a relationship to a user.
     parameters:
     - name: steamIDFriend
       type: string
@@ -566,7 +779,9 @@
 
   - name: friends_get_small_friend_avatar
     type: function
-    desc: Gets a handle to the small (32*32px) avatar for the specified user. This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
+    desc: |
+      Gets a handle to the small (32*32px) avatar for the specified user.
+      This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
     parameters:
     - name: steamIDFriend
       type: string
@@ -582,7 +797,9 @@
 
   - name: friends_get_medium_friend_avatar
     type: function
-    desc: Gets a handle to the medium (64*64px) avatar for the specified user. This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
+    desc: |
+      Gets a handle to the medium (64*64px) avatar for the specified user.
+      This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
     parameters:
     - name: steamIDFriend
       type: string
@@ -598,7 +815,9 @@
 
   - name: friends_get_large_friend_avatar
     type: function
-    desc: Gets a handle to the large (128*128px) avatar for the specified user. This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
+    desc: |
+      Gets a handle to the large (128*128px) avatar for the specified user.
+      This is a handle to be used in IClientUtils::GetImageRGBA(), or 0 if none set
     parameters:
     - name: steamIDFriend
       type: string
@@ -614,7 +833,8 @@
 
   - name: friends_activate_game_overlay_to_store
     type: function
-    desc: Activates game overlay to store page for app. 
+    desc: |
+      Activates game overlay to store page for app.
     parameters:
     - name: app_id
       type: number
@@ -626,7 +846,9 @@
 
   - name: friends_activate_game_overlay_to_web_page
     type: function
-    desc: Activates game overlay web browser directly to the specified URL. Full address with protocol type is required, e.g. http://www.steamgames.com/
+    desc: |
+      Activates game overlay web browser directly to the specified URL.
+      Full address with protocol type is required, e.g. http://www.steamgames.com/
     parameters:
     - name: url
       type: string
@@ -638,7 +860,8 @@
 
   - name: friends_set_rich_presence
     type: function
-    desc: Sets a Rich Presence key/value for the current user. 
+    desc: |
+      Sets a Rich Presence key/value for the current user.
     parameters:
     - name: key
       type: string
@@ -653,11 +876,14 @@
 
   - name: friends_clear_rich_presence
     type: function
-    desc: Clears all of the current user&#x27;s Rich Presence key/values. 
+    desc: |
+      Clears all of the current user&#x27;s Rich Presence key/values.
 
   - name: friends_invite_user_to_game
     type: function
-    desc: Invites a friend or clan member to the current game using a special invite string. If the target accepts the invite, a GameRichPresenceJoinRequested_t callback is posted containing the connect string.
+    desc: |
+      Invites a friend or clan member to the current game using a special invite string.
+      If the target accepts the invite, a GameRichPresenceJoinRequested_t callback is posted containing the connect string.
     parameters:
     - name: steamIDFriend
       type: string
@@ -675,7 +901,8 @@
 
   - name: set_listener
     type: function
-    desc: Set a listener. 
+    desc: |
+      Set a listener.
     parameters:
     - name: listener
       type: function
@@ -685,18 +912,20 @@
 
   - name: matchmaking_add_request_lobby_list_string_filter
     type: function
-    desc: Adds a string comparison filter to the next RequestLobbyList call. 
+    desc: |
+      Adds a string comparison filter to the next RequestLobbyList call.
     parameters:
     - name: key
       type: string
     - name: value
-      type: number
+      type: string
     - name: cmp
       type: number
 
   - name: matchmaking_add_request_lobby_list_numerical_filter
     type: function
-    desc: Adds a numerical comparison filter to the next RequestLobbyList call. 
+    desc: |
+      Adds a numerical comparison filter to the next RequestLobbyList call.
     parameters:
     - name: key
       type: string
@@ -707,7 +936,8 @@
 
   - name: matchmaking_add_request_lobby_list_near_value_filter
     type: function
-    desc: Sorts the results closest to the specified value. 
+    desc: |
+      Sorts the results closest to the specified value.
     parameters:
     - name: key
       type: string
@@ -716,35 +946,44 @@
 
   - name: matchmaking_add_request_lobby_list_filter_slots_available
     type: function
-    desc: Filters to only return lobbies with the specified number of open slots. Available.
+    desc: |
+      Filters to only return lobbies with the specified number of open slots.
+      Available.
     parameters:
     - name: slots
       type: number
 
   - name: matchmaking_add_request_lobby_list_distance_filter
     type: function
-    desc: Sets the physical distance for which we should search for lobbies, this is. Based on the users IP address and a IP location map on the Steam backed.
+    desc: |
+      Sets the physical distance for which we should search for lobbies, this is.
+      Based on the users IP address and a IP location map on the Steam backed.
     parameters:
     - name: dist
       type: number
 
   - name: matchmaking_add_request_lobby_list_result_count_filter
     type: function
-    desc: Sets the maximum number of lobbies to return. The lower the count the faster. It is to download the lobby results & details to the client.
+    desc: |
+      Sets the maximum number of lobbies to return. The lower the count the faster.
+      It is to download the lobby results & details to the client.
     parameters:
     - name: max_count
       type: number
 
   - name: matchmaking_add_request_lobby_list_compatible_members_filter
     type: function
-    desc: Unused - Checks the player compatibility based on the frenemy system. 
+    desc: |
+      Unused - Checks the player compatibility based on the frenemy system.
     parameters:
     - name: steam_id
       type: string
 
   - name: matchmaking_request_lobby_list
     type: function
-    desc: Get a filtered list of relevant lobbies. Will return results as a LobbyMatchList_t event
+    desc: |
+      Get a filtered list of relevant lobbies.
+      Will return results as a LobbyMatchList_t event
     returns:
     - name: id
       type: string
@@ -754,7 +993,9 @@
 
   - name: matchmaking_get_lobby_by_index
     type: function
-    desc: Gets the Steam ID of the lobby at the specified index. This should only be called after a LobbyMatchList_t call result is received
+    desc: |
+      Gets the Steam ID of the lobby at the specified index.
+      This should only be called after a LobbyMatchList_t call result is received
     parameters:
     - name: index
       type: number
@@ -771,7 +1012,9 @@
 
   - name: matchmaking_create_lobby
     type: function
-    desc: Create a new matchmaking lobby. Will generate a LobbyCreated_t, LobbyEnter_t and LobbyDataUpdate_t event
+    desc: |
+      Create a new matchmaking lobby.
+      Will generate a LobbyCreated_t, LobbyEnter_t and LobbyDataUpdate_t event
     parameters:
     - name: lobby_type
       type: number
@@ -792,7 +1035,9 @@
 
   - name: matchmaking_join_lobby
     type: function
-    desc: Joins an existing lobby. Will generate a LobbyEnter_t event
+    desc: |
+      Joins an existing lobby.
+      Will generate a LobbyEnter_t event
     parameters:
     - name: lobby_id
       type: string
@@ -808,7 +1053,9 @@
 
   - name: matchmaking_leave_lobby
     type: function
-    desc: Leave a lobby that the user is currently in. Leave a lobby that the user is currently in; this will take effect immediately on the client side, other users in the lobby will be notified by a LobbyChatUpdate_t callback.
+    desc: |
+      Leave a lobby that the user is currently in.
+      Leave a lobby that the user is currently in; this will take effect immediately on the client side, other users in the lobby will be notified by a LobbyChatUpdate_t callback.
     parameters:
     - name: lobby_id
       type: string
@@ -818,7 +1065,9 @@
 
   - name: matchmaking_get_lobby_owner
     type: function
-    desc: Returns the current lobby owner. There always one lobby owner - if the current owner leaves, another user in the lobby will become the owner automatically. It is possible (but rare) to join a lobby just as the owner is leaving, thus entering a lobby with self as the owner. You must be a member of the lobby to access this.
+    desc: |
+      Returns the current lobby owner.
+      There always one lobby owner - if the current owner leaves, another user in the lobby will become the owner automatically. It is possible (but rare) to join a lobby just as the owner is leaving, thus entering a lobby with self as the owner. You must be a member of the lobby to access this.
     parameters:
     - name: lobby_id
       type: string
@@ -834,7 +1083,9 @@
 
   - name: matchmaking_set_lobby_owner
     type: function
-    desc: Changes who the lobby owner is. This can only be set by the owner of the lobby. This will trigger a LobbyDataUpdate_t for all of the users in the lobby, each user should update their local state to reflect the new owner. This is typically accomplished by displaying a crown icon next to the owners name.
+    desc: |
+      Changes who the lobby owner is.
+      This can only be set by the owner of the lobby. This will trigger a LobbyDataUpdate_t for all of the users in the lobby, each user should update their local state to reflect the new owner. This is typically accomplished by displaying a crown icon next to the owners name.
     parameters:
     - name: lobby_id
       type: string
@@ -849,7 +1100,9 @@
 
   - name: matchmaking_set_lobby_type
     type: function
-    desc: Updates what type of lobby this is. This is also set when you create the lobby with CreateLobby. This can only be set by the owner of the lobby.
+    desc: |
+      Updates what type of lobby this is.
+      This is also set when you create the lobby with CreateLobby. This can only be set by the owner of the lobby.
     parameters:
     - name: lobby_id
       type: string
@@ -864,7 +1117,9 @@
 
   - name: matchmaking_set_lobby_joinable
     type: function
-    desc: Sets whether or not a lobby is joinable by other players. This always defaults to enabled for a new lobby. If joining is disabled, then no players can join, even if they are a friend or have been invited. Lobbies with joining disabled will not be returned from a lobby search.
+    desc: |
+      Sets whether or not a lobby is joinable by other players.
+      This always defaults to enabled for a new lobby. If joining is disabled, then no players can join, even if they are a friend or have been invited. Lobbies with joining disabled will not be returned from a lobby search.
     parameters:
     - name: lobby_id
       type: string
@@ -885,7 +1140,9 @@
 
   - name: matchmaking_set_lobby_member_limit
     type: function
-    desc: Set the maximum number of players that can join the lobby. This is also set when you create the lobby with CreateLobby. This can only be set by the owner of the lobby.
+    desc: |
+      Set the maximum number of players that can join the lobby.
+      This is also set when you create the lobby with CreateLobby. This can only be set by the owner of the lobby.
     parameters:
     - name: lobby_id
       type: string
@@ -907,7 +1164,8 @@
 
   - name: matchmaking_get_lobby_member_limit
     type: function
-    desc: The current limit on the # of users who can join the lobby. 
+    desc: |
+      The current limit on the # of users who can join the lobby.
     parameters:
     - name: lobby_id
       type: string
@@ -923,7 +1181,9 @@
 
   - name: matchmaking_get_num_lobby_members
     type: function
-    desc: Gets the number of users in a lobby. This is used for iteration, after calling this then GetLobbyMemberByIndex can be used to get the Steam ID of each person in the lobby. Persona information for other lobby members (name, avatar, etc.) is automatically received and accessible via the ISteamFriends interface. The current user must be in the lobby to retrieve the Steam IDs of other users in that lobby.
+    desc: |
+      Gets the number of users in a lobby.
+      This is used for iteration, after calling this then GetLobbyMemberByIndex can be used to get the Steam ID of each person in the lobby. Persona information for other lobby members (name, avatar, etc.) is automatically received and accessible via the ISteamFriends interface. The current user must be in the lobby to retrieve the Steam IDs of other users in that lobby.
     parameters:
     - name: lobby_id
       type: string
@@ -939,7 +1199,9 @@
 
   - name: matchmaking_get_lobby_member_by_index
     type: function
-    desc: Gets the Steam ID of the lobby member at the given index. You must call matchmaking_get_num_lobby_members before calling this. The current user must be in the lobby to retrieve the Steam IDs of other users in that lobby.
+    desc: |
+      Gets the Steam ID of the lobby member at the given index.
+      You must call matchmaking_get_num_lobby_members before calling this. The current user must be in the lobby to retrieve the Steam IDs of other users in that lobby.
     parameters:
     - name: lobby_id
       type: string
@@ -954,7 +1216,8 @@
 
   - name: matchmaking_set_lobby_data
     type: function
-    desc: Sets a key/value pair in the lobby metadata. 
+    desc: |
+      Sets a key/value pair in the lobby metadata.
     parameters:
     - name: lobby_id
       type: string
@@ -968,7 +1231,8 @@
 
   - name: matchmaking_set_lobby_member_data
     type: function
-    desc: Sets per-user metadata for the local user. 
+    desc: |
+      Sets per-user metadata for the local user.
     parameters:
     - name: lobby_id
       type: string
@@ -979,7 +1243,8 @@
 
   - name: matchmaking_get_lobby_data
     type: function
-    desc: Get data associated with this lobby. 
+    desc: |
+      Get data associated with this lobby.
     parameters:
     - name: lobby_id
       type: string
@@ -994,7 +1259,8 @@
 
   - name: matchmaking_get_lobby_member_data
     type: function
-    desc: Gets per-user metadata from another player in the specified lobby. 
+    desc: |
+      Gets per-user metadata from another player in the specified lobby.
     parameters:
     - name: lobby_id
       type: string
@@ -1011,7 +1277,8 @@
 
   - name: matchmaking_get_lobby_data_count
     type: function
-    desc: Returns the number of metadata keys set on the specified lobby. 
+    desc: |
+      Returns the number of metadata keys set on the specified lobby.
     parameters:
     - name: lobby_id
       type: string
@@ -1024,7 +1291,8 @@
 
   - name: matchmaking_get_lobby_data_by_index
     type: function
-    desc: Returns a lobby metadata key/values pair by index. 
+    desc: |
+      Returns a lobby metadata key/values pair by index.
     parameters:
     - name: lobby_id
       type: string
@@ -1040,7 +1308,8 @@
 
   - name: matchmaking_send_lobby_chat_message
     type: function
-    desc: Broadcasts a chat message to the all the users in the lobby. 
+    desc: |
+      Broadcasts a chat message to the all the users in the lobby.
     parameters:
     - name: lobby_id
       type: string
@@ -1052,7 +1321,8 @@
 
   - name: matchmaking_get_lobby_chat_entry
     type: function
-    desc: Get a chat message as specified in a LobbyChatMsg_t callback. 
+    desc: |
+      Get a chat message as specified in a LobbyChatMsg_t callback.
     parameters:
     - name: lobby_id
       type: string
@@ -1068,7 +1338,8 @@
 
   - name: networking_send_message_to_user
     type: function
-    desc: Send message. 
+    desc: |
+      Send message.
     parameters:
     - name: identity_remote
       type: string
@@ -1087,7 +1358,8 @@
 
   - name: networking_receive_messages_on_channel
     type: function
-    desc: Receive message. 
+    desc: |
+      Receive message.
     parameters:
     - name: localChannel
       type: number
@@ -1097,7 +1369,9 @@
 
   - name: networking_accept_session_with_user
     type: function
-    desc: Accept session. Call this in response to a SteamNetworkingMessagesSessionRequest_t callback.
+    desc: |
+      Accept session.
+      Call this in response to a SteamNetworkingMessagesSessionRequest_t callback.
     parameters:
     - name: identity_remote
       type: string
@@ -1112,7 +1386,9 @@
 
   - name: networking_close_session_with_user
     type: function
-    desc: Close sesssion. Call this when you're done talking to a user to immediately free up resources under-the-hood
+    desc: |
+      Close sesssion.
+      Call this when you're done talking to a user to immediately free up resources under-the-hood
     parameters:
     - name: identity_remote
       type: string
@@ -1122,7 +1398,9 @@
 
   - name: networking_close_channel_with_user
     type: function
-    desc: Close channel. Call this when you're done talking to a user on a specific channel.
+    desc: |
+      Close channel.
+      Call this when you're done talking to a user on a specific channel.
     parameters:
     - name: identity_remote
       type: string
@@ -1134,7 +1412,9 @@
 
   - name: networking_get_session_connection_info
     type: function
-    desc: Get connection info. Returns information about the latest state of a connection, if any, with the given peer.
+    desc: |
+      Get connection info.
+      Returns information about the latest state of a connection, if any, with the given peer.
     parameters:
     - name: identity_remote
       type: string
@@ -1147,7 +1427,8 @@
 
   - name: remote_storage_file_share
     type: function
-    desc: Share a file. 
+    desc: |
+      Share a file.
     parameters:
     - name: filename
       type: string
@@ -1160,7 +1441,8 @@
 
   - name: remote_storage_get_file_count
     type: function
-    desc: Get number of uploaded files. 
+    desc: |
+      Get number of uploaded files.
     returns:
     - name: count
       type: number
@@ -1170,7 +1452,8 @@
 
   - name: remote_storage_get_file_name_and_size
     type: function
-    desc: Get file information. 
+    desc: |
+      Get file information.
     returns:
     - name: count
       type: number
@@ -1180,7 +1463,8 @@
 
   - name: remote_storage_get_quota
     type: function
-    desc: Get storage quota. 
+    desc: |
+      Get storage quota.
     returns:
     - name: available
       type: number
@@ -1195,7 +1479,9 @@
 
   - name: remote_storage_file_write
     type: function
-    desc: Creates a new file, writes the bytes to the file, and then closes the file. If the target file already exists, it is overwritten.
+    desc: |
+      Creates a new file, writes the bytes to the file, and then closes the file.
+      If the target file already exists, it is overwritten.
     parameters:
     - name: filename
       type: string
@@ -1213,7 +1499,9 @@
 
   - name: remote_storage_file_read
     type: function
-    desc: Opens a binary file, reads the contents of the file into a byte array,. And then closes the file.
+    desc: |
+      Opens a binary file, reads the contents of the file into a byte array,.
+      And then closes the file.
     parameters:
     - name: filename
       type: string
@@ -1226,21 +1514,26 @@
 
   - name: user_get_steam_id
     type: function
-    desc: Returns the CSteamID of the account currently logged into the Steam client. A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.
+    desc: |
+      Returns the CSteamID of the account currently logged into the Steam client.
+      A CSteamID is a unique identifier for an account, and used to differentiate users in all parts of the Steamworks API.
     returns:
     - name: id
-      type: string
+      type: CSteamID
 
   - name: user_get_player_steam_level
     type: function
-    desc: Gets the Steam Level of the user, as shown on their profile. 
+    desc: |
+      Gets the Steam Level of the user, as shown on their profile.
     returns:
     - name: level
       type: number
 
   - name: user_get_game_badge_level
     type: function
-    desc: Trading Card badges data access. If you only have one set of cards, the series will be 1. The user has can have two different badges for a series; the regular (max level 5) and the foil (max level 1).
+    desc: |
+      Trading Card badges data access.
+      If you only have one set of cards, the series will be 1. The user has can have two different badges for a series; the regular (max level 5) and the foil (max level 1).
     returns:
     - name: series
       type: number
@@ -1249,49 +1542,59 @@
 
   - name: user_logged_on
     type: function
-    desc: Returns true if the Steam client current has a live connection to the Steam. Servers.
+    desc: |
+      Returns true if the Steam client current has a live connection to the Steam.
+      Servers.
     returns:
     - name: logged_on
       type: boolean
 
   - name: user_is_behind_nat
     type: function
-    desc: Returns true if this users looks like they are behind a NAT device. Only valid once the user has connected to steam .
+    desc: |
+      Returns true if this users looks like they are behind a NAT device.
+      Only valid once the user has connected to steam .
     returns:
     - name: behind_nat
       type: boolean
 
   - name: user_is_phone_verified
     type: function
-    desc: Gets whether the users phone number is verified. 
+    desc: |
+      Gets whether the users phone number is verified.
     returns:
     - name: verified
       type: boolean
 
   - name: user_is_phone_identifying
     type: function
-    desc: Gets whether the users phone number is identifying. 
+    desc: |
+      Gets whether the users phone number is identifying.
     returns:
     - name: verifying
       type: boolean
 
   - name: user_is_phone_requiring_verification
     type: function
-    desc: Gets whether the users phone number is awaiting (re)verification. 
+    desc: |
+      Gets whether the users phone number is awaiting (re)verification.
     returns:
     - name: verification
       type: boolean
 
   - name: user_is_two_factor_enabled
     type: function
-    desc: Gets whether the user has two factor enabled on their account. 
+    desc: |
+      Gets whether the user has two factor enabled on their account.
     returns:
     - name: enabled
       type: boolean
 
   - name: user_get_auth_session_ticket
     type: function
-    desc: Get an authentication ticket. Retrieve an authentication ticket to be sent to the entity who wishes to authenticate you.
+    desc: |
+      Get an authentication ticket.
+      Retrieve an authentication ticket to be sent to the entity who wishes to authenticate you.
     returns:
     - name: ticket
       type: string
@@ -1311,7 +1614,9 @@
 
   - name: user_begin_auth_session
     type: function
-    desc: Validate an authentication ticket. Authenticate the ticket from the entity Steam ID to be sure it is valid and isn't reused. Note that identity is not confirmed until the callback ValidateAuthTicketResponse_t is received and the return value in that callback is checked for success.
+    desc: |
+      Validate an authentication ticket.
+      Authenticate the ticket from the entity Steam ID to be sure it is valid and isn't reused. Note that identity is not confirmed until the callback ValidateAuthTicketResponse_t is received and the return value in that callback is checked for success.
     parameters:
     - name: ticket
       type: string
@@ -1329,7 +1634,9 @@
 
   - name: user_cancel_auth_ticket
     type: function
-    desc: Cancels an auth ticket. Cancels an auth ticket received from GetAuthSessionTicket or GetAuthTicketForWebApi. This should be called when no longer playing with the specified entity.
+    desc: |
+      Cancels an auth ticket.
+      Cancels an auth ticket received from GetAuthSessionTicket or GetAuthTicketForWebApi. This should be called when no longer playing with the specified entity.
     parameters:
     - name: ticket
       type: number
@@ -1339,7 +1646,9 @@
 
   - name: user_end_auth_session
     type: function
-    desc: Ends an auth session. Ends an auth session that was started with BeginAuthSession. This should be called when no longer playing with the specified entity.
+    desc: |
+      Ends an auth session.
+      Ends an auth session that was started with BeginAuthSession. This should be called when no longer playing with the specified entity.
     parameters:
     - name: steamId
       type: string
@@ -1349,7 +1658,9 @@
 
   - name: user_get_auth_ticket_for_web_api
     type: function
-    desc: Get an authentication ticket for web API. Request an authentication ticket suitable to authenticated in a web backend. Will trigger a GetTicketForWebApiResponse_t callback when the ticket is ready.
+    desc: |
+      Get an authentication ticket for web API.
+      Request an authentication ticket suitable to authenticated in a web backend. Will trigger a GetTicketForWebApiResponse_t callback when the ticket is ready.
     parameters:
     - name: identity
       type: string
@@ -1370,7 +1681,9 @@
 
   - name: user_stats_get_stat_int
     type: function
-    desc: Get user stat as an integer. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
+    desc: |
+      Get user stat as an integer.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
     parameters:
     - name: id
       type: string
@@ -1388,7 +1701,9 @@
 
   - name: user_stats_set_stat_int
     type: function
-    desc: Set user stat. Https://partner.steamgames.com/doc/api/ISteamUserStats#SetStat
+    desc: |
+      Set user stat.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#SetStat
     parameters:
     - name: id
       type: string
@@ -1406,7 +1721,9 @@
 
   - name: user_stats_get_stat_float
     type: function
-    desc: Get user stat as a floating point number. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
+    desc: |
+      Get user stat as a floating point number.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#GetStat
     parameters:
     - name: id
       type: string
@@ -1424,7 +1741,9 @@
 
   - name: user_stats_set_stat_float
     type: function
-    desc: Set user stat. Https://partner.steamgames.com/doc/api/ISteamUserStats#SetStat
+    desc: |
+      Set user stat.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#SetStat
     parameters:
     - name: id
       type: string
@@ -1442,7 +1761,9 @@
 
   - name: user_stats_request_global_stats
     type: function
-    desc: Requests global stats data, which is available for stats marked as &quot;aggregated&quot;. This call is asynchronous, with the results returned in GlobalStatsReceived_t. nHistoryDays specifies how many days of day-by-day history to retrieve in addition to the overall totals. The limit is 60. https://partner.steamgames.com/doc/api/ISteamUserStats#RequestGlobalStats
+    desc: |
+      Requests global stats data, which is available for stats marked as &quot;aggregated&quot;.
+      This call is asynchronous, with the results returned in GlobalStatsReceived_t. nHistoryDays specifies how many days of day-by-day history to retrieve in addition to the overall totals. The limit is 60. https://partner.steamgames.com/doc/api/ISteamUserStats#RequestGlobalStats
     parameters:
     - name: history_days
       type: number
@@ -1452,14 +1773,18 @@
 
   - name: user_stats_store_stats
     type: function
-    desc: Store the current data on the server. Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync. https://partner.steamgames.com/doc/api/ISteamUserStats#StoreStats
+    desc: |
+      Store the current data on the server.
+      Will get a callback when set and one callback for every new achievement  If the callback has a result of k_EResultInvalidParam, one or more stats uploaded has been rejected, either because they broke constraints or were out of date. In this case the server sends back updated values. The stats should be re-iterated to keep in sync. https://partner.steamgames.com/doc/api/ISteamUserStats#StoreStats
     returns:
     - name: ok
       type: boolean
 
   - name: user_stats_reset_all_stats
     type: function
-    desc: Reset stats. Https://partner.steamgames.com/doc/api/ISteamUserStats#ResetAllStats
+    desc: |
+      Reset stats.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#ResetAllStats
     parameters:
     - name: achievements
       type: boolean
@@ -1472,7 +1797,9 @@
 
   - name: user_stats_set_achievement
     type: function
-    desc: Set achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#SetAchievement
+    desc: |
+      Set achievement.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#SetAchievement
     parameters:
     - name: name
       type: string
@@ -1482,7 +1809,9 @@
 
   - name: user_stats_get_achievement
     type: function
-    desc: Get achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievement
+    desc: |
+      Get achievement.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievement
     parameters:
     - name: name
       type: string
@@ -1494,7 +1823,9 @@
 
   - name: user_stats_clear_achievement
     type: function
-    desc: Clear achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#ClearAchievement
+    desc: |
+      Clear achievement.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#ClearAchievement
     parameters:
     - name: name
       type: string
@@ -1504,7 +1835,9 @@
 
   - name: user_stats_get_num_achievements
     type: function
-    desc: Used for iterating achievements. In general games should not need these functions because they should have a list of existing achievements compiled into them. https://partner.steamgames.com/doc/api/ISteamUserStats#GetNumAchievements
+    desc: |
+      Used for iterating achievements.
+      In general games should not need these functions because they should have a list of existing achievements compiled into them. https://partner.steamgames.com/doc/api/ISteamUserStats#GetNumAchievements
     returns:
     - name: num
       type: number
@@ -1514,7 +1847,9 @@
 
   - name: user_stats_get_achievement_name
     type: function
-    desc: Get achievement name iAchievement in [0,GetNumAchievements). Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementName
+    desc: |
+      Get achievement name iAchievement in [0,GetNumAchievements).
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementName
     parameters:
     - name: index
       type: number
@@ -1524,7 +1859,9 @@
 
   - name: user_stats_get_achievement_display_attribute
     type: function
-    desc: Get general attributes for an achievement. Accepts the following keys * "name" and "desc" for retrieving the localized achievement name and description (returned in UTF8) * "hidden" for retrieving if an achievement is hidden (returns "0" when not hidden, "1" when hidden) https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementDisplayAttribute
+    desc: |
+      Get general attributes for an achievement.
+      Accepts the following keys * "name" and "desc" for retrieving the localized achievement name and description (returned in UTF8) * "hidden" for retrieving if an achievement is hidden (returns "0" when not hidden, "1" when hidden) https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementDisplayAttribute
     parameters:
     - name: name
       type: string
@@ -1539,7 +1876,9 @@
 
   - name: user_stats_get_achievement_achieved_percent
     type: function
-    desc: Returns the percentage of users who have achieved the specified achievement. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementAchievedPercent
+    desc: |
+      Returns the percentage of users who have achieved the specified achievement.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#GetAchievementAchievedPercent
     returns:
     - name: ok
       type: boolean
@@ -1548,14 +1887,17 @@
 
   - name: user_stats_find_leaderboard
     type: function
-    desc: Find a leaderboard. Will return leaderboard asynchronously. https://partner.steamgames.com/doc/api/ISteamUserStats#FindLeaderboard
+    desc: |
+      Find a leaderboard. Will return leaderboard asynchronously. https://partner.steamgames.com/doc/api/ISteamUserStats#FindLeaderboard
     parameters:
     - name: name
       type: string
 
   - name: user_stats_find_or_create_leaderboard
     type: function
-    desc: Gets a leaderboard by name, it will create it if it&#x27;s not yet created. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardFindResult_t. https://partner.steamgames.com/doc/api/ISteamUserStats#FindOrCreateLeaderboard
+    desc: |
+      Gets a leaderboard by name, it will create it if it&#x27;s not yet created.
+      This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardFindResult_t. https://partner.steamgames.com/doc/api/ISteamUserStats#FindOrCreateLeaderboard
     parameters:
     - name: leaderboard_name
       type: string
@@ -1575,7 +1917,9 @@
 
   - name: user_stats_get_leaderboard_name
     type: function
-    desc: Get the name of a leaderboard. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardName
+    desc: |
+      Get the name of a leaderboard.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardName
     parameters:
     - name: leaderboard
       type: string
@@ -1585,7 +1929,9 @@
 
   - name: user_stats_get_leaderboard_entry_count
     type: function
-    desc: Get the total number of entries in a leaderboard, as of the last request. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardEntryCount
+    desc: |
+      Get the total number of entries in a leaderboard, as of the last request.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardEntryCount
     parameters:
     - name: leaderboard
       type: string
@@ -1595,7 +1941,9 @@
 
   - name: user_stats_get_leaderboard_sort_method
     type: function
-    desc: Returns the sort method of the leaderboard. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardSortMethod
+    desc: |
+      Returns the sort method of the leaderboard.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardSortMethod
     parameters:
     - name: leaderboard
       type: string
@@ -1605,7 +1953,9 @@
 
   - name: user_stats_get_leaderboard_display_type
     type: function
-    desc: Returns the display type of a leaderboard handle. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardDisplayType
+    desc: |
+      Returns the display type of a leaderboard handle.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#GetLeaderboardDisplayType
     parameters:
     - name: leaderboard
       type: string
@@ -1615,7 +1965,9 @@
 
   - name: user_stats_download_leaderboard_entries
     type: function
-    desc: Asks the Steam back-end for a set of rows in the leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user https://partner.steamgames.com/doc/api/ISteamUserStats#DownloadLeaderboardEntries
+    desc: |
+      Asks the Steam back-end for a set of rows in the leaderboard.
+      This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoresDownloaded_t. LeaderboardScoresDownloaded_t will contain a handle to pull the results from GetDownloadedLeaderboardEntries(). You can ask for more entries than exist, and it will return as many as do exist. * k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart & nRangeEnd in the range [1, TotalEntries] * k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after * k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user https://partner.steamgames.com/doc/api/ISteamUserStats#DownloadLeaderboardEntries
     parameters:
     - name: leaderboard
       type: string
@@ -1628,7 +1980,9 @@
 
   - name: user_stats_get_downloaded_leaderboard_entry
     type: function
-    desc: Returns data about a single leaderboard entry. Https://partner.steamgames.com/doc/api/ISteamUserStats#GetDownloadedLeaderboardEntry
+    desc: |
+      Returns data about a single leaderboard entry.
+      Https://partner.steamgames.com/doc/api/ISteamUserStats#GetDownloadedLeaderboardEntry
     parameters:
     - name: hSteamLeaderboardEntries
       type: string
@@ -1651,7 +2005,9 @@
 
   - name: user_stats_upload_leaderboard_score
     type: function
-    desc: Uploads a user score to a specified leaderboard. This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoreUploaded_t. https://partner.steamgames.com/doc/api/ISteamUserStats#UploadLeaderboardScore
+    desc: |
+      Uploads a user score to a specified leaderboard.
+      This call is asynchronous, with the result returned in a listener callback with event set to LeaderboardScoreUploaded_t. https://partner.steamgames.com/doc/api/ISteamUserStats#UploadLeaderboardScore
     parameters:
     - name: leaderboard
       type: string
@@ -1662,7 +2018,9 @@
 
   - name: user_stats_attach_leadboard_ugc
     type: function
-    desc: Attaches a piece of user generated content the current user&#x27;s entry on a. Leaderboard. https://partner.steamgames.com/doc/api/ISteamUserStats#AttachLeaderboardUGC
+    desc: |
+      Attaches a piece of user generated content the current user&#x27;s entry on a.
+      Leaderboard. https://partner.steamgames.com/doc/api/ISteamUserStats#AttachLeaderboardUGC
     parameters:
     - name: leaderboard
       type: string
@@ -1677,35 +2035,40 @@
 
   - name: utils_get_app_id
     type: function
-    desc: Returns the appID of the current process. 
+    desc: |
+      Returns the appID of the current process.
     returns:
     - name: app_id
       type: number
 
   - name: utils_get_seconds_since_app_active
     type: function
-    desc: Return the number of seconds since the user. 
+    desc: |
+      Return the number of seconds since the user.
     returns:
     - name: seconds
       type: number
 
   - name: utils_is_steam_running_on_steam_deck
     type: function
-    desc: Returns true if currently running on the Steam Deck device. 
+    desc: |
+      Returns true if currently running on the Steam Deck device.
     returns:
     - name: running_on_steamdeck
       type: boolean
 
   - name: utils_is_steam_overlay_available
     type: function
-    desc: Returns true if the Steam Overlay is running and the user can access it. 
+    desc: |
+      Returns true if the Steam Overlay is running and the user can access it.
     returns:
     - name: steam_overlay_available
       type: boolean
 
   - name: utils_get_image_size
     type: function
-    desc: Get size of image. 
+    desc: |
+      Get size of image.
     parameters:
     - name: image
       type: number
@@ -1731,7 +2094,8 @@
 
   - name: utils_get_image_rgba
     type: function
-    desc: Get image in RGBA format. 
+    desc: |
+      Get image in RGBA format.
     parameters:
     - name: image
       type: number
@@ -1754,7 +2118,8 @@
 
   - name: utils_get_server_real_time
     type: function
-    desc: Returns the Steam server time in Unix epoch format. (Number of seconds since Jan 1, 1970 UTC). 
+    desc: |
+      Returns the Steam server time in Unix epoch format. (Number of seconds since Jan 1, 1970 UTC).
     returns:
     - name: Server
       type: number
@@ -1764,7 +2129,8 @@
 
   - name: utils_show_floating_gamepad_text_input
     type: function
-    desc: Opens a floating keyboard over the game content and sends OS keyboard keys directly to the game. 
+    desc: |
+      Opens a floating keyboard over the game content and sends OS keyboard keys directly to the game.
     parameters:
     - name: mode
       type: number
@@ -1800,7 +2166,8 @@
 
   - name: utils_show_gamepad_text_input
     type: function
-    desc: Activates the Big Picture text input dialog which only supports gamepad input. 
+    desc: |
+      Activates the Big Picture text input dialog which only supports gamepad input.
     parameters:
     - name: input_mode
       type: number

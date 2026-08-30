@@ -244,6 +244,30 @@ nodes {
   overridden_fields: 8
   template_node_child: true
 }
+nodes {
+  position {
+    x: 1087.0
+    y: 280.0
+  }
+  type: TYPE_TEMPLATE
+  id: "input"
+  inherit_alpha: true
+  template: "/gooey-rpg/components/button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "input/bg"
+  parent: "input"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "INPUT"
+  id: "input/label"
+  parent: "input/bg"
+  overridden_fields: 8
+  template_node_child: true
+}
 layers {
   name: "below"
 }
