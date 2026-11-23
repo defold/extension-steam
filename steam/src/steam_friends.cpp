@@ -246,6 +246,21 @@ int SteamFriends_GetLargeFriendAvatar(lua_State* L)
 	return 1;
 }
 
+/** Activates game overlay to a specific dialog.
+ * This is equivalent to calling ActivateGameOverlayToUser
+ * with steamIDset to ISteamUser::GetSteamID.
+ * @name friends_activate_game_overlay
+ * @string dialog
+ */
+int SteamFriends_ActivateGameOverlay(lua_State* L)
+{
+	if (!g_SteamFriends) return 0;
+	DM_LUA_STACK_CHECK(L, 0);
+	const char *pchDialog = luaL_checkstring(L, 1);
+	g_SteamFriends->ActivateGameOverlay(pchDialog);
+	return 0;
+}
+
 /** Activates game overlay to store page for app.
  * @name friends_activate_game_overlay_to_store
  * @number app_id

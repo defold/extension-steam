@@ -474,6 +474,11 @@ function steam.friends_get_medium_friend_avatar(steam_id) end
 function steam.friends_get_large_friend_avatar(steam_id) end
 
 
+---Activates game overlay to a specific dialog.
+---@param dialog string
+function steam.friends_activate_game_overlay(dialog) end
+
+
 ---Activates game overlay to store page for app.
 ---@param app_id number
 ---@param flag number EOverlayToStoreFlag
