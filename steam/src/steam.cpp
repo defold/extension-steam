@@ -376,6 +376,7 @@ static const luaL_reg Module_methods[] = {
 	{ "friends_get_small_friend_avatar", SteamFriends_GetSmallFriendAvatar },
 	{ "friends_get_medium_friend_avatar", SteamFriends_GetMediumFriendAvatar },
 	{ "friends_get_large_friend_avatar", SteamFriends_GetLargeFriendAvatar },
+	{ "friends_activate_game_overlay", SteamFriends_ActivateGameOverlay },
 	{ "friends_activate_game_overlay_to_store", SteamFriends_ActivateGameOverlayToStore },
 	{ "friends_activate_game_overlay_to_web_page", SteamFriends_ActivateGameOverlayToWebPage },
 	{ "friends_set_rich_presence", SteamFriends_SetRichPresence },

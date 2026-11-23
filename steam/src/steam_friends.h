@@ -21,6 +21,7 @@ int SteamFriends_GetFriendRelationship(lua_State* L);
 int SteamFriends_GetSmallFriendAvatar(lua_State* L);
 int SteamFriends_GetMediumFriendAvatar(lua_State* L);
 int SteamFriends_GetLargeFriendAvatar(lua_State* L);
+int SteamFriends_ActivateGameOverlay(lua_State* L);
 int SteamFriends_ActivateGameOverlayToStore(lua_State* L);
 int SteamFriends_ActivateGameOverlayToWebPage(lua_State* L);
 int SteamFriends_SetRichPresence(lua_State* L);

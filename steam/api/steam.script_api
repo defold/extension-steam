@@ -611,7 +611,15 @@
       desc: |
         Image handle.
         
-
+  
+  - name: friends_activate_game_overlay
+    type: function
+    desc: Activates game overlay to to a specific dialog.
+    parameters:
+    - name: dialog
+      type: string
+        
+  
   - name: friends_activate_game_overlay_to_store
     type: function
     desc: Activates game overlay to store page for app. 
